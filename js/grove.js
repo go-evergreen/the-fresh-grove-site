@@ -473,33 +473,44 @@
         if (label) label.textContent = pad(i + 1) + " / " + pad(n);
       }
 
-      if (prev) prev.addEventListener("click", function () { go(i - 1); });
-      if (next) next.addEventListener("click", function () { go(i + 1); });
+      if (prev) prev.addEventListener("click", function (e) { e.stopPropagation(); go(i - 1); });
+      if (next) next.addEventListener("click", function (e) { e.stopPropagation(); go(i + 1); });
       if (dotsWrap) {
         dotsWrap.addEventListener("click", function (e) {
           var dot = e.target.closest("[data-i]");
-          if (dot) go(parseInt(dot.getAttribute("data-i"), 10));
+          if (dot) {
+            e.stopPropagation();
+            go(parseInt(dot.getAttribute("data-i"), 10));
+          }
         });
       }
 
       var viewport = root.querySelector(".carousel-viewport");
       if (viewport) {
+        var moved = false;
         viewport.addEventListener("pointerdown", function (e) {
           if (e.target.closest("button, a")) {
             dragging = false;
+            moved = false;
             return;
           }
           dragging = true;
+          moved = false;
           startX = e.clientX;
         });
         viewport.addEventListener("pointerup", function (e) {
           if (!dragging) return;
           dragging = false;
           var dx = e.clientX - startX;
-          if (dx > 40) go(i - 1);
-          else if (dx < -40) go(i + 1);
+          if (dx > 40) { moved = true; go(i - 1); }
+          else if (dx < -40) { moved = true; go(i + 1); }
         });
         viewport.addEventListener("pointerleave", function () { dragging = false; });
+        viewport.addEventListener("click", function (e) {
+          if (moved) { moved = false; return; }
+          if (e.target.closest("button, a")) return;
+          go(i === 0 ? 1 : 0);
+        });
       }
 
       go(0);

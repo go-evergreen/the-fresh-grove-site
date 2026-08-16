@@ -80,7 +80,7 @@
       dock.classList.remove("is-in");
       dock.setAttribute("aria-label", "Explore the First Seeds hub");
     }
-    if (reduce || window.matchMedia("(max-width: 900px)").matches) {
+    if (reduce) {
       open();
       return;
     }

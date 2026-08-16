@@ -1625,13 +1625,14 @@ footer{background:var(--pine-deep);color:var(--linen);padding:3.2rem 2rem 2.4rem
   .why-room-live .why-arch{min-height:0;height:auto;padding:1.9rem 1.5rem 1.55rem}
   .why-room-a,.why-room-b,.why-room-c{transform:none}
   .company-stats{gap:.65rem .7rem}
-  .factory-orb{width:7.2rem;height:7.2rem;margin:0 auto .15rem}
-  .factory-body{flex-direction:column;align-items:stretch;gap:1rem}
+  .factory-orb{width:6.8rem;height:6.8rem;margin:0}
+  .factory-body{flex-direction:row;align-items:center;gap:1rem}
   .factory-go,.factory-back{
     font-size:1rem;letter-spacing:.1em;min-height:2.75rem;
     padding:.55rem 0;align-items:center
   }
   .factory-go span{width:2.4rem;height:2.4rem;flex:none}
+  .factory-stage{cursor:pointer}
   .factory-from h3,.factory-to h3,.why-arch h3,.why-room-live h3,
   .why-head .section-title,.why-head .lede{white-space:normal}
   .factory-figure{font-size:1.85rem}
@@ -1676,15 +1677,30 @@ footer{background:var(--pine-deep);color:var(--linen);padding:3.2rem 2rem 2.4rem
   }
   .phone-dock{
     justify-self:center;align-self:center;
-    width:100%;max-width:22rem;margin:0 auto;
-    transform:none;position:relative;top:auto;cursor:default
+    width:min(100%,22rem);max-width:22rem;
+    margin:0 auto;padding-right:0;
+    transform:translateX(38%);
+    position:relative;top:auto;cursor:pointer
   }
-  .phone-dock:hover,
+  .phone-dock:hover{transform:translateX(38%)}
   .phone-dock.is-in,
-  .phone-dock:focus-within{transform:none}
-  .phone-dock .phone{pointer-events:auto}
-  .phone-hint-out{display:none}
-  .phone-hint-in{display:block}
+  .phone-dock:focus-within,
+  .phone-dock.is-in:hover,
+  .phone-dock:focus-within:hover{
+    transform:translateX(0);cursor:default
+  }
+  .phone-dock .phone,
+  .phone-dock:hover .phone{pointer-events:none}
+  .phone-dock.is-in .phone,
+  .phone-dock:focus-within .phone{pointer-events:auto}
+  .phone-hint-out{display:block}
+  .phone-hint-in{display:none}
+  .phone-dock:hover .phone-hint-out{display:block}
+  .phone-dock:hover .phone-hint-in{display:none}
+  .phone-dock.is-in .phone-hint-out,
+  .phone-dock:focus-within .phone-hint-out{display:none}
+  .phone-dock.is-in .phone-hint-in,
+  .phone-dock:focus-within .phone-hint-in{display:block}
   .phone{width:min(100%,320px);height:680px;margin:0 auto}
   .hero-stats{grid-template-columns:1fr 1fr 1fr;max-width:none}
   .site-nav a:not(.nav-cta){display:none}
