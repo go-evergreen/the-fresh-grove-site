@@ -1682,39 +1682,37 @@ footer{background:var(--pine-deep);color:var(--linen);padding:3.2rem 2rem 2.4rem
   }
   .hub-stage{
     display:grid;grid-template-columns:1fr;
-    margin-top:0;padding:0 1.4rem;overflow:visible
+    margin-top:0;padding:0 1.4rem;row-gap:2.1rem;overflow:visible
   }
   .hub-copy{
-    grid-area:1/1;max-width:none;padding-right:3.6rem;
+    max-width:none;padding-right:0;
     position:relative;z-index:1
   }
   .hub-copy .section-title{
-    max-width:none;white-space:nowrap;
+    max-width:none;white-space:normal;
     font-size:clamp(1.28rem,5.8vw,1.75rem)
   }
-  .phone-dock{
-    grid-area:1/1;justify-self:center;align-self:start;
-    width:min(88vw,22rem);max-width:22rem;margin:0;
-    position:sticky;top:calc(var(--header) + .55rem);
-    transform:translateX(82%);z-index:6;cursor:pointer
-  }
-  .phone-dock:hover{transform:translateX(82%)}
+  .phone-dock,
+  .phone-dock:hover,
   .phone-dock.is-in,
   .phone-dock:focus-within,
   .phone-dock.is-in:hover,
   .phone-dock:focus-within:hover{
-    transform:translateX(0);cursor:default
+    justify-self:center;align-self:start;
+    width:min(88vw,22rem);max-width:22rem;margin:0 auto;
+    position:relative;top:auto;
+    transform:none;z-index:2;cursor:default
   }
   .phone-dock .phone,
-  .phone-dock:hover .phone{pointer-events:none}
+  .phone-dock:hover .phone,
   .phone-dock.is-in .phone,
   .phone-dock:focus-within .phone{pointer-events:auto}
-  .phone-hint-out{display:block}
-  .phone-hint-in{display:none}
-  .phone-dock:hover .phone-hint-out{display:block}
-  .phone-dock:hover .phone-hint-in{display:none}
+  .phone-hint-out,
+  .phone-dock:hover .phone-hint-out,
   .phone-dock.is-in .phone-hint-out,
   .phone-dock:focus-within .phone-hint-out{display:none}
+  .phone-hint-in,
+  .phone-dock:hover .phone-hint-in,
   .phone-dock.is-in .phone-hint-in,
   .phone-dock:focus-within .phone-hint-in{display:block}
   .phone{width:min(100%,320px);height:680px;margin:0 auto}
