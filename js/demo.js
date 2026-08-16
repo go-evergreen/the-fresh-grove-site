@@ -24,7 +24,7 @@
     learn: {
       kicker: "Learn",
       title: "Facts before you hit post.",
-      line: "Company, products, talking points, a shareable quiz."
+      line: "Company, products, launch snapshot, facts you can stand behind."
     },
     grove: {
       kicker: "Grove",
@@ -425,31 +425,35 @@
     var body = byId("demoTodayBody");
     var go = byId("demoTodayGo");
     if (!title || !body || !go) return;
+    go.removeAttribute("data-open");
+    go.removeAttribute("data-tab");
+    go.removeAttribute("data-locked");
     if (plant.roots < 3) {
       title.textContent = "Plant your roots";
       body.textContent = "Three quiet story answers. That’s what grows the roots underground.";
       go.textContent = "Let’s go →";
-      go.setAttribute("data-open", "step-story");
+      go.setAttribute("data-grow", "");
     } else if (!plant.checks.products) {
       title.textContent = "Pick your first few.";
       body.textContent = "Open Learn, then heart 2–3 you’d actually talk about.";
       go.textContent = "Open Pick Your First Few →";
-      go.setAttribute("data-open", "step-products");
+      go.setAttribute("data-grow", "");
     } else if (!plant.checks.ground) {
       title.textContent = "Your patch of ground.";
       body.textContent = "A simple page to share — so curious people land with you, not in a group chat.";
       go.textContent = "Set up your page →";
-      go.setAttribute("data-open", "step-ground");
+      go.setAttribute("data-grow", "");
     } else if (!plant.checks.map) {
       title.textContent = "Map your grove.";
       body.textContent = "Customers first. Partners optional. Names you can actually see.";
       go.textContent = "Map your grove →";
-      go.setAttribute("data-open", "step-map");
+      go.setAttribute("data-grow", "");
     } else {
       title.textContent = "Soft start is done.";
       body.textContent = "All in unlocks Calendar, Post Studio, and Grow Your Grove.";
       go.textContent = "Open Learn →";
-      go.setAttribute("data-open", "why-ringana");
+      go.removeAttribute("data-grow");
+      go.setAttribute("data-tab", "learn");
     }
   }
 
@@ -480,6 +484,9 @@
       var isNext = id === nextId && !done;
       el.classList.toggle("done", done);
       el.classList.toggle("next", isNext);
+      el.classList.toggle("locked", !done && !isNext);
+      if (!done && !isNext) el.setAttribute("data-locked", "");
+      else el.removeAttribute("data-locked");
       var num = el.querySelector(".fs-num");
       if (num) num.textContent = done ? "✓" : (nums[id] || "");
       var st = el.querySelector(".fs-status");
@@ -696,7 +703,9 @@
     var openBtn = e.target.closest("[data-open]");
     if (openBtn && app.contains(openBtn)) {
       e.preventDefault();
-      openSheet(openBtn.getAttribute("data-open"));
+      toast("Join the grove to see all the features");
+      if (typeof openBtn.blur === "function") openBtn.blur();
+      restoreScroll();
       return;
     }
     var cheerBtn = e.target.closest("[data-cheer]");

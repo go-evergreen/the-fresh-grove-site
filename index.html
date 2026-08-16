@@ -18,7 +18,7 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Caveat:wght@500;600&family=DM+Sans:ital,wght@0,400;0,500;0,600;0,700;1,400&family=Fraunces:ital,opsz,wght@0,9..144,300;0,9..144,400;0,9..144,500;0,9..144,600;1,9..144,400&family=Work+Sans:wght@300;400;500;600&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="css/grove.css?v=fresh61">
+<link rel="stylesheet" href="css/grove.css?v=fresh62">
 </head>
 <body>
 
@@ -193,7 +193,7 @@
       <p class="hub-hold">You’re walked from day one. A person who knows your name, zooms you can actually get to, and a live team that stays. You’re not guessing — and you’re not doing this alone.</p>
       <ul class="hub-points">
         <li><strong>A runway, not a scramble.</strong> Your story, first products, your page, then who you’d tell — in that order, so you always know the next quiet step. Peek ahead anytime. When you’re ready, Post Studio, the calendar, and growing a team are already here.</li>
-        <li><strong>Look it up in one place.</strong> Company, products, ingredients, talking points, and a shareable quiz — all searchable, so you can find what you need.</li>
+        <li><strong>Look it up in one place.</strong> Company, products, ingredients, and launch facts — all searchable, so you can find what you need.</li>
         <li><strong>Dates, drafts, and follow-ups.</strong> Grove Gatherings and October on the calendar. A vault of ready posts to rewrite in your voice. Add your own events and follow-ups, so the week has a home.</li>
         <li><strong>Your grove, your inbox.</strong> A lead page that’s yours. Curious names land with you. Leaders check in and send cheers — without a group chat swallowing it.</li>
       </ul>
@@ -222,19 +222,19 @@
                   <div class="demo-brand-title">First Seeds</div>
                 </div>
                 <div class="demo-rail-actions">
-                  <button type="button" class="demo-gear" data-open="messages" aria-label="Messages">💬</button>
-                  <button type="button" class="demo-gear" data-open="settings" aria-label="Settings">⚙️</button>
+                  <button type="button" class="demo-gear" data-locked aria-label="Messages">💬</button>
+                  <button type="button" class="demo-gear" data-locked aria-label="Settings">⚙️</button>
                 </div>
               </div>
               <p class="demo-brand-sub">Fresh products. Clear facts. Laying solid roots before launch.</p>
             </header>
             <div class="demo-cds">
-              <button type="button" class="demo-cd featured" data-open="roadmap">
+              <button type="button" class="demo-cd featured" data-locked>
                 <span class="demo-cd-num" id="demoCdPre">—</span>
                 <span class="demo-cd-unit">DAYS</span>
                 <span class="demo-cd-label">Pre-Reg Opens</span>
               </button>
-              <button type="button" class="demo-cd" data-open="roadmap">
+              <button type="button" class="demo-cd" data-locked>
                 <span class="demo-cd-num" id="demoCdLaunch">—</span>
                 <span class="demo-cd-unit">DAYS</span>
                 <span class="demo-cd-label">Products Launch</span>
@@ -262,23 +262,23 @@
                   <span class="demo-live-tag">What’s next</span>
                   <strong id="demoTodayTitle">Plant your roots</strong>
                   <p id="demoTodayBody">Three quiet story answers. That’s what grows the roots underground.</p>
-                  <button type="button" class="fs-go" data-open="step-story" id="demoTodayGo">Let’s go →</button>
+                  <button type="button" class="fs-go" data-grow id="demoTodayGo">Let’s go →</button>
                 </div>
                 <p class="demo-live-tag">Your path · step by step</p>
                 <div class="fs-runway">
-                  <button type="button" class="fs-step next" data-step="story" data-open="step-story">
+                  <button type="button" class="fs-step next" data-step="story">
                     <span class="fs-num">1</span>
                     <span class="fs-step-main"><b>Plant Your Roots</b><span>your story</span><em class="fs-status">Up next</em></span>
                   </button>
-                  <button type="button" class="fs-step" data-step="products" data-open="step-products">
+                  <button type="button" class="fs-step" data-step="products">
                     <span class="fs-num">2</span>
                     <span class="fs-step-main"><b>Pick Your First Few</b><span>products · your voice</span><em class="fs-status">Locked · finish the step above first</em></span>
                   </button>
-                  <button type="button" class="fs-step" data-step="ground" data-open="step-ground">
+                  <button type="button" class="fs-step" data-step="ground">
                     <span class="fs-num">3</span>
                     <span class="fs-step-main"><b>Your Patch of Ground</b><span>your page</span><em class="fs-status">Locked · finish the step above first</em></span>
                   </button>
-                  <button type="button" class="fs-step" data-step="map" data-open="step-map">
+                  <button type="button" class="fs-step" data-step="map">
                     <span class="fs-num">4</span>
                     <span class="fs-step-main"><b>Map Your Grove</b><span>customers · partners optional</span><em class="fs-status">Locked · finish the step above first</em></span>
                   </button>
@@ -300,7 +300,7 @@
               <div class="demo-tab" data-tab="calendar">
                 <p class="demo-kicker">Plan · post yourself</p>
                 <h2 class="demo-h1">Calendar</h2>
-                <p class="demo-sub">Team dates. Suggested posts. Add your own events and follow-ups.</p>
+                <p class="demo-sub">Team dates.</p>
                 <div class="fs-cal-board">
                   <div class="fs-cal-head">
                     <span class="fs-cal-title">Your month <i class="fs-cal-chev" aria-hidden="true"></i></span>
@@ -312,19 +312,13 @@
                   <div class="fs-cal-grid" aria-hidden="true">
                     <span>S</span><span>M</span><span>T</span><span>W</span><span>T</span><span>F</span><span>S</span>
                     <i></i><i></i><i></i><i></i><i></i><i></i><i>1</i>
-                    <i>2</i><i>3</i><i>4</i><i>5</i><i>6</i><i class="cell">7</i><i class="cell">8</i>
-                    <i class="cell">9</i><i class="cell">10</i><i class="cell">11</i><i class="cell">12</i><i class="cell">13</i><i class="cell">14</i><i class="cell gold" data-open="event-zoom">15</i>
-                    <i class="cell">16</i><i class="cell">17</i><i class="cell">18</i><i class="cell">19</i><i class="cell">20</i><i class="cell">21</i><i class="cell">22</i>
-                    <i class="cell">23</i><i class="cell">24</i><i class="cell">25</i><i class="cell">26</i><i class="cell gold" data-open="event-prereg">27</i><i class="cell">28</i><i class="cell">29</i>
+                    <i>2</i><i>3</i><i>4</i><i>5</i><i>6</i><i class="cell" data-locked>7</i><i class="cell" data-locked>8</i>
+                    <i class="cell" data-locked>9</i><i class="cell" data-locked>10</i><i class="cell" data-locked>11</i><i class="cell" data-locked>12</i><i class="cell" data-locked>13</i><i class="cell" data-locked>14</i><i class="cell gold" data-locked>15</i>
+                    <i class="cell" data-locked>16</i><i class="cell" data-locked>17</i><i class="cell" data-locked>18</i><i class="cell" data-locked>19</i><i class="cell" data-locked>20</i><i class="cell" data-locked>21</i><i class="cell" data-locked>22</i>
+                    <i class="cell" data-locked>23</i><i class="cell" data-locked>24</i><i class="cell" data-locked>25</i><i class="cell" data-locked>26</i><i class="cell gold" data-locked>27</i><i class="cell" data-locked>28</i><i class="cell" data-locked>29</i>
                     <i class="cell">30</i><i class="cell">31</i>
                   </div>
                 </div>
-                <button type="button" class="fs-cta" data-open="add-event">
-                  <span class="fs-cta-eye">Yours</span>
-                  <span class="fs-cta-title">Add an event or follow-up</span>
-                  <span class="fs-cta-sub">A zoom you booked. A reminder to text someone back. It lands on your calendar.</span>
-                  <span class="fs-cta-go">Add yours →</span>
-                </button>
                 <button type="button" class="demo-fold" data-locked>
                   <span class="demo-live-tag">Your story</span>
                   <span class="demo-fold-chev" aria-hidden="true"></span>
@@ -333,19 +327,19 @@
                   <span class="demo-live-tag">Your focus products</span>
                   <span class="demo-fold-chev" aria-hidden="true"></span>
                 </button>
-                <button type="button" class="fs-cta" data-open="week-plan">
+                <button type="button" class="fs-cta" data-locked>
                   <span class="fs-cta-eye">Suggested</span>
                   <span class="fs-cta-title">This week’s plan</span>
                   <span class="fs-cta-sub">A calm rotation — tap any day to open the ready post.</span>
                   <span class="fs-cta-go">See this week →</span>
                 </button>
-                <button type="button" class="fs-cta" data-open="vault">
+                <button type="button" class="fs-cta" data-locked>
                   <span class="fs-cta-eye">Content library</span>
                   <span class="fs-cta-title">Post vault</span>
                   <span class="fs-cta-sub">Reels, carousels, stories, and singles — browse by type, rewrite in your voice.</span>
                   <span class="fs-cta-go">Open vault →</span>
                 </button>
-                <button type="button" class="fs-cta" data-open="photos">
+                <button type="button" class="fs-cta" data-locked>
                   <span class="fs-cta-eye">Photos</span>
                   <span class="fs-cta-title">Grab a photo</span>
                   <span class="fs-cta-sub">Circle previews — tap to open, press and hold to save.</span>
@@ -355,8 +349,8 @@
 
               <div class="demo-tab" data-tab="leads">
                 <p class="demo-kicker">For people who are curious</p>
-                <h2 class="demo-h1"><span class="demo-h1-ico" aria-hidden="true">✉</span> Leads</h2>
-                <p class="demo-sub">Everyone gets their own built-in lead gen page. Curious people leave their name — then they’re yours, right here in the app.</p>
+                <h2 class="demo-h1">The link to share</h2>
+                <p class="demo-sub">Send this to anyone who’s interested — products, the business, or both. They leave their name and how to reach them. Everything lands only in <em>your</em> inbox.</p>
                 <div class="fs-share">
                   <span class="demo-live-tag">Lead generation page</span>
                   <div class="fs-share-row">
@@ -373,14 +367,14 @@
                 </button>
                 <p class="demo-live-tag">Inbox</p>
                 <div class="fs-filters">
-                  <b class="on">All</b><b>Hot</b><b>New</b><b>Reached out</b>
+                  <b class="on">All</b><b>Hot</b><b>New</b><b>Reached out</b><b>Talking</b><b>Quiz</b><b>Info</b>
                 </div>
                 <button type="button" class="demo-search" data-locked>Search by name, email, phone, notes…</button>
-                <button type="button" class="demo-card" data-open="lead-1">
+                <button type="button" class="demo-card" data-locked>
                   <strong class="demo-blur">Jordan M.</strong>
                   <p>Products · yesterday</p>
                 </button>
-                <button type="button" class="demo-card" data-open="lead-2">
+                <button type="button" class="demo-card" data-locked>
                   <strong class="demo-blur">Sam R.</strong>
                   <p>Both · 3 days ago</p>
                 </button>
@@ -396,38 +390,26 @@
                 </div>
                 <button type="button" class="demo-search" data-locked>Search products, facts, FAQs…</button>
                 <button type="button" class="demo-leader-btn" data-locked>
-                  <span class="demo-leader-ico" aria-hidden="true">✦</span>
+                  <span class="demo-leader-ico" aria-hidden="true">✨</span>
                   <span class="demo-leader-text">Exclusively for leaders</span>
                   <span class="demo-leader-go">Open →</span>
                 </button>
-                <button type="button" class="fs-cta" data-open="why-ringana">
+                <button type="button" class="fs-cta" data-locked>
                   <span class="fs-cta-eye">The company</span>
                   <span class="fs-cta-title">Why Ringana</span>
                   <span class="fs-cta-sub">What makes the products and the business different — how they treat the planet, and the three words they actually live by.</span>
                   <span class="fs-cta-go">Open →</span>
                 </button>
-                <button type="button" class="fs-cta" data-open="prod-library">
+                <button type="button" class="fs-cta" data-locked>
                   <span class="fs-cta-eye">Product library</span>
                   <span class="fs-cta-title">Learn the products</span>
                   <span class="fs-cta-sub">Skincare, body, hair, baby, and supplements — plus an ingredient guide for label literacy and “what’s in it” lookups.</span>
                   <span class="fs-cta-go">Open library →</span>
                 </button>
-                <button type="button" class="fs-cta" data-open="talking">
-                  <span class="fs-cta-eye">Conversation guide</span>
-                  <span class="fs-cta-title">Talking fresh</span>
-                  <span class="fs-cta-sub">What to say when someone comments, objects, goes quiet, or asks about the business — structure you can steal, not a script to recite.</span>
-                  <span class="fs-cta-go">Open guide →</span>
-                </button>
-                <button type="button" class="fs-cta" data-open="match">
-                  <span class="fs-cta-eye">Shareable tool</span>
-                  <span class="fs-cta-title">The Fresh Match</span>
-                  <span class="fs-cta-sub">A short quiz for people who already know you. They get a match, then they come back to you.</span>
-                  <span class="fs-cta-go">Open guide →</span>
-                </button>
-                <button type="button" class="demo-acc" data-open="launch-snap">
+                <button type="button" class="demo-acc" data-locked>
                   U.S. launch snapshot <span class="demo-acc-plus" aria-hidden="true"></span>
                 </button>
-                <button type="button" class="demo-acc" data-open="why-now">
+                <button type="button" class="demo-acc" data-locked>
                   Why start now? <span class="demo-acc-plus" aria-hidden="true"></span>
                 </button>
                 <button type="button" class="demo-acc" data-locked>
@@ -446,53 +428,61 @@
                 <p class="demo-kicker">The Fresh Grove</p>
                 <div class="fs-team-head">
                   <h2 class="demo-h1">Grow Your Grove</h2>
-                  <button type="button" class="fs-invite" data-open="team-link">Share your unique<br>team link →</button>
+                  <button type="button" class="fs-invite" data-locked>Share your unique<br>team link →</button>
                 </div>
                 <p class="demo-sub">The people building alongside you — check in, cheer them on, watch the family grow.</p>
                 <p class="demo-live-tag">Mentoring</p>
                 <div class="fs-mentor">
-                  <button type="button" class="fs-mentor-col nudge" data-open="person-maya">
+                  <button type="button" class="fs-mentor-col nudge" data-locked>
                     <span>Needs a nudge <b>1</b></span>
                     <strong class="demo-blur">Maya</strong>
                   </button>
-                  <button type="button" class="fs-mentor-col motion" data-open="person-jordan">
+                  <button type="button" class="fs-mentor-col motion" data-locked>
                     <span>In motion <b>1</b></span>
                     <strong class="demo-blur">Jordan</strong>
+                  </button>
+                  <button type="button" class="fs-mentor-col ready" data-locked>
+                    <span>Ready / blooming <b>1</b></span>
+                    <strong class="demo-blur">Priya</strong>
                   </button>
                 </div>
                 <p class="demo-live-tag">Your tree</p>
                 <div class="demo-tree">
                   <div class="demo-tree-lvl">
                     <span class="demo-tree-lvl-tag">You</span>
-                    <button type="button" class="demo-node you" data-open="person-you">You</button>
+                    <button type="button" class="demo-node you" data-locked>You</button>
                   </div>
                   <i class="demo-tree-stem" aria-hidden="true"></i>
                   <div class="demo-tree-lvl">
                     <span class="demo-tree-lvl-tag">Level 1</span>
                     <div class="demo-branches">
-                      <button type="button" class="demo-node" data-open="person-maya">Maya</button>
-                      <button type="button" class="demo-node" data-open="person-jordan">Jordan</button>
-                      <button type="button" class="demo-node" data-open="person-demo">Priya</button>
+                      <button type="button" class="demo-node" data-locked>Maya</button>
+                      <button type="button" class="demo-node" data-locked>Jordan</button>
+                      <button type="button" class="demo-node" data-locked>Priya</button>
                     </div>
                   </div>
                   <i class="demo-tree-stem" aria-hidden="true"></i>
                   <div class="demo-tree-lvl">
                     <span class="demo-tree-lvl-tag">Level 2</span>
                     <div class="demo-branches">
-                      <button type="button" class="demo-node" data-open="person-demo">Sam</button>
-                      <button type="button" class="demo-node" data-open="person-demo">Alex</button>
-                      <button type="button" class="demo-node" data-open="person-demo">Riley</button>
+                      <button type="button" class="demo-node" data-locked>Sam</button>
+                      <button type="button" class="demo-node" data-locked>Alex</button>
+                      <button type="button" class="demo-node" data-locked>Riley</button>
                     </div>
                   </div>
                   <i class="demo-tree-stem" aria-hidden="true"></i>
                   <div class="demo-tree-lvl">
                     <span class="demo-tree-lvl-tag">Level 3</span>
                     <div class="demo-branches">
-                      <button type="button" class="demo-node" data-open="person-demo">Tess</button>
-                      <button type="button" class="demo-node" data-open="person-demo">Noor</button>
+                      <button type="button" class="demo-node" data-locked>Tess</button>
+                      <button type="button" class="demo-node" data-locked>Noor</button>
                     </div>
                   </div>
                 </div>
+                <button type="button" class="demo-fold" data-locked>
+                  <span class="demo-live-tag">Dream tree</span>
+                  <span class="demo-fold-chev" aria-hidden="true"></span>
+                </button>
                 <p class="demo-lock">Dummy names — not a real team on this page.</p>
               </div>
 
@@ -821,10 +811,10 @@ if (window.caches) {
 }
 </script>
 <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
-<script src="js/config.js?v=fresh61"></script>
-<script src="js/plant.js?v=fresh61"></script>
-<script src="js/grove.js?v=fresh61"></script>
-<script src="js/motion.js?v=fresh61"></script>
-<script src="js/demo.js?v=fresh61"></script>
+<script src="js/config.js?v=fresh62"></script>
+<script src="js/plant.js?v=fresh62"></script>
+<script src="js/grove.js?v=fresh62"></script>
+<script src="js/motion.js?v=fresh62"></script>
+<script src="js/demo.js?v=fresh62"></script>
 </body>
 </html>
