@@ -1667,22 +1667,24 @@ footer{background:var(--pine-deep);color:var(--linen);padding:3.2rem 2rem 2.4rem
     letter-spacing:.045em;font-size:.6rem
   }
   .hub-stage{
-    display:flex;flex-direction:column;gap:1.5rem;
-    margin-top:0;padding:0 1.4rem
+    display:grid;grid-template-columns:1fr;
+    margin-top:0;padding:0 1.4rem;overflow:visible
   }
-  .hub-copy{max-width:none;padding-right:0}
+  .hub-copy{
+    grid-area:1/1;max-width:none;padding-right:0;
+    position:relative;z-index:1
+  }
   .hub-copy .section-title{
     max-width:none;white-space:nowrap;
     font-size:clamp(1.28rem,5.8vw,1.75rem)
   }
   .phone-dock{
-    justify-self:center;align-self:center;
-    width:min(100%,22rem);max-width:22rem;
-    margin:0 auto;padding-right:0;
-    transform:translateX(38%);
-    position:relative;top:auto;cursor:pointer
+    grid-area:1/1;justify-self:center;align-self:start;
+    width:min(88vw,22rem);max-width:22rem;margin:0;
+    position:sticky;top:calc(var(--header) + .55rem);
+    transform:translateX(42%);z-index:6;cursor:pointer
   }
-  .phone-dock:hover{transform:translateX(38%)}
+  .phone-dock:hover{transform:translateX(42%)}
   .phone-dock.is-in,
   .phone-dock:focus-within,
   .phone-dock.is-in:hover,
