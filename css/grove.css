@@ -23,7 +23,7 @@
   --app-white:#fff;
 }
 *{margin:0;padding:0;box-sizing:border-box}
-html{scroll-behavior:smooth;overflow-x:clip}
+html{scroll-behavior:smooth;overflow-x:hidden;overscroll-behavior-x:none}
 body{
   font-family:"Work Sans",system-ui,sans-serif;
   font-weight:300;
@@ -31,7 +31,10 @@ body{
   background:var(--linen);
   line-height:1.7;
   font-size:17px;
-  -webkit-font-smoothing:antialiased
+  -webkit-font-smoothing:antialiased;
+  overflow-x:hidden;
+  overscroll-behavior-x:none;
+  max-width:100%
 }
 body::before{
   content:"";
@@ -446,7 +449,7 @@ section{padding:5rem 2rem}
 .phone-dock:hover .phone-hint-in,
 .phone-dock.is-in .phone-hint-in,
 .phone-dock:focus-within .phone-hint-in{display:block}
-.phone-wrap{display:flex;flex-direction:column;align-items:center;position:relative}
+.phone-wrap{display:flex;flex-direction:column;align-items:center;position:relative;max-width:100%;overflow-x:hidden}
 .phone-glow{
   position:absolute;width:120%;height:70%;top:18%;left:-10%;
   background:radial-gradient(circle,rgba(207,169,94,.32),transparent 62%);
@@ -465,7 +468,7 @@ section{padding:5rem 2rem}
     0 0 0 1px rgba(207,169,94,.16),
     0 28px 80px rgba(0,0,0,.45);
   position:relative;overflow:hidden;flex:none;z-index:2;
-  touch-action:manipulation;overflow-anchor:none
+  touch-action:pan-y;overflow-anchor:none
 }
 .phone-island{
   position:absolute;top:11px;left:50%;transform:translateX(-50%);
@@ -556,11 +559,12 @@ section{padding:5rem 2rem}
   border-left:1.5px solid #dde2d6;padding-left:8px;min-width:0
 }
 .demo-cd.featured .demo-cd-label{color:#b88928;border-color:rgba(184,137,40,.35)}
-.demo-stage{flex:1;position:relative;overflow:hidden;overscroll-behavior:contain;min-height:0;overflow-anchor:none}
+.demo-stage{flex:1;position:relative;overflow:hidden;overscroll-behavior:none;min-height:0;overflow-anchor:none;touch-action:pan-y}
 .demo-tab,.demo-sheet{
   position:absolute;inset:0;overflow-y:auto;overflow-x:hidden;
-  -webkit-overflow-scrolling:touch;padding:16px 16px 18px;
-  scrollbar-width:thin;overscroll-behavior:contain;overflow-anchor:none;
+  padding:16px 16px 18px;
+  scrollbar-width:thin;overscroll-behavior:none;overflow-anchor:none;
+  touch-action:pan-y;
   scroll-behavior:auto
 }
 .demo-tab{visibility:hidden;pointer-events:none;z-index:0}
@@ -1680,9 +1684,12 @@ footer{background:var(--pine-deep);color:var(--linen);padding:3.2rem 2rem 2.4rem
     white-space:nowrap;padding:.4rem .62rem;
     letter-spacing:.045em;font-size:.6rem
   }
+  .hub{overflow-x:hidden;touch-action:pan-y}
+  .hub button,.hub a,.phone,.phone button,.phone a{touch-action:pan-y}
   .hub-stage{
     display:grid;grid-template-columns:1fr;
-    margin-top:0;padding:0 1.4rem;row-gap:2.1rem;overflow:visible
+    margin-top:0;padding:0 1.4rem;row-gap:2.1rem;
+    overflow-x:hidden;overflow-y:visible;max-width:100%
   }
   .hub-copy{
     max-width:none;padding-right:0;
@@ -1699,9 +1706,10 @@ footer{background:var(--pine-deep);color:var(--linen);padding:3.2rem 2rem 2.4rem
   .phone-dock.is-in:hover,
   .phone-dock:focus-within:hover{
     justify-self:center;align-self:start;
-    width:min(88vw,22rem);max-width:22rem;margin:0 auto;
+    width:min(100%,320px);max-width:100%;margin:0 auto;
     position:relative;top:auto;
-    transform:none;z-index:2;cursor:default
+    transform:none;z-index:2;cursor:default;
+    touch-action:pan-y
   }
   .phone-dock .phone,
   .phone-dock:hover .phone,

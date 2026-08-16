@@ -83,6 +83,7 @@
     var mobile = window.matchMedia("(max-width: 900px)");
     if (reduce || mobile.matches) {
       open();
+      dock.removeAttribute("tabindex");
       return;
     }
     dock.addEventListener("click", function (e) {
