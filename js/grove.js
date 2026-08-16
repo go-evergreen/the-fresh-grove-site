@@ -485,6 +485,10 @@
       var viewport = root.querySelector(".carousel-viewport");
       if (viewport) {
         viewport.addEventListener("pointerdown", function (e) {
+          if (e.target.closest("button, a")) {
+            dragging = false;
+            return;
+          }
           dragging = true;
           startX = e.clientX;
         });
