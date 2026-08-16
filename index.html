@@ -21,7 +21,7 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Caveat:wght@500;600&family=DM+Sans:ital,wght@0,400;0,500;0,600;0,700;1,400&family=Fraunces:ital,opsz,wght@0,9..144,300;0,9..144,400;0,9..144,500;0,9..144,600;1,9..144,400&family=Work+Sans:wght@300;400;500;600&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="css/grove.css?v=fresh63">
+<link rel="stylesheet" href="css/grove.css?v=fresh64">
 </head>
 <body>
 
@@ -357,8 +357,26 @@
                 <div class="fs-share">
                   <span class="demo-live-tag">Lead generation page</span>
                   <div class="fs-share-row">
-                    <input readonly value="…/lead.html?p=you" aria-label="Demo lead link">
-                    <button type="button" class="fs-copy" data-demo-copy>Copy</button>
+                    <button type="button" class="fs-bloom" data-locked aria-label="Copy my lead page">
+                      <span class="fs-bloom-ico" aria-hidden="true">
+                        <svg viewBox="0 0 48 48" width="40" height="40" overflow="visible">
+                          <defs><radialGradient id="demoBloomLeads" cx="50%" cy="42%" r="62%">
+                            <stop offset="0%" stop-color="#fff4c8"/>
+                            <stop offset="45%" stop-color="#f0d06a"/>
+                            <stop offset="100%" stop-color="#c9922e"/>
+                          </radialGradient></defs>
+                          <ellipse cx="24" cy="24" rx="5.2" ry="17" fill="url(#demoBloomLeads)" transform="rotate(0 24 24)" opacity=".96"/>
+                          <ellipse cx="24" cy="24" rx="5.2" ry="17" fill="url(#demoBloomLeads)" transform="rotate(72 24 24)" opacity=".96"/>
+                          <ellipse cx="24" cy="24" rx="5.2" ry="17" fill="url(#demoBloomLeads)" transform="rotate(144 24 24)" opacity=".96"/>
+                          <ellipse cx="24" cy="24" rx="5.2" ry="17" fill="url(#demoBloomLeads)" transform="rotate(216 24 24)" opacity=".96"/>
+                          <ellipse cx="24" cy="24" rx="5.2" ry="17" fill="url(#demoBloomLeads)" transform="rotate(288 24 24)" opacity=".96"/>
+                          <circle cx="24" cy="24" r="4.4" fill="#5a4a37"/>
+                          <circle cx="24" cy="24" r="2.5" fill="#e8c45a" opacity=".92"/>
+                          <circle cx="24" cy="24" r="3.1" fill="#fff4c8" opacity=".5"/>
+                        </svg>
+                      </span>
+                      <span class="fs-bloom-label">Copy my lead page</span>
+                    </button>
                     <button type="button" class="fs-gear-mini" data-locked aria-label="Lead page settings">⚙️</button>
                   </div>
                   <p class="fs-share-note">That’s your page — not the team join link (that’s under Grove).</p>
@@ -431,7 +449,26 @@
                 <p class="demo-kicker">The Fresh Grove</p>
                 <div class="fs-team-head">
                   <h2 class="demo-h1">Grow Your Grove</h2>
-                  <button type="button" class="fs-invite" data-locked>Share your unique<br>team link →</button>
+                  <button type="button" class="fs-bloom" data-locked aria-label="Copy my link to join">
+                    <span class="fs-bloom-ico" aria-hidden="true">
+                      <svg viewBox="0 0 48 48" width="40" height="40" overflow="visible">
+                        <defs><radialGradient id="demoBloomGrove" cx="50%" cy="42%" r="62%">
+                          <stop offset="0%" stop-color="#fff4c8"/>
+                          <stop offset="45%" stop-color="#f0d06a"/>
+                          <stop offset="100%" stop-color="#c9922e"/>
+                        </radialGradient></defs>
+                        <ellipse cx="24" cy="24" rx="5.2" ry="17" fill="url(#demoBloomGrove)" transform="rotate(0 24 24)" opacity=".96"/>
+                        <ellipse cx="24" cy="24" rx="5.2" ry="17" fill="url(#demoBloomGrove)" transform="rotate(72 24 24)" opacity=".96"/>
+                        <ellipse cx="24" cy="24" rx="5.2" ry="17" fill="url(#demoBloomGrove)" transform="rotate(144 24 24)" opacity=".96"/>
+                        <ellipse cx="24" cy="24" rx="5.2" ry="17" fill="url(#demoBloomGrove)" transform="rotate(216 24 24)" opacity=".96"/>
+                        <ellipse cx="24" cy="24" rx="5.2" ry="17" fill="url(#demoBloomGrove)" transform="rotate(288 24 24)" opacity=".96"/>
+                        <circle cx="24" cy="24" r="4.4" fill="#5a4a37"/>
+                        <circle cx="24" cy="24" r="2.5" fill="#e8c45a" opacity=".92"/>
+                        <circle cx="24" cy="24" r="3.1" fill="#fff4c8" opacity=".5"/>
+                      </svg>
+                    </span>
+                    <span class="fs-bloom-label">Copy my link to join</span>
+                  </button>
                 </div>
                 <p class="demo-sub">The people building alongside you — check in, cheer them on, watch the family grow.</p>
                 <p class="demo-live-tag">Mentoring</p>
@@ -497,7 +534,7 @@
 
             <button type="button" class="demo-guide" id="demoGuide">
               <span>
-                <i id="demoGuideKicker">Sprout</i>
+                <i id="demoGuideKicker">🌱 Sprout</i>
                 <b id="demoGuideTitle">So you’re not guessing.</b>
                 <small id="demoGuideLine">A path from your story to your people.</small>
               </span>
@@ -814,10 +851,10 @@ if (window.caches) {
 }
 </script>
 <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
-<script src="js/config.js?v=fresh63"></script>
-<script src="js/plant.js?v=fresh63"></script>
-<script src="js/grove.js?v=fresh63"></script>
-<script src="js/motion.js?v=fresh63"></script>
-<script src="js/demo.js?v=fresh63"></script>
+<script src="js/config.js?v=fresh64"></script>
+<script src="js/plant.js?v=fresh64"></script>
+<script src="js/grove.js?v=fresh64"></script>
+<script src="js/motion.js?v=fresh64"></script>
+<script src="js/demo.js?v=fresh64"></script>
 </body>
 </html>

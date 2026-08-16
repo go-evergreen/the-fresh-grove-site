@@ -7,12 +7,12 @@
 
   var captions = {
     sprout: {
-      kicker: "Sprout",
+      kicker: "🌱 Sprout",
       title: "So you’re not guessing.",
       line: "A path from your story to your people."
     },
     calendar: {
-      kicker: "Calendar",
+      kicker: "📅 Calendar",
       title: "Dates, a plan, a vault.",
       line: "Team dates, posts to rewrite, plus your own events and follow-ups."
     },
@@ -22,12 +22,12 @@
       line: "Everyone gets a built-in lead gen page — then the names land right here."
     },
     learn: {
-      kicker: "Learn",
+      kicker: "💡 Learn",
       title: "Facts before you hit post.",
       line: "Company, products, launch snapshot, facts you can stand behind."
     },
     grove: {
-      kicker: "Grove",
+      kicker: "🌳 Grove",
       title: "So you’re not doing this alone.",
       line: "Check in, send a cheer, watch the family grow."
     }
