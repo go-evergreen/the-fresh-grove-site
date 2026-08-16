@@ -320,6 +320,15 @@
         '<div class="demo-fact"><b>Staying active</b><p>A personal order or a customer order once every 12 months.</p></div>' +
         '<p class="demo-lock">Preview of the accordion in Learn. Full cards and Miami details are in the hub.</p>'
     },
+    "why-now": {
+      tab: "learn",
+      html:
+        '<p class="demo-kicker">Learn</p>' +
+        '<h2 class="demo-h1">Why start now?</h2>' +
+        '<p class="demo-p">Momentum isn’t created on launch day. It’s created before.</p>' +
+        '<p class="demo-p">By October, the hope is you’ll already understand the products, why freshness matters, and how The Fresh Grove holds you — so day one feels like a door you’ve already walked up to.</p>' +
+        '<p class="demo-lock">A peek. The full Learn tab lives in the hub.</p>'
+    },
     messages: {
       html:
         '<p class="demo-kicker">What’s new</p>' +
@@ -668,7 +677,7 @@
     var locked = e.target.closest("[data-locked]");
     if (locked && app.contains(locked)) {
       e.preventDefault();
-      toast("All in — that step lives in the private hub");
+      toast("Join the grove to see all the features");
       if (typeof locked.blur === "function") locked.blur();
       restoreScroll();
       window.requestAnimationFrame(restoreScroll);
