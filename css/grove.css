@@ -1671,7 +1671,7 @@ footer{background:var(--pine-deep);color:var(--linen);padding:3.2rem 2rem 2.4rem
     margin-top:0;padding:0 1.4rem;overflow:visible
   }
   .hub-copy{
-    grid-area:1/1;max-width:none;padding-right:0;
+    grid-area:1/1;max-width:none;padding-right:3.6rem;
     position:relative;z-index:1
   }
   .hub-copy .section-title{
@@ -1682,9 +1682,9 @@ footer{background:var(--pine-deep);color:var(--linen);padding:3.2rem 2rem 2.4rem
     grid-area:1/1;justify-self:center;align-self:start;
     width:min(88vw,22rem);max-width:22rem;margin:0;
     position:sticky;top:calc(var(--header) + .55rem);
-    transform:translateX(42%);z-index:6;cursor:pointer
+    transform:translateX(82%);z-index:6;cursor:pointer
   }
-  .phone-dock:hover{transform:translateX(42%)}
+  .phone-dock:hover{transform:translateX(82%)}
   .phone-dock.is-in,
   .phone-dock:focus-within,
   .phone-dock.is-in:hover,
