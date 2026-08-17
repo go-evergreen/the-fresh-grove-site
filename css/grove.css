@@ -1583,6 +1583,7 @@ body.connect-open{overflow:hidden}
 }
 .combo-list.open{display:block}
 .combo-opt{display:block;width:100%;text-align:left;padding:.65rem .8rem;background:#fff;border:0;cursor:pointer;font-family:"Work Sans",sans-serif;font-size:.95rem}
+.combo-opt small{display:block;font-size:.78rem;opacity:.62;margin-top:.18rem;font-weight:400}
 .combo-opt:hover,.combo-opt.active{background:var(--linen-warm)}
 .combo.is-locked #whoInput,.combo.is-locked .combo-list{display:none}
 .who-locked{margin:.35rem 0 0;font-size:.95rem;color:var(--pine);font-weight:500}

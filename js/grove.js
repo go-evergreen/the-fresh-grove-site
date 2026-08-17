@@ -3,11 +3,12 @@
   "use strict";
 
   var G = window.GROVE || {};
-  var roster = G.ROSTER || [];
+  var roster = [];
   var fallback = G.FALLBACK || { slug: "taylor", name: "Taylor" };
   var site = G.SITE || {};
   var cookieName = site.cookieName || "grove_with";
   var cookieDays = site.cookieDays || 90;
+  var OWN_COOKIE = "__own__";
   var client = null;
   var selected = null;
   var urlLocked = false;
@@ -43,13 +44,20 @@
     return person.name + (sub ? " · " + sub : "");
   }
 
-  function bySlug(slug) {
+  function personOnRoster(slug) {
     slug = String(slug || "").trim().toLowerCase();
     if (!slug) return null;
     for (var i = 0; i < roster.length; i++) {
-      if (roster[i].slug === slug) return roster[i];
+      if (String(roster[i].slug || "").toLowerCase() === slug) return roster[i];
     }
-    if (fallback.slug === slug) return fallback;
+    return null;
+  }
+
+  function bySlug(slug, allowFallback) {
+    var person = personOnRoster(slug);
+    if (person) return person;
+    slug = String(slug || "").trim().toLowerCase();
+    if (allowFallback && fallback.slug === slug) return fallback;
     return null;
   }
 
@@ -89,7 +97,7 @@
   function setSelected(person, silent) {
     if (!person || !person.slug) return;
     selected = person;
-    setCookie(person.slug);
+    setCookie(person.unknown ? OWN_COOKIE : person.slug);
     var input = $("whoInput");
     if (input) {
       input.value = person.unknown ? "I landed here on my own" : personLabel(person);
@@ -129,7 +137,7 @@
   }
 
   async function lockFromSlug(slug) {
-    var person = bySlug(slug);
+    var person = personOnRoster(slug);
     if (!person) {
       try {
         var sb = ensureClient();
@@ -183,10 +191,13 @@
     }
     lockWho(false);
     var fromCookie = getCookie();
-    if (fromCookie) {
-      var person = bySlug(fromCookie);
-      if (person) setSelected(person, true);
+    if (!fromCookie) return;
+    if (fromCookie === OWN_COOKIE) {
+      setSelected(Object.assign({}, fallback, { unknown: true }), true);
+      return;
     }
+    var person = personOnRoster(fromCookie);
+    if (person) setSelected(person, true);
   }
 
   function filteredRoster(q) {
@@ -248,7 +259,7 @@
       if (!btn) return;
       var person = btn.getAttribute("data-unknown")
         ? Object.assign({}, fallback, { unknown: true })
-        : bySlug(btn.getAttribute("data-slug"));
+        : personOnRoster(btn.getAttribute("data-slug"));
       setSelected(person);
     });
     document.addEventListener("click", function (e) {
@@ -328,8 +339,9 @@
 
   function normalizeIg(raw) {
     var t = String(raw || "").trim();
-    t = t.replace(/^https?:\/\/(www\.)?instagram\.com\//i, "");
-    t = t.replace(/\/.*$/, "").replace(/^@/, "");
+    t = t.replace(/^@+/, "");
+    t = t.replace(/^(https?:\/\/)?(www\.)?instagram\.com\//i, "");
+    t = t.replace(/[/?#].*$/, "");
     t = t.replace(/[^a-zA-Z0-9._]/g, "").slice(0, 30);
     return t;
   }
@@ -412,7 +424,7 @@
         if (body) {
           body.textContent = unknown
             ? "We’ll put you with the right person — launch notes, and a next step that matches where you actually are."
-            : firstName((selected && selected.name) || bySlug(slug).name) +
+            : firstName((selected && selected.name) || (bySlug(slug, true) || fallback).name) +
               " will be in touch — launch notes, and a next step that matches where you actually are.";
         }
         if (letter) letter.hidden = true;
@@ -637,7 +649,14 @@
   bindFaq();
   bindCarousels();
   bindReveal();
-  loadRoster().then(function () { return resolveAttribution(); }).catch(function () {
+  loadRoster().then(function () {
+    var list = $("whoList");
+    var input = $("whoInput");
+    if (list && list.classList.contains("open") && !urlLocked) {
+      renderCombo(input ? input.value : "");
+    }
+    return resolveAttribution();
+  }).catch(function () {
     resolveAttribution();
   });
 })();
