@@ -852,10 +852,6 @@ section{padding:5rem 2rem}
 .fs-cal-grid i{font-style:normal;font-size:9px;text-align:center;padding:7px 0;border-radius:8px;color:#3d453c;min-height:28px}
 .fs-cal-grid i.cell{background:rgba(255,255,255,.9);cursor:pointer}
 .fs-cal-grid i.gold{background:#fbf6e6;box-shadow:inset 0 0 0 1.5px #d9a93f;font-weight:700}
-.fs-copy{
-  border:0;background:#abb09a;color:#3d453c;border-radius:20px;
-  padding:8px 14px;font-size:12px;font-weight:700;font-family:inherit;cursor:pointer
-}
 .fs-gear-mini{
   width:34px;height:34px;border-radius:10px;border:1.5px solid #dde2d6;background:#fff;
   font-size:13px;cursor:pointer;flex:none
@@ -1588,7 +1584,8 @@ body.connect-open{overflow:hidden}
 .combo-list.open{display:block}
 .combo-opt{display:block;width:100%;text-align:left;padding:.65rem .8rem;background:#fff;border:0;cursor:pointer;font-family:"Work Sans",sans-serif;font-size:.95rem}
 .combo-opt:hover,.combo-opt.active{background:var(--linen-warm)}
-.combo-opt small{display:block;opacity:.55;font-size:.75rem}
+.combo.is-locked #whoInput,.combo.is-locked .combo-list{display:none}
+.who-locked{margin:.35rem 0 0;font-size:.95rem;color:var(--pine);font-weight:500}
 .thanks-card{display:none;text-align:center;padding:2.4rem 1rem 1.2rem}
 .thanks-card.on{display:block}
 .thanks-card h3{font-size:1.8rem;margin-bottom:.6rem;font-family:"Fraunces",serif;color:var(--pine)}

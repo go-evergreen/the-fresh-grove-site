@@ -95,7 +95,7 @@
     "event-zoom": {
       tab: "calendar",
       html:
-        '<p class="demo-kicker">Thu · 7pm</p>' +
+        '<p class="demo-kicker">Weekly</p>' +
         '<h2 class="demo-h1">Team zoom</h2>' +
         '<p class="demo-p">Come when you can. No pressure to be on camera. Replay shows up here after.</p>' +
         '<button type="button" class="demo-btn" data-toggle="going" id="demoGoing">I’ll try to be there</button>' +
@@ -281,7 +281,7 @@
         '<h2 class="demo-h1">This week’s plan</h2>' +
         '<p class="demo-p">A calm rotation — not a cage. Curiosity one day, a helpful share the next, the zoom. Add your own events and follow-ups whenever you need them.</p>' +
         '<div class="demo-card" style="cursor:default"><strong>Give more than you ask.</strong><p>The week is mapped so you’re not staring at a blank square.</p></div>' +
-        '<div class="demo-card" style="cursor:default"><strong>Thu · Team zoom</strong><p>Show up if you can.</p></div>' +
+        '<div class="demo-card" style="cursor:default"><strong>Weekly team zoom</strong><p>Show up if you can.</p></div>' +
         '<div class="demo-card" style="cursor:default"><strong>Your follow-up</strong><p>Add a reminder for someone you said you’d text back.</p></div>' +
         '<p class="demo-lock">The full suggested week lives in the hub. Ready captions stay private.</p>'
     },

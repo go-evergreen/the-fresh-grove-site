@@ -10,6 +10,7 @@
   var cookieDays = site.cookieDays || 90;
   var client = null;
   var selected = null;
+  var urlLocked = false;
 
   function $(id) { return document.getElementById(id); }
   function qs(sel, root) { return (root || document).querySelector(sel); }
@@ -49,7 +50,7 @@
       if (roster[i].slug === slug) return roster[i];
     }
     if (fallback.slug === slug) return fallback;
-    return { slug: slug, name: slug, note: "", ig: "" };
+    return null;
   }
 
   function setCookie(slug) {
@@ -105,22 +106,92 @@
     if (!silent) closeCombo();
   }
 
-  function readAttribution() {
+  function lockWho(on) {
+    urlLocked = !!on;
+    var combo = $("whoCombo");
+    var locked = $("whoLocked");
+    var input = $("whoInput");
+    var assigned = $("assignedTo");
+    if (combo) combo.classList.toggle("is-locked", urlLocked);
+    if (input) {
+      input.readOnly = urlLocked;
+      input.tabIndex = urlLocked ? -1 : 0;
+    }
+    if (assigned) assigned.hidden = urlLocked;
+    if (locked) {
+      locked.hidden = !urlLocked;
+      if (urlLocked && selected && !selected.unknown) {
+        var ig = handleOf(selected);
+        locked.textContent = "This note goes to " + firstName(selected.name) +
+          (ig ? " · @" + ig : "") + ".";
+      }
+    }
+  }
+
+  async function lockFromSlug(slug) {
+    var person = bySlug(slug);
+    if (!person) {
+      try {
+        var sb = ensureClient();
+        var res = await sb.rpc("get_lead_page", { p_slug: slug });
+        var data = res && res.data;
+        if (data && data.slug) {
+          person = {
+            slug: data.slug,
+            name: firstName(data.display_name || data.slug),
+            ig: data.instagram || "",
+            note: ""
+          };
+        }
+      } catch (e) {}
+    }
+    if (!person) person = Object.assign({}, fallback);
+    setSelected(person, true);
+    lockWho(true);
+  }
+
+  async function loadRoster() {
+    try {
+      var sb = ensureClient();
+      var res = await sb.rpc("grove_door_roster");
+      if (res.error) throw res.error;
+      var rows = res.data;
+      if (typeof rows === "string") {
+        try { rows = JSON.parse(rows); } catch (eParse) { rows = []; }
+      }
+      if (Array.isArray(rows)) {
+        roster = rows.map(function (row) {
+          return {
+            slug: row.slug,
+            name: row.name,
+            ig: row.ig || "",
+            note: ""
+          };
+        });
+      }
+    } catch (e) {
+      roster = (G.ROSTER || []).slice();
+    }
+  }
+
+  async function resolveAttribution() {
     var params = new URLSearchParams(window.location.search);
     var fromUrl = (params.get("with") || params.get("p") || "").trim().toLowerCase();
     if (fromUrl) {
-      setSelected(bySlug(fromUrl), true);
+      await lockFromSlug(fromUrl);
       return;
     }
+    lockWho(false);
     var fromCookie = getCookie();
-    if (fromCookie) setSelected(bySlug(fromCookie), true);
+    if (fromCookie) {
+      var person = bySlug(fromCookie);
+      if (person) setSelected(person, true);
+    }
   }
 
   function filteredRoster(q) {
     q = String(q || "").trim().toLowerCase();
     var list = roster.slice();
-    var hasFallback = list.some(function (p) { return p.slug === fallback.slug; });
-    if (!hasFallback) list.push(fallback);
     if (!q) return list;
     return list.filter(function (p) {
       var ig = handleOf(p).toLowerCase();
@@ -159,8 +230,12 @@
     var list = $("whoList");
     if (!wrap || !input || !list) return;
 
-    input.addEventListener("focus", function () { renderCombo(input.value); });
+    input.addEventListener("focus", function () {
+      if (urlLocked) return;
+      renderCombo(input.value);
+    });
     input.addEventListener("input", function () {
+      if (urlLocked) return;
       selected = null;
       $("whoSlug").value = "";
       setUnknownPanel(false);
@@ -218,8 +293,14 @@
     });
   }
 
-  /* First Seeds submit_lead has no notes arg yet (name max 80).
-     Pack IG + where-they-are + placement notes into the name. */
+  function visitorNotes(pace, local, looking) {
+    var parts = [];
+    if (pace) parts.push(pace);
+    if (local) parts.push(local);
+    if (looking) parts.push(looking);
+    return parts.join(" · ").slice(0, 400);
+  }
+
   function packLeadName(name, ig, pace, local, looking) {
     function join(parts) {
       return parts.filter(Boolean).join(" · ");
@@ -231,9 +312,7 @@
     var noIg = join([name, local, looking]);
     if (noIg.length <= 80) return noIg;
     var room = 80 - (name.length + (local ? local.length + 3 : 0));
-    if (looking && room > 8) {
-      return join([name, local, looking.slice(0, room)]);
-    }
+    if (looking && room > 8) return join([name, local, looking.slice(0, room)]);
     return join([name, local]).slice(0, 80);
   }
 
@@ -304,15 +383,29 @@
       try {
         if (btn) { btn.disabled = true; btn.textContent = "Sending…"; }
         var sb = ensureClient();
-        var submitName = packLeadName(name, ig, pace, localNote, looking);
-        var { error } = await sb.rpc("submit_lead", {
+        var notes = visitorNotes(pace, localNote, looking);
+        var payload = {
           p_slug: slug,
-          p_name: submitName,
+          p_name: name,
           p_email: email,
           p_phone: phone,
-          p_interest: interest
-        });
-        if (error) throw error;
+          p_interest: interest,
+          p_source: "grove",
+          p_ig: ig,
+          p_notes: notes
+        };
+        var result = await sb.rpc("submit_lead", payload);
+        if (result.error && /could not find the function|schema cache|p_source/i.test(result.error.message || "")) {
+          payload = {
+            p_slug: slug,
+            p_name: packLeadName(name, ig, pace, localNote, looking),
+            p_email: email,
+            p_phone: phone,
+            p_interest: interest
+          };
+          result = await sb.rpc("submit_lead", payload);
+        }
+        if (result.error) throw result.error;
         var thanks = $("connectThanks");
         var letter = $("connectLetter");
         var body = $("thanksBody");
@@ -535,7 +628,6 @@
     nodes.forEach(function (n) { io.observe(n); });
   }
 
-  readAttribution();
   bindCombo();
   bindInterest();
   bindLocal();
@@ -545,5 +637,8 @@
   bindFaq();
   bindCarousels();
   bindReveal();
+  loadRoster().then(function () { return resolveAttribution(); }).catch(function () {
+    resolveAttribution();
+  });
 })();
 
