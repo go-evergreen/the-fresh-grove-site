@@ -114,17 +114,22 @@
     if (!silent) closeCombo();
   }
 
+  var LETTER_OPEN = "We’re so glad you’re here. If someone sent you, put their name so this finds them. Then tell us where you actually are — we can’t wait to write back.";
+  var LETTER_LOCKED = "We’re so glad you’re here. Tell us where you actually are — we can’t wait to write back.";
+
   function lockWho(on) {
     urlLocked = !!on;
     var combo = $("whoCombo");
     var locked = $("whoLocked");
     var input = $("whoInput");
     var assigned = $("assignedTo");
+    var intro = $("connectLetterIntro");
     if (combo) combo.classList.toggle("is-locked", urlLocked);
     if (input) {
       input.readOnly = urlLocked;
       input.tabIndex = urlLocked ? -1 : 0;
     }
+    if (intro) intro.textContent = urlLocked ? LETTER_LOCKED : LETTER_OPEN;
     if (assigned) assigned.hidden = urlLocked;
     if (locked) {
       locked.hidden = !urlLocked;
