@@ -12,6 +12,7 @@
   var client = null;
   var selected = null;
   var urlLocked = false;
+  var skipComboOpen = false;
 
   function $(id) { return document.getElementById(id); }
   function qs(sel, root) { return (root || document).querySelector(sel); }
@@ -247,7 +248,7 @@
     if (!wrap || !input || !list) return;
 
     input.addEventListener("focus", function () {
-      if (urlLocked) return;
+      if (urlLocked || skipComboOpen) return;
       renderCombo(input.value);
     });
     input.addEventListener("input", function () {
@@ -459,13 +460,20 @@
       document.body.classList.toggle("connect-open", modalOpen);
       updateSticky();
       if (modalOpen) {
+        closeCombo();
         var letter = $("connectLetter");
         if (letter && !letter.hidden) {
           window.setTimeout(function () {
             var input = $("whoInput");
-            if (input) input.focus();
+            if (!input) return;
+            skipComboOpen = true;
+            input.focus();
+            skipComboOpen = false;
+            closeCombo();
           }, 80);
         }
+      } else {
+        closeCombo();
       }
     }
 
