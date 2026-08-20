@@ -235,6 +235,16 @@
         '<div class="demo-card" style="cursor:default"><p>“Proud of the quiet work this week. When you’re ready, open Learn and heart two products you’d actually talk about.”</p></div>' +
         '<button type="button" class="demo-btn" data-cheer="note">Send note (demo)</button>'
     },
+    faqs: {
+      tab: "learn",
+      html:
+        '<p class="demo-kicker">Straight answers</p>' +
+        '<h2 class="demo-h1">FAQs</h2>' +
+        '<p class="demo-p">When someone asks about packs, bonuses, or “is this MLM.” Search lives in the real Learn tab.</p>' +
+        '<div class="demo-fact"><b>Is this MLM?</b><p>Ringana is a network. We talk about it plainly in the hub — no fog, no hype.</p></div>' +
+        '<div class="demo-fact"><b>What does it cost to start?</b><p>Current guidance lives under U.S. launch snapshot. Details can still refine.</p></div>' +
+        '<p class="demo-lock">A peek. The searchable FAQ list stays in the hub.</p>'
+    },
     "why-ringana": {
       tab: "learn",
       html:
@@ -428,31 +438,31 @@
     go.removeAttribute("data-open");
     go.removeAttribute("data-tab");
     go.removeAttribute("data-locked");
+    go.removeAttribute("data-grow");
     if (plant.roots < 3) {
       title.textContent = "Plant your roots";
       body.textContent = "Three quiet story answers. That’s what grows the roots underground.";
       go.textContent = "Let’s go →";
-      go.setAttribute("data-grow", "");
+      go.setAttribute("data-open", "step-story");
     } else if (!plant.checks.products) {
       title.textContent = "Pick your first few.";
       body.textContent = "Open Learn, then heart 2–3 you’d actually talk about.";
       go.textContent = "Open Pick Your First Few →";
-      go.setAttribute("data-grow", "");
+      go.setAttribute("data-open", "step-products");
     } else if (!plant.checks.ground) {
       title.textContent = "Your patch of ground.";
       body.textContent = "A simple page to share — so curious people land with you, not in a group chat.";
       go.textContent = "Set up your page →";
-      go.setAttribute("data-grow", "");
+      go.setAttribute("data-open", "step-ground");
     } else if (!plant.checks.map) {
       title.textContent = "Map your grove.";
       body.textContent = "Customers first. Partners optional. Names you can actually see.";
       go.textContent = "Map your grove →";
-      go.setAttribute("data-grow", "");
+      go.setAttribute("data-open", "step-map");
     } else {
       title.textContent = "Soft start is done.";
       body.textContent = "All in unlocks Calendar, Post Studio, and Grow Your Grove.";
       go.textContent = "Open Learn →";
-      go.removeAttribute("data-grow");
       go.setAttribute("data-tab", "learn");
     }
   }
@@ -484,13 +494,12 @@
       var isNext = id === nextId && !done;
       el.classList.toggle("done", done);
       el.classList.toggle("next", isNext);
-      el.classList.toggle("locked", !done && !isNext);
-      if (!done && !isNext) el.setAttribute("data-locked", "");
-      else el.removeAttribute("data-locked");
+      el.classList.remove("locked");
+      el.removeAttribute("data-locked");
       var num = el.querySelector(".fs-num");
       if (num) num.textContent = done ? "✓" : (nums[id] || "");
       var st = el.querySelector(".fs-status");
-      if (st) st.textContent = done ? "Done" : (isNext ? "Up next" : "Locked · finish the step above first");
+      if (st) st.textContent = done ? "Done" : (isNext ? "Up next" : "Tap to peek");
     });
   }
 
@@ -681,6 +690,69 @@
       if (nid) completeStep(nid);
       return;
     }
+    var filterBtn = e.target.closest("[data-demo-filter]");
+    if (filterBtn && app.contains(filterBtn)) {
+      e.preventDefault();
+      var filter = filterBtn.getAttribute("data-demo-filter") || "all";
+      qsa("[data-demo-filter]", app).forEach(function (btn) {
+        btn.classList.toggle("on", btn.getAttribute("data-demo-filter") === filter);
+      });
+      qsa("[data-lead-filters]", app).forEach(function (card) {
+        var keys = (card.getAttribute("data-lead-filters") || "").split(/\s+/);
+        card.hidden = filter !== "all" && keys.indexOf(filter) < 0;
+      });
+      var empty = byId("demoLeadsEmpty");
+      if (empty) {
+        empty.hidden = qsa("[data-lead-filters]", app).some(function (card) { return !card.hidden; });
+      }
+      return;
+    }
+    var foldBtn = e.target.closest("[data-demo-fold]");
+    if (foldBtn && app.contains(foldBtn)) {
+      e.preventDefault();
+      var branch = foldBtn.closest(".demo-live-l1");
+      if (branch) {
+        var open = !branch.classList.contains("is-open");
+        branch.classList.toggle("is-open", open);
+        foldBtn.setAttribute("aria-expanded", open ? "true" : "false");
+      }
+      return;
+    }
+    var moreBtn = e.target.closest("[data-demo-lead-more]");
+    if (moreBtn && app.contains(moreBtn)) {
+      e.preventDefault();
+      var card = moreBtn.closest(".demo-lead-card");
+      var rest = card && card.querySelector(".demo-lead-rest");
+      var openMore = moreBtn.classList.toggle("is-open");
+      moreBtn.setAttribute("aria-expanded", openMore ? "true" : "false");
+      if (rest) rest.hidden = !openMore;
+      return;
+    }
+    var optBtn = e.target.closest("[data-demo-opt]");
+    if (optBtn && app.contains(optBtn)) {
+      e.preventDefault();
+      var ddOpt = optBtn.closest(".demo-lead-dd");
+      var tab = ddOpt && ddOpt.querySelector("[data-demo-dd]");
+      if (ddOpt) {
+        qsa("[data-demo-opt]", ddOpt).forEach(function (opt) {
+          opt.classList.toggle("on", opt === optBtn);
+        });
+      }
+      if (tab) tab.textContent = optBtn.textContent;
+      if (ddOpt) ddOpt.classList.remove("is-open");
+      return;
+    }
+    var ddBtn = e.target.closest("[data-demo-dd]");
+    if (ddBtn && app.contains(ddBtn)) {
+      e.preventDefault();
+      var dd = ddBtn.closest(".demo-lead-dd");
+      var willOpen = dd && !dd.classList.contains("is-open");
+      qsa(".demo-lead-dd.is-open", app).forEach(function (openDd) {
+        openDd.classList.remove("is-open");
+      });
+      if (dd && willOpen) dd.classList.add("is-open");
+      return;
+    }
     var locked = e.target.closest("[data-locked]");
     if (locked && app.contains(locked)) {
       e.preventDefault();
@@ -701,11 +773,9 @@
       return;
     }
     var openBtn = e.target.closest("[data-open]");
-    if (openBtn && app.contains(openBtn)) {
+    if (openBtn && app.contains(openBtn) && !openBtn.hasAttribute("data-locked")) {
       e.preventDefault();
-      toast("Join the grove to see all the features");
-      if (typeof openBtn.blur === "function") openBtn.blur();
-      restoreScroll();
+      openSheet(openBtn.getAttribute("data-open"));
       return;
     }
     var cheerBtn = e.target.closest("[data-cheer]");
