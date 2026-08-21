@@ -69,67 +69,7 @@
     }
   }
 
-  function bindPhoneDock() {
-    var dock = document.getElementById("phoneDock");
-    if (!dock) return;
-    var mobile = window.matchMedia("(max-width: 760px)");
-    function isMobile() { return mobile.matches; }
-    function open() {
-      dock.classList.add("is-in");
-      dock.setAttribute("aria-label", "First Seeds hub");
-    }
-    function close() {
-      if (reduce || isMobile()) return;
-      dock.classList.remove("is-in");
-      dock.setAttribute("aria-label", "Explore the First Seeds hub");
-    }
-    function syncMode() {
-      if (reduce || isMobile()) {
-        open();
-        dock.removeAttribute("tabindex");
-      } else {
-        dock.setAttribute("tabindex", "0");
-        close();
-      }
-    }
-    syncMode();
-    if (typeof mobile.addEventListener === "function") {
-      mobile.addEventListener("change", syncMode);
-    } else if (typeof mobile.addListener === "function") {
-      mobile.addListener(syncMode);
-    }
-    if (reduce) return;
-    dock.addEventListener("click", function (e) {
-      if (isMobile() || dock.classList.contains("is-in")) return;
-      e.preventDefault();
-      e.stopPropagation();
-      open();
-    }, true);
-    dock.addEventListener("keydown", function (e) {
-      if (e.key === "Escape") { close(); return; }
-      if (e.key !== "Enter" && e.key !== " ") return;
-      if (isMobile() || dock.classList.contains("is-in")) return;
-      e.preventDefault();
-      open();
-    });
-    document.addEventListener("click", function (e) {
-      if (isMobile() || !dock.classList.contains("is-in")) return;
-      if (dock.contains(e.target)) return;
-      close();
-    });
-    var hub = document.getElementById("hub");
-    if (hub && "IntersectionObserver" in window) {
-      var io = new IntersectionObserver(function (entries) {
-        entries.forEach(function (entry) {
-          if (!entry.isIntersecting) close();
-        });
-      }, { threshold: 0.12 });
-      io.observe(hub);
-    }
-  }
-
   setHeroCountdown();
   paintHeroPlant();
   bindParallax();
-  bindPhoneDock();
 })();
