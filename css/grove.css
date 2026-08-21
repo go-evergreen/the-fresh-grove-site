@@ -414,31 +414,33 @@ section{padding:5rem 2rem}
 .hub .section-title{color:var(--linen);max-width:16ch;margin-bottom:.7rem}
 .hub-stage{
   display:grid;
-  grid-template-columns:minmax(0,36rem) minmax(0,1fr);
+  grid-template-columns:minmax(0,34rem) auto;
+  justify-content:center;
   align-items:start;
-  column-gap:clamp(.4rem,2vw,2rem);
-  margin-top:0;
-  padding-left:max(1.5rem, calc((100% - 1120px) / 2));
-  padding-right:0
+  column-gap:clamp(1.8rem,3.2vw,3.25rem);
+  width:100%;
+  max-width:70rem;
+  margin-inline:auto;
+  padding:0 clamp(1.4rem,4vw,2.4rem)
 }
-.hub-copy{max-width:36rem;min-width:0;padding-right:.4rem}
+.hub-copy{max-width:34rem;min-width:0}
 .phone-dock{
-  justify-self:end;align-self:start;
-  width:min(360px,46vw);
+  justify-self:start;align-self:start;
+  width:min(348px,42vw);
   display:flex;justify-content:flex-end;
   position:sticky;top:calc(var(--header) + .75rem);
   z-index:3;
-  transform:translate3d(54%,10px,0);
+  transform:translate3d(38%,8px,0);
   transition:transform .9s var(--ease);
   will-change:transform;
   cursor:pointer
 }
 .phone-dock:hover:not(.is-in):not(:focus-within){
-  transform:translate3d(46%,4px,0)
+  transform:translate3d(28%,4px,0)
 }
 .phone-dock.is-in,
 .phone-dock:focus-within{
-  transform:translate3d(-1.2rem,0,0);
+  transform:translate3d(0,0,0);
   cursor:default
 }
 .phone-dock .demo-app{pointer-events:none}
@@ -1851,8 +1853,9 @@ footer{background:var(--pine-deep);color:var(--linen);padding:3.2rem 2rem 2.4rem
   .hub{overflow-x:hidden}
   .hub-stage{
     display:grid;grid-template-columns:1fr;
+    justify-content:stretch;
     margin-top:0;padding:0 1.4rem;row-gap:2.1rem;
-    overflow-x:hidden;overflow-y:visible;max-width:100%
+    overflow-x:hidden;overflow-y:visible;max-width:none
   }
   .hub-copy{
     max-width:none;padding-right:0;
