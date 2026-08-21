@@ -414,52 +414,55 @@ section{padding:5rem 2rem}
 .hub .section-title{color:var(--linen);max-width:16ch;margin-bottom:.7rem}
 .hub-stage{
   display:grid;
-  grid-template-columns:minmax(18rem,34rem) minmax(16rem,1fr);
+  grid-template-columns:minmax(0,36rem) minmax(0,1fr);
   align-items:start;
-  column-gap:1.2rem;
+  column-gap:clamp(.4rem,2vw,2rem);
   margin-top:0;
-  padding-left:max(1.4rem, calc((100% - 1100px) / 2));
+  padding-left:max(1.5rem, calc((100% - 1120px) / 2));
   padding-right:0
 }
-.hub-copy{max-width:34rem;min-width:0;padding-right:0}
+.hub-copy{max-width:36rem;min-width:0;padding-right:.4rem}
 .phone-dock{
-  justify-self:stretch;align-self:start;
-  width:100%;
-  display:flex;justify-content:center;
-  position:sticky;top:calc(var(--header) + .85rem);
+  justify-self:end;align-self:start;
+  width:min(360px,46vw);
+  display:flex;justify-content:flex-end;
+  position:sticky;top:calc(var(--header) + .75rem);
   z-index:3;
-  transform:translateX(42%);
-  transition:transform .7s var(--ease);
+  transform:translate3d(54%,10px,0);
+  transition:transform .9s var(--ease);
+  will-change:transform;
   cursor:pointer
 }
-.phone-dock:hover,
+.phone-dock:hover:not(.is-in):not(:focus-within){
+  transform:translate3d(46%,4px,0)
+}
 .phone-dock.is-in,
 .phone-dock:focus-within{
-  transform:translateX(0);
+  transform:translate3d(-1.2rem,0,0);
   cursor:default
 }
-.phone-dock .phone{pointer-events:none}
-.phone-dock:hover .phone,
-.phone-dock.is-in .phone,
-.phone-dock:focus-within .phone{pointer-events:auto}
-.phone-hint-in{display:none}
-.phone-dock:hover .phone-hint-out,
+.phone-dock .demo-app{pointer-events:none}
+.phone-dock.is-in .demo-app,
+.phone-dock:focus-within .demo-app{pointer-events:auto}
+.phone-hint-in{opacity:0}
 .phone-dock.is-in .phone-hint-out,
-.phone-dock:focus-within .phone-hint-out{display:none}
-.phone-dock:hover .phone-hint-in,
+.phone-dock:focus-within .phone-hint-out{opacity:0}
 .phone-dock.is-in .phone-hint-in,
-.phone-dock:focus-within .phone-hint-in{display:block}
-.phone-wrap{display:flex;flex-direction:column;align-items:center;position:relative;max-width:100%;overflow-x:hidden}
+.phone-dock:focus-within .phone-hint-in{opacity:1}
+.phone-wrap{display:flex;flex-direction:column;align-items:center;position:relative;max-width:100%}
 .phone-glow{
   position:absolute;width:120%;height:70%;top:18%;left:-10%;
   background:radial-gradient(circle,rgba(207,169,94,.32),transparent 62%);
   filter:blur(18px);pointer-events:none;animation:glowPulse 5s ease-in-out infinite
 }
 .phone-hint{
-  position:absolute;left:0;right:0;top:-1.5rem;z-index:4;
+  position:absolute;left:0;top:-1.55rem;z-index:4;width:52%;
   font-size:.72rem;letter-spacing:.1em;text-transform:uppercase;
-  color:var(--brass-light);text-align:center;margin:0;pointer-events:none
+  color:var(--brass-light);text-align:center;margin:0;pointer-events:none;
+  opacity:1;transition:opacity .35s var(--ease)
 }
+.phone-dock.is-in .phone-hint,
+.phone-dock:focus-within .phone-hint{left:0;right:0;width:auto}
 .phone{
   width:min(100%,348px);height:734px;
   background:#0b0b0b;border:12px solid #161616;border-radius:48px;
@@ -1768,7 +1771,8 @@ footer{background:var(--pine-deep);color:var(--linen);padding:3.2rem 2rem 2.4rem
   .carousel-slide.is-active .factory-next{opacity:0;animation:none}
   .hero h1 .line{animation:none;opacity:1;transform:none}
   .carousel-track{transition:none}
-  .phone-dock,.phone-dock:hover,.phone-dock.is-in,.phone-dock:focus-within{transform:none;transition:none}
+  .phone-dock,.phone-dock:hover,.phone-dock.is-in,.phone-dock:focus-within,
+  .phone-dock:hover:not(.is-in):not(:focus-within){transform:none;transition:none}
   .fs-plantbox.sprout-pulse,
   .fs-plantbox.sprout-pulse .plant-sprout,
   .fs-plantbox.sprout-pulse .plant-roots,
@@ -1824,46 +1828,12 @@ footer{background:var(--pine-deep);color:var(--linen);padding:3.2rem 2rem 2.4rem
     white-space:nowrap;padding:.45rem .85rem;
     letter-spacing:.08em;font-size:.68rem
   }
-  .hub{overflow-x:hidden;touch-action:pan-y}
+  .hub{touch-action:pan-y}
   .hub button,.hub a,.phone,.phone button,.phone a{touch-action:pan-y}
-  .hub-stage{
-    display:grid;grid-template-columns:1fr;
-    margin-top:0;padding:0 1.4rem;row-gap:2.1rem;
-    overflow-x:hidden;overflow-y:visible;max-width:100%
-  }
-  .hub-copy{
-    max-width:none;padding-right:0;
-    position:relative;z-index:1
-  }
   .hub-copy .section-title{
     max-width:none;white-space:normal;
     font-size:clamp(1.28rem,5.8vw,1.75rem)
   }
-  .phone-dock,
-  .phone-dock:hover,
-  .phone-dock.is-in,
-  .phone-dock:focus-within,
-  .phone-dock.is-in:hover,
-  .phone-dock:focus-within:hover{
-    justify-self:center;align-self:start;
-    width:min(100%,320px);max-width:100%;margin:0 auto;
-    position:relative;top:auto;
-    transform:none;z-index:2;cursor:default;
-    touch-action:pan-y
-  }
-  .phone-dock .phone,
-  .phone-dock:hover .phone,
-  .phone-dock.is-in .phone,
-  .phone-dock:focus-within .phone{pointer-events:auto}
-  .phone-hint-out,
-  .phone-dock:hover .phone-hint-out,
-  .phone-dock.is-in .phone-hint-out,
-  .phone-dock:focus-within .phone-hint-out{display:none}
-  .phone-hint-in,
-  .phone-dock:hover .phone-hint-in,
-  .phone-dock.is-in .phone-hint-in,
-  .phone-dock:focus-within .phone-hint-in{display:block}
-  .phone{width:min(100%,320px);height:680px;margin:0 auto}
   .hero-stats{grid-template-columns:1fr 1fr 1fr;max-width:none}
   .site-nav a:not(.nav-cta){display:none}
   .sticky-cta.on{display:block}
@@ -1876,6 +1846,40 @@ footer{background:var(--pine-deep);color:var(--linen);padding:3.2rem 2rem 2.4rem
   .hero-scroll{display:none}
   .site-logo{width:42px;height:42px}
   footer{padding-bottom:5.6rem}
+}
+@media (max-width:760px){
+  .hub{overflow-x:hidden}
+  .hub-stage{
+    display:grid;grid-template-columns:1fr;
+    margin-top:0;padding:0 1.4rem;row-gap:2.1rem;
+    overflow-x:hidden;overflow-y:visible;max-width:100%
+  }
+  .hub-copy{
+    max-width:none;padding-right:0;
+    position:relative;z-index:1
+  }
+  .phone-dock,
+  .phone-dock:hover,
+  .phone-dock.is-in,
+  .phone-dock:focus-within,
+  .phone-dock:hover:not(.is-in):not(:focus-within){
+    justify-self:center;align-self:start;
+    width:min(100%,320px);max-width:100%;margin:0 auto;
+    position:relative;top:auto;
+    transform:none;z-index:2;cursor:default;
+    touch-action:pan-y;will-change:auto
+  }
+  .phone-dock .demo-app,
+  .phone-dock.is-in .demo-app,
+  .phone-dock:focus-within .demo-app{pointer-events:auto}
+  .phone-hint{width:auto;left:0;right:0}
+  .phone-hint-out,
+  .phone-dock.is-in .phone-hint-out,
+  .phone-dock:focus-within .phone-hint-out{opacity:0}
+  .phone-hint-in,
+  .phone-dock.is-in .phone-hint-in,
+  .phone-dock:focus-within .phone-hint-in{opacity:1}
+  .phone{width:min(100%,320px);height:680px;margin:0 auto}
 }
 @media (max-width:380px){
   .nav-cta{font-size:.66rem;padding:.42rem .75rem;letter-spacing:.08em}
