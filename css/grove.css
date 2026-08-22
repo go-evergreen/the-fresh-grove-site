@@ -595,11 +595,11 @@ section{padding:5rem 2rem}
   display:flex;flex-direction:column;align-items:center;gap:3px
 }
 .demo-nav-ico{
-  font-size:18px;line-height:1;font-style:normal;
+  font-size:20px;line-height:1;font-style:normal;
   display:flex;align-items:center;justify-content:center;
-  width:22px;height:20px
+  width:24px;height:22px;overflow:visible
 }
-.demo-nav button[data-tab="leads"] .demo-nav-ico{font-size:17px;transform:translateY(1px)}
+.demo-nav-ico svg{display:block;width:18px;height:16px}
 .demo-nav button.on{color:#3d453c;background:rgba(171,176,154,.45)}
 
 .demo-kicker{
@@ -716,7 +716,7 @@ section{padding:5rem 2rem}
 .fs-cta-sub.demo-blur{max-width:34em}
 .fs-cta-go{display:inline-block;font-size:13px;font-weight:700;background:#fff;border-radius:999px;padding:7px 13px;color:#111}
 .fs-share{background:#fff;border:1.5px solid #dde2d6;border-radius:14px;padding:10px 12px 12px;margin:0 0 12px;box-shadow:0 2px 16px rgba(61,69,60,.08)}
-.fs-share-row{display:flex;align-items:center;justify-content:flex-end;gap:8px;margin:4px 0 0;overflow:visible}
+.fs-share-row{display:flex;align-items:center;justify-content:flex-start;gap:8px;margin:4px 0 0;overflow:visible;flex-wrap:wrap}
 .fs-share-row + .fs-share-row{margin-top:8px;padding-top:8px;border-top:1px solid #efe8db}
 .fs-team-head{display:flex;align-items:center;justify-content:space-between;gap:8px;margin-bottom:12px;overflow:visible}
 .fs-team-head .demo-h1{margin:0;flex:1;min-width:0}
@@ -731,11 +731,11 @@ section{padding:5rem 2rem}
 }
 .fs-bloom-ico svg{display:block;width:100%;height:100%;overflow:visible}
 .fs-bloom-label{
-  display:inline-flex;align-items:center;min-height:28px;
-  padding:4px 10px 4px 14px;border:1.5px solid #d9a93f;border-radius:999px;
+  display:inline-flex;align-items:center;min-height:28px;max-width:12.5rem;
+  padding:5px 12px 5px 14px;border:1.5px solid #d9a93f;border-radius:999px;
   background:linear-gradient(180deg,#f5e08a 0%,#d9a93f 100%);
-  color:#243028;font-size:10px;font-weight:800;letter-spacing:.01em;
-  line-height:1.15;text-align:left;box-shadow:0 2px 8px rgba(184,137,40,.28)
+  color:#243028;font-size:10.5px;font-weight:800;letter-spacing:.01em;
+  line-height:1.2;text-align:left;white-space:normal;box-shadow:0 2px 8px rgba(184,137,40,.28)
 }
 .demo-person{display:flex;align-items:flex-start;gap:10px}
 .demo-live-tag{
