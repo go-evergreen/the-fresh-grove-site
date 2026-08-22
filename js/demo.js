@@ -22,7 +22,7 @@
       line: "Grove Gatherings and October live here. A vault of ready posts to rewrite in your voice, photos you can grab, plus your own events and follow-ups — so the week has a home instead of a scramble."
     },
     leads: {
-      kicker: "✉ Leads",
+      kicker: "✉️ Leads",
       title: "Your page. Your inbox.",
       line: "Everyone gets a lead page that’s theirs. Curious names land with you — interest, status, and quiz stay on the card. Leaders check in beside you. No group chat swallowing it."
     },
