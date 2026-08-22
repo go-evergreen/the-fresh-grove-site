@@ -14,12 +14,12 @@
     learn: {
       kicker: "💡 Learn",
       title: "Facts before you hit post.",
-      line: "Company, products, ingredients, launch snapshot, and talking points you can actually stand behind — all searchable. FAQs for the questions people always ask. Not a Drive folder. Not last week’s screenshot."
+      line: "Company, products, ingredients, and talking points you can actually stand behind — all searchable, including FAQs. Launch details live in the questions. Not a Drive folder. Not last week’s screenshot."
     },
     calendar: {
       kicker: "📅 Calendar",
       title: "Dates, a plan, a vault.",
-      line: "Grove Gatherings and October live here. A vault of ready posts to rewrite in your voice, photos you can grab, plus your own events and follow-ups — so the week has a home instead of a scramble."
+      line: "Grove Gatherings and October live here. A vault of ready posts, photos you can grab, and a growing library of posts from the team — plus your own events and follow-ups, so the week has a home instead of a scramble."
     },
     leads: {
       kicker: "📧 Leads",

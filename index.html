@@ -21,7 +21,7 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Caveat:wght@500;600&family=DM+Sans:ital,wght@0,400;0,500;0,600;0,700;1,400&family=Fraunces:ital,opsz,wght@0,9..144,300;0,9..144,400;0,9..144,500;0,9..144,600;1,9..144,400&family=Work+Sans:wght@300;400;500;600&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="css/grove.css?v=fresh81">
+<link rel="stylesheet" href="css/grove.css?v=fresh82">
 </head>
 <body>
 
@@ -321,18 +321,20 @@
                     <i class="cell">30</i><i class="cell">31</i>
                   </div>
                 </div>
-                <button type="button" class="demo-fold" data-locked>
-                  <span class="demo-live-tag">Your story</span>
-                  <span class="demo-fold-chev" aria-hidden="true"></span>
-                </button>
-                <button type="button" class="demo-fold" data-locked>
-                  <span class="demo-live-tag">Favorite products</span>
-                  <span class="demo-fold-chev" aria-hidden="true"></span>
-                </button>
-                <button type="button" class="demo-fold" data-locked>
-                  <span class="demo-live-tag">Favorite facts</span>
-                  <span class="demo-fold-chev" aria-hidden="true"></span>
-                </button>
+                <div class="demo-cal-tabs">
+                  <button type="button" class="demo-cal-tab" data-locked>
+                    <span class="demo-cal-tab-label">Your<br>story</span>
+                    <span class="demo-fold-chev" aria-hidden="true"></span>
+                  </button>
+                  <button type="button" class="demo-cal-tab" data-locked>
+                    <span class="demo-cal-tab-label">Favorite<br>products</span>
+                    <span class="demo-fold-chev" aria-hidden="true"></span>
+                  </button>
+                  <button type="button" class="demo-cal-tab" data-locked>
+                    <span class="demo-cal-tab-label">Favorite<br>facts</span>
+                    <span class="demo-fold-chev" aria-hidden="true"></span>
+                  </button>
+                </div>
                 <button type="button" class="fs-cta" data-locked>
                   <span class="fs-cta-eye">This week</span>
                   <span class="fs-cta-title">This week’s plan</span>
@@ -342,7 +344,7 @@
                 <button type="button" class="fs-cta" data-locked>
                   <span class="fs-cta-eye">Content library</span>
                   <span class="fs-cta-title">Post vault</span>
-                  <span class="fs-cta-sub demo-blur">Browse by type, copy a caption, add it to a day.</span>
+                  <span class="fs-cta-sub demo-blur">Browse by type, copy a caption, add it to a day. Steal the structure — rewrite until it sounds like you.</span>
                   <span class="fs-cta-go">Open vault →</span>
                 </button>
                 <button type="button" class="fs-cta" data-locked>
@@ -350,6 +352,12 @@
                   <span class="fs-cta-title">Grab a photo</span>
                   <span class="fs-cta-sub demo-blur">Search or browse by type — tap to open, press and hold to save.</span>
                   <span class="fs-cta-go">Open photos →</span>
+                </button>
+                <button type="button" class="fs-cta" data-locked>
+                  <span class="fs-cta-eye">From the grove</span>
+                  <span class="fs-cta-title">Posts from the team</span>
+                  <span class="fs-cta-sub demo-blur">A growing library of posts people on team created. Steal the structure, rewrite it in your voice — and add yours when something worked.</span>
+                  <span class="fs-cta-go">Browse posts →</span>
                 </button>
               </div>
 
@@ -522,7 +530,7 @@
                   <div class="demo-live-tag">Please remember</div>
                   <p class="demo-blur">We’re building something new in the U.S. Some details may shift as we get closer to launch. What’s below is current guidance — not a guarantee.</p>
                 </div>
-                <button type="button" class="demo-search" data-locked>Search products, facts, FAQs…</button>
+                <button type="button" class="demo-search" data-locked>Search Learn — products, facts, FAQs, quiz…</button>
                 <button type="button" class="demo-leader-btn" data-locked>
                   <span class="demo-leader-ico" aria-hidden="true">✨</span>
                   <span class="demo-leader-text">Exclusively for Grove Leaders</span>
@@ -540,9 +548,6 @@
                   <span class="fs-cta-title">Why Ringana</span>
                   <span class="fs-cta-sub demo-blur">What makes the products and the business different — how they treat the planet, and the three words they actually live by.</span>
                   <span class="fs-cta-go">Open →</span>
-                </button>
-                <button type="button" class="demo-acc" data-locked>
-                  Company facts <span class="demo-acc-plus" aria-hidden="true"></span>
                 </button>
                 <button type="button" class="fs-cta" data-locked>
                   <span class="fs-cta-eye">Product library</span>
@@ -562,12 +567,10 @@
                   <span class="fs-cta-sub demo-blur">A short quiz for people who already know you. They get a match, then they come back to you.</span>
                   <span class="fs-cta-go">Open guide →</span>
                 </button>
-                <button type="button" class="demo-acc" data-locked>
-                  U.S. launch snapshot <span class="demo-acc-plus" aria-hidden="true"></span>
-                </button>
-                <button type="button" class="demo-acc" data-locked>
-                  Why start now? <span class="demo-acc-plus" aria-hidden="true"></span>
-                </button>
+                <div class="demo-callout demo-callout-voice" data-locked>
+                  <div class="demo-live-tag">Our promise</div>
+                  <p class="demo-blur">Not through hype. Not through exaggerated claims. Through education, transparency, and honest conversation.</p>
+                </div>
               </div>
 
               <div class="demo-tab" data-tab="grove">
@@ -1002,10 +1005,10 @@ if (window.caches) {
 }
 </script>
 <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
-<script src="js/config.js?v=fresh81"></script>
-<script src="js/plant.js?v=fresh81"></script>
-<script src="js/grove.js?v=fresh81"></script>
-<script src="js/motion.js?v=fresh81"></script>
-<script src="js/demo.js?v=fresh81"></script>
+<script src="js/config.js?v=fresh82"></script>
+<script src="js/plant.js?v=fresh82"></script>
+<script src="js/grove.js?v=fresh82"></script>
+<script src="js/motion.js?v=fresh82"></script>
+<script src="js/demo.js?v=fresh82"></script>
 </body>
 </html>
