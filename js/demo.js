@@ -9,27 +9,27 @@
     sprout: {
       kicker: "🌱 Sprout",
       title: "So you’re not guessing.",
-      line: "A path from your story to your people."
-    },
-    calendar: {
-      kicker: "📅 Calendar",
-      title: "Dates, a plan, a vault.",
-      line: "Team dates, posts to rewrite, plus your own events and follow-ups."
-    },
-    leads: {
-      kicker: "✉ Leads",
-      title: "Your page. Your inbox.",
-      line: "Everyone gets a built-in lead gen page — then the names land right here."
+      line: "Your runway to October, in order: your story, first products, your page, then who you’d tell. Peek ahead anytime. When you’re ready, Post Studio, the calendar, and growing a team are already here — so a new partner always knows the next quiet step."
     },
     learn: {
       kicker: "💡 Learn",
       title: "Facts before you hit post.",
-      line: "Company, products, launch snapshot, facts you can stand behind."
+      line: "Company, products, ingredients, launch snapshot, and talking points you can actually stand behind — all searchable. FAQs for the questions people always ask. Not a Drive folder. Not last week’s screenshot."
+    },
+    calendar: {
+      kicker: "📅 Calendar",
+      title: "Dates, a plan, a vault.",
+      line: "Grove Gatherings and October live here. A vault of ready posts to rewrite in your voice, photos you can grab, plus your own events and follow-ups — so the week has a home instead of a scramble."
+    },
+    leads: {
+      kicker: "✉ Leads",
+      title: "Your page. Your inbox.",
+      line: "Everyone gets a lead page that’s theirs. Curious names land with you — interest, status, and quiz stay on the card. Leaders check in beside you. No group chat swallowing it."
     },
     grove: {
       kicker: "🌳 Grove",
       title: "So you’re not doing this alone.",
-      line: "Check in, send a cheer, watch the family grow."
+      line: "The live tree, who needs a nudge, who’s in motion, who’s ready. Check in, send a cheer, watch the family grow — with a person who knows your name, and a team that stays."
     }
   };
 
@@ -410,7 +410,7 @@
     if (plant.roots < 3) return "Roots growing · " + plant.roots + " of 3.";
     if (checkCount() <= 0) return "Roots are in. Heart a few products to sprout.";
     if (checkCount() >= 3) return "Full bloom — demo path is done.";
-    return checkCount() + " of 3 checks — tap the plant to keep growing.";
+    return checkCount() + " of 3 checks — growing in the hub.";
   }
 
   function pulsePlant() {
@@ -671,73 +671,21 @@
   });
 
   app.addEventListener("click", function (e) {
-    var tabBtn = e.target.closest("button[data-tab]");
+    if (e.target.closest("#demoGuide") || e.target.closest("#demoBack")) return;
+    var tabBtn = e.target.closest(".demo-nav button[data-tab]");
     if (tabBtn && app.contains(tabBtn)) {
       e.preventDefault();
       pauseTour();
       gotoTab(tabBtn.getAttribute("data-tab"));
       return;
     }
-    var growBtn = e.target.closest("[data-grow]");
-    if (growBtn && app.contains(growBtn)) {
-      e.preventDefault();
-      var nid = nextStepId();
-      if (nid) completeStep(nid);
-      return;
-    }
-    var foldBtn = e.target.closest("[data-demo-fold]");
-    if (foldBtn && app.contains(foldBtn)) {
-      e.preventDefault();
-      var branch = foldBtn.closest(".demo-live-l1");
-      if (branch) {
-        var open = !branch.classList.contains("is-open");
-        branch.classList.toggle("is-open", open);
-        foldBtn.setAttribute("aria-expanded", open ? "true" : "false");
-      }
-      return;
-    }
-    var locked = e.target.closest("[data-locked]");
-    if (locked && app.contains(locked)) {
+    var hit = e.target.closest("button, a, [data-locked], .fs-step, .demo-lead-card, .fs-plantbox");
+    if (hit && app.contains(hit)) {
       e.preventDefault();
       toast("Join the grove to see all the features");
-      if (typeof locked.blur === "function") locked.blur();
+      if (typeof hit.blur === "function") hit.blur();
       restoreScroll();
       window.requestAnimationFrame(restoreScroll);
-      return;
-    }
-    var stepBtn = e.target.closest("[data-step]");
-    if (stepBtn && app.contains(stepBtn)) {
-      completeStep(stepBtn.getAttribute("data-step"));
-    }
-    var copyBtn = e.target.closest("[data-demo-copy]");
-    if (copyBtn && app.contains(copyBtn)) {
-      e.preventDefault();
-      toast("Demo only — nothing copied");
-      return;
-    }
-    var openBtn = e.target.closest("[data-open]");
-    if (openBtn && app.contains(openBtn) && !openBtn.hasAttribute("data-locked")) {
-      e.preventDefault();
-      openSheet(openBtn.getAttribute("data-open"));
-      return;
-    }
-    var cheerBtn = e.target.closest("[data-cheer]");
-    if (cheerBtn && app.contains(cheerBtn)) {
-      e.preventDefault();
-      toast(cheerBtn.getAttribute("data-cheer") === "note" ? "Note sent — demo only" : "Cheer sent — demo only");
-      closeSheet();
-      return;
-    }
-    var tog = e.target.closest("[data-toggle]");
-    if (tog && tog.getAttribute("data-toggle") === "going") {
-      e.preventDefault();
-      var marked = tog.getAttribute("data-on") !== "1";
-      tog.setAttribute("data-on", marked ? "1" : "0");
-      tog.textContent = marked ? "You’re marked as coming" : "I’ll try to be there";
-      tog.classList.toggle("ghost", marked);
-      var note = document.getElementById("demoGoingNote");
-      if (note) note.hidden = !marked;
-      return;
     }
   });
 
@@ -767,7 +715,7 @@
       tourI = (tourI + 1) % tour.length;
       gotoTab(tour[tourI]);
       scheduleTour();
-    }, 5800);
+    }, 9000);
   }
 
   function bindTour() {
