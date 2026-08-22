@@ -597,6 +597,7 @@ section{padding:5rem 2rem}
 .demo-nav-ico{
   font-size:20px;line-height:1;font-style:normal;font-weight:400;
   font-family:"Apple Color Emoji","Segoe UI Emoji","Noto Color Emoji",sans-serif;
+  font-variant-emoji:emoji;
   color:initial;
   display:flex;align-items:center;justify-content:center;
   width:1.35em;height:1.2em;overflow:visible
@@ -1075,7 +1076,7 @@ section{padding:5rem 2rem}
 .company .lede{margin-bottom:0}
 .company-stats{
   list-style:none;margin:0 0 1.7rem;padding:0;
-  display:flex;flex-wrap:wrap;justify-content:flex-start;
+  display:flex;flex-wrap:wrap;justify-content:center;
   gap:.7rem .75rem;max-width:none;width:100%
 }
 .company-stats li{
