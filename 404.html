@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>The Fresh Grove</title>
+<meta name="robots" content="noindex">
+</head>
+<body>
+<script>
+(function () {
+  var host = String(location.hostname || "").toLowerCase();
+  var path = String(location.pathname || "/");
+  var search = String(location.search || "");
+  var hash = String(location.hash || "");
+  var joinHost = host === "join.thefreshgrove.team";
+  var joinPath = /^\/join(\/|\.html|$)/i.test(path);
+  if (joinHost || joinPath) {
+    var segs = path.replace(/\/+$/, "").split("/");
+    var tail = segs.pop() || "";
+    var extra = search;
+    if (tail && !/^join(\.html)?$/i.test(tail) && !/[?&]join=/.test(search)) {
+      extra = (search ? search + "&" : "?") + "join=" + encodeURIComponent(tail);
+    }
+    location.replace("/join.html" + extra + hash);
+    return;
+  }
+  if (/^\/lead(\/|\.html|$)/i.test(path) || /[?&]p=/.test(search)) {
+    location.replace("/lead.html" + search + hash);
+    return;
+  }
+  location.replace("/" + search + hash);
+})();
+</script>
+<p><a href="/">Back to The Fresh Grove</a></p>
+</body>
+</html>

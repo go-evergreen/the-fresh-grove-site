@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>The Fresh Grove</title>
+<meta name="robots" content="noindex">
+<meta http-equiv="Cache-Control" content="no-cache">
+<style>
+  html,body{margin:0;min-height:100%;background:#f6f2ea;color:#22301f;font-family:"Work Sans",system-ui,sans-serif}
+  body{display:grid;place-items:center;padding:2rem;text-align:center}
+  p{max-width:22rem;line-height:1.5}
+  a{color:#1c3227}
+</style>
+</head>
+<body>
+<p>Opening this page…</p>
+<p><a id="go" href="https://go-evergreen.github.io/first-seeds/lead.html">Continue</a></p>
+<script>
+(function () {
+  var dest = "https://go-evergreen.github.io/first-seeds/lead.html" + String(location.search || "") + String(location.hash || "");
+  var a = document.getElementById("go");
+  if (a) a.href = dest;
+  location.replace(dest);
+})();
+</script>
+</body>
+</html>

@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Join The Fresh Grove</title>
+<meta name="robots" content="noindex">
+<meta http-equiv="Cache-Control" content="no-cache">
+<style>
+  html,body{margin:0;min-height:100%;background:#f6f2ea;color:#22301f;font-family:"Work Sans",system-ui,sans-serif}
+  body{display:grid;place-items:center;padding:2rem;text-align:center}
+  p{max-width:22rem;line-height:1.5}
+  a{color:#1c3227}
+</style>
+</head>
+<body>
+<p>Taking you into the grove…</p>
+<p><a id="go" href="https://go-evergreen.github.io/first-seeds/">Continue</a></p>
+<script>
+(function () {
+  var hub = "https://go-evergreen.github.io/first-seeds/";
+  function code() {
+    var q = "";
+    try { q = String(new URLSearchParams(location.search).get("join") || "").trim().toLowerCase(); } catch (e) {}
+    if (q) return q;
+    try {
+      var hm = String(location.hash || "").match(/(?:^|[?#&])(?:fs)?join=([^&]+)/i);
+      if (hm) return decodeURIComponent(hm[1] || "").trim().toLowerCase();
+    } catch (e2) {}
+    var parts = String(location.pathname || "").replace(/\/+$/, "").split("/");
+    var last = parts.pop() || "";
+    if (last && !/^join(\.html)?$/i.test(last)) return last.trim().toLowerCase();
+    return "";
+  }
+  var join = code();
+  var dest = hub;
+  if (join) dest = hub + "index.html?join=" + encodeURIComponent(join);
+  var a = document.getElementById("go");
+  if (a) a.href = dest;
+  location.replace(dest);
+})();
+</script>
+</body>
+</html>
