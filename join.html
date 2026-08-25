@@ -15,10 +15,11 @@
 </head>
 <body>
 <p>Taking you into the grove…</p>
-<p><a id="go" href="https://go-evergreen.github.io/first-seeds/">Continue</a></p>
+<p><a id="go" href="https://go-evergreen.github.io/first-seeds/index.html">Continue</a></p>
 <script>
 (function () {
-  var hub = "https://go-evergreen.github.io/first-seeds/";
+  var groveHub = "https://go-evergreen.github.io/first-seeds/index.html";
+  var evHub = "https://go-evergreen.github.io/first-seeds/index.html";
   function code() {
     var q = "";
     try { q = String(new URLSearchParams(location.search).get("join") || "").trim().toLowerCase(); } catch (e) {}
@@ -32,9 +33,16 @@
     if (last && !/^join(\.html)?$/i.test(last)) return last.trim().toLowerCase();
     return "";
   }
+  function hub() {
+    try { return String(new URLSearchParams(location.search).get("hub") || "").trim().toLowerCase(); }
+    catch (e) { return ""; }
+  }
   var join = code();
-  var dest = hub;
-  if (join) dest = hub + "index.html?join=" + encodeURIComponent(join);
+  var looksEv = join === "evergreen" || join.indexOf("evl-") === 0 ||
+    join === "evergreen-leaders" || hub() === "evergreen" || hub() === "evergreen-co";
+  var dest = looksEv ? evHub : groveHub;
+  if (join) dest += "?join=" + encodeURIComponent(join);
+  dest += (dest.indexOf("?") >= 0 ? "&" : "?") + (looksEv ? "hub=evergreen" : "hub=grove");
   var a = document.getElementById("go");
   if (a) a.href = dest;
   location.replace(dest);
