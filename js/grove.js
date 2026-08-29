@@ -173,16 +173,16 @@
       if (typeof rows === "string") {
         try { rows = JSON.parse(rows); } catch (eParse) { rows = []; }
       }
-      if (Array.isArray(rows)) {
-        roster = rows.map(function (row) {
-          return {
-            slug: row.slug,
-            name: row.name,
-            ig: row.ig || "",
-            note: ""
-          };
-        });
-      }
+      if (rows && !Array.isArray(rows) && Array.isArray(rows.roster)) rows = rows.roster;
+      if (!Array.isArray(rows)) throw new Error("bad roster");
+      roster = rows.map(function (row) {
+        return {
+          slug: String((row && row.slug) || "").trim().toLowerCase(),
+          name: String((row && row.name) || "").trim() || "Friend",
+          ig: (row && (row.ig || row.instagram)) || "",
+          note: ""
+        };
+      }).filter(function (p) { return p.slug.length >= 2; });
     } catch (e) {
       roster = (G.ROSTER || []).slice();
     }
