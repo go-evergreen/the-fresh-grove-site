@@ -13,6 +13,12 @@
   var path = String(location.pathname || "/");
   var search = String(location.search || "");
   var hash = String(location.hash || "");
+  var joinFromJ = String(path || "").match(/\/j\/([a-z0-9][a-z0-9-]{2,62})\/?$/i);
+  if (joinFromJ) {
+    var jCode = decodeURIComponent(joinFromJ[1] || "").trim().toLowerCase();
+    location.replace("/join.html?join=" + encodeURIComponent(jCode) + "#join=" + encodeURIComponent(jCode));
+    return;
+  }
   var joinHost = host === "join.thefreshgrove.team";
   var joinPath = /^\/join(\/|\.html|$)/i.test(path);
   if (joinHost || joinPath) {
@@ -21,6 +27,7 @@
     var extra = search;
     if (tail && !/^join(\.html)?$/i.test(tail) && !/[?&]join=/.test(search)) {
       extra = (search ? search + "&" : "?") + "join=" + encodeURIComponent(tail);
+      if (!hash) hash = "#join=" + encodeURIComponent(tail.toLowerCase());
     }
     location.replace("/join.html" + extra + hash);
     return;

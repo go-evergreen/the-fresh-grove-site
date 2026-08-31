@@ -3,9 +3,20 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Join The Fresh Grove</title>
+<title>Welcome to The Fresh Grove</title>
+<meta name="description" content="Download First Seeds — Your Runway to Launch.">
 <meta name="robots" content="noindex">
-<meta http-equiv="Cache-Control" content="no-cache">
+<meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate">
+<meta property="og:title" content="Welcome to The Fresh Grove">
+<meta property="og:description" content="Download First Seeds — Your Runway to Launch.">
+<meta property="og:type" content="website">
+<meta property="og:image" content="https://thefreshgrove.team/assets/og-image.jpg?v=2">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Welcome to The Fresh Grove">
+<meta name="twitter:description" content="Download First Seeds — Your Runway to Launch.">
+<meta name="twitter:image" content="https://thefreshgrove.team/assets/og-image.jpg?v=2">
 <style>
   html,body{margin:0;min-height:100%;background:#f6f2ea;color:#22301f;font-family:"Work Sans",system-ui,sans-serif}
   body{display:grid;place-items:center;padding:2rem;text-align:center}
@@ -14,37 +25,105 @@
 </style>
 </head>
 <body>
+<p>Welcome to The Fresh Grove</p>
 <p>Taking you into the grove…</p>
-<p><a id="go" href="https://go-evergreen.github.io/first-seeds/index.html">Continue</a></p>
+<p><a id="go" href="https://go-evergreen.github.io/first-seeds/grove-join.html?hub=grove">Continue</a></p>
 <script>
+/* Pretty Grove door. Persist the unique, then hop onto the real 200
+   grove-join / join door with query + hash. Never write og:url —
+   iMessage would open the homepage and drop the invite. */
 (function () {
-  var groveHub = "https://go-evergreen.github.io/first-seeds/index.html";
-  var evHub = "https://go-evergreen.github.io/first-seeds/index.html";
-  function code() {
-    var q = "";
-    try { q = String(new URLSearchParams(location.search).get("join") || "").trim().toLowerCase(); } catch (e) {}
-    if (q) return q;
-    try {
-      var hm = String(location.hash || "").match(/(?:^|[?#&])(?:fs)?join=([^&]+)/i);
-      if (hm) return decodeURIComponent(hm[1] || "").trim().toLowerCase();
-    } catch (e2) {}
-    var parts = String(location.pathname || "").replace(/\/+$/, "").split("/");
+  var groveDoor = "https://go-evergreen.github.io/first-seeds/grove-join.html";
+  var evDoor = "https://go-evergreen.github.io/first-seeds/join.html";
+
+  function fromPath(path) {
+    var m = String(path || "").match(/\/j\/([a-z0-9][a-z0-9-]{2,62})\/?$/i);
+    if (m) return decodeURIComponent(m[1]).toLowerCase();
+    var parts = String(path || "").replace(/\/+$/, "").split("/");
     var last = parts.pop() || "";
     if (last && !/^join(\.html)?$/i.test(last)) return last.trim().toLowerCase();
     return "";
   }
-  function hub() {
-    try { return String(new URLSearchParams(location.search).get("hub") || "").trim().toLowerCase(); }
-    catch (e) { return ""; }
+  function pick(query, hash, path) {
+    var parts = [query, hash, path];
+    var i;
+    var c;
+    for (i = 0; i < parts.length; i++) {
+      c = String(parts[i] || "").trim().toLowerCase();
+      if (c && c !== "evergreen" && c.indexOf("evl-") !== 0 && c !== "evergreen-leaders") return c;
+    }
+    for (i = 0; i < parts.length; i++) {
+      c = String(parts[i] || "").trim().toLowerCase();
+      if (c && (c.indexOf("evl-") === 0 || c === "evergreen-leaders")) return c;
+    }
+    return "";
   }
-  var join = code();
+  function readStored() {
+    var v = "";
+    try { v = String(localStorage.getItem("firstSeeds_pending_join") || "").trim().toLowerCase(); } catch (e) {}
+    if (!v || v === "evergreen") {
+      try { v = String(sessionStorage.getItem("firstSeeds_pending_join") || "").trim().toLowerCase(); } catch (e2) {}
+    }
+    if (!v || v === "evergreen") {
+      try {
+        var cm = document.cookie.match(/(?:^|; )fs_pending_join=([^;]*)/);
+        if (cm) v = decodeURIComponent(cm[1] || "").trim().toLowerCase();
+      } catch (e3) {}
+    }
+    return (v && v !== "evergreen") ? v : "";
+  }
+
+  var search = String(location.search || "");
+  var hash = String(location.hash || "");
+  var query = "";
+  var hub = "";
+  try {
+    var params = new URLSearchParams(search);
+    query = String(params.get("join") || "").trim().toLowerCase();
+    hub = String(params.get("hub") || "").trim().toLowerCase();
+  } catch (e) {}
+  var hashJoin = "";
+  var hm = String(hash).match(/(?:^|[?#&])(?:fs)?join=([^&]+)/i);
+  if (hm) {
+    try { hashJoin = decodeURIComponent(hm[1] || "").trim().toLowerCase(); } catch (e2) {}
+  }
+  var join = pick(query, hashJoin, fromPath(location.pathname));
+  /* An explicit evergreen in the URL is a real door — do not let a
+     leftover person code from this phone take over. */
+  if (!join && (query === "evergreen" || hashJoin === "evergreen")) join = "evergreen";
+  if (!join) join = readStored();
+
   var looksEv = join === "evergreen" || join.indexOf("evl-") === 0 ||
-    join === "evergreen-leaders" || hub() === "evergreen" || hub() === "evergreen-co";
-  var dest = looksEv ? evHub : groveHub;
-  if (join) dest += "?join=" + encodeURIComponent(join);
-  dest += (dest.indexOf("?") >= 0 ? "&" : "?") + (looksEv ? "hub=evergreen" : "hub=grove");
+    join === "evergreen-leaders" || hub === "evergreen" || hub === "evergreen-co";
+
+  if (join) {
+    try { localStorage.setItem("firstSeeds_pending_join", join); } catch (eLs) {}
+    try { sessionStorage.setItem("firstSeeds_pending_join", join); } catch (eSs) {}
+    try {
+      var secure = location.protocol === "https:" ? "; Secure" : "";
+      document.cookie = "fs_pending_join=" + encodeURIComponent(join) +
+        "; max-age=2592000; SameSite=Lax; path=/" + secure;
+    } catch (eCk) {}
+    try {
+      localStorage.setItem("firstSeeds_pending_join_hub", looksEv ? "evergreen" : "grove");
+    } catch (eHub) {}
+  }
+
+  var dest = looksEv ? evDoor : groveDoor;
+  try {
+    var next = new URLSearchParams();
+    if (join) next.set("join", join);
+    next.set("hub", looksEv ? "evergreen" : "grove");
+    dest += "?" + next.toString();
+    if (join) dest += "#join=" + encodeURIComponent(join);
+  } catch (eQ) {
+    dest += looksEv ? "?hub=evergreen" : "?hub=grove";
+    if (join) dest += (dest.indexOf("?") >= 0 ? "&" : "?") + "join=" + encodeURIComponent(join) +
+      "#join=" + encodeURIComponent(join);
+  }
+
   var a = document.getElementById("go");
-  if (a) a.href = dest;
+  if (a) a.setAttribute("href", dest);
   location.replace(dest);
 })();
 </script>
