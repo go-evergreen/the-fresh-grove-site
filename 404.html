@@ -17,8 +17,9 @@
   if (joinFromJ) {
     var jCode = decodeURIComponent(joinFromJ[1] || "").trim().toLowerCase();
     var ev = jCode.indexOf("evl-") === 0 || jCode === "evergreen-leaders" || jCode === "evergreen";
+    /* Person uniques look the same on both teams — do not invent hub=grove. */
     var dest = "https://go-evergreen.github.io/first-seeds/index.html?join=" +
-      encodeURIComponent(jCode) + (ev ? "&hub=evergreen" : "&hub=grove") +
+      encodeURIComponent(jCode) + (ev ? "&hub=evergreen" : "") +
       "#join=" + encodeURIComponent(jCode);
     location.replace(dest);
     return;
