@@ -27,14 +27,13 @@
 <body>
 <p>Welcome to The Fresh Grove</p>
 <p>Taking you into the grove…</p>
-<p><a id="go" href="https://go-evergreen.github.io/first-seeds/grove-join.html?hub=grove">Continue</a></p>
+<p><a id="go" href="https://go-evergreen.github.io/first-seeds/index.html?hub=grove">Continue</a></p>
 <script>
-/* Pretty Grove door. Persist the unique, then hop onto the real 200
-   grove-join / join door with query + hash. Never write og:url —
-   iMessage would open the homepage and drop the invite. */
+/* Pretty Grove door. Persist the unique, then ONE hop onto the hub
+   with query + hash. A second hop is how in-app browsers drop invites.
+   Never write og:url — iMessage would open the homepage and drop it. */
 (function () {
-  var groveDoor = "https://go-evergreen.github.io/first-seeds/grove-join.html";
-  var evDoor = "https://go-evergreen.github.io/first-seeds/join.html";
+  var hubBase = "https://go-evergreen.github.io/first-seeds/index.html";
 
   function fromPath(path) {
     var m = String(path || "").match(/\/j\/([a-z0-9][a-z0-9-]{2,62})\/?$/i);
@@ -93,8 +92,11 @@
   if (!join && (query === "evergreen" || hashJoin === "evergreen")) join = "evergreen";
   if (!join) join = readStored();
 
+  /* A person unique is never an Evergreen door — even if hub=evergreen
+     got stuck on the URL. */
   var looksEv = join === "evergreen" || join.indexOf("evl-") === 0 ||
-    join === "evergreen-leaders" || hub === "evergreen" || hub === "evergreen-co";
+    join === "evergreen-leaders" ||
+    (!join && (hub === "evergreen" || hub === "evergreen-co"));
 
   if (join) {
     try { localStorage.setItem("firstSeeds_pending_join", join); } catch (eLs) {}
@@ -109,7 +111,7 @@
     } catch (eHub) {}
   }
 
-  var dest = looksEv ? evDoor : groveDoor;
+  var dest = hubBase;
   try {
     var next = new URLSearchParams();
     if (join) next.set("join", join);
