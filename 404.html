@@ -16,7 +16,11 @@
   var joinFromJ = String(path || "").match(/\/j\/([a-z0-9][a-z0-9-]{2,62})\/?$/i);
   if (joinFromJ) {
     var jCode = decodeURIComponent(joinFromJ[1] || "").trim().toLowerCase();
-    location.replace("/join.html?join=" + encodeURIComponent(jCode) + "#join=" + encodeURIComponent(jCode));
+    var ev = jCode.indexOf("evl-") === 0 || jCode === "evergreen-leaders" || jCode === "evergreen";
+    var dest = "https://go-evergreen.github.io/first-seeds/index.html?join=" +
+      encodeURIComponent(jCode) + (ev ? "&hub=evergreen" : "&hub=grove") +
+      "#join=" + encodeURIComponent(jCode);
+    location.replace(dest);
     return;
   }
   var joinHost = host === "join.thefreshgrove.team";
