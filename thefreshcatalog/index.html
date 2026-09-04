@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>The Fresh Catalog</title>
+<meta property="og:title" content="The Fresh Catalog">
+<meta property="og:type" content="website">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="The Fresh Catalog">
+<meta name="robots" content="noindex">
+<style>
+  html,body{margin:0;background:#f6f2ea;color:#22301f;font-family:Georgia,serif}
+  body{padding:48px 24px;text-align:center}
+  a{color:#1c3227}
+</style>
+</head>
+<body>
+  <p>The Fresh Catalog</p>
+  <p><a id="go" href="https://go-evergreen.github.io/first-seeds/assets/company/fresh-catalog.pdf">Open the catalog</a></p>
+  <script>
+  (function () {
+    var dest = "https://go-evergreen.github.io/first-seeds/assets/company/fresh-catalog.pdf";
+    var a = document.getElementById("go");
+    if (a) a.setAttribute("href", dest);
+    location.replace(dest);
+  })();
+  </script>
+</body>
+</html>

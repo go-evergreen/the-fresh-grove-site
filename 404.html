@@ -41,6 +41,10 @@
     location.replace("/lead.html" + search + hash);
     return;
   }
+  if (/^\/thefreshcatalog(\/|\.html|$)/i.test(path)) {
+    location.replace("https://go-evergreen.github.io/first-seeds/assets/company/fresh-catalog.pdf");
+    return;
+  }
   location.replace("/" + search + hash);
 })();
 </script>
