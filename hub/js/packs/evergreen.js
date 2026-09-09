@@ -427,7 +427,7 @@ window.FS.EVERGREEN = {
         {
           id: "first_period",
           q: "How does October count toward commissions?",
-          a: "October is a pre-sales month — not a commission month. You can pick a Founder Pack when you enroll; you don't have to. Every volume point from October moves into November.\n\nThe first commission period is November and December together. Qualifications for that period include October, November, and December volume. Everyone in that first period is treated as a New Partner.\n\nIt's a long first statement on purpose. There's a lot of room to qualify."
+          a: "Partner pre-launch is October 1. You can pick an optional Founder Pack when you pre-register — that's what unlocks double bonuses.\n\nThe first commission period is October and November together. That combined statement pays out in December. December is its own month after that.\n\nCustomers still order November 1. October volume isn't sitting on the sidelines — it counts in that first Oct+Nov period, with November.\n\nEveryone in that first period is treated as a New Partner. It's a long first statement on purpose. There's a lot of room to qualify."
         },
         {
           id: "miami",

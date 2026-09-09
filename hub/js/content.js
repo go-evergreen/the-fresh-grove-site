@@ -1621,7 +1621,7 @@ window.FS.CONTENT = {
         {
           id: "launch_snapshot",
           q: "What's the U.S. launch snapshot?",
-          a: "Current guidance for founding partners — it can still shift.\n\nPre-registration starts October 1. $0 to reserve your spot, no obligation. Business Booster fee expected to be waived in that October window.\n\nFounder Packs: about $220 (~110 points), estimated around October 24. The only window we expect products at 30% off retail. Those points are set to count in November when the U.S. shop opens.\n\nStay active with a personal order or a customer order once every 12 months.\n\nPartners purchase at retail and earn commission back on the Target they've hit — currently spoken of as 19% / 29% / 39%. Optional personal shop about $10/month (first 3 months free with Business Booster). Optional personalized customer discount code about $99.\n\nYou're not limited to the U.S. As markets open you can build there too; Canada is on the roadmap for 2027."
+          a: "Current guidance for founding partners — it can still shift.\n\nPre-registration starts October 1. $0 to reserve your spot, no obligation. Business Booster fee expected to be waived in that October window. An optional Founder Pack at pre-registration is what unlocks double bonuses.\n\nFounder Packs: about $220 (~110 points), estimated around October 24. The only window we expect products at 30% off retail. Those points count in the first commission period — October and November together, paid in December. December is its own month.\n\nStay active with a personal order or a customer order once every 12 months.\n\nPartners purchase at retail and earn commission back on the Target they've hit — currently spoken of as 19% / 29% / 39%. Optional personal shop about $10/month (first 3 months free with Business Booster). Optional personalized customer discount code about $99.\n\nYou're not limited to the U.S. As markets open you can build there too; Canada is on the roadmap for 2027."
         },
         {
           id: "why_start_now",
@@ -1641,7 +1641,7 @@ window.FS.CONTENT = {
         {
           id: "first_period",
           q: "How does October count toward commissions?",
-          a: "October is a pre-sales month — not a commission month. You can pick a Founder Pack when you enroll; you don't have to. Every volume point from October moves into November.\n\nThe first commission period is November and December together. Qualifications for that period include October, November, and December volume. Everyone in that first period is treated as a New Partner.\n\nIt's a long first statement on purpose. There's a lot of room to qualify."
+          a: "Partner pre-launch is October 1. You can pick an optional Founder Pack when you pre-register — that's what unlocks double bonuses.\n\nThe first commission period is October and November together. That combined statement pays out in December. December is its own month after that.\n\nCustomers still order November 1. October volume isn't sitting on the sidelines — it counts in that first Oct+Nov period, with November.\n\nEveryone in that first period is treated as a New Partner. It's a long first statement on purpose. There's a lot of room to qualify."
         },
         {
           id: "miami",
@@ -1837,7 +1837,7 @@ window.FS.CONTENT = {
         {
           id: "start_bonus",
           q: "What is the Start Bonus?",
-          a: "A four-month boost for building momentum early. In your first four statement months, the bar climbs: Target level plus, later, personally enrolled active partners.\n\nMonth 1 → Target 1\nMonth 2 → Target 2\nMonth 3 → Target 3 + 1 personally enrolled active partner\nMonth 4 → Target 4 + 2 personally enrolled active partners\n\nHit the bar for that month and Ringana adds a Start Bonus on top of regular commission. You get the highest level you cleared that month — two Targets in one month doesn't mean two bonuses. Hit that same Target again in a later month and it pays again. Four months at Target 4 is $2,200 × 4.\n\nFor the USA launch, the first commission period is November and December together, and the Start Bonus on that period is doubled.\n\nA Founder Pack isn't required for the track. Buying one in October is what doubles Start Bonus for all four months.\n\nFrom Target 5, it isn't Start Bonus anymore — it's a separate high-performer agreement. Ask your leader if you're heading there.\n\nTiming nuance: a brand-new partner usually counts the month after you enroll them, not the month you do. The compensation plan walkthrough has the full picture."
+          a: "A four-month boost for building momentum early. In your first four statement months, the bar climbs: Target level plus, later, personally enrolled active partners.\n\nMonth 1 → Target 1\nMonth 2 → Target 2\nMonth 3 → Target 3 + 1 personally enrolled active partner\nMonth 4 → Target 4 + 2 personally enrolled active partners\n\nHit the bar for that month and Ringana adds a Start Bonus on top of regular commission. You get the highest level you cleared that month — two Targets in one month doesn't mean two bonuses. Hit that same Target again in a later month and it pays again. Four months at Target 4 is $2,200 × 4. The published Start Bonus ends there.\n\nFor the USA launch, the first commission period is October and November together, paid in December. December is its own month.\n\nA Founder Pack isn't required for the track. Buying one at October 1 pre-registration is what doubles Start Bonus for all four months.\n\nFrom Target 5, it isn't Start Bonus anymore — it's a separate high-performer agreement, by invite. Ask your leader if you're heading there.\n\nTiming nuance: a brand-new partner usually counts the month after you enroll them, not the month you do. The compensation plan walkthrough has the full picture."
         },
         {
           id: "paid_on_purchases",
@@ -1938,7 +1938,7 @@ window.FS.CONTENT = {
         {
           id: "high_performer",
           q: "Will Start Bonus still be honored at Targets 5–10 in the USA?",
-          a: "Yes — not as Start Bonus. Anyone who hits Target 5 or above will be offered a private high-performer agreement.\n\nIt's a separate legal contract. Maximum eight months in total: four Start Bonus months plus four extra high-performer months."
+          a: "Not as Start Bonus. The published Start Bonus ends at Target 4. Anyone heading for Target 5 or above may be offered a private high-performer agreement — by invite, a separate legal contract.\n\nMaximum eight months in total: four Start Bonus months plus up to four extra high-performer months."
         }
       ]
     }

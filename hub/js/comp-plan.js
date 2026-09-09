@@ -962,8 +962,8 @@
       "<strong>What you’re paid isn’t the month’s bar.</strong> It’s a lookup on what you actually reached, so overshooting pays the higher row. Two Targets in one month doesn’t mean two bonuses — you get the highest. Hit that same Target again later and it pays again. Ringana’s own example hits Target 3 in month 2 when month 2 only asked for Target 2, and gets $220 instead of $110.",
       "<strong>Active means Target 1</strong> — 110 points of their own direct turnover that month.",
       "<strong>The timing catches people.</strong> A first-timer is billed after their first fully completed statement month, so they count the month <em>after</em> you enroll them. Need someone to count in month 3? Enroll them in month 2. Returning partners are billed the month they rejoin.",
-      "<strong>USA launch.</strong> October is pre-sales — volume moves into November. The first commission period is November and December together, and Start Bonus on that period is doubled. Everyone in that first period is a New Partner.",
-      "Months 5–8 aren’t Start Bonus. They’re a private high-performer agreement if you hit Target 5 or above — separate contract, max eight months total. Dollar figures for those months are our projection from the pattern."
+      "<strong>USA launch.</strong> Partner pre-launch is October 1. The first commission period is October and November together, paid in December. December is its own month. A Founder Pack at pre-registration doubles Start Bonus for the whole four months. Everyone in that first period is a New Partner.",
+      "Months 5–8 aren’t Start Bonus. From Target 5, a private high-performer agreement may be offered by invite — separate contract, not the start track. Dollar figures for those months are our projection from the pattern."
     ],
     growth: [
       "From Target 6 up, a separate top-up on your commission. It sits outside the strongest-team ceiling, so the cap can’t touch it.",
@@ -1027,10 +1027,11 @@
     }
     html += workLine("Start Bonus" + (s.projected ? ", projected" : ""), money(s.amount), true);
     var over = s.paidRow.tl > s.row.tl || s.paidRow.partners > s.row.partners;
+    var higherTrack = s.projected || (s.tl > 4 && s.paidRow && s.paidRow.tl === 4);
     html += '<p class="cpp-work-p">' + esc("Paid on what you actually reached — Target " + s.paidRow.tl + " with " +
       s.paidRow.partners + " active partner" + (s.paidRow.partners === 1 ? "" : "s") + ", not on the month you’re in." +
-      (over ? " You overshot month " + s.month + "’s bars, so it pays the higher row." : "")) +
-      (s.projected ? " Months 5–8 are the high-performer agreement — this figure is our projection from the pattern." : "") + "</p>";
+      (over ? " You overshot month " + s.month + "’s bars, so it pays the higher row." : "") +
+      (higherTrack ? " Published Start Bonus tops out at Target 4 ($2,200). Months 5–8 are a by-invite high-performer agreement." : "")) + "</p>";
     return html;
   }
 
@@ -1563,7 +1564,7 @@
         '<div class="cp-ink" style="border-radius:16px 16px 0 0">' +
           '<div class="live-tag" style="color:rgba(245,246,242,.7)">Not in the plan document</div>' +
           '<h3 class="prod-head-title" style="font-size:26px;margin:0 0 10px;color:#fff">Four more months — a private agreement</h3>' +
-          "<p>The published Start Bonus ends at month four. From Target 5, the USA honors the rest as a private high-performer agreement — a separate legal contract, not the Start Bonus line. Maximum eight months in total: four Start Bonus plus four extra. You don’t opt in. You earn it by not missing a month.</p>" +
+          "<p>The published Start Bonus ends at Target 4 / month four. From Target 5, the USA may offer a private high-performer agreement — by invite, a separate legal contract, not the Start Bonus line. Maximum eight months in total: four Start Bonus plus up to four extra.</p>" +
         "</div>" +
         '<div class="cp-ext-body">';
     for (i = 0; i < START_MONTHS.length; i++) {
@@ -1667,9 +1668,9 @@
     html += section("start", "The Start Bonus", "A boost for your first four months",
       "Enroll them the month before you need them to count.",
       '<p class="body-p">First-time partners on the Business Booster starter set. First four statement months. Returning partners can’t qualify. Two bars every month — Target Level, and how many personal, direct, active partners you have. Hit both and you get the bonus for what you actually reached. Miss either and you’re out.</p>' +
-      '<div class="live-card"><p class="body-p" style="margin:0 0 8px"><strong>USA launch · the first commission period.</strong></p><p class="body-p" style="margin:0">October is pre-sales. Volume from October moves into November. The first commission period is November and December together — October + November + December volume all count. Everyone in that period is a New Partner, and Start Bonus on that period is doubled. A Founder Pack isn’t required for the track; buying one in October doubles Start Bonus for the whole four months.</p></div>' +
+      '<div class="live-card"><p class="body-p" style="margin:0 0 8px"><strong>USA launch · the first commission period.</strong></p><p class="body-p" style="margin:0">Partner pre-launch is October 1. Pick an optional Founder Pack at pre-registration to unlock double Start Bonus for the whole four months. The first commission period is October and November together — that statement pays out in December. December is its own month. Everyone in that first period is a New Partner. The pack isn’t required for the Start Bonus track; it’s what doubles it.</p></div>' +
       htmlStart() +
-      '<div class="live-card"><p class="body-p" style="margin:0">Months 1–4 — levels, partner counts, and amounts — are in the US plan. Months 5–8 are a private high-performer agreement if you hit Target 5 or above — confirmed by corporate, not in the PDF. The dollar figures for those months are our projection from the pattern. Not official, not final.</p></div>' +
+      '<div class="live-card"><p class="body-p" style="margin:0">Months 1–4 — levels, partner counts, and amounts — are in the US plan and end at Target 4. From Target 5, a private high-performer agreement may be offered by invite — a path, not in the PDF. Dollar figures for months 5–8 are our projection from the pattern. Not official, not final.</p></div>' +
       '<div class="cp-ink">' +
         '<div class="live-tag" style="color:rgba(245,246,242,.7)">When they can count</div>' +
         "<p>This is only about counting as a <em>direct active partner for Start Bonus</em> — not a ban on being active. New partners are billed after their first fully completed statement month. Activity (Target 1, 110 DT) is measured at that billing.</p>" +
@@ -1703,7 +1704,7 @@
       "CET, W-9, the $50 voucher — the stuff that quietly matters.",
       "<ul class=\"cp-list\">" +
         "<li><strong>The month closes on Central European Time.</strong> A statement month is a calendar month, 23:59 CET on the last day. Only paid orders count — payment received by Ringana. Bank transfers by 16:00 CET on the last working day, with the right reference.</li>" +
-        "<li><strong>USA launch is its own first period.</strong> October is pre-sales — volume moves to November. The first commission period is November and December together. After that, the ordinary calendar applies.</li>" +
+        "<li><strong>USA launch is its own first period.</strong> Partner pre-launch is October 1. The first commission period is October and November together, paid in December. December is its own month. After that, the ordinary calendar applies.</li>" +
         "<li><strong>A new partner’s first settlement is after the first full month.</strong> Register in January, first final commission is the February statement, paid by mid-March (no later than the 14th). Returning partners are billed the month they rejoin. New partners can still get Interim Payments in that first calendar month; US billing addresses get those from January 2027.</li>" +
         "<li><strong>Interim payments are DT only, from January 2027 for US addresses.</strong> Cut-off is the 15th (or the last day of the first calendar month for a new partner’s first interim). Team turnover and bonuses aren’t in the interim. Under $5, it isn’t paid — it carries. Until January 2027, plan around one final settlement a month.</li>" +
         "<li><strong>Below " + usd(VOUCHER_THRESHOLD, 0) + " arrives as a voucher.</strong> Over that, it transfers to the bank on file. Under it, a product voucher on ringana.us.</li>" +
