@@ -11735,22 +11735,25 @@
         if (skip) skip.textContent = "Not now";
       }
     } else if (onboardingNotifyOnly && onboardingNotifyKind === "extra-phone") {
+      var extraNotify = packOnboarding();
       if (eyebrow) eyebrow.textContent = "This phone";
-      if (title) title.textContent = "Turn on pings here too?";
+      if (title) title.textContent = "Want to turn on notifications?";
       if (iosTab) {
         if (body) body.textContent = "Open First Seeds from your Home Screen icon first. Safari tabs can’t receive pings.";
         if (note) note.textContent = "Then you can turn them on in the app.";
         if (enable) enable.hidden = true;
         if (skip) skip.textContent = "Got it";
       } else {
-        if (body) body.textContent = packEvergreen()
-          ? "Another device is already on. This phone won’t get team notes or zooms until you turn pings on here."
-          : "Another device is already on. This phone won’t get joins, cheers, or zooms until you turn pings on here.";
-        if (note) note.textContent = "Same Settings as your other phone. Takes a second.";
+        if (body) body.textContent = extraNotify.notifyBody || (packEvergreen()
+          ? "We’ll ping you for notes from the hub, team zooms, when someone joins with your link, and when they fill out How I Grow. You can pick which ones in Settings."
+          : "We’ll ping you for grove joins, cheers, notes, How I Grow, leads, grove messages, Grove Gatherings, and what’s on your calendar today. You can pick which ones in Settings.");
+        if (note) note.textContent = extraNotify.notifyNote || (packEvergreen()
+          ? "You can turn these on or off later in Settings."
+          : "You can turn any of these on or off later in Settings — including Level 1 joins vs anyone in your tree.");
         if (enable) {
           enable.hidden = false;
           enable.disabled = false;
-          enable.textContent = "Turn on this phone →";
+          enable.textContent = "Turn on notifications →";
         }
         if (skip) skip.textContent = "Not now";
       }

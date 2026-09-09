@@ -177,7 +177,7 @@ try {
   if ("serviceWorker" in navigator) {
     window.FS = window.FS || {};
     window.FS.freshBuildPending = true;
-    navigator.serviceWorker.register("./sw.js?v=724", { updateViaCache: "none" }).then(function (reg) {
+    navigator.serviceWorker.register("./sw.js?v=725", { updateViaCache: "none" }).then(function (reg) {
       try { reg.update(); } catch (eUp) {}
     });
   }
@@ -3149,7 +3149,7 @@ try {
 <script src="js/cabinet-desk.js?v=64"></script>
 <script src="js/bridge-ui.js?v=521"></script>
 <script src="js/comp-plan.js?v=32"></script>
-<script src="js/app.js?v=623"></script>
+<script src="js/app.js?v=624"></script>
 <script src="js/pwa.js?v=359"></script>
 </body>
 </html>
