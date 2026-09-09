@@ -36,6 +36,18 @@
     location.replace("/join.html" + extra + hash);
     return;
   }
+  var prettyLead = String(path || "").match(/\/(ringana-with-[a-z0-9-]+)\/?$/i);
+  var prettyHops = {
+    "ringana-with-brittany": "https://go-evergreen.github.io/ringana-with-brittany/",
+    "ringana-with-the-smallwoods": "https://go-evergreen.github.io/ringana-with-the-smallwoods/",
+    "ringana-with-tania": "https://go-evergreen.github.io/ringana-with-tania/",
+    "ringana-with-kim": "https://go-evergreen.github.io/ringana-with-kim/",
+    "ringana-with-kelly": "https://go-evergreen.github.io/ringana-with-kelly/"
+  };
+  if (prettyLead && prettyHops[prettyLead[1].toLowerCase()]) {
+    location.replace(prettyHops[prettyLead[1].toLowerCase()] + search + hash);
+    return;
+  }
   if (/^\/lead(\/|\.html|$)/i.test(path) || /[?&]p=/.test(search)) {
     location.replace("/lead.html" + search + hash);
     return;
