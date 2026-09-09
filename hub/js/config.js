@@ -45,8 +45,10 @@ window.FS.CONFIG = {
   signoff: "— with you in The Fresh Grove 🌱",
 
   groveSiteUrl: "https://thefreshgrove.team/",
+  evergreenSiteUrl: "https://evergreenco.team/",
   /* Pretty Grove door. thefreshgrove.team/join.html has the Grove card
-     and hops once onto /hub/ on this same host. */
+     and hops once onto /hub/ on this same host. Evergreen lives on
+     evergreenco.team — do not attach this repo’s Pages domain to Grove. */
   groveJoinUrl: "https://thefreshgrove.team/join.html",
   groveLeadUrl: "https://thefreshgrove.team/lead.html",
   groveQuizUrl: "https://quiz.thefreshgrove.team/",

@@ -18,8 +18,8 @@
     var jCode = decodeURIComponent(joinFromJ[1] || "").trim().toLowerCase();
     var ev = jCode.indexOf("evl-") === 0 || jCode === "evergreen-leaders" || jCode === "evergreen";
     /* Person uniques look the same on both teams — do not invent hub=grove. */
-    var dest = "https://thefreshgrove.team/hub/index.html?join=" +
-      encodeURIComponent(jCode) + (ev ? "&hub=evergreen" : "") +
+    var dest = (ev ? "https://evergreenco.team/index.html" : "https://thefreshgrove.team/hub/index.html") +
+      "?join=" + encodeURIComponent(jCode) + (ev ? "&hub=evergreen" : "") +
       "#join=" + encodeURIComponent(jCode);
     location.replace(dest);
     return;

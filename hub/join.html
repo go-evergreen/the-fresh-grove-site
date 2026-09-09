@@ -102,6 +102,9 @@
           "; max-age=2592000; SameSite=Lax" + secure;
         document.cookie = ck + "; path=/";
         if (groveDoor) document.cookie = ck + "; Domain=.thefreshgrove.team; path=/";
+        if (host === "evergreenco.team" || host === "www.evergreenco.team") {
+          document.cookie = ck + "; Domain=.evergreenco.team; path=/";
+        }
         if (host === "go-evergreen.github.io") document.cookie = ck + "; path=/first-seeds/";
       } catch (eCk) {}
       try {
@@ -128,7 +131,9 @@
       } catch (eQ) {}
     }
 
-    var dest = "index.html" + search + hash;
+    var dest = (groveDoor && looksEv)
+      ? ("https://evergreenco.team/index.html" + search + hash)
+      : ("index.html" + search + hash);
     var a = document.getElementById("fsGo");
     if (a) a.setAttribute("href", dest);
     location.replace(dest);

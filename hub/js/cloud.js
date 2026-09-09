@@ -732,6 +732,8 @@ window.FS.normalizeMeetingHref = function (raw, maxLen) {
       try {
         if (onGroveHost(String(window.location.hostname || ""))) {
           domains.push("; Domain=.thefreshgrove.team");
+        } else if (onEvergreenPublicHost(String(window.location.hostname || ""))) {
+          domains.push("; Domain=.evergreenco.team");
         }
       } catch (eD) {}
       var i;
@@ -836,12 +838,13 @@ window.FS.normalizeMeetingHref = function (raw, maxLen) {
       host === "app.thefreshgrove.team";
   }
 
-  function onEvergreenPublicHost() {
-    try {
-      return String(window.location.hostname || "").toLowerCase() === "go-evergreen.github.io";
-    } catch (e) {
-      return false;
+  function onEvergreenPublicHost(host) {
+    host = String(host || "").toLowerCase();
+    if (!host) {
+      try { host = String(window.location.hostname || "").toLowerCase(); } catch (e) { return false; }
     }
+    return host === "evergreenco.team" || host === "www.evergreenco.team" ||
+      host === "go-evergreen.github.io";
   }
 
   function readStoredJoinRaw() {
@@ -916,7 +919,14 @@ window.FS.normalizeMeetingHref = function (raw, maxLen) {
   }
 
   function evergreenPublicHubBase() {
-    return "https://thefreshgrove.team/hub/";
+    try {
+      var raw = String((window.FS.CONFIG && window.FS.CONFIG.evergreenSiteUrl) ||
+        "https://evergreenco.team/").trim();
+      if (raw && raw.charAt(raw.length - 1) !== "/") raw += "/";
+      return raw || "https://evergreenco.team/";
+    } catch (e) {
+      return "https://evergreenco.team/";
+    }
   }
 
   function evergreenJoinShareUrl(code) {
@@ -1109,13 +1119,8 @@ window.FS.normalizeMeetingHref = function (raw, maxLen) {
   function ejectEvergreenFromGroveHost() {
     if (!sessionIsEvergreen()) return false;
     var host = "";
-    var path = "";
     try { host = String(window.location.hostname || "").toLowerCase(); } catch (e) {}
-    try { path = String(window.location.pathname || ""); } catch (eP) {}
     if (!onGroveHost(host)) return false;
-    /* The live hub now sits on this same host at /hub/. Do not bounce
-       Evergreen back onto the flagged github.io URL. */
-    if (path === "/hub" || path.indexOf("/hub/") === 0) return false;
     try {
       var code = pickStickyJoin(joinFromLocation(), readStoredJoinRaw());
       if (code) {
@@ -2498,7 +2503,7 @@ window.FS.normalizeMeetingHref = function (raw, maxLen) {
             wantEvergreen = true;
           } else if (onGroveHost(signupHost) || onGroveHost(hereHost)) {
             wantGrove = true;
-          } else if (signupHost === "go-evergreen.github.io" || hereHost === "go-evergreen.github.io") {
+          } else if (onEvergreenPublicHost(signupHost) || onEvergreenPublicHost(hereHost)) {
             wantEvergreen = true;
           }
           var created = profile.created_at ? new Date(profile.created_at).getTime() : 0;

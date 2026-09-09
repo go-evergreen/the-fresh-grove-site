@@ -138,7 +138,9 @@ window.FS.Pack = (function () {
 
   function onEvergreenHost() {
     try {
-      return String(window.location.hostname || "").toLowerCase() === "go-evergreen.github.io";
+      var host = String(window.location.hostname || "").toLowerCase();
+      return host === "evergreenco.team" || host === "www.evergreenco.team" ||
+        host === "go-evergreen.github.io";
     } catch (e) {
       return false;
     }
@@ -342,6 +344,20 @@ window.FS.Pack = (function () {
     /* A person unique is not Grove by itself — Evergreen partners have
        the same random codes. Only hub / host / stored hub pick the pack. */
     var looksGrove = groveDoor || hub === "grove" || hub === "fresh-grove";
+    if (groveDoor && looksEv) {
+      var evDest = "https://evergreenco.team/";
+      if (join && join !== "evergreen") {
+        var evQs = new URLSearchParams(location.search || "");
+        evQs.set("join", join);
+        evQs.set("hub", "evergreen");
+        evDest += "index.html?" + evQs.toString() +
+          ((location.hash && /join=/i.test(location.hash)) ? location.hash : "#join=" + encodeURIComponent(join));
+      } else {
+        evDest += "index.html" + String(location.search || "") + String(location.hash || "");
+      }
+      location.replace(evDest);
+      return;
+    }
     var ev = looksEv ? true : (groveDoor ? false : ((hub === "grove" || hub === "fresh-grove") ? false : !looksGrove));
     document.body.classList.toggle("pack-evergreen", ev);
     document.body.classList.toggle("pack-grove", !ev);
