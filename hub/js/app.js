@@ -11657,6 +11657,7 @@
       var title = document.getElementById("obAuthTitle");
       var eyebrow = document.getElementById("obAuthEyebrow");
       var body = document.getElementById("obAuthBody");
+      var hint = document.getElementById("obAuthHint");
       if (msg) msg.textContent = "";
       if (cloudSignedIn() && !(window.FS.Cloud && window.FS.Cloud.passwordResetPending && window.FS.Cloud.passwordResetPending())) {
         if (modeChosen() && !onboardingReplay) {
@@ -11679,9 +11680,12 @@
           } else {
             body.textContent = hasLocalRootsProgress() || modeChosen()
               ? "Your answers are on this device — sign in with the same email (or create an account) to sync them and continue."
-              : "Use the same email and password as before. A second account won’t show your old progress or leads.";
+              : "Use the same email and password as before. A second account won’t show your old progress.";
           }
         }
+        if (hint) hint.hidden = true;
+      } else if (hint) {
+        hint.hidden = false;
       }
       paintOnboardAuthIntent(returning ? "signin" : "create");
       if (emailIn && !emailIn.value && window.FS.Cloud && window.FS.Cloud.lastEmail) {
