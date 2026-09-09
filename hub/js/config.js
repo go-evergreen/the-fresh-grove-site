@@ -184,7 +184,7 @@ window.FS.CONFIG = {
     authBody: "First Seeds needs an account so your progress syncs, your leader can support you, and nothing disappears if you switch phones. New here? Create an account. Already started? Sign in with the same email — a second account will not show your old leads.",
     authCta: "Sign in →",
     authCreate: "Create account →",
-    authHint: "An account is required — there’s no guest path from here.",
+    authHint: "",
 
     installEyebrow: "One important step",
     installTitle: "Add First Seeds to your Home Screen",

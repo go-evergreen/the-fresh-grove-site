@@ -5,7 +5,7 @@
    they are served straight from cache instead of re-fetched on every open.
    Offline: fall back to last good cache.
 */
-const CACHE_VERSION = "fs-v720";
+const CACHE_VERSION = "fs-v721";
 const CACHE_NAME = "first-seeds-" + CACHE_VERSION;
 const JOIN_CACHE = "fs-pending-join";
 const JOIN_REQ = "./__pending_join";

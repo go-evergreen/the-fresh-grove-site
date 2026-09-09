@@ -174,7 +174,7 @@ window.FS.EVERGREEN = {
     authBody: "First Seeds needs an account so this hub stays with you if you switch phones. New here? Create an account. Already started? Sign in with the same email — a second account will not show your old progress.",
     authCta: "Sign in →",
     authCreate: "Create account →",
-    authHint: "An account is required — there’s no guest path from here.",
+    authHint: "",
 
     installEyebrow: "One important step",
     installTitle: "Add First Seeds to your Home Screen",

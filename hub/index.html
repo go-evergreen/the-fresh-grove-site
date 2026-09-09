@@ -177,7 +177,7 @@ try {
   if ("serviceWorker" in navigator) {
     window.FS = window.FS || {};
     window.FS.freshBuildPending = true;
-    navigator.serviceWorker.register("./sw.js?v=723", { updateViaCache: "none" }).then(function (reg) {
+    navigator.serviceWorker.register("./sw.js?v=724", { updateViaCache: "none" }).then(function (reg) {
       try { reg.update(); } catch (eUp) {}
     });
   }
@@ -2555,7 +2555,7 @@ try {
         </div>
       </div>
       <p class="auth-msg" id="onboardingAuthMsg" role="status"></p>
-      <p class="auth-hint" id="obAuthHint"></p>
+      <p class="auth-hint" id="obAuthHint" hidden></p>
     </div>
 
     <div class="onboarding-pane" data-onboard-step="5">
@@ -3129,9 +3129,9 @@ try {
 </div>
 
 <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
-<script src="js/config.js?v=406"></script>
+<script src="js/config.js?v=407"></script>
 <script src="js/packs.js?v=349"></script>
-<script src="js/packs/evergreen.js?v=381"></script>
+<script src="js/packs/evergreen.js?v=382"></script>
 <script src="js/supabase-config.js?v=306"></script>
 <script src="js/ui-dialog.js?v=5"></script>
 <script src="js/data.js?v=314"></script>
@@ -3149,7 +3149,7 @@ try {
 <script src="js/cabinet-desk.js?v=64"></script>
 <script src="js/bridge-ui.js?v=521"></script>
 <script src="js/comp-plan.js?v=32"></script>
-<script src="js/app.js?v=622"></script>
+<script src="js/app.js?v=623"></script>
 <script src="js/pwa.js?v=359"></script>
 </body>
 </html>

@@ -11683,10 +11683,8 @@
               : "Use the same email and password as before. A second account won’t show your old progress.";
           }
         }
-        if (hint) hint.hidden = true;
-      } else if (hint) {
-        hint.hidden = false;
       }
+      if (hint) hint.hidden = true;
       paintOnboardAuthIntent(returning ? "signin" : "create");
       if (emailIn && !emailIn.value && window.FS.Cloud && window.FS.Cloud.lastEmail) {
         emailIn.value = window.FS.Cloud.lastEmail() || "";
