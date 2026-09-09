@@ -17,7 +17,7 @@
   if (joinFromJ) {
     var jCode = decodeURIComponent(joinFromJ[1] || "").trim().toLowerCase();
     /* This is the Grove door. Evergreen has its own host — do not hop. */
-    var dest = "https://thefreshgrove.team/hub/index.html?join=" +
+    var dest = "https://app.thefreshgrove.team/index.html?join=" +
       encodeURIComponent(jCode) + "&hub=grove" +
       "#join=" + encodeURIComponent(jCode);
     location.replace(dest);
