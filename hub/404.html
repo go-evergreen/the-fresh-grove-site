@@ -123,11 +123,6 @@
       } catch (eCk) {}
     }
 
-    if (groveDoor && looksEv) {
-      location.replace("/hub/index.html?" + params.toString() + hash);
-      return;
-    }
-
     var base = "/";
     if (path === "/hub" || path.indexOf("/hub/") === 0) {
       base = "/hub/";

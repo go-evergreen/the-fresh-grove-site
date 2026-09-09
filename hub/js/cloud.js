@@ -947,7 +947,7 @@ window.FS.normalizeMeetingHref = function (raw, maxLen) {
     var base = grovePublicJoinBase();
     if (!code) return base;
     /* Pretty thefreshgrove.team/join.html door — Grove card for iMessage,
-       then one hop onto github.io index.html with query + hash. */
+       then one hop onto app.thefreshgrove.team with query + hash. */
     var glue = base.indexOf("?") >= 0 ? "&" : "?";
     return base + glue + "join=" + encodeURIComponent(code) +
       "&hub=grove#join=" + encodeURIComponent(code);
@@ -1077,6 +1077,14 @@ window.FS.normalizeMeetingHref = function (raw, maxLen) {
     return /^https:\/\/go-evergreen\.github\.io\/first-seeds(?:\/|$)/i.test(String(url || "").trim());
   }
 
+  function isEvergreenAppUrl(url) {
+    return /^https:\/\/app\.evergreenco\.team(?:\/|$)/i.test(String(url || "").trim());
+  }
+
+  function isGroveAppUrl(url) {
+    return /^https:\/\/app\.thefreshgrove\.team(?:\/|$)/i.test(String(url || "").trim());
+  }
+
   /* Lock the host to the account. After the pretty hop, window.location
      is github.io — never let that leak into a Grove copy. */
   function hardenShareUrl(url) {
@@ -1091,6 +1099,9 @@ window.FS.normalizeMeetingHref = function (raw, maxLen) {
       if (sessionIsEvergreen()) {
         var evCode = joinCodeFromShareUrl(url);
         if (evCode && evCode !== "evergreen") return evergreenJoinShareUrl(evCode);
+        if (isGroveAppUrl(url) || isGithubIoHubUrl(url) || /thefreshgrove\.team/i.test(url)) {
+          return evergreenPublicHubBase();
+        }
         return url;
       }
     } catch (eEv) {}
@@ -1111,7 +1122,9 @@ window.FS.normalizeMeetingHref = function (raw, maxLen) {
     }
     var code = joinCodeFromShareUrl(url);
     if (code && code !== "evergreen") return grovePersonJoinShareUrl(code);
-    if (isGithubIoHubUrl(url)) return grovePublicHubBase();
+    if (isGithubIoHubUrl(url) || isEvergreenAppUrl(url) || isGroveAppUrl(url)) {
+      return grovePublicJoinBase();
+    }
     return url;
   }
 
