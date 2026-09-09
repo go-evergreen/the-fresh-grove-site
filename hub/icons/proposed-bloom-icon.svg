@@ -1,0 +1,45 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" width="512" height="512" role="img" aria-label="First Seeds bloom">
+  <rect width="512" height="512" fill="#abb09a"/>
+  <defs>
+    <linearGradient id="pbStem" x1="0" y1="1" x2="0" y2="0">
+      <stop offset="0%" stop-color="#5f7a62"/>
+      <stop offset="100%" stop-color="#9eae8e"/>
+    </linearGradient>
+    <linearGradient id="pbLeafA" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0%" stop-color="#c5d0b4"/>
+      <stop offset="100%" stop-color="#7f9474"/>
+    </linearGradient>
+    <linearGradient id="pbLeafB" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0%" stop-color="#d5deca"/>
+      <stop offset="100%" stop-color="#8fa484"/>
+    </linearGradient>
+    <radialGradient id="pbBloom" cx="50%" cy="50%" r="50%">
+      <stop offset="0%" stop-color="#fff4c8"/>
+      <stop offset="55%" stop-color="#f0d06a"/>
+      <stop offset="100%" stop-color="#c9922e"/>
+    </radialGradient>
+  </defs>
+  <!-- Load-screen plant at full bloom, framed for a home-screen icon. -->
+  <g transform="translate(256 268) scale(4.15) translate(-60 -73)">
+    <path d="M60 120 C58.8 90, 61.2 68, 60 42" fill="none" stroke="url(#pbStem)" stroke-width="3.6" stroke-linecap="round"/>
+    <path d="M60 108 C53.16 101.70, 56.24 94.50, 60 90 C63.76 94.50, 66.84 101.70, 60 108 Z" fill="url(#pbLeafA)" transform="rotate(-48 60 108)"/>
+    <path d="M60 107 C53.54 101.05, 56.45 94.25, 60 90 C63.55 94.25, 66.46 101.05, 60 107 Z" fill="url(#pbLeafB)" transform="rotate(46 60 107)"/>
+    <path d="M60 94 C52.40 87.00, 55.82 79.00, 60 74 C64.18 79.00, 67.60 87.00, 60 94 Z" fill="url(#pbLeafB)" transform="rotate(-52 60 94)"/>
+    <path d="M60 92 C52.78 85.35, 56.03 77.75, 60 73 C63.97 77.75, 67.22 85.35, 60 92 Z" fill="url(#pbLeafA)" transform="rotate(50 60 92)"/>
+    <path d="M60 76 C53.16 69.70, 56.24 62.50, 60 58 C63.76 62.50, 66.84 69.70, 60 76 Z" fill="url(#pbLeafA)" transform="rotate(-58 60 76)"/>
+    <path d="M60 74 C53.16 67.70, 56.24 60.50, 60 56 C63.76 60.50, 66.84 67.70, 60 74 Z" fill="url(#pbLeafB)" transform="rotate(56 60 74)"/>
+    <ellipse cx="60" cy="42" rx="7" ry="13.5" fill="url(#pbBloom)" transform="rotate(0 60 42)" opacity=".94"/>
+    <ellipse cx="60" cy="42" rx="7" ry="13.5" fill="url(#pbBloom)" transform="rotate(72 60 42)" opacity=".94"/>
+    <ellipse cx="60" cy="42" rx="7" ry="13.5" fill="url(#pbBloom)" transform="rotate(144 60 42)" opacity=".94"/>
+    <ellipse cx="60" cy="42" rx="7" ry="13.5" fill="url(#pbBloom)" transform="rotate(216 60 42)" opacity=".94"/>
+    <ellipse cx="60" cy="42" rx="7" ry="13.5" fill="url(#pbBloom)" transform="rotate(288 60 42)" opacity=".94"/>
+    <ellipse cx="60" cy="42" rx="6" ry="16" fill="#f8e28a" opacity=".62" transform="rotate(36 60 42)"/>
+    <ellipse cx="60" cy="42" rx="6" ry="16" fill="#f8e28a" opacity=".62" transform="rotate(108 60 42)"/>
+    <ellipse cx="60" cy="42" rx="6" ry="16" fill="#f8e28a" opacity=".62" transform="rotate(180 60 42)"/>
+    <ellipse cx="60" cy="42" rx="6" ry="16" fill="#f8e28a" opacity=".62" transform="rotate(252 60 42)"/>
+    <ellipse cx="60" cy="42" rx="6" ry="16" fill="#f8e28a" opacity=".62" transform="rotate(324 60 42)"/>
+    <circle cx="60" cy="42" r="5.8" fill="#5a4a37"/>
+    <circle cx="60" cy="42" r="3.2" fill="#e8c45a" opacity=".9"/>
+    <circle cx="60" cy="42" r="4" fill="#fff4c8" opacity=".55"/>
+  </g>
+</svg>
