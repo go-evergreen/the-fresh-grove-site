@@ -96,7 +96,7 @@ try {
             "; max-age=2592000; SameSite=Lax" + secureG;
           document.cookie = ckG + "; path=/";
           if (groveDoorEarly) document.cookie = ckG + "; Domain=.thefreshgrove.team; path=/";
-          if (pinHost === "evergreenco.team" || pinHost === "www.evergreenco.team") {
+          if (pinHost === "app.evergreenco.team") {
             document.cookie = ckG + "; Domain=.evergreenco.team; path=/";
           }
           if (pinHost === "go-evergreen.github.io") document.cookie = ckG + "; path=/first-seeds/";
@@ -144,7 +144,7 @@ try {
         "; max-age=2592000; SameSite=Lax" + secure;
       document.cookie = ck + "; path=/";
       if (groveDoorEarly) document.cookie = ck + "; Domain=.thefreshgrove.team; path=/";
-      if (pinHost === "evergreenco.team" || pinHost === "www.evergreenco.team") {
+      if (pinHost === "app.evergreenco.team") {
         document.cookie = ck + "; Domain=.evergreenco.team; path=/";
       }
       if (pinHost === "go-evergreen.github.io") document.cookie = ck + "; path=/first-seeds/";
@@ -177,7 +177,7 @@ try {
   if ("serviceWorker" in navigator) {
     window.FS = window.FS || {};
     window.FS.freshBuildPending = true;
-    navigator.serviceWorker.register("./sw.js?v=720", { updateViaCache: "none" }).then(function (reg) {
+    navigator.serviceWorker.register("./sw.js?v=721", { updateViaCache: "none" }).then(function (reg) {
       try { reg.update(); } catch (eUp) {}
     });
   }
@@ -261,21 +261,8 @@ try {
       location.replace("lead.html" + location.search + location.hash);
       return;
     }
-    if (groveDoor && looksEv) {
-      var evDest = "https://evergreenco.team/";
-      if (join && join !== "evergreen") {
-        var evQs = new URLSearchParams(location.search || "");
-        evQs.set("join", join);
-        evQs.set("hub", "evergreen");
-        evDest += "index.html?" + evQs.toString() +
-          ((location.hash && /join=/i.test(location.hash)) ? location.hash : "#join=" + encodeURIComponent(join));
-      } else {
-        evDest += "index.html" + String(location.search || "") + String(location.hash || "");
-      }
-      location.replace(evDest);
-      return;
-    }
-    var ev = looksEv ? true : (groveDoor ? false : ((hub === "grove" || hub === "fresh-grove") ? false : !looksGrove));
+    var evHost = host === "app.evergreenco.team";
+    var ev = evHost ? true : (groveDoor ? false : (looksEv ? true : ((hub === "grove" || hub === "fresh-grove") ? false : !looksGrove)));
     document.body.classList.toggle("pack-evergreen", ev);
     document.body.classList.toggle("pack-grove", !ev);
     if (ev) document.title = "First Seeds";

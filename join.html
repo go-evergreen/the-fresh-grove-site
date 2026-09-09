@@ -113,19 +113,19 @@
         "; max-age=2592000; SameSite=Lax; path=/" + secure;
     } catch (eCk) {}
     try {
-      localStorage.setItem("firstSeeds_pending_join_hub", looksEv ? "evergreen" : "grove");
+      localStorage.setItem("firstSeeds_pending_join_hub", "grove");
     } catch (eHub) {}
   }
 
-  var dest = looksEv ? "https://evergreenco.team/index.html" : hubBase;
+  var dest = hubBase;
   try {
     var next = new URLSearchParams();
     if (join) next.set("join", join);
-    next.set("hub", looksEv ? "evergreen" : "grove");
+    next.set("hub", "grove");
     dest += "?" + next.toString();
     if (join) dest += "#join=" + encodeURIComponent(join);
   } catch (eQ) {
-    dest += looksEv ? "?hub=evergreen" : "?hub=grove";
+    dest += "?hub=grove";
     if (join) dest += (dest.indexOf("?") >= 0 ? "&" : "?") + "join=" + encodeURIComponent(join) +
       "#join=" + encodeURIComponent(join);
   }

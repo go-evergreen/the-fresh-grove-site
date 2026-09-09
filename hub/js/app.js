@@ -2328,7 +2328,7 @@
       else if (path && path.charAt(path.length - 1) !== "/") path += "/";
       return hardenCopiedUrl(window.location.origin + (path || "/"));
     } catch (e) {
-      return "https://evergreenco.team/";
+      return "https://app.evergreenco.team/";
     }
   }
 
@@ -2358,7 +2358,7 @@
       }
     } catch (eGrove) {}
     if (url && /thefreshgrove\.team/i.test(url)) {
-      return "https://evergreenco.team/index.html?join=" +
+      return "https://app.evergreenco.team/index.html?join=" +
         encodeURIComponent(code) + "&hub=evergreen#join=" + encodeURIComponent(code);
     }
     return url;
@@ -6839,7 +6839,7 @@
   }
 
   /* Public file only — never join codes, hub, query, or a page in the app. */
-  var FRESH_CATALOG_SHARE_HOST = "https://evergreenco.team/";
+  var FRESH_CATALOG_SHARE_HOST = "https://app.evergreenco.team/";
   var FRESH_CATALOG_SHARE_FILE = "assets/company/fresh-catalog.pdf";
   var GROVE_CATALOG_SHARE_URL = "https://thefreshgrove.team/thefreshcatalog";
 
@@ -6874,7 +6874,7 @@
   function isAllowedCatalogShareUrl(url) {
     var clean = String(url || "").split("?")[0].split("#")[0].replace(/\/$/, "");
     if (clean === GROVE_CATALOG_SHARE_URL) return true;
-    return /^https:\/\/(?:evergreenco\.team|thefreshgrove\.team\/hub|go-evergreen\.github\.io\/first-seeds)\/assets\/company\/[A-Za-z0-9._-]+\.pdf$/.test(clean);
+    return /^https:\/\/(?:app\.evergreenco\.team|thefreshgrove\.team\/hub|go-evergreen\.github\.io\/first-seeds)\/assets\/company\/[A-Za-z0-9._-]+\.pdf$/.test(clean);
   }
 
   function copyFreshCatalogShareLink(btn) {

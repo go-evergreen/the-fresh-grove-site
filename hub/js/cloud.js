@@ -843,8 +843,7 @@ window.FS.normalizeMeetingHref = function (raw, maxLen) {
     if (!host) {
       try { host = String(window.location.hostname || "").toLowerCase(); } catch (e) { return false; }
     }
-    return host === "evergreenco.team" || host === "www.evergreenco.team" ||
-      host === "go-evergreen.github.io";
+    return host === "app.evergreenco.team" || host === "go-evergreen.github.io";
   }
 
   function readStoredJoinRaw() {
@@ -921,11 +920,11 @@ window.FS.normalizeMeetingHref = function (raw, maxLen) {
   function evergreenPublicHubBase() {
     try {
       var raw = String((window.FS.CONFIG && window.FS.CONFIG.evergreenSiteUrl) ||
-        "https://evergreenco.team/").trim();
+        "https://app.evergreenco.team/").trim();
       if (raw && raw.charAt(raw.length - 1) !== "/") raw += "/";
-      return raw || "https://evergreenco.team/";
+      return raw || "https://app.evergreenco.team/";
     } catch (e) {
-      return "https://evergreenco.team/";
+      return "https://app.evergreenco.team/";
     }
   }
 
@@ -1117,19 +1116,9 @@ window.FS.normalizeMeetingHref = function (raw, maxLen) {
   }
 
   function ejectEvergreenFromGroveHost() {
-    if (!sessionIsEvergreen()) return false;
-    var host = "";
-    try { host = String(window.location.hostname || "").toLowerCase(); } catch (e) {}
-    if (!onGroveHost(host)) return false;
-    try {
-      var code = pickStickyJoin(joinFromLocation(), readStoredJoinRaw());
-      if (code) {
-        location.replace(evergreenJoinShareUrl(code));
-      } else {
-        location.replace(evergreenPublicHubBase() + "index.html" + String(location.search || "") + String(location.hash || ""));
-      }
-    } catch (e2) {}
-    return true;
+    /* The two sites stay put. A Grove URL never sends someone to Evergreen,
+       and an Evergreen URL never sends someone to Grove. */
+    return false;
   }
 
   function joinHubParam(code) {

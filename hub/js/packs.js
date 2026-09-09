@@ -139,8 +139,7 @@ window.FS.Pack = (function () {
   function onEvergreenHost() {
     try {
       var host = String(window.location.hostname || "").toLowerCase();
-      return host === "evergreenco.team" || host === "www.evergreenco.team" ||
-        host === "go-evergreen.github.io";
+      return host === "app.evergreenco.team" || host === "go-evergreen.github.io";
     } catch (e) {
       return false;
     }
@@ -201,6 +200,7 @@ window.FS.Pack = (function () {
     var livePerson = !!(urlJoin && urlJoin !== "evergreen" && urlJoin.indexOf("evl-") !== 0 &&
       urlJoin !== "evergreen-leaders");
     if (onGroveHost()) return window.FS.PACK_SLUGS.GROVE;
+    if (onEvergreenHost()) return window.FS.PACK_SLUGS.EVERGREEN;
     if (hubGrove) return window.FS.PACK_SLUGS.GROVE;
     if (hubEvergreen) return window.FS.PACK_SLUGS.EVERGREEN;
     if (pending && (pending === evCode || looksLeader)) return window.FS.PACK_SLUGS.EVERGREEN;
@@ -344,21 +344,8 @@ window.FS.Pack = (function () {
     /* A person unique is not Grove by itself — Evergreen partners have
        the same random codes. Only hub / host / stored hub pick the pack. */
     var looksGrove = groveDoor || hub === "grove" || hub === "fresh-grove";
-    if (groveDoor && looksEv) {
-      var evDest = "https://evergreenco.team/";
-      if (join && join !== "evergreen") {
-        var evQs = new URLSearchParams(location.search || "");
-        evQs.set("join", join);
-        evQs.set("hub", "evergreen");
-        evDest += "index.html?" + evQs.toString() +
-          ((location.hash && /join=/i.test(location.hash)) ? location.hash : "#join=" + encodeURIComponent(join));
-      } else {
-        evDest += "index.html" + String(location.search || "") + String(location.hash || "");
-      }
-      location.replace(evDest);
-      return;
-    }
-    var ev = looksEv ? true : (groveDoor ? false : ((hub === "grove" || hub === "fresh-grove") ? false : !looksGrove));
+    var evHost = host === "app.evergreenco.team";
+    var ev = evHost ? true : (groveDoor ? false : (looksEv ? true : ((hub === "grove" || hub === "fresh-grove") ? false : !looksGrove)));
     document.body.classList.toggle("pack-evergreen", ev);
     document.body.classList.toggle("pack-grove", !ev);
   } catch (e) {}

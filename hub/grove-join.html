@@ -107,7 +107,7 @@
             host === "app.thefreshgrove.team") {
           document.cookie = ck + "; Domain=.thefreshgrove.team; path=/";
         }
-        if (host === "evergreenco.team" || host === "www.evergreenco.team") {
+        if (host === "app.evergreenco.team") {
           document.cookie = ck + "; Domain=.evergreenco.team; path=/";
         }
         if (host === "go-evergreen.github.io") document.cookie = ck + "; path=/first-seeds/";
@@ -130,10 +130,7 @@
       } catch (eQ) {}
     }
 
-    var dest = (looksEv && (host === "thefreshgrove.team" || host === "www.thefreshgrove.team" ||
-        host === "app.thefreshgrove.team"))
-      ? ("https://evergreenco.team/index.html" + search + hash)
-      : ("index.html" + search + hash);
+    var dest = "index.html" + search + hash;
     var a = document.getElementById("fsGo");
     if (a) a.setAttribute("href", dest);
     location.replace(dest);
