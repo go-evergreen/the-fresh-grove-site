@@ -1058,9 +1058,31 @@ window.FS.normalizeMeetingHref = function (raw, maxLen) {
     return "";
   }
 
+  var PRETTY_CUSTOM_LEAD_PATHS = {
+    "ringana-with-brittany": true,
+    "ringana-with-the-smallwoods": true,
+    "ringana-with-tania": true,
+    "ringana-with-kim": true,
+    "ringana-with-kelly": true,
+    "ringana-with-kassidy": true
+  };
+
+  function prettyCustomLeadShareUrl(url) {
+    var raw = String(url || "").trim();
+    var m = raw.match(/\/(ringana-with-[a-z0-9-]+)\/?/i);
+    if (m) {
+      var path = m[1].toLowerCase();
+      if (PRETTY_CUSTOM_LEAD_PATHS[path]) {
+        return "https://thefreshgrove.team/" + path + "/";
+      }
+    }
+    return raw;
+  }
+
   function isCustomLeadPageUrl(url) {
     url = String(url || "").trim();
     if (!url) return false;
+    if (/thefreshgrove\.team\/ringana-with-/i.test(url)) return true;
     if (/go-evergreen\.github\.io\/ringana-with-/i.test(url)) return true;
     if (/tayrourke\.github\.io/i.test(url)) return true;
     var map = (window.FS.CONFIG && window.FS.CONFIG.customLeadPages) || {};
@@ -1090,7 +1112,7 @@ window.FS.normalizeMeetingHref = function (raw, maxLen) {
   function hardenShareUrl(url) {
     url = String(url || "").trim();
     if (!url) return "";
-    if (isCustomLeadPageUrl(url)) return url;
+    if (isCustomLeadPageUrl(url)) return prettyCustomLeadShareUrl(url) || url;
     if (/^https:\/\/(quiz\.thefreshgrove\.team|shelf\.thefreshgrove\.team|shelf\.taygoesfresh\.com)\b/i.test(url)) {
       return url;
     }

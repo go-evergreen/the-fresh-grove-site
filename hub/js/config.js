@@ -59,12 +59,12 @@ window.FS.CONFIG = {
      Keyed by lead_slug. Only these people see the share-link toggle. */
   customLeadPages: {
     taylor: "https://tayrourke.github.io/tay-goes-fresh/",
-    brittany: "https://go-evergreen.github.io/ringana-with-brittany/",
-    kassidy: "https://go-evergreen.github.io/ringana-with-kassidy/",
-    "kelly-amorose": "https://go-evergreen.github.io/ringana-with-kelly/",
-    kim: "https://go-evergreen.github.io/ringana-with-kim/",
-    meghan: "https://go-evergreen.github.io/ringana-with-the-smallwoods/",
-    tania: "https://go-evergreen.github.io/ringana-with-tania/",
+    brittany: "https://thefreshgrove.team/ringana-with-brittany/",
+    kassidy: "https://thefreshgrove.team/ringana-with-kassidy/",
+    "kelly-amorose": "https://thefreshgrove.team/ringana-with-kelly/",
+    kim: "https://thefreshgrove.team/ringana-with-kim/",
+    meghan: "https://thefreshgrove.team/ringana-with-the-smallwoods/",
+    tania: "https://thefreshgrove.team/ringana-with-tania/",
     "kim-huck": "https://go-evergreen.github.io/ringana-with-kimberly/"
   },
 

@@ -2446,7 +2446,7 @@
     var user = Cloud && Cloud.user ? Cloud.user() : null;
     var slug = user && user.lead_slug ? String(user.lead_slug).trim().toLowerCase() : "";
     var url = slug && map[slug] ? String(map[slug]).trim() : "";
-    return url;
+    return hardenCopiedUrl(url);
   }
 
   function leadShareSource() {
@@ -2497,7 +2497,7 @@
   }
 
   function leadsPreviewHref(slug) {
-    if (leadShareSource() === "site") return customLeadPageUrl() || "lead.html";
+    if (leadShareSource() === "site") return hardenCopiedUrl(customLeadPageUrl()) || "lead.html";
     var Cloud = window.FS.Cloud;
     if (slug && Cloud && Cloud.leadUrl) return hardenCopiedUrl(Cloud.leadUrl(slug));
     return slug
