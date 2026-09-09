@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>First Seeds — Your Runway to Launch</title>
+<meta property="og:title" content="First Seeds — Your Runway to Launch">
+<meta property="og:type" content="website">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="First Seeds — Your Runway to Launch">
+<meta name="referrer" content="strict-origin-when-cross-origin">
+<link rel="manifest" href="manifest.webmanifest" id="fsManifest">
+<style>
+  html,body{margin:0;background:#f5f6f2;color:#3d4540;font-family:Georgia,serif}
+  body{padding:48px 24px;text-align:center}
+  a{color:#3d5a4a}
+</style>
+</head>
+<body>
+  <p>First Seeds — Your Runway to Launch</p>
+  <p><a id="fsGo" href="index.html">Continue</a></p>
+  <noscript>
+  <p>Open this link in Chrome (the colorful-circle browser) — not the Google app, and don’t paste it into Google Search.</p>
+  <p>Keep the whole address, including <code>?join=</code>. Then tap Continue.</p>
+  </noscript>
+  <script>
+  /* Join door. Persist the unique before the hop. Query, hash, path, and
+     a stored leftover all count — an evergreen query must not hide a
+     person code in the hash. Never write og:url (iMessage opened the hub). */
+  (function () {
+    function fromPath(path) {
+      var m = String(path || "").match(/\/j\/([a-z0-9][a-z0-9-]{2,62})\/?$/i);
+      return m ? decodeURIComponent(m[1]).toLowerCase() : "";
+    }
+    function pick(query, hash, path) {
+      var parts = [query, hash, path];
+      var i;
+      var c;
+      for (i = 0; i < parts.length; i++) {
+        c = String(parts[i] || "").trim().toLowerCase();
+        if (c && c !== "evergreen" && c.indexOf("evl-") !== 0 && c !== "evergreen-leaders") return c;
+      }
+      for (i = 0; i < parts.length; i++) {
+        c = String(parts[i] || "").trim().toLowerCase();
+        if (c && (c.indexOf("evl-") === 0 || c === "evergreen-leaders")) return c;
+      }
+      return "";
+    }
+    function readStored() {
+      var v = "";
+      try { v = String(localStorage.getItem("firstSeeds_pending_join") || "").trim().toLowerCase(); } catch (e) {}
+      if (!v || v === "evergreen") {
+        try { v = String(sessionStorage.getItem("firstSeeds_pending_join") || "").trim().toLowerCase(); } catch (e2) {}
+      }
+      if (!v || v === "evergreen") {
+        try {
+          var cm = document.cookie.match(/(?:^|; )fs_pending_join=([^;]*)/);
+          if (cm) v = decodeURIComponent(cm[1] || "").trim().toLowerCase();
+        } catch (e3) {}
+      }
+      return (v && v !== "evergreen") ? v : "";
+    }
+
+    var search = String(location.search || "");
+    var hash = String(location.hash || "");
+    var host = String(location.hostname || "").toLowerCase();
+    var query = "";
+    var hub = "";
+    try {
+      var params = new URLSearchParams(search);
+      query = String(params.get("join") || "").trim().toLowerCase();
+      hub = String(params.get("hub") || "").trim().toLowerCase();
+    } catch (e) {}
+    var hashJoin = "";
+    var hm = String(hash).match(/(?:^|[?#&])(?:fs)?join=([^&]+)/i);
+    if (hm) {
+      try { hashJoin = decodeURIComponent(hm[1] || "").trim().toLowerCase(); } catch (e2) {}
+    }
+    var join = pick(query, hashJoin, fromPath(location.pathname));
+    /* An explicit evergreen in the URL is a real door — do not let a
+       leftover person code from this phone take over the hop. */
+    if (!join && (query === "evergreen" || hashJoin === "evergreen")) join = "evergreen";
+    if (!join) join = readStored();
+
+    var groveDoor = host === "thefreshgrove.team" || host === "www.thefreshgrove.team" ||
+      host === "app.thefreshgrove.team";
+    /* A person unique is never an Evergreen door — even if hub=evergreen
+       got stuck on the URL. */
+    var looksEv = join === "evergreen" || join.indexOf("evl-") === 0 ||
+      join === "evergreen-leaders" ||
+      (!join && (hub === "evergreen" || hub === "evergreen-co"));
+    var looksGrove = hub === "grove" || hub === "fresh-grove" || groveDoor;
+    var person = !!join && join !== "evergreen" && join.indexOf("evl-") !== 0 &&
+      join !== "evergreen-leaders";
+
+    if (join) {
+      try { localStorage.setItem("firstSeeds_pending_join", join); } catch (eLs) {}
+      try { sessionStorage.setItem("firstSeeds_pending_join", join); } catch (eSs) {}
+      try {
+        var secure = location.protocol === "https:" ? "; Secure" : "";
+        var ck = "fs_pending_join=" + encodeURIComponent(join) +
+          "; max-age=2592000; SameSite=Lax" + secure;
+        document.cookie = ck + "; path=/";
+        if (groveDoor) document.cookie = ck + "; Domain=.thefreshgrove.team; path=/";
+        if (host === "go-evergreen.github.io") document.cookie = ck + "; path=/first-seeds/";
+      } catch (eCk) {}
+      try {
+        if (looksEv) localStorage.setItem("firstSeeds_pending_join_hub", "evergreen");
+        else if (looksGrove) localStorage.setItem("firstSeeds_pending_join_hub", "grove");
+      } catch (eHub) {}
+      var man = document.getElementById("fsManifest");
+      if (man) {
+        var href = "manifest.webmanifest?join=" + encodeURIComponent(join);
+        if (looksEv) href += "&hub=evergreen";
+        else if (looksGrove) href += "&hub=grove";
+        man.setAttribute("href", href);
+      }
+      try {
+        var nextParams = new URLSearchParams(search);
+        nextParams.set("join", join);
+        if (looksEv || (person && !groveDoor && (hub === "evergreen" || hub === "evergreen-co"))) {
+          nextParams.set("hub", "evergreen");
+        } else if (looksGrove || (person && groveDoor)) {
+          nextParams.set("hub", "grove");
+        } else if (person) nextParams.delete("hub");
+        search = "?" + nextParams.toString();
+        hash = "#join=" + encodeURIComponent(join);
+      } catch (eQ) {}
+    }
+
+    var dest = "index.html" + search + hash;
+    var a = document.getElementById("fsGo");
+    if (a) a.setAttribute("href", dest);
+    location.replace(dest);
+  })();
+  </script>
+</body>
+</html>

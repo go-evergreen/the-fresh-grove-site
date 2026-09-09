@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>The Fresh Catalog</title>
+<meta property="og:title" content="The Fresh Catalog">
+<meta property="og:type" content="website">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="The Fresh Catalog">
+<meta http-equiv="refresh" content="0;url=../assets/company/fresh-catalog.pdf">
+<style>
+  html,body{margin:0;background:#f5f6f2;color:#3d4540;font-family:Georgia,serif}
+  body{padding:48px 24px;text-align:center}
+  a{color:#3d5a4a}
+</style>
+</head>
+<body>
+  <p>The Fresh Catalog</p>
+  <p><a id="fsCatalog" href="../assets/company/fresh-catalog.pdf">Open the catalog</a></p>
+  <script>
+  (function () {
+    var dest = new URL("../assets/company/fresh-catalog.pdf", location.href).href;
+    var a = document.getElementById("fsCatalog");
+    if (a) a.setAttribute("href", dest);
+    location.replace(dest);
+  })();
+  </script>
+</body>
+</html>

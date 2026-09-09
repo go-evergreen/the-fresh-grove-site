@@ -18,7 +18,7 @@
     var jCode = decodeURIComponent(joinFromJ[1] || "").trim().toLowerCase();
     var ev = jCode.indexOf("evl-") === 0 || jCode === "evergreen-leaders" || jCode === "evergreen";
     /* Person uniques look the same on both teams — do not invent hub=grove. */
-    var dest = "https://go-evergreen.github.io/first-seeds/index.html?join=" +
+    var dest = "https://thefreshgrove.team/hub/index.html?join=" +
       encodeURIComponent(jCode) + (ev ? "&hub=evergreen" : "") +
       "#join=" + encodeURIComponent(jCode);
     location.replace(dest);
@@ -42,7 +42,7 @@
     return;
   }
   if (/^\/thefreshcatalog(\/|\.html|$)/i.test(path)) {
-    location.replace("https://go-evergreen.github.io/first-seeds/assets/company/fresh-catalog.pdf");
+    location.replace("/thefreshcatalog");
     return;
   }
   location.replace("/" + search + hash);

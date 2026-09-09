@@ -1,0 +1,3148 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover, interactive-widget=overlays-content">
+<title>First Seeds</title>
+<meta name="description" content="First Seeds — Your Runway to Launch">
+<meta name="theme-color" content="#abb09a">
+<meta name="referrer" content="strict-origin-when-cross-origin">
+<script>
+try { if (window.top !== window.self) window.top.location.replace(window.location.href); } catch (e) {}
+try {
+  var warmAt = Number(localStorage.getItem("fsWarm") || sessionStorage.getItem("fsWarm") || 0);
+  if (warmAt && (Date.now() - warmAt) < 12 * 60 * 1000) {
+    document.documentElement.classList.add("fs-warm-boot");
+  }
+} catch (eWarm) {}
+</script>
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="default">
+<meta name="apple-mobile-web-app-title" content="First Seeds">
+<meta property="og:title" content="First Seeds — Your Runway to Launch">
+<meta property="og:type" content="website">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="First Seeds — Your Runway to Launch">
+<link rel="icon" href="icons/favicon.svg" type="image/svg+xml">
+<link rel="icon" href="icons/favicon-32.png" sizes="32x32" type="image/png">
+<link rel="icon" href="icons/favicon-16.png" sizes="16x16" type="image/png">
+<link rel="apple-touch-icon" href="icons/apple-touch-icon.png">
+<link rel="manifest" href="manifest.webmanifest" id="fsManifest">
+<script>
+/* Pin ?join= into the real manifest before Add to Home Screen. iOS 16.4+
+   launches the icon from start_url. A blob: manifest is ignored there, so
+   we only point at manifest.webmanifest?join= (sw.js rewrites start_url). */
+(function () {
+  try {
+    function fromPath(path) {
+      var m = String(path || "").match(/\/j\/([a-z0-9][a-z0-9-]{2,62})\/?$/i);
+      return m ? decodeURIComponent(m[1]).toLowerCase() : "";
+    }
+    function pick(query, hash, path) {
+      var parts = [query, hash, path];
+      var i;
+      var c;
+      for (i = 0; i < parts.length; i++) {
+        c = String(parts[i] || "").trim().toLowerCase();
+        if (c && c !== "evergreen" && c.indexOf("evl-") !== 0 && c !== "evergreen-leaders") return c;
+      }
+      for (i = 0; i < parts.length; i++) {
+        c = String(parts[i] || "").trim().toLowerCase();
+        if (c && (c.indexOf("evl-") === 0 || c === "evergreen-leaders")) return c;
+      }
+      for (i = 0; i < parts.length; i++) {
+        c = String(parts[i] || "").trim().toLowerCase();
+        if (c) return c;
+      }
+      return "";
+    }
+    var query = "";
+    try { query = (new URLSearchParams(location.search).get("join") || "").trim().toLowerCase(); } catch (e1) {}
+    var hash = "";
+    if (location.hash) {
+      var hm = String(location.hash).match(/(?:^|[?#&])(?:fs)?join=([^&]+)/i);
+      if (hm) hash = decodeURIComponent(hm[1] || "").trim().toLowerCase();
+    }
+    var code = pick(query, hash, fromPath(location.pathname));
+    var stored = "";
+    try { stored = String(localStorage.getItem("firstSeeds_pending_join") || "").trim().toLowerCase(); } catch (eSt) {}
+    if (!stored || stored === "evergreen") {
+      try { stored = String(sessionStorage.getItem("firstSeeds_pending_join") || "").trim().toLowerCase(); } catch (eSsR) {}
+    }
+    if (!stored || stored === "evergreen") {
+      try {
+        var cm = document.cookie.match(/(?:^|; )fs_pending_join=([^;]*)/);
+        if (cm) stored = decodeURIComponent(cm[1] || "").trim().toLowerCase();
+      } catch (eCkR) {}
+    }
+    if (stored === "evergreen") stored = "";
+    var pinHost = "";
+    try { pinHost = String(location.hostname || "").toLowerCase(); } catch (eH) {}
+    var pinHubEarly = "";
+    try { pinHubEarly = String(new URLSearchParams(location.search).get("hub") || "").trim().toLowerCase(); } catch (ePH0) {}
+    var groveDoorEarly = pinHost === "thefreshgrove.team" || pinHost === "www.thefreshgrove.team" ||
+      pinHost === "app.thefreshgrove.team";
+    var genericEvDoor = !groveDoorEarly && pinHubEarly !== "grove" && pinHubEarly !== "fresh-grove" &&
+      (!code || code === "evergreen");
+    /* Bare hub: keep a leftover unique on cookie + Home Screen, but do not
+       put it in the address bar. Signup still reads the stored unique. */
+    if (genericEvDoor) {
+      if (stored && stored !== "evergreen") {
+        try { localStorage.setItem("firstSeeds_pending_join", stored); } catch (eLsG) {}
+        try { sessionStorage.setItem("firstSeeds_pending_join", stored); } catch (eSsG) {}
+        try {
+          var secureG = location.protocol === "https:" ? "; Secure" : "";
+          var ckG = "fs_pending_join=" + encodeURIComponent(stored) +
+            "; max-age=2592000; SameSite=Lax" + secureG;
+          document.cookie = ckG + "; path=/";
+          if (groveDoorEarly) document.cookie = ckG + "; Domain=.thefreshgrove.team; path=/";
+          if (pinHost === "go-evergreen.github.io") document.cookie = ckG + "; path=/first-seeds/";
+        } catch (eCkG) {}
+        var linkG = document.getElementById("fsManifest");
+        if (linkG) {
+          var manG = "manifest.webmanifest?join=" + encodeURIComponent(stored);
+          var storedHubG = "";
+          try { storedHubG = String(localStorage.getItem("firstSeeds_pending_join_hub") || "").trim().toLowerCase(); } catch (eSH) {}
+          if (!storedHubG) {
+            try { storedHubG = String(sessionStorage.getItem("firstSeeds_pending_join_hub") || "").trim().toLowerCase(); } catch (eSH2) {}
+          }
+          if (pinHubEarly === "grove" || pinHubEarly === "fresh-grove" || storedHubG === "grove") manG += "&hub=grove";
+          else if (storedHubG === "evergreen") manG += "&hub=evergreen";
+          try {
+            if ((new URLSearchParams(location.search).get("signin") || "") === "1") manG += "&signin=1";
+          } catch (eSg) {}
+          linkG.setAttribute("href", manG);
+        }
+      }
+      return;
+    }
+    if ((!code || code === "evergreen") && stored && stored !== "evergreen") {
+      code = stored;
+    }
+    if (!code || code === "evergreen") return;
+    try { localStorage.setItem("firstSeeds_pending_join", code); } catch (eLs) {}
+    try { sessionStorage.setItem("firstSeeds_pending_join", code); } catch (eSs) {}
+    try {
+      if (code !== "evergreen") {
+        var pinHub = pinHubEarly;
+        if (code.indexOf("evl-") === 0 || code === "evergreen-leaders" ||
+            (!groveDoorEarly && (pinHub === "evergreen" || pinHub === "evergreen-co"))) {
+          localStorage.setItem("firstSeeds_pending_join_hub", "evergreen");
+          sessionStorage.setItem("firstSeeds_pending_join_hub", "evergreen");
+        } else if (pinHub === "grove" || pinHub === "fresh-grove" || groveDoorEarly) {
+          localStorage.setItem("firstSeeds_pending_join_hub", "grove");
+          sessionStorage.setItem("firstSeeds_pending_join_hub", "grove");
+        }
+      }
+    } catch (eHubW) {}
+    try {
+      var secure = location.protocol === "https:" ? "; Secure" : "";
+      var ck = "fs_pending_join=" + encodeURIComponent(code) +
+        "; max-age=2592000; SameSite=Lax" + secure;
+      document.cookie = ck + "; path=/";
+      if (groveDoorEarly) document.cookie = ck + "; Domain=.thefreshgrove.team; path=/";
+      if (pinHost === "go-evergreen.github.io") document.cookie = ck + "; path=/first-seeds/";
+    } catch (eCk) {}
+    var link = document.getElementById("fsManifest");
+    if (!link) return;
+    var hub = "";
+    try { hub = (new URLSearchParams(location.search).get("hub") || "").trim().toLowerCase(); } catch (eHub) {}
+    var manHref = "manifest.webmanifest?join=" + encodeURIComponent(code);
+    var personEarly = code.indexOf("evl-") !== 0 && code !== "evergreen-leaders";
+    if (hub === "grove" || hub === "fresh-grove") manHref += "&hub=grove";
+    else if ((hub === "evergreen" || hub === "evergreen-co") && !groveDoorEarly) manHref += "&hub=evergreen";
+    else if (!personEarly) {
+      var storedHubM = "";
+      try { storedHubM = String(localStorage.getItem("firstSeeds_pending_join_hub") || "").trim().toLowerCase(); } catch (eSM) {}
+      if (storedHubM === "grove") manHref += "&hub=grove";
+      else if (storedHubM === "evergreen") manHref += "&hub=evergreen";
+    }
+    try {
+      if ((new URLSearchParams(location.search).get("signin") || "") === "1") manHref += "&signin=1";
+    } catch (eSg2) {}
+    link.setAttribute("href", manHref);
+  } catch (e) {}
+})();
+</script>
+<script>
+/* Start the worker in the head so Add to Home Screen is more likely to
+   see a rewritten start_url, and so the invite is stored before they tap Share. */
+try {
+  if ("serviceWorker" in navigator) {
+    window.FS = window.FS || {};
+    window.FS.freshBuildPending = true;
+    navigator.serviceWorker.register("./sw.js?v=719", { updateViaCache: "none" }).then(function (reg) {
+      try { reg.update(); } catch (eUp) {}
+    });
+  }
+} catch (eSwEarly) {}
+</script>
+<link rel="stylesheet" href="css/styles.css?v=632">
+<style>
+  .boot-cover{
+    position:fixed;inset:0;z-index:10000;
+    display:flex;align-items:center;justify-content:center;
+    background:#f5f6f2;color:#3d453c;
+    font-family:Georgia,'Times New Roman',serif;
+    letter-spacing:.04em
+  }
+  .boot-cover-inner{display:flex;flex-direction:column;align-items:center;gap:10px}
+  .boot-cover-mark{margin:0;font-size:22px;font-weight:600;letter-spacing:.06em}
+  .boot-plant{width:132px;height:128px;transform-origin:50% 100%}
+  .boot-plant svg{display:block;width:100%;height:100%;overflow:visible}
+  .boot-stem{fill:none;stroke:#7f9474;stroke-width:3.6;stroke-linecap:round;stroke-linejoin:round;stroke-dasharray:1;stroke-dashoffset:1}
+  body:not(.is-booting) .boot-cover{
+    opacity:0;pointer-events:none;visibility:hidden
+  }
+  @media (prefers-reduced-motion:no-preference){
+    .boot-plant{animation:bootSway 2.8s ease-in-out infinite alternate}
+  }
+  @keyframes bootSway{
+    from{transform:rotate(-2.4deg)}
+    to{transform:rotate(2.4deg)}
+  }
+</style>
+</head>
+<body class="pack-evergreen is-booting" aria-busy="true">
+<script>
+(function () {
+  try {
+    function pickDoor(query, hash, path) {
+      var parts = [query, hash, path];
+      var i;
+      var c;
+      for (i = 0; i < parts.length; i++) {
+        c = String(parts[i] || "").trim().toLowerCase();
+        if (c && c !== "evergreen" && c.indexOf("evl-") !== 0 && c !== "evergreen-leaders") return c;
+      }
+      for (i = 0; i < parts.length; i++) {
+        c = String(parts[i] || "").trim().toLowerCase();
+        if (c && (c.indexOf("evl-") === 0 || c === "evergreen-leaders")) return c;
+      }
+      return "";
+    }
+    var joinQ = "";
+    try { joinQ = (new URLSearchParams(location.search).get("join") || "").trim().toLowerCase(); } catch (e1) {}
+    var joinH = "";
+    if (location.hash) {
+      var hm = String(location.hash).match(/(?:^|[?#&])(?:fs)?join=([^&]+)/i);
+      if (hm) joinH = decodeURIComponent(hm[1] || "").trim().toLowerCase();
+    }
+    var joinP = "";
+    var pm = String(location.pathname || "").match(/\/j\/([a-z0-9][a-z0-9-]{2,62})\/?$/i);
+    if (pm) joinP = decodeURIComponent(pm[1]).toLowerCase();
+    var join = pickDoor(joinQ, joinH, joinP);
+    var hub = "";
+    try { hub = (new URLSearchParams(location.search).get("hub") || "").trim().toLowerCase(); } catch (e2) {}
+    var last = "";
+    try { last = String(localStorage.getItem("firstSeeds_lastPack") || "").trim(); } catch (e3) {}
+    var host = "";
+    try { host = String(location.hostname || "").toLowerCase(); } catch (eH) {}
+    var groveDoor = host === "thefreshgrove.team" || host === "www.thefreshgrove.team" || host === "app.thefreshgrove.team";
+    if (join && join !== "evergreen" && join.indexOf("evl-") !== 0 && join !== "evergreen-leaders" &&
+        (hub === "evergreen" || hub === "evergreen-co")) {
+      hub = "";
+    }
+    if (!hub) {
+      try { hub = String(localStorage.getItem("firstSeeds_pending_join_hub") || "").trim().toLowerCase(); } catch (eHS) {}
+    }
+    var looksEv = join === "evergreen" || join.indexOf("evl-") === 0 || join === "evergreen-leaders" ||
+      (!join && (hub === "evergreen" || hub === "evergreen-co"));
+    var looksGrove = groveDoor || hub === "grove" || hub === "fresh-grove";
+    var withSlug = "";
+    try { withSlug = String(new URLSearchParams(location.search).get("with") || new URLSearchParams(location.search).get("p") || "").trim(); } catch (eW) {}
+    if (withSlug && !join) {
+      location.replace("lead.html" + location.search + location.hash);
+      return;
+    }
+    var ev = looksEv ? true : (groveDoor ? false : ((hub === "grove" || hub === "fresh-grove") ? false : !looksGrove));
+    document.body.classList.toggle("pack-evergreen", ev);
+    document.body.classList.toggle("pack-grove", !ev);
+    if (ev) document.title = "First Seeds";
+  } catch (e) {}
+})();
+</script>
+<a class="skip-link" href="#mainContent">Skip to content</a>
+<div class="boot-cover" id="bootCover" aria-hidden="true">
+  <div class="boot-cover-inner">
+    <p class="boot-cover-mark">First Seeds</p>
+    <div class="boot-plant" id="bootPlant">
+      <svg viewBox="0 24 120 108" width="100%" height="100%" aria-hidden="true">
+        <defs>
+          <linearGradient id="bootStem" x1="0" y1="1" x2="0" y2="0"><stop offset="0%" stop-color="#5f7a62"/><stop offset="100%" stop-color="#9eae8e"/></linearGradient>
+          <linearGradient id="bootLeafA" x1="0" y1="0" x2="1" y2="1"><stop offset="0%" stop-color="#c5d0b4"/><stop offset="100%" stop-color="#7f9474"/></linearGradient>
+          <linearGradient id="bootLeafB" x1="0" y1="0" x2="1" y2="1"><stop offset="0%" stop-color="#d5deca"/><stop offset="100%" stop-color="#8fa484"/></linearGradient>
+          <radialGradient id="bootBloom" cx="50%" cy="50%" r="50%"><stop offset="0%" stop-color="#fff4c8"/><stop offset="55%" stop-color="#f0d06a"/><stop offset="100%" stop-color="#c9922e"/></radialGradient>
+        </defs>
+        <path class="boot-stem" d="M60 120 C58.8 90, 61.2 68, 60 42" stroke="url(#bootStem)" opacity="0"/>
+        <g class="boot-leaf boot-leaf-1" opacity="0">
+          <path d="M60 108 C54.7 103.1 57.1 97.5 60 94 C62.9 97.5 65.3 103.1 60 108Z" fill="url(#bootLeafA)" transform="rotate(-48 60 108)"/>
+          <path d="M60 107 C55 102.4 57.2 97.2 60 94 C62.8 97.2 65 102.4 60 107Z" fill="url(#bootLeafB)" transform="rotate(46 60 107)"/>
+        </g>
+        <g class="boot-leaf boot-leaf-2" opacity="0">
+          <path d="M60 94 C53.9 88.4 56.7 82 60 78 C63.3 82 66.1 88.4 60 94Z" fill="url(#bootLeafB)" transform="rotate(-52 60 94)"/>
+          <path d="M60 92 C54.3 86.8 56.9 80.8 60 77 C63.1 80.8 65.7 86.8 60 92Z" fill="url(#bootLeafA)" transform="rotate(50 60 92)"/>
+        </g>
+        <g class="boot-leaf boot-leaf-3" opacity="0">
+          <path d="M60 76 C54.3 70.8 56.9 64.8 60 61 C63.1 64.8 65.7 70.8 60 76Z" fill="url(#bootLeafA)" transform="rotate(-58 60 76)"/>
+          <path d="M60 74 C54.3 68.8 56.9 62.8 60 59 C63.1 62.8 65.7 68.8 60 74Z" fill="url(#bootLeafB)" transform="rotate(56 60 74)"/>
+        </g>
+        <g class="boot-bud" opacity="0">
+          <ellipse cx="60" cy="42" rx="8" ry="11" fill="url(#bootBloom)" opacity=".88"/>
+          <ellipse cx="60" cy="40" rx="4.5" ry="6" fill="#fff4c8" opacity=".55"/>
+          <circle cx="60" cy="42" r="3.5" fill="#5a4a37" opacity=".75"/>
+        </g>
+        <g class="boot-bloom" opacity="0" transform="translate(60 42) scale(0.42) translate(-60 -42)">
+          <ellipse cx="60" cy="42" rx="7" ry="13.5" fill="url(#bootBloom)" transform="rotate(0 60 42)"/>
+          <ellipse cx="60" cy="42" rx="7" ry="13.5" fill="url(#bootBloom)" transform="rotate(72 60 42)"/>
+          <ellipse cx="60" cy="42" rx="7" ry="13.5" fill="url(#bootBloom)" transform="rotate(144 60 42)"/>
+          <ellipse cx="60" cy="42" rx="7" ry="13.5" fill="url(#bootBloom)" transform="rotate(216 60 42)"/>
+          <ellipse cx="60" cy="42" rx="7" ry="13.5" fill="url(#bootBloom)" transform="rotate(288 60 42)"/>
+          <circle cx="60" cy="42" r="5.8" fill="#5a4a37"/>
+          <circle cx="60" cy="42" r="3.2" fill="#e8c45a" opacity=".9"/>
+        </g>
+      </svg>
+    </div>
+  </div>
+</div>
+<script>
+(function () {
+  var cover = document.getElementById("bootCover");
+  if (!cover) return;
+  var bootStem = cover.querySelector(".boot-stem");
+  var bootLeaf1 = cover.querySelector(".boot-leaf-1");
+  var bootLeaf2 = cover.querySelector(".boot-leaf-2");
+  var bootLeaf3 = cover.querySelector(".boot-leaf-3");
+  var bootBud = cover.querySelector(".boot-bud");
+  var bootBloom = cover.querySelector(".boot-bloom");
+  var reduced = window.matchMedia && window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+  var cssDone = false;
+  var appReady = false;
+  var appJs = false;
+  var scriptsDone = 0;
+  var scriptsTotal = 0;
+
+  var shown = 0;
+  var raf = 0;
+  var lastT = 0;
+  var bloomed = false;
+  var bloomCbs = [];
+  var stemLen = 0;
+  var GROW_CAP = 0.70;
+  var warmBoot = document.documentElement.classList.contains("fs-warm-boot");
+  /* Warm returns still grow — just a little faster — so the cover is never
+     a frozen full plant while Cloud restores the session. */
+  var GROW_MS = warmBoot ? 1200 : 2200;
+  var BLOOM_MS = warmBoot ? 520 : 820;
+
+  function clamp(n) { return n < 0 ? 0 : n > 1 ? 1 : n; }
+
+  function paintOp(el, v) {
+    if (!el) return;
+    el.setAttribute("opacity", v <= 0.001 ? "0" : (v >= 0.999 ? "1" : String(v)));
+  }
+
+  function paintStem(stem) {
+    if (!bootStem) return;
+    if (!(stemLen > 0) && bootStem.getTotalLength) {
+      try { stemLen = bootStem.getTotalLength() || 0; } catch (eLen) { stemLen = 0; }
+    }
+    var len = stemLen > 0 ? stemLen : 82;
+    var off = (1 - stem) * len;
+    var dash = len + " " + len;
+    bootStem.setAttribute("stroke-dasharray", dash);
+    bootStem.setAttribute("stroke-dashoffset", String(off));
+    bootStem.style.strokeDasharray = dash;
+    bootStem.style.strokeDashoffset = String(off);
+  }
+
+  function paintLeaf(el, v, cx, cy) {
+    var t = clamp(v);
+    paintOp(el, t);
+    if (!el) return;
+    var s = 0.12 + t * 0.88;
+    el.setAttribute("transform", "translate(" + cx + " " + cy + ") scale(" + s + ") translate(" + (-cx) + " " + (-cy) + ")");
+  }
+
+  function paint(p) {
+    var stem = clamp(p / 0.36);
+    var bloom = clamp((p - 0.74) / 0.22);
+    paintStem(stem);
+    /* SVG opacity attributes — CSS opacity on <g>/<path> paints a grey box
+       around each leaf on iOS WebKit. */
+    paintOp(bootStem, stem > 0.02 ? 1 : 0);
+    paintLeaf(bootLeaf1, clamp((p - 0.16) / 0.16), 60, 108);
+    paintLeaf(bootLeaf2, clamp((p - 0.30) / 0.16), 60, 94);
+    paintLeaf(bootLeaf3, clamp((p - 0.44) / 0.16), 60, 76);
+    paintOp(bootBud, clamp((p - 0.56) / 0.14) * (1 - clamp((p - 0.80) / 0.12)));
+    paintOp(bootBloom, bloom);
+    if (bootBloom) {
+      var s = 0.42 + bloom * 0.58;
+      bootBloom.setAttribute("transform", "translate(60 42) scale(" + s + ") translate(-60 -42)");
+    }
+  }
+
+  function fireBloomed() {
+    if (bloomed) return;
+    bloomed = true;
+    var cbs = bloomCbs.slice();
+    bloomCbs = [];
+    for (var i = 0; i < cbs.length; i++) {
+      try { cbs[i](); } catch (e) {}
+    }
+  }
+
+  function loadTarget() {
+    var p = 0.06;
+    if (cssDone) p += 0.10;
+    if (scriptsTotal) p += (scriptsDone / scriptsTotal) * 0.48;
+    if (appJs) p = Math.max(p, 0.62);
+    if (reduced && !appReady) p = Math.max(p, 0.55);
+    if (appReady) return 1;
+    return Math.min(p, GROW_CAP);
+  }
+
+  function tick(now) {
+    if (!lastT) lastT = now;
+    var dt = now - lastT;
+    if (dt < 0) dt = 0;
+    if (dt > 50) dt = 50;
+    lastT = now;
+    var target = loadTarget();
+    if (shown < target) {
+      var growMs = GROW_MS > 0 ? GROW_MS : 2200;
+      var bloomMs = BLOOM_MS > 0 ? BLOOM_MS : 820;
+      var speed = shown < GROW_CAP ? (GROW_CAP / growMs) : ((1 - GROW_CAP) / bloomMs);
+      if (shown < 0.16) speed *= 0.55;
+      shown = Math.min(target, shown + speed * dt);
+    }
+    paint(shown);
+    if (appReady && shown >= 0.995) {
+      raf = 0;
+      fireBloomed();
+      return;
+    }
+    raf = requestAnimationFrame(tick);
+  }
+
+  function progress() {
+    if (reduced) {
+      shown = loadTarget();
+      paint(shown);
+      if (appReady) fireBloomed();
+      return;
+    }
+    if (!raf) {
+      lastT = 0;
+      raf = requestAnimationFrame(tick);
+    }
+  }
+
+  function bindScript(el) {
+    if (!el || !el.src || el.dataset.bootBound) return;
+    el.dataset.bootBound = "1";
+    scriptsTotal += 1;
+    function mark() {
+      if (el.dataset.bootCounted) return;
+      el.dataset.bootCounted = "1";
+      scriptsDone += 1;
+      progress();
+    }
+    el.addEventListener("load", mark);
+    el.addEventListener("error", mark);
+  }
+
+  document.addEventListener("load", function (e) {
+    var t = e.target;
+    if (!t) return;
+    if (t.tagName === "LINK" && t.rel === "stylesheet") {
+      cssDone = true;
+      progress();
+    }
+    if (t.tagName === "SCRIPT" && t.src) {
+      bindScript(t);
+      if (t.dataset.bootCounted) return;
+      t.dataset.bootCounted = "1";
+      scriptsDone += 1;
+      progress();
+    }
+  }, true);
+
+  var nodes = document.querySelectorAll("script[src]");
+  for (var i = 0; i < nodes.length; i++) bindScript(nodes[i]);
+  if (window.MutationObserver) {
+    new MutationObserver(function (records) {
+      for (var r = 0; r < records.length; r++) {
+        var added = records[r].addedNodes;
+        for (var n = 0; n < added.length; n++) {
+          var el = added[n];
+          if (el.tagName === "SCRIPT" && el.src) bindScript(el);
+          else if (el.querySelectorAll) {
+            var inner = el.querySelectorAll("script[src]");
+            for (var s = 0; s < inner.length; s++) bindScript(inner[s]);
+          }
+        }
+      }
+    }).observe(document.documentElement, { childList: true, subtree: true });
+  }
+
+  var link = document.querySelector('link[rel="stylesheet"]');
+  if (link) {
+    if (link.sheet) cssDone = true;
+    else {
+      link.addEventListener("load", function () { cssDone = true; progress(); });
+      link.addEventListener("error", function () { cssDone = true; progress(); });
+    }
+  }
+
+  window.FS = window.FS || {};
+  window.FS.bootProgress = function (kind) {
+    if (kind === "app") appJs = true;
+    if (kind === "ready") appReady = true;
+    progress();
+  };
+  window.FS.whenBootBloomed = function (cb) {
+    if (typeof cb !== "function") return;
+    if (bloomed) cb();
+    else bloomCbs.push(cb);
+  };
+
+  paint(0);
+  progress();
+})();
+</script>
+
+<div class="layout">
+  <!-- ═══ RAIL ═══ -->
+  <aside class="rail">
+    <div class="rail-brand">
+      <div class="rail-brand-top">
+        <div class="rail-brand-copy">
+          <div class="brand-stack">
+            <div class="brand-eyebrow" id="brandEyebrow">FIRST SEEDS</div>
+            <div class="brand-title" id="brandTitle">First Seeds</div>
+          </div>
+        </div>
+        <div class="rail-actions">
+          <button type="button" class="rail-settings" id="evTeamNavBtn" hidden aria-label="Your team" title="Your team">
+            <span class="rail-team-ico" aria-hidden="true">🌳</span>
+          </button>
+          <button type="button" class="rail-settings rail-board-btn" id="groveBoardNavBtn" aria-label="Messages" title="Messages">
+            <span class="rail-board-ico" aria-hidden="true">💬</span>
+          </button>
+          <button type="button" class="rail-settings" id="settingsNavBtn" aria-label="Settings" aria-haspopup="dialog" aria-controls="hubMenu" title="Settings">
+            <span class="rail-settings-ico" aria-hidden="true">⚙️</span>
+          </button>
+        </div>
+      </div>
+      <div class="brand-sub" id="brandTagline">Fresh products. Clear facts. Laying solid roots before launch.</div>
+    </div>
+
+    <nav class="nav grove-only" id="nav" aria-label="Your runway"></nav>
+  </aside>
+
+  <!-- ═══ MAIN ═══ -->
+  <main class="main">
+
+    <!-- header bar with countdowns -->
+    <div class="topbar">
+      <div class="topbar-cds">
+        <div class="cd-roadmap" id="cdRoadmap">
+          <button type="button" class="cd-roadmap-hit" id="cdRoadmapHit" aria-expanded="false" aria-controls="cdRoadmapPanel" aria-label="Roadmap to launch — tap for the date plan">
+            <div class="topbar-cd featured" aria-hidden="true">
+              <span class="cd-num" id="cdPre">—</span><span class="cd-unit">DAYS</span>
+              <span class="cd-label" id="cdPreLabel">Pre-Reg Opens</span>
+            </div>
+            <div class="topbar-cd" aria-hidden="true">
+              <span class="cd-num" id="cdLaunch">—</span><span class="cd-unit">DAYS</span>
+              <span class="cd-label" id="cdLaunchLabel">Products Launch</span>
+            </div>
+          </button>
+          <div class="cd-roadmap-panel" id="cdRoadmapPanel" role="region" aria-label="Roadmap to launch">
+            <div class="cd-roadmap-kicker">Roadmap to launch</div>
+            <div class="timeline compact">
+              <div class="tl-row"><div class="tl-when">Aug &amp; Sep</div><div class="tl-what"><strong>Prep season.</strong> Learn products &amp; ingredients, get familiar with the company, build relationships, create resources.</div></div>
+              <div class="tl-row"><div class="tl-when">Oct 1</div><div class="tl-what"><strong>Pre-registration opens.</strong> Reserve your founding partner place — live support for the U.S. moment.</div></div>
+              <div class="tl-row"><div class="tl-when">Oct 24</div><div class="tl-what"><strong>Miami · Fresh Experience Day.</strong> First official U.S. event. Founder packs hoped around this window.</div></div>
+              <div class="tl-row"><div class="tl-when">Nov 1</div><div class="tl-what"><strong>Official U.S. launch.</strong> First teams, customers, and stories. Confirm details as corporate finalizes them.</div></div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="cheer-banner grove-only" id="cheerBanner" hidden></div>
+    <div class="gathering-banner" id="gatheringBanner" hidden role="status"></div>
+    <div class="sync-banner" id="syncBanner" hidden role="status">
+      <span id="syncBannerText">Couldn’t sync your progress to the cloud.</span>
+      <button type="button" class="sync-banner-retry" id="syncBannerRetry">Retry</button>
+      <button type="button" class="sync-banner-x" id="syncBannerDismiss" aria-label="Dismiss">×</button>
+    </div>
+    <div class="leader-note-banner live-card" id="leaderNoteBanner" hidden></div>
+
+    <div class="content" id="mainContent">
+
+      <!-- HOME = plant progress (Fresh Grove) -->
+      <section class="panel grove-only" id="panel-welcome">
+        <div class="eyebrow">YOUR SPROUT</div>
+        <h1 id="welcomeHeadline">Watch it grow.</h1>
+        <p class="body-p" id="welcomeBody">Quiet prep now — your story, a few people you'd actually want beside you, clear facts — makes October feel a lot more intentional (and explosive!)</p>
+
+        <div class="home-plant-zone">
+          <div class="plantbox home-plantbox" id="homePlant" aria-hidden="true"></div>
+          <div class="home-plant-meta">
+            <div class="train-stats home-stats" id="trainStats" aria-live="polite">
+              <span class="train-stat" id="statRoots"><em>Roots</em> 0/3</span>
+              <span class="train-stat" id="statModules"><em>Checks</em> 0/0</span>
+            </div>
+            <div class="plant-caption home-caption" id="plantCaption"></div>
+            <div class="progress-meta">
+              <span class="progress-label" id="progressLabel">Growth 0%</span>
+              <span class="progress-label" id="homePctLabel"></span>
+            </div>
+            <div class="progress-track" role="progressbar" aria-valuemin="0" aria-valuemax="100" aria-valuenow="0" id="progressTrack">
+              <div class="progress-fill" id="progressFill"></div>
+            </div>
+          </div>
+        </div>
+
+        <div class="today-card" id="todayCard">
+          <div class="today-tag">WHAT'S NEXT</div>
+          <h3 class="today-title" id="todayTitle">One small thing.</h3>
+          <p class="today-body" id="todayBody">We'll point you at the next quiet step — no overwhelm, no homework list.</p>
+          <div class="btn-row" id="todayActions">
+            <button type="button" class="btn" data-goto="roots" id="todayPrimaryBtn">Let's go →</button>
+          </div>
+          <p class="today-why" id="todayWhy"></p>
+        </div>
+
+        <div class="home-runway">
+          <div class="live-tag">YOUR PATH · STEP BY STEP</div>
+          <div class="home-runway-strip" id="homeRunway"></div>
+        </div>
+      </section>
+
+      <!-- EVERGREEN HOME (pack: evergreen) — same Sprout chrome, simpler path -->
+      <section class="panel evergreen-only" id="panel-ev-home">
+        <div class="eyebrow" id="evHomeEyebrow">YOUR SPROUT</div>
+        <h1 id="evHomeTitle">Watch it grow.</h1>
+        <p class="body-p" id="evHomeBody">Quiet prep now — your story, a few products you’d actually talk about, one post from the heart, who you tell, who grows with you, and the dates that matter.</p>
+
+        <div class="home-plant-zone">
+          <div class="plantbox home-plantbox" id="evHomePlant" aria-hidden="true"></div>
+          <div class="home-plant-meta">
+            <div class="train-stats home-stats" aria-live="polite">
+              <span class="train-stat" id="evStatRoots"><em>Roots</em> 0/3</span>
+              <span class="train-stat" id="evStatStops"><em>Checks</em> 0/8</span>
+            </div>
+            <div class="plant-caption home-caption" id="evPlantCaption"></div>
+            <div class="progress-meta">
+              <span class="progress-label" id="evProgressLabel">Growth 0%</span>
+              <span class="progress-label" id="evHomePctLabel"></span>
+            </div>
+            <div class="progress-track" role="progressbar" aria-valuemin="0" aria-valuemax="100" aria-valuenow="0" id="evProgressTrack">
+              <div class="progress-fill" id="evProgressFill"></div>
+            </div>
+          </div>
+        </div>
+
+        <div class="today-card" id="evTodayCard">
+          <div class="today-tag" id="evHomeNextLabel">WHAT'S NEXT</div>
+          <h3 class="today-title" id="evTodayTitle">One small thing.</h3>
+          <p class="today-body" id="evTodayBody">We'll point you at the next quiet step — no overwhelm, no homework list.</p>
+          <div class="btn-row" id="evTodayActions">
+            <button type="button" class="btn" data-goto="roots">Let's go →</button>
+          </div>
+          <p class="today-why" id="evTodayWhy"></p>
+        </div>
+
+        <div class="how-grow-reminder" data-how-grow-reminder hidden></div>
+
+        <div class="home-runway">
+          <div class="live-tag" id="evHomePathTag">YOUR PATH · STEP BY STEP</div>
+          <div class="home-runway-strip" id="evHomeRunway"></div>
+        </div>
+      </section>
+
+      <section class="panel evergreen-only" id="panel-ev-learn">
+        <div class="sec-num">02</div>
+        <h1>Pick Your First Few</h1>
+        <p class="sec-sub">Products you’d actually talk about</p>
+        <p class="body-p">Your story is personal. This step puts a few products behind it — not a catalog quiz. Open Learn, peek at one product so you know where the facts live, then heart <strong>2–3</strong> you’re looking forward to.</p>
+        <div class="share-actions">
+          <button type="button" class="btn" data-goto="products">Open Learn →</button>
+        </div>
+        <div class="live-card">
+          <div class="live-tag">YOUR SHORTLIST</div>
+          <div class="share-fav-list" id="evLearnFavList"><span class="dim">Heart a few products in Learn — they’ll show up here.</span></div>
+        </div>
+        <div class="btn-row">
+          <button type="button" class="btn waiting" data-complete="ev-learn" data-ready="First few are in → Write from the heart" data-wait="Finish the Learn walkthrough to continue">Finish the Learn walkthrough to continue</button>
+        </div>
+      </section>
+
+      <section class="panel evergreen-only" id="panel-ev-heart">
+        <div class="sec-num">03</div>
+        <h1>From the Heart</h1>
+        <p class="sec-sub">A post from your story — not a ready-made caption</p>
+        <p class="body-p">Use the story you crafted here to write one true post — something you’d actually say to a friend. Curiosity, not a pitch. Nobody posts it for you.</p>
+        <div class="live-card">
+          <div class="live-tag">YOUR STORY SO FAR</div>
+          <div class="story-preview" id="evHeartStory"></div>
+        </div>
+        <div class="field">
+          <label class="field-label" for="ev_heart">One post from the heart</label>
+          <span class="field-hint">Pull from the story above. Leave it messy. A real moment beats a polished caption.</span>
+          <textarea id="ev_heart" data-key="ev_heart" rows="5" placeholder="I started paying more attention when…"></textarea>
+          <span class="claim-check" data-check="ev_heart"></span>
+        </div>
+        <div class="btn-row">
+          <button type="button" class="btn waiting" data-complete="ev-heart" data-ready="That’s a real post → Who you tell" data-wait="Write one post from your story to continue">Write one post from your story to continue</button>
+        </div>
+      </section>
+
+      <section class="panel evergreen-only" id="panel-ev-leads">
+        <div class="sec-num">04</div>
+        <h1>Who You Tell</h1>
+        <p class="sec-sub">People you tell about the products</p>
+        <p class="body-p">Write the names here, one per line. Friends who care about fresh formulas, the coworker who asks what you’re using, family who reads every label. Five is a real start.</p>
+        <div class="grove-lane customer">
+          <div class="grove-lane-head">
+            <div class="grove-lane-tag">Who you tell</div>
+            <h2 class="grove-lane-title">Who loves the products?</h2>
+            <p class="grove-lane-sub">Not a pitch list. People you’d actually text when something clicked for you.</p>
+          </div>
+          <div class="field" data-field="ev_leads">
+            <label class="field-label" for="ev_leads">Brain-dump names — one per line.</label>
+            <span class="field-hint">Priya, Mom, Sam from yoga… first names are enough. Add more anytime.</span>
+            <textarea id="ev_leads" data-key="ev_leads" rows="6" placeholder="Priya&#10;Mom&#10;Sam from yoga&#10;…"></textarea>
+          </div>
+          <div class="grove-visual customer">
+            <div class="grove-count" id="evLeadsCount"></div>
+            <div class="grove-trees" id="evLeadsTrees"></div>
+            <div class="grove-hintline" id="evLeadsHint"></div>
+          </div>
+        </div>
+        <div class="btn-row">
+          <button type="button" class="btn waiting" data-complete="ev-leads" data-ready="Those names are in → Who grows with you" data-wait="Add at least 5 names to continue">Add at least 5 names to continue</button>
+        </div>
+      </section>
+
+      <section class="panel evergreen-only" id="panel-ev-dream">
+        <div class="sec-num">05</div>
+        <h1>Who Grows With You</h1>
+        <p class="sec-sub">People who grow beside you — before it’s real</p>
+        <p class="body-p">This is just names, so you can see who grows with you. Hopeful is fine. Three people is enough to continue.</p>
+        <div class="grove-lane">
+          <div class="grove-lane-head">
+            <div class="grove-lane-tag">A sketch</div>
+            <h2 class="grove-lane-title">Who might grow with you?</h2>
+            <p class="grove-lane-sub">Close friends, that group chat, someone always curious about what you’re building.</p>
+          </div>
+          <div class="field" data-field="ev_dream">
+            <label class="field-label" for="ev_dream">Brain-dump names — one per line.</label>
+            <span class="field-hint">Jess, Aunt Carol, Megan from the gym… don’t filter yet.</span>
+            <textarea id="ev_dream" data-key="ev_dream" rows="5" placeholder="Jess&#10;Aunt Carol&#10;Megan from the gym&#10;…"></textarea>
+          </div>
+          <div class="grove-visual">
+            <div class="grove-count" id="evDreamCount"></div>
+            <div class="grove-trees" id="evDreamTrees"></div>
+            <div class="grove-hintline" id="evDreamHint"></div>
+          </div>
+        </div>
+        <div class="btn-row">
+          <button type="button" class="btn waiting" data-complete="ev-dream" data-ready="Those names are in → Know your dates" data-wait="Add at least 3 people to continue">Add at least 3 people to continue</button>
+        </div>
+      </section>
+
+      <!-- ROOTS -->
+      <section class="panel" id="panel-roots" data-modes="starter full">
+        <div class="sec-num">01</div>
+        <h1 id="rootsHeadline">Plant Your Roots</h1>
+        <p class="sec-sub">Before you share a single thing, get clear on your own story.</p>
+        <p class="body-p">Everything you'll share later grows from this. Not a brand script — <em>your</em> words. Why this, why now, why you. These three answers grow roots underground as you write. After Roots, each checklist item you finish sprouts the plant above ground.</p>
+        <p class="roots-privacy">What you type here is private — no one else sees it.</p>
+
+        <div class="field" data-field="why">
+          <label class="field-label" for="why">Your why — what made you start caring about what's in your products?</label>
+          <span class="field-hint">Kids, a weird ingredient list, wanting simpler routines — whatever is true for you. Messy is fine.</span>
+          <textarea id="why" data-key="why" rows="4" placeholder="I started paying more attention when…"></textarea>
+          <span class="claim-check" data-check="why"></span>
+        </div>
+
+        <div class="field" data-field="moment">
+          <label class="field-label" for="moment">Your moment — when did this click for you?</label>
+          <span class="field-hint">How you heard about it, what made you pause, what felt different. Keep it ordinary and true.</span>
+          <textarea id="moment" data-key="moment" rows="4" placeholder="A friend mentioned it / I saw a post / I got curious when…"></textarea>
+          <span class="claim-check" data-check="moment"></span>
+        </div>
+
+        <div class="field" data-field="said_yes">
+          <label class="field-label" for="said_yes">Why you said yes — in one or two sentences you'd actually text a friend.</label>
+          <span class="field-hint">This is your go-to when someone asks "wait… what are you doing?"</span>
+          <textarea id="said_yes" data-key="said_yes" rows="2" placeholder="Honestly? I said yes because…"></textarea>
+          <span class="claim-check" data-check="said_yes"></span>
+        </div>
+
+        <div class="live-card">
+          <div class="live-tag">YOUR STORY SO FAR — SAY IT OUT LOUD ONCE</div>
+          <div class="story-preview" id="storyPreview"></div>
+        </div>
+
+        <div class="callout compliance">
+          <div class="callout-tag">KEEP IT CLEAN</div>
+          <div class="callout-body">Keep your story about <strong>your experience and your values</strong> — not what a product cured or fixed. "This is the standard I've been looking for" is yours to say. "This healed my ___" is a health claim, and those cause real problems as we head into the US launch. The checker under each box will nudge you if a word could read as a claim.</div>
+        </div>
+
+        <div class="btn-row">
+          <button type="button" class="btn waiting" data-complete="roots" data-ready="Roots are down → Pick your first few" data-wait="Fill in all three above to continue">Fill in all three above to continue</button>
+          <span class="save-flash" data-flash="roots">Saved ✓</span>
+        </div>
+        <p class="home-find-blurb" id="rootsHomeBlurb" hidden>Your story stays here on Sprout — revisit the assembled version anytime under <strong>Calendar → Your story</strong>.</p>
+      </section>
+
+      <!-- 02 PICK YOUR FIRST FEW -->
+      <section class="panel grove-only" id="panel-share" data-modes="starter full">
+        <div class="sec-num" id="shareNum">02</div>
+        <h1>Pick Your First Few</h1>
+        <p class="sec-sub">What you’d actually share — products · your voice</p>
+        <p class="body-p">Your Roots are personal. This step puts a few products behind them — not a catalog quiz. Heart <strong>2–3</strong> you’re looking forward to in Learn, then open <strong>Talking fresh</strong> once so real chats feel less blank.</p>
+
+        <div class="callout voice">
+          <div class="callout-tag">STORY + KNOWING</div>
+          <div class="callout-body">You’re building a shortlist you’d actually mention — and a little judgment for conversations. That combo is your unique story with product knowledge under it.</div>
+        </div>
+
+        <div class="share-actions">
+          <button type="button" class="btn" data-goto="products">Open products · heart favorites →</button>
+          <button type="button" class="btn-ghost" data-goto="talk">Open Talking fresh →</button>
+        </div>
+
+        <div class="live-card" id="shareFavPreview">
+          <div class="live-tag">YOUR SHORTLIST</div>
+          <div class="share-fav-list" id="shareFavList"><span class="dim">Heart a few products in Learn — they’ll show up here.</span></div>
+        </div>
+
+        <div class="btn-row">
+          <button type="button" class="btn waiting" data-complete="share" data-ready="First few picked → Claim your ground" data-wait="Heart 2–3 products and open Talking fresh">Heart 2–3 products and open Talking fresh</button>
+          <span class="save-flash" data-flash="share">Saved ✓</span>
+        </div>
+      </section>
+
+      <!-- 03 GROUND -->
+      <section class="panel grove-only" id="panel-ground" data-modes="starter full">
+        <div class="sec-num" id="groundNum">03</div>
+        <h1>Your Patch of Ground</h1>
+        <p class="sec-sub">A simple home base that's yours — in your voice, not a copy of anyone else's.</p>
+        <p class="body-p" id="groundPageLede">You already have a page. Draft the opening line — the first personal thing a visitor reads — then the link is yours under Leads.</p>
+
+        <div class="ground-lead-setup" id="groundLeadSetup">
+          <div class="callout">
+            <div class="callout-tag">GROWTH STEP · YOUR PAGES</div>
+            <div class="callout-body">
+              <p style="margin:0 0 12px">Curious people land on your page, leave their name, and show up only in your inbox. Sign in so the link is locked to you, then copy it from Leads.</p>
+              <ol class="ground-lead-steps" id="groundLeadSteps">
+                <li data-lead-step="signin">Sign in (so the page is yours)</li>
+                <li data-lead-step="link">Your share link is ready</li>
+                <li data-lead-step="preview">Preview the page</li>
+              </ol>
+              <button type="button" class="btn" data-goto="leads" id="groundLeadCta" style="margin-top:12px">Open Leads →</button>
+            </div>
+          </div>
+        </div>
+
+        <div class="field" id="groundLineEditor" data-field="page_story" style="margin-top:24px">
+          <label class="field-label" for="page_story">Draft your page’s opening line — the first personal thing a visitor reads.</label>
+          <span class="field-hint" id="pageStoryHint">Pull straight from your Roots. This is the first personal thing a visitor reads. After you leave this step, you’ll change it under Leads.</span>
+          <textarea id="page_story" data-key="page_story" rows="3" maxlength="280" placeholder="e.g. I've spent years helping people swap the questionable stuff — here's the one I've been waiting to share…"></textarea>
+          <span class="claim-check" data-check="page_story"></span>
+        </div>
+
+        <div class="ground-line-live" id="groundLineLive" hidden>
+          <div class="field-label">Your opening line</div>
+          <p class="ground-line-live-text" id="groundLineLiveText"></p>
+          <button type="button" class="btn" data-goto="leads" data-goto-focus="leadsBlurbInput">Change this under Leads →</button>
+        </div>
+
+        <div class="lead-preview-wrap">
+          <div class="lead-preview-label">Preview · what visitors see</div>
+          <div class="lead-preview" id="leadPreview">
+            <div class="lead-preview-arcs" aria-hidden="true"></div>
+            <div class="lead-preview-page">
+              <header class="lead-preview-hero">
+                <p class="lead-preview-brand">Ringana · with <span id="miniBrandName">you</span></p>
+                <p class="lead-preview-kicker"><span class="lead-preview-kicker-rule"></span> Coming to America · 2026</p>
+                <h2 class="lead-preview-headline">Wellness that was never meant to <em>compromise.</em></h2>
+                <p class="lead-preview-lede">For thirty years, a family in Austria has made skincare and supplements the hard way — totally toxin free, made fresh, honest about every ingredient. Now Ringana is coming to America.</p>
+                <p class="lead-preview-blurb" id="miniHeadline"></p>
+              </header>
+
+              <section class="lead-preview-proof" aria-label="Why Ringana">
+                <div class="lead-preview-proof-item">
+                  <strong>Made fresh</strong>
+                  <span>Small batches from their own campus — plant actives at full potency, with an expiration date like food.</span>
+                </div>
+                <div class="lead-preview-proof-item">
+                  <strong>Toxin free</strong>
+                  <span>No synthetic preservatives or fillers. What goes on your body and in your body should need no apology.</span>
+                </div>
+                <div class="lead-preview-proof-item">
+                  <strong>Founding moment</strong>
+                  <span>$85M U.S. home in Virginia. The community that shows up now helps write the American chapter.</span>
+                </div>
+              </section>
+
+              <section class="lead-preview-card">
+                <h3 class="lead-preview-card-title">Be first when it arrives</h3>
+                <p class="lead-preview-card-sub">Leave your name and how to reach you. You’ll get launch timing, honest product notes, and a real seat if you want to build alongside — no spam list.</p>
+                <form class="lead-preview-form" inert>
+                  <div class="lead-preview-field">
+                    <span>Your name</span>
+                    <span class="lead-preview-fake-input">First and last name</span>
+                  </div>
+                  <div class="lead-preview-contact">
+                    <div class="lead-preview-field">
+                      <span>Email</span>
+                      <span class="lead-preview-fake-input">you@email.com</span>
+                    </div>
+                    <div class="lead-preview-field">
+                      <span>Phone</span>
+                      <span class="lead-preview-fake-input">Or phone</span>
+                    </div>
+                  </div>
+                  <p class="lead-preview-hint">Email <em>or</em> phone — whichever you prefer.</p>
+                  <div class="lead-preview-field">
+                    <span>Instagram or Facebook <em>(optional)</em></span>
+                    <span class="lead-preview-fake-input">@handle or Facebook name</span>
+                  </div>
+                  <p class="lead-preview-legend">I’m curious about <em>(required)</em></p>
+                  <div class="lead-preview-chips">
+                    <span>The products</span>
+                    <span>The business</span>
+                    <span>Both</span>
+                  </div>
+                  <div class="lead-preview-submit">Get first access →</div>
+                </form>
+              </section>
+
+              <section class="lead-preview-stories">
+                <details class="lead-preview-story">
+                  <summary>
+                    <span>
+                      <span class="lead-preview-story-kicker">The products</span>
+                      <span class="lead-preview-story-title">Worth talking about</span>
+                    </span>
+                    <span class="lead-preview-chev" aria-hidden="true"></span>
+                  </summary>
+                  <div class="lead-preview-story-body">
+                    <div class="lead-preview-bubble">
+                      <strong>Made fresh — on purpose</strong>
+                      <p>Most products are built to sit on a shelf for years. These are made in small batches — about twice a week on average — with shorter shelf lives so what’s in the bottle is still worth using when it reaches you.</p>
+                    </div>
+                    <div class="lead-preview-bubble">
+                      <strong>One campus, start to finish</strong>
+                      <p>Almost everything happens under one roof in Austria: formula, fill, finish. Fewer handoffs. More eyes on quality. And they’re investing $85M in a new American campus — set to be ready in 2027 — so that same start-to-finish care can live here too.</p>
+                    </div>
+                    <div class="lead-preview-bubble">
+                      <strong>Formulas that actually make sense</strong>
+                      <p>If you read labels, you’ll notice it. Ingredients earn their place — botanicals alongside researched vitamins, minerals, and more — chosen for how they work together, not for a trend list.</p>
+                    </div>
+                  </div>
+                </details>
+                <details class="lead-preview-story">
+                  <summary>
+                    <span>
+                      <span class="lead-preview-story-kicker">The partnership</span>
+                      <span class="lead-preview-story-title">Worth building now</span>
+                    </span>
+                    <span class="lead-preview-chev" aria-hidden="true"></span>
+                  </summary>
+                  <div class="lead-preview-story-body">
+                    <div class="lead-preview-bubble">
+                      <strong>Day one in America. Decades everywhere else.</strong>
+                      <p>Ringana’s already established across Europe — decades of systems, products people reorder, and a Fresh Factory shipping from Austria. The U.S. chapter opens with free partner signup on October 1 and products for customers on November 1. If you’re ready to start sharing now, we have exclusive team resources to support you before the door even opens.</p>
+                    </div>
+                    <div class="lead-preview-bubble">
+                      <strong>Built to be shared person to person</strong>
+                      <p>These products weren’t designed to fight for space on a shelf. They’re made fresh, meant to be experienced, and passed along through real conversations — the kind where someone tries something, feels the difference, and tells a friend.</p>
+                    </div>
+                    <div class="lead-preview-bubble">
+                      <strong>A hybrid affiliate model — your way</strong>
+                      <p>Grow a team, sell products, or both. It’s a hybrid affiliate structure, not a monthly-order machine: no monthly order requirement to stay active. U.S. launch in November comes with double commissions and double bonuses for founding partners — current guidance for that opening window.</p>
+                    </div>
+                  </div>
+                </details>
+              </section>
+
+              <p class="lead-preview-foot">Independent partner page — not an official Ringana corporate site. Details reflect Ringana’s international offering ahead of U.S. launch.</p>
+            </div>
+          </div>
+          <a class="lead-preview-live" id="groundLivePageLink" href="lead.html" target="_blank" rel="opener" hidden>Open the live page →</a>
+        </div>
+
+        <div class="callout compliance">
+          <div class="callout-tag">KEEP IT CLEAN · READ BEFORE YOU PUBLISH</div>
+          <div class="callout-body"><strong>Don’t copy the official Ringana page — or anyone else’s landing page.</strong> Yours should look and sound like <em>you</em>: your story, your voice, your photos where you can. The personal part is what no corporate (or borrowed) page can replicate.<br><br>
+          <strong>Tie product talk to real data or your own honest experience.</strong> “Here’s what I noticed using it” is fine. Specific health or medical claims are not — they trip platform filters and attract regulator attention.</div>
+        </div>
+
+        <div class="btn-row">
+          <button type="button" class="btn waiting" data-complete="ground" data-ready-starter="Ground claimed → Map your grove" data-ready-full="Ground claimed → Map your grove" data-ready="Ground claimed → Map your grove" data-wait="Finish your page steps below">Finish your page steps below</button>
+          <span class="save-flash" data-flash="ground">Saved ✓</span>
+        </div>
+      </section>
+
+      <!-- 04 GROVE -->
+      <section class="panel grove-only" id="panel-grove" data-modes="starter full">
+        <div class="sec-num" id="groveNum">04</div>
+        <h1>Map Your Grove</h1>
+        <p class="sec-sub">Customers first. Dream tree if you're building.</p>
+        <div class="support-note" data-support-note hidden></div>
+        <p class="body-p">If you're sharing Ringana more like an affiliate — products, recommendations, your link — focus on the customer lane. If you're building a business with people beside you, sketch your dream tree too. Either path is valid.</p>
+
+        <div class="grove-lane customer">
+          <div class="grove-lane-head">
+            <div class="grove-lane-tag">Customers · start here</div>
+            <h2 class="grove-lane-title">Who'd love the products?</h2>
+            <p class="grove-lane-sub">People who'd care about fresh formulas, clean ingredients, or what you're using — even if business talk isn't their thing.</p>
+          </div>
+          <div class="field" data-field="customers">
+            <label class="field-label" for="customers">Brain-dump product-curious names — one per line.</label>
+            <span class="field-hint">Label-readers, skincare friends, the coworker who always asks what you're drinking, neighbors who care about what's in their cabinet.</span>
+            <textarea id="customers" data-key="customers" rows="6" placeholder="Priya&#10;Mom&#10;Sam from yoga&#10;…"></textarea>
+          </div>
+          <div class="grove-visual customer">
+            <div class="grove-count" id="customerCount"></div>
+            <div class="grove-trees" id="customerTrees"></div>
+            <div class="grove-hintline" id="customerHint"></div>
+          </div>
+          <div class="grove-picks" id="customerPicksWrap" hidden>
+            <div class="grove-picks-label">Tap up to 5 for your first chats</div>
+            <div class="grove-pick-list" id="customerPickList"></div>
+            <div class="grove-pick-meta" id="customerPickMeta"></div>
+          </div>
+        </div>
+
+        <div class="grove-lane">
+          <div class="grove-lane-head">
+            <div class="grove-lane-tag">Dream tree · optional</div>
+            <h2 class="grove-lane-title">Who might grow with you?</h2>
+            <p class="grove-lane-sub">Sketch people you'd love beside you — before it's real. Tap 🌱 / 🌳 when they say yes. Same tree as Grove → Dream tree. Skip if you're mostly sharing products for now.</p>
+          </div>
+          <div class="tree-wrap">
+            <div class="tree-stats" id="treeStats"></div>
+            <div id="familyTree"></div>
+            <div class="tree-key"><span>🌱 dream</span><span>🌳 said yes</span><span>＋ under them</span></div>
+            <span class="save-flash" data-flash="tree">Saved ✓</span>
+          </div>
+        </div>
+
+        <div class="starter dm-pack">
+          <div class="live-tag">PICK A TEXT THAT SOUNDS LIKE YOU</div>
+          <p class="dm-pack-intro">Four warm openers. Copy one, then rewrite until it sounds like something you'd actually send. The only rule: no pressure, ever. Product chat and partner chat can use different tones — trust your gut.</p>
+          <div id="dmStarters"></div>
+        </div>
+
+        <div class="callout voice full-only" id="coldOutreach">
+          <div class="callout-tag" id="coldOutreachTag"></div>
+          <div class="callout-body" id="coldOutreachBody"></div>
+        </div>
+
+        <div class="callout voice">
+          <div class="callout-tag">FROM YOUR TEAM</div>
+          <div class="callout-body">You're not pitching these people on day one. You're <em>inviting them to be first</em> — whether that's products, the mission, or both. Big difference.</div>
+        </div>
+
+        <div class="btn-row">
+          <button type="button" class="btn waiting" data-complete="grove" data-ready-starter="Grove mapped → Finish runway" data-ready-full="Grove mapped → Open Post Studio" data-ready="Grove mapped → Open Post Studio" data-wait="Add 5+ customer names and tap your first chats">Add 5+ customer names and tap your first chats</button>
+          <span class="save-flash" data-flash="grove">Saved ✓</span>
+        </div>
+        <p class="home-find-blurb" id="groveHomeBlurb" hidden>Your Ideal Lead List now lives under <strong>Leads</strong>. Keep adding names and send your page when they’re ready. Your dream tree also lives under <strong>Grove</strong>.</p>
+      </section>
+
+      <!-- 05 PLANT / POST STUDIO (full only) -->
+      <section class="panel grove-only" id="panel-plant" data-modes="full">
+        <div class="sec-num" id="plantNum">05</div>
+        <h1>Post Studio</h1>
+        <p class="sec-sub">Five types to learn. Draft three here to continue — posting them is the next step, on Calendar.</p>
+
+        <div class="plant-cadence">
+          <span>🌿</span><span>🌿</span><span>🌿</span><span>🌿</span><span class="ask">🚪</span>
+          <span class="plant-cadence-note">Share value a few times → then one soft invite</span>
+        </div>
+
+        <p class="body-p">These aren't brochure posts. They're built for how social works now: saves, comments, unfinished stories, and honest caveats — not hype. Open a type, learn it, then write your version in the draft box.</p>
+
+        <div id="seedTypes" class="seed-types-stack"></div>
+
+        <p class="body-p plant-trio-note">To continue this step, draft three things: a <strong>curiosity post</strong>, one <strong>helpful share</strong> (behind the scenes, honest note, or values — any one of those three counts), and a <strong>soft invite</strong>. Marking 3 as Posted happens on <button type="button" class="inline-link" data-goto="tend">Calendar</button>, not here.</p>
+
+        <p class="plant-footnote">Ready-made drafts live under <button type="button" class="inline-link" data-goto="content-vault">Calendar → Post vault</button>. Facts in <button type="button" class="inline-link" data-goto="know">Learn</button>.</p>
+
+        <div class="btn-row">
+          <button type="button" class="btn waiting" data-complete="plant" data-ready="Trio drafted → Open Calendar" data-wait="Draft a curiosity post, a helpful share, and a soft invite to continue">Draft a curiosity post, a helpful share, and a soft invite to continue</button>
+          <span class="save-flash" data-flash="plant">Saved ✓</span>
+        </div>
+      </section>
+
+      <!-- CALENDAR (All in runway step — hub for team + personal planning) -->
+      <section class="panel" id="panel-tend" data-modes="full">
+        <div class="eyebrow" id="calEyebrow"><span class="cal-eye-grove">PLAN · POST YOURSELF</span><span class="cal-eye-ev">TEAM DATES</span></div>
+        <h1 id="calTitle">Calendar</h1>
+        <p class="sec-sub" id="calSub">Team dates.</p>
+        <p class="cal-leader-zooms" id="calLeaderZooms" hidden>
+          <button type="button" class="text-link" id="calLeaderZoomsBtn" data-cal-leader-zooms aria-pressed="false">Show leader team zooms</button>
+        </p>
+
+        <div class="cal-board" id="calendarBoard">
+          <div class="cal-board-head">
+            <button type="button" class="cal-board-toggle" id="calendarBoardToggle" data-cal-board-toggle aria-expanded="true" aria-controls="calendarBoardBody">
+              <span class="cal-board-title" id="calendarBoardTitle">Your month</span>
+              <span class="cal-board-chev" aria-hidden="true"></span>
+            </button>
+            <div class="cal-board-meta">
+              <span class="cal-dated" id="calendarDated">0 dated</span>
+              <div class="cal-view-toggle" id="calendarViewToggle" role="tablist" aria-label="Calendar view">
+                <button type="button" class="cal-view-btn" data-cal-view="week" role="tab" aria-selected="false">Week</button>
+                <button type="button" class="cal-view-btn on" data-cal-view="month" role="tab" aria-selected="true">Month</button>
+              </div>
+            </div>
+          </div>
+          <div class="cal-board-body" id="calendarBoardBody">
+            <div class="calendar-week-nav" id="calendarWeekNav"></div>
+            <div id="calendarGrid" class="cal-grid cal-grid-month"></div>
+            <p class="cal-empty-hint" id="calendarEmptyHint" hidden></p>
+            <div class="cal-day-detail" id="calendarDayDetail"></div>
+          </div>
+        </div>
+
+        <div class="cal-focus grove-only" id="calFocus">
+          <div class="cal-focus-tabs">
+            <button type="button" class="cal-focus-tab" data-cal-focus="yourStoryCard" aria-expanded="false" aria-controls="yourStoryCard">
+              <span class="cal-focus-tab-label">Your<br>story</span>
+              <span class="focus-shortlist-chev" aria-hidden="true"></span>
+            </button>
+            <button type="button" class="cal-focus-tab" data-cal-focus="contentShortlist" aria-expanded="false" aria-controls="contentShortlist">
+              <span class="cal-focus-tab-label">Favorite<br>products</span>
+              <span class="focus-shortlist-chev" aria-hidden="true"></span>
+            </button>
+            <button type="button" class="cal-focus-tab" data-cal-focus="contentFactShortlist" aria-expanded="false" aria-controls="contentFactShortlist">
+              <span class="cal-focus-tab-label">Favorite<br>facts</span>
+              <span class="focus-shortlist-chev" aria-hidden="true"></span>
+            </button>
+          </div>
+          <div class="cal-focus-panel live-card your-story-card" id="yourStoryCard" hidden>
+            <div class="your-story-body">
+              <div class="story-preview your-story-preview" id="yourStoryPreview"></div>
+              <p class="your-story-hint" id="yourStoryHint" hidden></p>
+              <button type="button" class="btn" id="yourStoryCta" data-goto="roots">Edit this</button>
+            </div>
+          </div>
+          <div class="cal-focus-panel live-card focus-shortlist-card" id="contentShortlist" hidden>
+            <div class="share-fav-list" id="contentFavList"><span class="dim">Heart a few products in Learn — they’ll show up here when you plan posts.</span></div>
+          </div>
+          <div class="cal-focus-panel live-card focus-shortlist-card" id="contentFactShortlist" hidden>
+            <div class="share-fav-list" id="contentFactList"><span class="dim">Heart a few Company facts in Why Ringana — they’ll show up here when you plan posts.</span><p class="share-fav-hint"><button type="button" class="focus-shortlist-cta" data-goto="why" data-open-know="know-facts">Open Company facts →</button></p></div>
+          </div>
+        </div>
+
+        <button type="button" class="curio-photos-cta grove-only" id="contentWeekCta" data-goto="content-week">
+          <span class="curio-photos-cta-eyebrow" id="contentWeekCtaEyebrow">This week</span>
+          <span class="curio-photos-cta-title">This week's plan</span>
+          <span class="curio-photos-cta-sub" id="contentWeekCtaSub">A calm rotation — drop it onto your calendar, then tap a day to post.</span>
+          <span class="curio-photos-cta-go" id="contentWeekCtaGo">See this week →</span>
+        </button>
+
+        <button type="button" class="curio-photos-cta grove-only" data-goto="content-vault">
+          <span class="curio-photos-cta-eyebrow">Content library</span>
+          <span class="curio-photos-cta-title">Post vault</span>
+          <span class="curio-photos-cta-sub">Browse by type, copy a caption, add it to a day. Steal the structure — rewrite until it sounds like you.</span>
+          <span class="curio-photos-cta-go">Open vault →</span>
+        </button>
+
+        <button type="button" class="curio-photos-cta grove-only" data-goto="curiosity-photos">
+          <span class="curio-photos-cta-eyebrow">Photos</span>
+          <span class="curio-photos-cta-title">Grab a photo</span>
+          <span class="curio-photos-cta-sub">Search or browse by type — tap to open, press and hold to save.</span>
+          <span class="curio-photos-cta-go">Open photos →</span>
+        </button>
+
+        <button type="button" class="curio-photos-cta grove-only" id="groveShelfCta" data-goto="grove-shelf">
+          <span class="curio-photos-cta-eyebrow" id="groveShelfCtaEyebrow">From the grove</span>
+          <span class="curio-photos-cta-title">Posts from the team</span>
+          <span class="curio-photos-cta-sub">A growing library of posts people on team created. Steal the structure, rewrite it in your voice — and add yours when something worked.</span>
+          <span class="curio-photos-cta-go" id="groveShelfCtaGo">Browse posts →</span>
+        </button>
+      </section>
+
+      <!-- CONTENT · THIS WEEK -->
+      <section class="panel grove-only" id="panel-content-week">
+        <div class="vault-panel" id="contentWeekRoot"></div>
+      </section>
+
+      <!-- CONTENT · POST VAULT (posts + stories) -->
+      <section class="panel grove-only" id="panel-content-vault">
+        <div class="vault-panel" id="contentVaultRoot"></div>
+      </section>
+
+      <!-- CONTENT · FROM THE GROVE (team shelf) -->
+      <section class="panel grove-only" id="panel-grove-shelf">
+        <div class="vault-panel" id="groveShelfRoot"></div>
+      </section>
+
+      <!-- FINISH -->
+      <section class="panel finish grove-only" id="panel-done">
+        <div class="plantbox" id="finishPlant" aria-hidden="true"></div>
+        <div class="eyebrow" style="margin-bottom:10px" id="finishEyebrow">SOLID FOUNDATION</div>
+        <h1 id="finishHeadline">You grew a solid foundation.</h1>
+        <p class="body-p" style="max-width:540px;margin-left:auto;margin-right:auto" id="finishBody">Amazing job. You’ve built a real base for your business. Now lean on the other resources in First Seeds.</p>
+
+        <div class="live-card finish-shortlist" id="finishShortlist">
+          <div class="live-tag">FAVORITE PRODUCTS</div>
+          <div class="share-fav-list" id="finishFavList"><span class="dim">Heart a few products in Learn — they’ll show up here.</span></div>
+        </div>
+
+        <div class="live-card finish-next" id="finishNext">
+          <div class="live-tag">WHAT'S NEXT</div>
+          <p class="finish-next-body" id="finishNextBody">Open Learn for clear facts. Use Leads when you’re ready to share a link. Unlock All in anytime for Calendar, Post Studio, and Grow Your Grove.</p>
+        </div>
+
+        <div class="finish-sign" id="signoff"></div>
+        <div class="btn-row finish-actions" style="justify-content:center">
+          <button type="button" class="btn" id="levelUpBtn" hidden>Unlock All in →</button>
+          <button type="button" class="btn" data-goto="tend" id="finishContentBtn" hidden>Open Calendar →</button>
+          <button type="button" class="btn" data-goto="know" id="finishLearnBtn">Open Learn →</button>
+          <button type="button" class="btn-ghost" data-goto="welcome">Back to Sprout</button>
+          <button type="button" class="btn-ghost" id="notifySponsorBtn">Notify my leader</button>
+          <button type="button" class="btn-ghost" id="exportBtn2">Download my answers</button>
+        </div>
+      </section>
+
+      <!-- LEARN -->
+      <section class="panel" id="panel-know">
+        <div class="eyebrow" id="knowEyebrow">CLARITY · NOT HYPE</div>
+        <h1 id="knowTitle">Learn</h1>
+        <p class="body-p" id="knowIntro">Are we excited? Absolutely. Excitement doesn't replace due diligence. We want everyone here equipped to decide with clarity — not pressure.</p>
+
+        <div class="callout compliance know-acc-static" id="knowRememberCallout">
+          <div class="callout-head">
+            <div class="callout-tag">PLEASE REMEMBER</div>
+            <button type="button" class="callout-dismiss" id="knowRememberDismiss">Dismiss</button>
+          </div>
+          <div class="callout-body" id="knowRememberBody">We're building something new in the U.S. Some details may shift as we get closer to launch. When they do, The Fresh Grove will share updates. What's below is <strong>current guidance</strong> — not a guarantee.</div>
+        </div>
+
+        <div class="know-search-wrap">
+          <label class="sr-only" for="knowSearch">Search Learn</label>
+          <input type="search" id="knowSearch" class="know-search" placeholder="Search Learn — products, facts, FAQs, quiz…" autocomplete="off">
+        </div>
+        <button type="button" class="know-leader-btn leader-only" id="leadersKnowCta" data-goto="leaders" data-know-q="grove leaders evergreen leaders docs notes private compensation plan">
+          <span class="know-leader-btn-ico" aria-hidden="true">✨</span>
+          <span class="know-leader-btn-text" id="leadersCtaTitle">Exclusively for leaders</span>
+          <span class="know-leader-btn-go">Open →</span>
+        </button>
+        <div class="know-search-products" id="knowSearchProducts" hidden></div>
+        <p class="know-search-empty" id="knowSearchEmpty" hidden>No products or sections match that search.</p>
+
+        <details class="know-acc" id="know-faqs" data-know-sec="faqs" data-know-q="faq faqs questions answers ask">
+          <summary class="know-acc-sum">
+            <span class="know-acc-sum-main">
+              <span class="know-acc-ico" aria-hidden="true">❓</span>
+              FAQs
+            </span>
+            <span class="know-acc-chev" aria-hidden="true"></span>
+          </summary>
+          <div class="know-acc-body">
+            <p class="body-p">Straight answers when someone asks.</p>
+            <label class="sr-only" for="faqSearch">Search FAQs</label>
+            <input type="search" id="faqSearch" class="know-search faq-search" placeholder="Search FAQs…" autocomplete="off" spellcheck="false" enterkeyhint="search">
+            <p class="faq-search-empty" id="faqSearchEmpty" hidden>No FAQs match that — try a date, pack, bonus, or MLM.</p>
+            <div id="faqList" class="faq-list" data-faq-prefix="faq_"></div>
+          </div>
+        </details>
+
+        <button type="button" class="prod-know-cta grove-only" data-goto="why" data-know-q="why ringana products different business sustainability pillars fresh trendsetting excellence vegan glass cosmos organic fresh impact transparency report company facts virginia retention returns family upcycled ingredients fruit seeds">
+          <span class="prod-know-cta-eyebrow">The company</span>
+          <span class="prod-know-cta-title">Why Ringana</span>
+          <span class="prod-know-cta-sub">What makes the products and the business different — how they treat the planet, and the three words they actually live by.</span>
+          <span class="prod-know-cta-go">Open →</span>
+        </button>
+
+        <button type="button" class="prod-know-cta" data-goto="products" data-know-q="products library ingredients skincare body hair baby supplements catalog fresh book official">
+          <span class="prod-know-cta-eyebrow">Product library</span>
+          <span class="prod-know-cta-title">Learn the products</span>
+          <span class="prod-know-cta-sub">Skincare, body, hair, baby, and supplements — plus the official catalog and an ingredient guide for label literacy.</span>
+          <span class="prod-know-cta-go">Open library →</span>
+        </button>
+
+        <button type="button" class="prod-know-cta grove-only" data-goto="talk" data-know-q="talking fresh conversation guide comments objections business">
+          <span class="prod-know-cta-eyebrow">Conversation guide</span>
+          <span class="prod-know-cta-title">Talking fresh</span>
+          <span class="prod-know-cta-sub">What to say when someone comments, objects, goes quiet, or asks about the business — structure you can steal, not a script to recite.</span>
+          <span class="prod-know-cta-go">Open guide →</span>
+        </button>
+
+        <button type="button" class="prod-know-cta grove-only" data-goto="quiz" data-know-q="quiz quizzes fresh match the fresh match shareable tool skin quiz supplements">
+          <span class="prod-know-cta-eyebrow">Shareable tool</span>
+          <span class="prod-know-cta-title">The Fresh Match</span>
+          <span class="prod-know-cta-sub">A short quiz for people who already know you. They get a match, then they come back to you.</span>
+          <span class="prod-know-cta-go">Open guide →</span>
+        </button>
+        <div class="callout voice know-acc-static grove-only">
+          <div class="callout-tag">OUR PROMISE</div>
+          <div class="callout-body">Not through hype. Not through exaggerated claims. Through education, transparency, and honest conversation.</div>
+        </div>
+      </section>
+
+      <!-- Why Ringana -->
+      <section class="panel grove-only" id="panel-why">
+        <div class="talk-guide">
+          <div class="talk-guide-nav">
+            <button type="button" class="prod-pill on" data-goto="know">← Back to Learn</button>
+          </div>
+          <h1 class="prod-head-title">Why Ringana</h1>
+          <p class="prod-head-sub">What makes the products and the business different — how they treat the planet, and the three words they actually live by.</p>
+
+          <details class="know-acc" id="know-facts" data-know-sec="facts">
+            <summary class="know-acc-sum">
+              <span class="know-acc-sum-main">
+                <span class="know-acc-ico" aria-hidden="true">🍃</span>
+                Company facts
+              </span>
+              <span class="know-acc-chev" aria-hidden="true"></span>
+            </summary>
+            <div class="know-acc-body">
+              <p class="body-p">Shareable truths — heart the ones you’d actually mention. They show up on Calendar as Favorite facts, next to Favorite products.</p>
+              <div id="funFactsList" class="fact-grid"></div>
+            </div>
+          </details>
+
+          <div class="why-reports" id="whyReports"></div>
+
+          <details class="know-acc" id="know-product" data-know-sec="product">
+            <summary class="know-acc-sum">What makes the products different <span class="know-acc-chev" aria-hidden="true"></span></summary>
+            <div class="know-acc-body">
+              <p class="body-p">It's not one slogan — it's a stack of intentional decisions. Ready-to-adapt posts live in Calendar → Post vault (and Post Studio on All in).</p>
+              <div id="productKnowList" class="fact-grid"></div>
+            </div>
+          </details>
+
+          <details class="know-acc" id="know-business" data-know-sec="business">
+            <summary class="know-acc-sum">What makes the business approach different <span class="know-acc-chev" aria-hidden="true"></span></summary>
+            <div class="know-acc-body">
+              <p class="body-p">Products first. Education over pressure. Optional team building. Full posts in Post Studio when someone asks.</p>
+              <div id="businessKnowList" class="fact-grid"></div>
+            </div>
+          </details>
+
+          <details class="know-acc" id="know-sustain" data-know-sec="sustain" data-know-q="sustainability glass vegan cosmos organic fresh impact upcycled ingredients fruit seeds apricot raspberry pomegranate apple peel sea buckthorn plankton leftover waste second-stream">
+            <summary class="know-acc-sum">Sustainability, for real <span class="know-acc-chev" aria-hidden="true"></span></summary>
+            <div class="know-acc-body">
+              <p class="body-p">Most brands add a green line to the box. Ringana built the company around how the product is made, packed, and shipped.</p>
+              <div class="fact-grid">
+                <div class="fact-card">
+                  <div class="fact-label">Made to order</div>
+                  <p>They manufacture what was actually ordered instead of filling a warehouse and hoping it sells. That means less overproduction, less sitting around, and less “make it last three years on a shelf” chemistry. Freshness and waste are the same decision.</p>
+                </div>
+                <div class="fact-card">
+                  <div class="fact-label">Short dating on purpose</div>
+                  <p>Products have an expiration date, like food. That’s the proof they didn’t load the formula with long-shelf synthetic preservatives so it could live in a warehouse.</p>
+                </div>
+                <div class="fact-card">
+                  <div class="fact-label">Vegan, no animal testing</div>
+                  <p>The fresh range is vegan. They don’t test on animals.</p>
+                </div>
+                <div class="fact-card">
+                  <div class="fact-label">What they leave out</div>
+                  <p>No microplastics. No nanoparticles. No synthetic preservatives. No mineral oils in the freshness story. That’s a formulation choice with an environmental side: less of the stuff that hangs around in water and soil.</p>
+                </div>
+                <div class="fact-card">
+                  <div class="fact-label">Glass that’s meant to come back</div>
+                  <p>Skincare goes in glass with an airless pump, not a one-and-done plastic bottle. Empty glass bottles are returned, cleaned, and filled again. Reuse, not “recyclable if someone happens to recycle it.”</p>
+                </div>
+                <div class="fact-card">
+                  <div class="fact-label">The wrap isn’t a throwaway carton</div>
+                  <p>Glass is wrapped in organic cotton instead of a basic box. That’s padding, a reusable cloth, and less cardboard in the trash.</p>
+                </div>
+                <div class="fact-card">
+                  <div class="fact-label">Shipping, as little as possible</div>
+                  <p>Packaging follows “as much as necessary, as little as possible.” Where it’s safe, they use recycled materials in shipping (including recycled cardboard and recycled plastic). They have the packaging checked for recyclability and they’re raising the share of recycled plastic over time.</p>
+                </div>
+                <div class="fact-card">
+                  <div class="fact-label">The Austrian campus runs on green power</div>
+                  <p>The Fresh Factory in St. Johann in der Haide uses 100% green electricity. They also generate power on site (solar and geothermal).</p>
+                </div>
+                <div class="fact-card">
+                  <div class="fact-label">They measure the whole chain</div>
+                  <p>They publish a full sustainability report (FRESH IMPACT) with climate, packaging, water, and people numbers — not a one-page “we care” PDF.</p>
+                </div>
+                <div class="fact-card">
+                  <div class="fact-label">Certified systems, not just a badge on one SKU</div>
+                  <p>The Austrian company runs an ISO 14001 environmental management system and ISO 9001 quality management. Many products are COSMOS-certified.</p>
+                </div>
+                <div class="fact-card">
+                  <div class="fact-label">More organic over time</div>
+                  <p>They prioritize organically grown plant materials and are raising that share (their published aim is more than half by 2030).</p>
+                </div>
+                <div class="fact-card">
+                  <div class="fact-label">Land they actually protect</div>
+                  <p>They’ve partnered to help expand the Dürrenstein-Lassingtal wilderness area in Austria — old forest taken out of use, not a tree-planting photo op.</p>
+                </div>
+                <div class="fact-card fact-card-wide" id="know-upcycled">
+                  <div class="fact-label">Ingredients that were almost waste</div>
+                  <p>Some actives are leftovers given a second life — upcycled. The plant already existed. They put it to work instead of growing something extra.</p>
+                  <ul class="fact-sublist">
+                    <li><strong>Fruit-seed grains</strong> — raspberry, apricot, and pomegranate in FRESH scrub</li>
+                    <li><strong>Apple peel</strong> — in ADDS repair, to refine the look of pores</li>
+                    <li><strong>Sea buckthorn</strong> — the INCI calls it upcycled; in ADDS repair</li>
+                    <li><strong>Plankton for the eye area</strong> — FRESH eye cream, FRESH skin perfection, and ADDS effect</li>
+                  </ul>
+                  <button type="button" class="prod-pill on" data-goto="products" data-prod-mode="ingredients" data-ing-topic="upcycled">See them in the ingredient guide →</button>
+                </div>
+              </div>
+            </div>
+          </details>
+
+          <details class="know-acc" id="know-pillars" data-know-sec="pillars">
+            <summary class="know-acc-sum">The three words <span class="know-acc-chev" aria-hidden="true"></span></summary>
+            <div class="know-acc-body">
+              <p class="body-p" style="margin-bottom:10px"><strong>FRESH · TRENDSETTING · EXCELLENCE</strong></p>
+              <p class="body-p" id="pillarsIntro"></p>
+              <div id="pillarsList" class="pillar-grid"></div>
+            </div>
+          </details>
+        </div>
+      </section>
+
+      <!-- GROVE / EVERGREEN LEADERS -->
+      <section class="panel" id="panel-leaders">
+        <div class="talk-guide">
+          <div class="talk-guide-nav">
+            <button type="button" class="prod-pill on grove-only" data-goto="know">← Back to Learn</button>
+            <button type="button" class="prod-pill on evergreen-only" data-goto="ev-resources">← Back to Resources</button>
+          </div>
+          <h1 class="prod-head-title" id="leadersTitle">Leaders</h1>
+          <p class="prod-head-sub" id="leadersSub">Notes, docs, and links exclusively for leaders. <strong class="leaders-sub-warn">Things here are not to be shared outside of our leaders.</strong></p>
+          <p class="body-p" id="leadersIntro" hidden></p>
+          <div id="leadersSections"></div>
+          <div class="leaders-faq leader-only" id="leadersFaqBlock">
+            <h2 class="leaders-faq-title">Leader FAQs</h2>
+            <p class="body-p" id="leadersFaqBlurb">Same answers as the Leader FAQs category in the regular list — so you can find them in either place.</p>
+            <div id="leadersFaqList" class="faq-list grove-only" data-faq-prefix="lfq_" data-faq-scope="leaders"></div>
+            <div id="evLeadersFaqList" class="faq-list evergreen-only" data-faq-prefix="evlfq_" data-faq-scope="leaders"></div>
+          </div>
+          <div id="leadersLinks"></div>
+          <div class="leaders-feedback" id="leadersFeedback" hidden></div>
+        </div>
+      </section>
+
+      <section class="panel" id="panel-leaders-comp">
+        <div class="talk-guide">
+          <div class="talk-guide-nav">
+            <button type="button" class="prod-pill on grove-only" data-goto="leaders">← Back to Grove Leaders</button>
+            <button type="button" class="prod-pill on evergreen-only" data-goto="leaders">← Back to Evergreen Leaders</button>
+          </div>
+          <h1 class="prod-head-title" id="leadersCompTitle">Compensation plan</h1>
+          <p class="prod-head-sub" id="leadersCompSub">The full plan and a walkthrough of how it works.</p>
+          <div id="leadersCompCards"></div>
+        </div>
+      </section>
+
+      <section class="panel" id="panel-leaders-understand">
+        <div class="talk-guide">
+          <div class="talk-guide-nav">
+            <button type="button" class="prod-pill on grove-only" data-goto="leaders-comp">← Back to compensation plan</button>
+            <button type="button" class="prod-pill on evergreen-only" data-goto="leaders-comp">← Back to compensation plan</button>
+          </div>
+          <h1 class="prod-head-title" id="leadersUnderstandTitle">Understanding the compensation plan</h1>
+          <p class="prod-head-sub" id="leadersUnderstandSub" hidden></p>
+          <div id="leadersUnderstandRoot" class="cp-root"></div>
+        </div>
+      </section>
+
+      <!-- PRODUCT LEARNING LIBRARY -->
+      <section class="panel" id="panel-products">
+        <div class="prod-lib" id="productLibRoot">
+          <!-- rendered by app.js -->
+        </div>
+      </section>
+
+      <!-- TALKING FRESH · CONVERSATION GUIDE -->
+      <section class="panel grove-only" id="panel-talk">
+        <div class="talk-guide">
+          <div class="talk-guide-nav">
+            <button type="button" class="prod-pill on" data-goto="know">← Back to Learn</button>
+          </div>
+          <h1 class="prod-head-title">Talking fresh</h1>
+          <p class="prod-head-sub">In-the-moment judgment for real conversations — steal the structure, write it in your voice.</p>
+          <div id="talkGuideRoot">
+            <!-- rendered by app.js from CONTENT.talkGuide -->
+          </div>
+        </div>
+      </section>
+
+      <!-- SKINCARE QUIZ · THE FRESH MATCH -->
+      <section class="panel grove-only" id="panel-quiz">
+        <div class="quiz-guide">
+          <div class="talk-guide-nav">
+            <button type="button" class="prod-pill on" data-goto="know">← Back to Learn</button>
+          </div>
+
+          <div class="quiz-hero">
+            <span class="quiz-hero-eyebrow">Shareable tool</span>
+            <h1 class="quiz-hero-title">The Fresh Match</h1>
+            <p class="quiz-hero-sub">A short quiz. They get a match. They come back to you.</p>
+            <p class="quiz-hero-lede">Send this to people who already know you. They answer a few questions about skin, supplements, and where they’re starting. They get a match — and the quiz points them back to you, not a shopping cart.</p>
+            <p class="quiz-hero-note">This is the <strong>team version</strong>. No shop. No replicated link. Products aren’t even available in the U.S. yet, so the quiz starts the conversation. You finish it.</p>
+            <div class="quiz-hero-actions">
+              <div id="quizShareInvite"></div>
+              <input class="invite-input light" id="quizShareInput" readonly hidden value="https://quiz.thefreshgrove.team/" aria-label="The Fresh Match link">
+              <a class="leads-preview-btn" id="quizTakeBtn" href="https://quiz.thefreshgrove.team/" target="_blank" rel="noopener noreferrer" aria-label="Take The Fresh Match" title="Take it yourself first">
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+                  <path d="M2.5 12s3.5-7 9.5-7 9.5 7 9.5 7-3.5 7-9.5 7-9.5-7-9.5-7Z" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round"/>
+                  <circle cx="12" cy="12" r="3" stroke="currentColor" stroke-width="1.8"/>
+                </svg>
+              </a>
+            </div>
+            <p class="quiz-hero-hint">Copy to send it one-to-one. The eye is the quiz itself — take it once before you share, so you know the tone and how it sends them back to you.</p>
+          </div>
+
+          <div class="callout compliance quiz-share-guide">
+            <div class="callout-tag">SHARE GUIDANCE</div>
+            <div class="callout-body">
+              <p class="quiz-share-warn"><strong>Don’t post this to the internet.</strong> No mass stories, no ads, no treating it like a funnel.</p>
+              <p class="quiz-share-label">Good uses right now</p>
+              <ul class="quiz-guide-list">
+                <li>Someone who’s been asking where to start</li>
+                <li>After they leave their info on your lead page</li>
+                <li>Your email list — people who already opted in</li>
+              </ul>
+            </div>
+          </div>
+
+          <div class="quiz-section" id="quizResultsGuide">
+            <div class="live-tag">WHEN THEY COME BACK WITH RESULTS</div>
+            <p class="body-p">If they send a screenshot or “I got ___,” they told you something specific. Don’t pitch. Ask what landed — or what didn’t.</p>
+            <p class="body-p">Then tell the truth about timing: these products aren’t in the U.S. yet. Nobody on this team has really used them, and they don’t launch for a bit. The next step you can actually keep is simple — you’ll tell them the moment they’re available. If they want that heads-up, get them on your list or lead page so you can follow through.</p>
+            <p class="body-p" style="margin-bottom:0">If the match feels off, say so. It’s a starting point, not a diagnosis.</p>
+          </div>
+
+          <button type="button" class="prod-know-cta quiz-talk-cta" data-goto="talk" data-open-talk="talk_warm-quiz-results">
+            <span class="prod-know-cta-eyebrow">Response ideas</span>
+            <span class="prod-know-cta-title">Talking fresh</span>
+            <span class="prod-know-cta-sub">What to say when someone comes back with a match — steal the structure, write it in your voice.</span>
+            <span class="prod-know-cta-go">Open “someone took The Fresh Match” →</span>
+          </button>
+
+          <div class="quiz-section quiz-section-soon">
+            <div class="live-tag">WHAT’S COMING · CUSTOM QUIZZES</div>
+            <p class="body-p" style="margin:0">Custom quizzes are on the roadmap as a <strong>rank-advancement gift for partners who hit Target 4</strong>. Those versions will link products straight to your replicated shop — so “this fits me” can become “I’m ready to try it” without losing you in the middle.</p>
+          </div>
+        </div>
+      </section>
+
+      <!-- CURIOSITY PHOTOS -->
+      <section class="panel grove-only" id="panel-curiosity-photos">
+        <div class="curio-photos" id="curiosityPhotosRoot">
+          <!-- rendered by bridge-ui.js -->
+        </div>
+      </section>
+
+      <!-- CALENDAR stub (routes to panel-tend) -->
+      <section class="panel" id="panel-calendar" hidden aria-hidden="true"></section>
+
+      <section class="panel evergreen-only" id="panel-ev-resources">
+        <div class="eyebrow" id="evResEyebrow">LINKS · SHARE THE HUB</div>
+        <div class="ev-res-head">
+          <h1 id="evResTitle">Resources</h1>
+          <div id="evResInvite" data-tour="ev-join"></div>
+        </div>
+        <p class="sec-sub" id="evResSub">Share the hub, grab something to post, and send people somewhere that feels like Evergreen.</p>
+        <button type="button" class="know-leader-btn leader-only" id="leadersResCta" data-goto="leaders">
+          <span class="know-leader-btn-ico" aria-hidden="true">✨</span>
+          <span class="know-leader-btn-text" id="leadersResCtaTitle">Exclusively for Evergreen Leaders</span>
+          <span class="know-leader-btn-go">Open →</span>
+        </button>
+        <details class="know-acc" id="ev-faqs">
+          <summary class="know-acc-sum">
+            <span class="know-acc-sum-main">
+              <span class="know-acc-ico" aria-hidden="true">❓</span>
+              FAQs
+            </span>
+            <span class="know-acc-chev" aria-hidden="true"></span>
+          </summary>
+          <div class="know-acc-body">
+            <p class="body-p">Straight answers when someone asks.</p>
+            <label class="sr-only" for="evFaqSearch">Search FAQs</label>
+            <input type="search" id="evFaqSearch" class="know-search faq-search" placeholder="Search FAQs…" autocomplete="off" spellcheck="false" enterkeyhint="search">
+            <p class="faq-search-empty" id="evFaqSearchEmpty" hidden>No FAQs match that — try a date, pack, bonus, or MLM.</p>
+            <div id="evFaqList" class="faq-list" data-faq-prefix="evfaq_"></div>
+          </div>
+        </details>
+
+        <div id="evResList"></div>
+      </section>
+
+      <section class="panel evergreen-only" id="panel-ev-team">
+        <div class="eyebrow">EVERGREEN CO</div>
+        <div class="ev-res-head">
+          <h1>Your team</h1>
+          <div id="evTeamLeadersJoinCard" hidden></div>
+        </div>
+        <p class="sec-sub">Who’s on your tree. Tap a name, or + to open a branch.</p>
+        <div class="live-card" id="evergreenTeamGraph" hidden></div>
+        <details class="live-card grove-leaders-roster" id="unattachedPeopleRoster" hidden>
+          <summary class="grove-leaders-roster-sum">
+            <span class="live-tag">NOT ON A TEAM</span>
+            <span class="grove-leaders-roster-tease" id="unattachedPeopleRosterTease">Tap to see who</span>
+            <span class="focus-shortlist-chev" aria-hidden="true"></span>
+          </summary>
+          <div class="grove-leaders-roster-body" id="unattachedPeopleRosterBody"></div>
+        </details>
+        <details class="live-card grove-leaders-roster" id="evergreenLeadersRoster" hidden>
+          <summary class="grove-leaders-roster-sum">
+            <span class="live-tag">EVERGREEN LEADERS</span>
+            <span class="grove-leaders-roster-tease" id="evergreenLeadersRosterTease">Tap to see who has access</span>
+            <span class="focus-shortlist-chev" aria-hidden="true"></span>
+          </summary>
+          <div class="grove-leaders-roster-body" id="evergreenLeadersRosterBody"></div>
+        </details>
+      </section>
+
+      <!-- LEADS -->
+      <section class="panel grove-only" id="panel-leads">
+        <div class="eyebrow">FOR PEOPLE WHO ARE CURIOUS</div>
+        <h1>Leads</h1>
+        <p class="sec-sub leads-page-lede">They leave their name and how to reach them. Everything lands only in <em>your</em> inbox.</p>
+
+        <div class="leads-gate" id="leadsGate">
+          <p class="body-p">Sign in so this page is locked to <strong>your</strong> account. Leads only land in the inbox for the email you’re signed in with — that’s what keeps everyone’s lists from getting mixed up.</p>
+          <button type="button" class="btn" id="leadsSignInBtn">Sign in to set up →</button>
+        </div>
+
+        <div id="leadsStudio" hidden>
+          <p class="leads-mode-note" id="leadsModeNote" hidden></p>
+
+          <details class="leads-pages-fold" id="leadsPagesFold">
+            <summary class="leads-pages-sum">
+              <span class="leads-pages-title">Your pages to share</span>
+              <span class="leads-pages-go">Open →</span>
+            </summary>
+            <div class="leads-pages-body">
+          <div class="invite-card leads-share-card">
+            <div class="live-tag">GENERAL LEADS</div>
+            <div class="leads-share-main">
+              <p class="leads-share-explain">Curious people leave their name and how to reach them. Not your team join link (that’s under Grove).</p>
+              <div class="leads-share-actions">
+                <div id="leadsShareInvite"></div>
+                <input class="invite-input light" id="leadsShareInput" readonly hidden aria-label="Your lead page link">
+                <a class="leads-preview-btn" id="leadsPreviewLink" href="lead.html" target="_blank" rel="opener" aria-label="Preview page" title="Preview page">
+                  <svg width="16" height="16" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+                    <path d="M2.5 12s3.5-7 9.5-7 9.5 7 9.5 7-3.5 7-9.5 7-9.5-7-9.5-7Z" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round"/>
+                    <circle cx="12" cy="12" r="3" stroke="currentColor" stroke-width="1.8"/>
+                  </svg>
+                </a>
+                <button type="button" class="leads-settings-btn" id="leadsPageSettingsBtn" aria-label="Lead page settings" aria-expanded="false" aria-controls="leadsPageSettings" title="Lead page settings">
+                  <svg width="16" height="16" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+                    <path d="M12 15a3 3 0 1 0 0-6 3 3 0 0 0 0 6Z" stroke="currentColor" stroke-width="1.8"/>
+                    <path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 1 1-2.83 2.83l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 1 1-4 0v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 1 1-2.83-2.83l.06-.06A1.65 1.65 0 0 0 4.68 15a1.65 1.65 0 0 0-1.51-1H3a2 2 0 1 1 0-4h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 1 1 2.83-2.83l.06.06A1.65 1.65 0 0 0 9 4.68a1.65 1.65 0 0 0 1-1.51V3a2 2 0 1 1 4 0v.09A1.65 1.65 0 0 0 15 4.6a1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 1 1 2.83 2.83l-.06.06A1.65 1.65 0 0 0 19.32 9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 1 1 0 4h-.09a1.65 1.65 0 0 0-1.51 1Z" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round"/>
+                  </svg>
+                </button>
+              </div>
+            </div>
+            <p class="leads-slug-msg" id="leadsSlugMsg" role="status"></p>
+
+            <div class="leads-page-settings" id="leadsPageSettings" hidden>
+              <div class="leads-share-source" id="leadsShareSource" hidden>
+                <div class="leads-settings-label">Link people get</div>
+                <p class="hub-menu-note" style="margin:0 0 10px">You have a custom landing page. Pick which link the copy button and preview use. Both still send people into this inbox.</p>
+                <div class="hub-mode-row tight">
+                  <button type="button" class="hub-mode-btn" data-lead-share-source="site">Custom page</button>
+                  <button type="button" class="hub-mode-btn" data-lead-share-source="app">In-app page</button>
+                </div>
+              </div>
+              <div id="leadsAppPageSettings">
+              <div class="leads-settings-label">Lead page settings</div>
+              <p class="hub-menu-note" style="margin:0 0 12px">Customize the words visitors see. Changing the short link keeps the old URL pointing at you — nobody else can take it.</p>
+
+              <div class="leads-blurb-field" style="margin-bottom:14px">
+                <label class="field-label" for="leadsSlugInput">Short link name</label>
+                <div class="leads-slug-row">
+                  <span class="leads-slug-prefix">…/lead.html?p=</span>
+                  <input class="invite-input light" id="leadsSlugInput" maxlength="30" spellcheck="false" autocomplete="off">
+                </div>
+              </div>
+
+              <div class="leads-blurb-field" style="margin-bottom:14px">
+                <label class="field-label" for="leadsBlurbInput">Opening line — the first personal thing a visitor reads</label>
+                <textarea id="leadsBlurbInput" rows="2" maxlength="280" placeholder="I’m gathering a small founding circle before launch…"></textarea>
+                <p class="hub-menu-note" style="margin:8px 0 0">This is the live line on your page. Patch of Ground is just where you wrote it the first time.</p>
+              </div>
+
+              <div class="leads-blurb-field" style="margin-bottom:14px">
+                <label class="field-label" for="leadsThanksInput">Success message (after they submit)</label>
+                <textarea id="leadsThanksInput" rows="2" maxlength="280" placeholder="Thanks for adding your info! I’ll be in touch with some exciting Ringana details soon!"></textarea>
+              </div>
+
+              <button type="button" class="btn" id="leadsPageSettingsSave" style="width:100%">Save page settings</button>
+              </div>
+            </div>
+          </div>
+
+              <div class="invite-card leads-share-card grove-only" id="leadsGroveShareCard">
+                <div class="live-tag">BUSINESS LEADS</div>
+                <div class="leads-share-main">
+                  <p class="leads-share-explain">Share this when someone is curious about joining the Grove. Your name is already locked in. It does not put you on the public list by itself.</p>
+                  <div class="leads-share-actions">
+                    <div id="leadsGroveShareInvite"></div>
+                    <input class="invite-input light" id="leadsGroveShareInput" readonly hidden aria-label="Your business-info link">
+                    <a class="leads-preview-btn" id="leadsGrovePreviewLink" href="lead.html" target="_blank" rel="noopener" hidden aria-label="Preview page" title="Preview page">
+                      <svg width="16" height="16" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+                        <path d="M2.5 12s3.5-7 9.5-7 9.5 7 9.5 7-3.5 7-9.5 7-9.5-7-9.5-7Z" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round"/>
+                        <circle cx="12" cy="12" r="3" stroke="currentColor" stroke-width="1.8"/>
+                      </svg>
+                    </a>
+                  </div>
+                </div>
+                <div class="leads-grove-list-bar">
+                  <button type="button" class="leads-grove-list-btn" id="leadsGroveListBtn" aria-expanded="false" aria-controls="leadsGroveListPanel">
+                    <span class="leads-grove-list-label">
+                      <svg class="leads-grove-ig" width="14" height="14" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+                        <rect x="2.75" y="2.75" width="18.5" height="18.5" rx="5.5" stroke="currentColor" stroke-width="1.7"/>
+                        <circle cx="12" cy="12" r="4.1" stroke="currentColor" stroke-width="1.7"/>
+                        <circle cx="17.35" cy="6.65" r="1.05" fill="currentColor"/>
+                      </svg>
+                      Show me on The Fresh Grove page
+                    </span>
+                    <span class="focus-shortlist-chev" aria-hidden="true"></span>
+                  </button>
+                </div>
+                <div class="leads-grove-list-panel" id="leadsGroveListPanel" hidden>
+                  <p class="leads-share-explain">People who find The Fresh Grove on Instagram land on the team page. That page asks who sent them. Turning this on puts your first name and Instagram on that list, so they can pick you. Your business-info link already names you even when this is off — this only adds you to the public list.</p>
+                  <a class="leads-grove-team-ig" href="https://www.instagram.com/the.fresh.grove/" target="_blank" rel="noopener">
+                    <svg class="leads-grove-ig" width="14" height="14" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+                      <rect x="2.75" y="2.75" width="18.5" height="18.5" rx="5.5" stroke="currentColor" stroke-width="1.7"/>
+                      <circle cx="12" cy="12" r="4.1" stroke="currentColor" stroke-width="1.7"/>
+                      <circle cx="17.35" cy="6.65" r="1.05" fill="currentColor"/>
+                    </svg>
+                    @the.fresh.grove
+                  </a>
+                  <div class="leads-blurb-field" style="margin:14px 0">
+                    <label class="field-label" for="leadsGroveIgInput">Your Instagram username</label>
+                    <input class="invite-input light" id="leadsGroveIgInput" maxlength="30" spellcheck="false" autocomplete="off" placeholder="your.handle">
+                  </div>
+                  <div class="leads-grove-toggle-row">
+                    <button type="button" class="hub-mode-btn" id="leadsGroveListToggle" aria-pressed="false" disabled>Off the list</button>
+                    <p class="hub-menu-note" id="leadsGroveListHint" role="status"></p>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </details>
+
+          <details class="live-card ideal-leads" id="idealLeadsBlock" data-leads-tour="ideal">
+            <summary class="ideal-leads-sum">
+              <span class="live-tag">YOUR IDEAL LEAD LIST</span>
+              <span class="ideal-leads-tease" id="idealLeadsTease"></span>
+              <span class="focus-shortlist-chev" aria-hidden="true"></span>
+            </summary>
+            <div class="ideal-leads-body">
+              <p class="ideal-leads-lead">People you want to reach — keep adding. When they’re interested, send your page so they land in Inbox below. Already talking 1:1? Add them to Inbox yourself.</p>
+              <form class="ideal-leads-add" id="idealLeadsAddForm">
+                <label class="sr-only" for="idealLeadName">Add a name</label>
+                <input type="text" id="idealLeadName" class="ideal-leads-input" placeholder="Add a name…" autocomplete="off" maxlength="80">
+                <div class="ideal-leads-lane" role="group" aria-label="List type">
+                  <button type="button" class="ideal-leads-lane-btn on" data-ideal-lane="customers" aria-pressed="true">Customer</button>
+                  <button type="button" class="ideal-leads-lane-btn" data-ideal-lane="warm" aria-pressed="false">Partner</button>
+                </div>
+                <button type="submit" class="btn ideal-leads-add-btn">Add</button>
+              </form>
+              <div class="ideal-leads-list" id="idealLeadsList"></div>
+            </div>
+          </details>
+
+          <div class="leads-inbox-head">
+            <div class="live-tag">INBOX</div>
+            <details class="leads-filter-fold" id="leadsFilterFold">
+              <summary class="leads-filter-sum">
+                <span class="leads-filter-title">Filters</span>
+                <span class="leads-filter-tease" id="leadsFilterTease"></span>
+                <span class="focus-shortlist-chev" aria-hidden="true"></span>
+              </summary>
+              <div class="leads-filter" id="leadsFilter">
+                <button type="button" class="leads-filter-btn on" data-leads-filter="all">All</button>
+                <button type="button" class="leads-filter-btn grove-only" data-leads-filter="grove">Fresh Grove</button>
+                <button type="button" class="leads-filter-btn" data-leads-filter="site">Your site</button>
+                <button type="button" class="leads-filter-btn" data-leads-filter="hot">Hot</button>
+                <button type="button" class="leads-filter-btn" data-leads-filter="products">Products</button>
+                <button type="button" class="leads-filter-btn" data-leads-filter="business">Business</button>
+                <button type="button" class="leads-filter-btn" data-leads-filter="both">Both</button>
+                <button type="button" class="leads-filter-btn" data-leads-filter="new">New</button>
+                <button type="button" class="leads-filter-btn" data-leads-filter="reached">Reached out</button>
+                <button type="button" class="leads-filter-btn" data-leads-filter="talking">Talking</button>
+                <button type="button" class="leads-filter-btn" data-leads-filter="fb">FB group</button>
+                <button type="button" class="leads-filter-btn" data-leads-filter="quiz">Quiz</button>
+                <button type="button" class="leads-filter-btn" data-leads-filter="info">Info</button>
+                <button type="button" class="leads-filter-btn" data-leads-filter="done">Until launch</button>
+                <button type="button" class="leads-filter-btn" data-leads-filter="joined">Joined</button>
+                <button type="button" class="leads-filter-btn" data-leads-filter="archived">Archived</button>
+              </div>
+            </details>
+          </div>
+          <div class="leads-search-row">
+            <div class="leads-search-wrap">
+              <label class="sr-only" for="leadsSearch">Search leads</label>
+              <input type="search" id="leadsSearch" class="leads-search" placeholder="Search by name, email, phone, notes…" autocomplete="off" enterkeyhint="search" spellcheck="false">
+            </div>
+            <button type="button" class="btn-ghost leads-manual-toggle" id="leadsManualToggle" data-leads-tour="manual" aria-expanded="false" aria-controls="leadsManualForm">Add a lead</button>
+          </div>
+          <div class="leads-manual">
+            <form class="leads-manual-form" id="leadsManualForm" hidden>
+              <p class="leads-manual-lead">Talked to someone 1:1, or they came in from your own page? Name is enough — add a phone, email, or social if you have it.</p>
+              <label class="sr-only" for="leadsManualName">Name</label>
+              <input type="text" id="leadsManualName" class="leads-manual-input" placeholder="Name" autocomplete="name" maxlength="80" required>
+              <div class="leads-manual-row">
+                <label class="sr-only" for="leadsManualPhone">Phone</label>
+                <input type="tel" id="leadsManualPhone" class="leads-manual-input" placeholder="Phone" autocomplete="tel" maxlength="40">
+                <label class="sr-only" for="leadsManualEmail">Email</label>
+                <input type="email" id="leadsManualEmail" class="leads-manual-input" placeholder="Email" autocomplete="email" maxlength="120">
+              </div>
+              <label class="sr-only" for="leadsManualSocial">Instagram or Facebook</label>
+              <input type="text" id="leadsManualSocial" class="leads-manual-input" placeholder="Instagram or Facebook" autocomplete="off" maxlength="80">
+              <p class="leads-manual-hint">Optional — @handle or their name on Facebook.</p>
+              <div class="leads-manual-lane" role="group" aria-label="Interested in">
+                <button type="button" class="leads-manual-lane-btn on" data-manual-interest="products" aria-pressed="true">Products</button>
+                <button type="button" class="leads-manual-lane-btn" data-manual-interest="business" aria-pressed="false">Business</button>
+                <button type="button" class="leads-manual-lane-btn" data-manual-interest="both" aria-pressed="false">Both</button>
+              </div>
+              <button type="submit" class="btn leads-manual-save">Add to inbox</button>
+              <p class="leads-manual-msg" id="leadsManualMsg" role="status"></p>
+            </form>
+          </div>
+          <div class="leads-list" id="leadsList"></div>
+          <button type="button" class="btn-ghost leads-export-btn" id="leadsExportBtn">Download inbox</button>
+        </div>
+      </section>
+
+      <section class="panel grove-only" id="panel-grove-board">
+        <div class="eyebrow">THE FRESH GROVE</div>
+        <div class="grove-board-head">
+          <h1>What’s new</h1>
+          <div class="grove-board-head-actions" id="groveBoardHeadActions" hidden></div>
+        </div>
+        <p class="sec-sub">Announcements for the grove, and messages sent to you.</p>
+        <div id="groveBoardComposeMount"></div>
+        <div id="groveBoardRoot"></div>
+      </section>
+
+      <section class="panel evergreen-only" id="panel-ev-board">
+        <div class="eyebrow">EVERGREEN CO</div>
+        <h1>From the hub</h1>
+        <p class="sec-sub">Notes, polls, and what’s posted for everyone on Evergreen.</p>
+        <div id="evBoardRoot"><p class="grove-board-empty">Loading…</p></div>
+      </section>
+
+      <section class="panel grove-only" id="panel-customers">
+        <div class="eyebrow">YOUR CLIENTS</div>
+        <div class="team-head" data-clients-tour="head">
+          <h1>Your clients</h1>
+          <div class="team-invite-wrap" id="customersCabinetInvite" data-clients-tour="invite" hidden></div>
+        </div>
+        <p class="sec-sub cabinet-desk-lede">This tab connects to The Fresh Shelf. Share it with anyone interested in the products.</p>
+        <div class="cabinet-desk-seg" id="cabinetDeskSeg" role="tablist" aria-label="Client rooms">
+          <button type="button" class="on" role="tab" aria-selected="true" data-cabinet-room="today"><span class="cabinet-seg-ico" aria-hidden="true">☀️</span>Today<span class="cabinet-seg-dot" hidden></span></button>
+          <button type="button" role="tab" aria-selected="false" data-cabinet-room="people"><span class="cabinet-seg-ico" aria-hidden="true">👥</span>Clients<span class="cabinet-seg-dot" hidden></span></button>
+          <button type="button" role="tab" aria-selected="false" data-cabinet-room="mail"><span class="cabinet-seg-ico" aria-hidden="true">💌</span>Messages<span class="cabinet-seg-dot" hidden></span></button>
+        </div>
+        <div id="cabinetDeskRoot"></div>
+      </section>
+
+      <section class="panel grove-only" id="panel-leader">
+        <div class="eyebrow">THE FRESH GROVE</div>
+        <div class="team-head">
+          <h1>Grow Your Grove</h1>
+          <div class="team-invite-wrap" id="groveTeamInvite"></div>
+        </div>
+        <p class="sec-sub">The people building alongside you — check in, cheer them on, watch the family grow.</p>
+        <div class="grove-support-band" data-team-tour="support-band">
+          <div class="support-note" data-support-note hidden></div>
+          <div class="how-grow-reminder" data-how-grow-reminder hidden></div>
+        </div>
+        <div class="leader-overview" id="leaderOverview" data-team-tour="overview" hidden></div>
+
+        <details class="live-card grove-upline" id="groveUpline" hidden>
+          <summary class="grove-upline-sum">
+            <span class="live-tag">YOUR UPLINE</span>
+            <span class="grove-upline-tease">Tap to see who you sit under</span>
+            <span class="focus-shortlist-chev" aria-hidden="true"></span>
+          </summary>
+          <div class="grove-upline-body" id="groveUplineBody"></div>
+        </details>
+
+        <div class="live-card" id="liveTeamPoll" hidden></div>
+        <div class="live-card" id="liveTeamGraph" data-team-tour="tree" hidden></div>
+
+        <details class="live-card grove-leaders-roster" id="groveLeadersRoster" hidden>
+          <summary class="grove-leaders-roster-sum">
+            <span class="live-tag">GROVE LEADERS</span>
+            <span class="grove-leaders-roster-tease" id="groveLeadersRosterTease">Tap to see who you’ve named</span>
+            <span class="focus-shortlist-chev" aria-hidden="true"></span>
+          </summary>
+          <div class="grove-leaders-roster-body" id="groveLeadersRosterBody"></div>
+        </details>
+
+        <details class="live-card dream-tree-card" id="dreamTreeCard" data-team-tour="dream">
+          <summary class="dream-tree-sum">
+            <span class="live-tag">DREAM TREE</span>
+            <span class="focus-shortlist-chev" aria-hidden="true"></span>
+          </summary>
+          <div class="dream-tree-body">
+            <p class="dream-tree-hint">Who you’d love beside you. Edit anytime.</p>
+            <div class="tree-wrap dream-tree-wrap">
+              <div class="tree-stats" id="dreamTreeStats"></div>
+              <div id="dreamFamilyTree"></div>
+              <div class="tree-key"><span>🌱 dream</span><span>🌳 said yes</span><span>＋ under them</span></div>
+            </div>
+            <button type="button" class="btn-ghost dream-tree-import" id="importLiveTreeBtn">Mark people who already joined</button>
+          </div>
+        </details>
+
+        <div class="leader-board" id="leaderLists" data-team-tour="board"></div>
+      </section>
+
+      <footer class="site-foot grove-only">
+        <p class="site-foot-mark">© 2026 First Seeds · Made for The Fresh Grove</p>
+        <p class="site-foot-copy">This resource was created for people committed to joining The Fresh Grove at the official Ringana USA launch — and for those who want to partner with you in sharing this mission. Please don’t share or post the link as a public link, and don’t share it with anyone who hasn’t already expressed interest in the business.</p>
+        <p class="site-foot-copy">First Seeds is a Fresh Grove team prep hub, not something published by Ringana corporate. Guidance here can still shift as launch details firm up.</p>
+      </footer>
+
+      <footer class="site-foot evergreen-only">
+        <p class="site-foot-mark">© 2026 First Seeds · Made for Evergreen Co</p>
+        <p class="site-foot-copy">This hub is for people already walking with Evergreen Co. Please don’t share or post the link as a public link, and don’t share it with anyone who hasn’t already expressed interest in the business. Keep it in the circle.</p>
+        <p class="site-foot-copy">First Seeds is an Evergreen Co team resource, not something published by Ringana corporate. Dates and details here can still shift as the company firms things up.</p>
+      </footer>
+
+    </div>
+  </main>
+</div>
+
+<!-- Fixed sheets — outside .layout so they stay viewport-bound -->
+  <!-- ═══ HUB MENU ═══ -->
+  <div class="hub-menu" id="hubMenu" hidden>
+    <button type="button" class="hub-menu-backdrop" id="menuCloseBackdrop" aria-label="Close menu"></button>
+    <div class="hub-menu-panel" role="dialog" aria-modal="true" aria-labelledby="hubMenuTitle">
+      <div class="hub-menu-head">
+        <div>
+          <div class="hub-menu-eyebrow" id="hubMenuEyebrow">First Seeds</div>
+          <h2 id="hubMenuTitle">Settings</h2>
+        </div>
+        <button type="button" class="hub-menu-close" id="menuCloseBtn" aria-label="Close">×</button>
+      </div>
+      <p class="hub-menu-sync"><span id="syncLabel">Saving on this device only</span></p>
+
+      <div class="hub-menu-scroll">
+        <details class="hub-set" data-set="you">
+          <summary class="hub-set-sum">
+            <span class="hub-set-ico" aria-hidden="true">👤</span>
+            <span class="hub-set-copy">
+              <span class="hub-set-title">You</span>
+              <span class="hub-set-sub hub-set-you-blurb">
+                <span id="settingsYouBlurb">Name, pace, and account</span>
+              </span>
+            </span>
+            <span class="hub-set-chev" aria-hidden="true"></span>
+          </summary>
+          <div class="hub-set-body">
+            <div class="hub-set-block">
+              <div class="onboard-name-field">
+                <label class="field-label" for="settingsFirstName">First name</label>
+                <input type="text" id="settingsFirstName" maxlength="100" autocomplete="given-name" placeholder="First name">
+              </div>
+              <div class="onboard-name-field">
+                <label class="field-label" for="settingsLastName">Last name</label>
+                <input type="text" id="settingsLastName" maxlength="100" autocomplete="family-name" placeholder="Last name">
+              </div>
+              <button type="button" class="btn" id="settingsNameSave" style="width:100%;margin-top:4px">Save name</button>
+              <p class="hub-menu-note" id="settingsNameMsg" role="status" style="margin-top:8px"></p>
+            </div>
+            <div class="hub-set-block" id="settingsPhotoBlock">
+              <div class="field-label">Your photo</div>
+              <div class="settings-photo-row">
+                <button type="button" class="settings-photo-btn" id="settingsPhotoBtn" aria-label="Add a photo">
+                  <span class="person-photo is-lg is-letter" id="settingsPhotoFace" aria-hidden="true">•</span>
+                </button>
+                <div class="settings-photo-actions">
+                  <input type="file" id="settingsPhotoInput" accept="image/*" hidden>
+                  <button type="button" class="btn" id="settingsPhotoAdd">Add a photo</button>
+                  <button type="button" class="btn-ghost" id="settingsPhotoRemove" hidden>Remove</button>
+                </div>
+              </div>
+              <p class="hub-menu-note" id="settingsPhotoMsg" role="status"></p>
+            </div>
+            <div class="hub-set-block grove-only">
+              <label class="field-label" for="settingsInstagram">Instagram username</label>
+              <input class="invite-input light" id="settingsInstagram" maxlength="30" spellcheck="false" autocomplete="off" placeholder="your.handle">
+              <button type="button" class="btn" id="settingsInstagramSave" style="width:100%;margin-top:10px">Save Instagram</button>
+              <p class="hub-menu-note" id="settingsInstagramMsg" role="status" style="margin-top:8px"></p>
+            </div>
+            <div class="hub-set-block grove-only">
+              <div class="hub-menu-label">The Fresh Grove public list</div>
+              <p class="hub-menu-note">People who find The Fresh Grove on Instagram can pick you. Separate from your page link — turn this on only when you want to appear on that list.</p>
+              <div class="hub-mode-row">
+                <button type="button" class="hub-mode-btn" id="settingsGroveListToggle" aria-pressed="false" disabled>Off the list</button>
+              </div>
+              <p class="hub-menu-note" id="settingsGroveListHint" role="status"></p>
+            </div>
+            <div class="hub-set-block grove-only">
+              <div class="hub-menu-label">Your pace</div>
+              <div class="hub-mode-row">
+                <button type="button" class="hub-mode-btn" id="modeStarter">Soft start</button>
+                <button type="button" class="hub-mode-btn" id="modeFull">All in</button>
+              </div>
+              <p class="hub-mode-hint" id="hubModeHint"></p>
+            </div>
+            <div class="hub-set-block hub-set-you-auth-block">
+              <button type="button" class="btn-ghost hub-set-you-auth" id="settingsYouAuth">Sign in →</button>
+            </div>
+          </div>
+        </details>
+
+        <details class="hub-set" data-set="share">
+          <summary class="hub-set-sum">
+            <span class="hub-set-ico" aria-hidden="true">🔗</span>
+            <span class="hub-set-copy">
+              <span class="hub-set-title">Sharing</span>
+              <span class="hub-set-sub grove-only" id="settingsShareSub">Join link, another device, and lead pages</span>
+              <span class="hub-set-sub evergreen-only">Join link and another device</span>
+            </span>
+            <span class="hub-set-chev" aria-hidden="true"></span>
+          </summary>
+          <div class="hub-set-body">
+            <div class="hub-set-block" id="deviceSignInBlock">
+              <div class="hub-menu-label">Sign in on another device</div>
+              <p class="hub-menu-note" id="deviceSignInHint" hidden>Sign in first — then you can copy a link for your computer or another phone.</p>
+              <div id="deviceSignInReady" hidden>
+                <p class="hub-menu-note">Open this on a computer or another phone, then sign in with the same email. Your hub comes with you.</p>
+                <input class="invite-input light" id="deviceSignInInput" readonly aria-label="First Seeds sign-in link">
+                <button type="button" class="btn" id="settingsCopySignIn" style="margin-top:10px;width:100%">Copy sign-in link</button>
+                <p class="hub-menu-note"><strong>This is not your unique join link.</strong> Do not share this link with new partners.</p>
+              </div>
+            </div>
+            <div class="hub-set-block invite-block grove-only" id="inviteBlock" hidden>
+              <div class="hub-menu-label">Your join link</div>
+              <p class="hub-menu-note">Send this when someone says yes. They sign in — they're with you.</p>
+              <input class="invite-input light" id="railInviteInput" readonly>
+              <button type="button" class="btn" id="railCopyInvite" style="margin-top:10px;width:100%">Copy join link</button>
+            </div>
+            <div class="hub-set-block evergreen-only" id="evergreenInviteSection">
+              <div class="hub-menu-label">Your join link</div>
+              <p class="hub-menu-note">This is your join link. People who use it sit under you on the team.</p>
+              <input class="invite-input light" id="evergreenJoinInput" readonly>
+              <button type="button" class="btn" id="evergreenCopyJoin" style="margin-top:10px;width:100%">Copy my link to join</button>
+            </div>
+            <div class="hub-set-block grove-only">
+              <div class="hub-menu-label">Your lead page</div>
+              <p class="hub-menu-note">Curious people land here and leave their info. Day-to-day copy lives under Leads.</p>
+              <div id="settingsLeadShareWrap" hidden>
+                <input class="invite-input light" id="settingsLeadShareInput" readonly aria-label="Your lead page link">
+                <button type="button" class="btn" id="settingsCopyLeadShare" style="margin-top:10px;width:100%">Copy lead page</button>
+              </div>
+              <p class="hub-menu-note" id="settingsLeadShareHint" hidden></p>
+            </div>
+            <div class="hub-set-block grove-only">
+              <div class="hub-menu-label">Your business-info link</div>
+              <p class="hub-menu-note">Names you on The Fresh Grove. Does not put you on the public list by itself.</p>
+              <div id="settingsGroveShareWrap" hidden>
+                <input class="invite-input light" id="settingsGroveShareInput" readonly aria-label="Your business-info link">
+                <button type="button" class="btn" id="settingsCopyGroveShare" style="margin-top:10px;width:100%">Copy my business-info link</button>
+              </div>
+            </div>
+            <div class="hub-set-block grove-only" id="settingsCabinetShareBlock" hidden>
+              <div class="hub-menu-label">Your shelf link</div>
+              <p class="hub-menu-note">Send this when someone is ready for their shelf. They land with you on The Fresh Shelf.</p>
+              <div id="settingsCabinetShareWrap">
+                <input class="invite-input light" id="settingsCabinetShareInput" readonly aria-label="Your shelf link">
+                <button type="button" class="btn" id="settingsCopyCabinetShare" style="margin-top:10px;width:100%">Copy your shelf link</button>
+              </div>
+            </div>
+            <div class="hub-set-block grove-only" id="settingsCabinetShopBlock" hidden>
+              <div class="hub-menu-label">Shop link</div>
+              <p class="hub-menu-note">Every product button on The Fresh Shelf uses this. Leave it blank to stay on ringana.com.</p>
+              <input class="invite-input light" id="settingsCabinetShopInput" type="url" placeholder="Your weblink or shop URL" autocomplete="url" inputmode="url" aria-label="Shop link">
+              <button type="button" class="btn" id="settingsCabinetShopSave" data-cabinet-shop-save style="margin-top:10px;width:100%">Save shop link</button>
+              <button type="button" class="btn-ghost" id="settingsCabinetShopClear" data-cabinet-shop-clear hidden style="margin-top:8px;width:100%">Use ringana.com</button>
+            </div>
+          </div>
+        </details>
+
+        <details class="hub-set" data-set="preview" id="packPreviewSection" hidden>
+          <summary class="hub-set-sum">
+            <span class="hub-set-ico" aria-hidden="true">👁️</span>
+            <span class="hub-set-copy">
+              <span class="hub-set-title">View as</span>
+              <span class="hub-set-sub">Preview Fresh Grove or Evergreen Co</span>
+            </span>
+            <span class="hub-set-chev" aria-hidden="true"></span>
+          </summary>
+          <div class="hub-set-body">
+            <div class="hub-set-block">
+              <p class="hub-menu-note">Only you see this. Switch packs to check Evergreen Co vs Fresh Grove without logging out.</p>
+              <div class="hub-mode-row">
+                <button type="button" class="hub-mode-btn" id="viewAsGrove" data-view-as="fresh-grove">Fresh Grove</button>
+                <button type="button" class="hub-mode-btn" id="viewAsEvergreen" data-view-as="evergreen-co">Evergreen Co</button>
+              </div>
+              <p class="hub-mode-hint" id="viewAsHint"></p>
+            </div>
+            <div class="hub-set-block grove-only">
+              <div class="hub-menu-label">Clients arrival</div>
+              <p class="hub-menu-note">What Grove Leaders will see when the gift turns on. Grove lifts into the header. Clients lands on the bar. Play it as many times as you want — it does not unlock anyone else.</p>
+              <button type="button" class="btn" id="previewClientsArrival" style="margin-top:10px;width:100%">Play the Clients arrival</button>
+            </div>
+          </div>
+        </details>
+
+        <details class="hub-set" data-set="notify" id="pushSettingsSection">
+          <summary class="hub-set-sum">
+            <span class="hub-set-ico" aria-hidden="true">🔔</span>
+            <span class="hub-set-copy">
+              <span class="hub-set-title">Notifications</span>
+              <span class="hub-set-sub grove-only" id="settingsNotifySub">Joins, cheers, leads, and more</span>
+              <span class="hub-set-sub evergreen-only">Joins, hub notes, zooms, and replays</span>
+            </span>
+            <span class="hub-set-chev" aria-hidden="true"></span>
+          </summary>
+          <div class="hub-set-body">
+            <div class="hub-set-block">
+              <p class="push-status off" id="pushSettingsStatus">Sign in to turn on notifications on this phone.</p>
+              <p class="hub-menu-note" id="pushInstallNote" hidden></p>
+              <button type="button" class="btn" id="pushEnableBtn" style="width:100%;margin-bottom:12px" hidden>Turn on notifications</button>
+              <div>
+                <div class="hub-menu-label">When someone joins</div>
+                <div class="hub-mode-row tight">
+                  <button type="button" class="hub-mode-btn" data-grove-joins="off">Off</button>
+                  <button type="button" class="hub-mode-btn on" data-grove-joins="level1">My Level 1</button>
+                  <button type="button" class="hub-mode-btn" data-grove-joins="tree">Anyone in my tree</button>
+                </div>
+                <p class="hub-mode-hint">Level 1 is people who used <em>your</em> join link. Tree includes partners under them too.</p>
+              </div>
+              <label class="setting-row">
+                <span class="s-txt"><strong>Cheers</strong><span>When your leader sends you a cheer.</span></span>
+                <input type="checkbox" class="switch" id="optPushCheers" checked>
+              </label>
+              <label class="setting-row">
+                <span class="s-txt"><strong>Notes</strong><span>When your leader leaves you a note.</span></span>
+                <input type="checkbox" class="switch" id="optPushNotes" checked>
+              </label>
+              <label class="setting-row" id="optPushHowIGrowRow">
+                <span class="s-txt"><strong>How I Grow</strong><span id="optPushHowIGrowHint">When someone who sits under you fills out their support map.</span></span>
+                <input type="checkbox" class="switch" id="optPushHowIGrow" checked>
+              </label>
+              <label class="setting-row grove-only">
+                <span class="s-txt"><strong>Leads</strong><span>When someone fills out your lead page.</span></span>
+                <input type="checkbox" class="switch" id="optPushLeads" checked>
+              </label>
+              <label class="setting-row grove-only shelf-customers-only">
+                <span class="s-txt"><strong>Clients</strong><span>When someone opens their shelf with you.</span></span>
+                <input type="checkbox" class="switch" id="optPushCabinetJoins" checked>
+              </label>
+              <label class="setting-row grove-only shelf-customers-only">
+                <span class="s-txt"><strong>Customer messages</strong><span>When a customer writes you from their shelf — name and a preview.</span></span>
+                <input type="checkbox" class="switch" id="optPushCustomerMail" checked>
+              </label>
+              <label class="setting-row" id="optPushBroadcastsRow">
+                <span class="s-txt"><strong>Team messages</strong><span id="optPushBroadcastsHint">When a Grove Leader sends a note, or a poll goes out.</span></span>
+                <input type="checkbox" class="switch" id="optPushBroadcasts" checked>
+              </label>
+              <label class="setting-row">
+                <span class="s-txt"><strong class="grove-only">Grove Gatherings</strong><strong class="evergreen-only">Team Zooms</strong><span class="grove-only">15 minutes before a Grove Gathering or Info Zoom.</span><span class="evergreen-only">15 minutes before a team zoom.</span></span>
+                <input type="checkbox" class="switch" id="optPushZooms" checked>
+              </label>
+              <label class="setting-row">
+                <span class="s-txt"><strong class="grove-only">New gathering</strong><strong class="evergreen-only">New team zoom</strong><span class="grove-only">When a Grove Gathering or Info Zoom is posted.</span><span class="evergreen-only">When a team zoom is posted.</span></span>
+                <input type="checkbox" class="switch" id="optPushZoomNew" checked>
+              </label>
+              <label class="setting-row">
+                <span class="s-txt"><strong>Replay ready</strong><span class="grove-only">When a replay is added to a gathering or Info Zoom.</span><span class="evergreen-only">When a replay is added to a team zoom.</span></span>
+                <input type="checkbox" class="switch" id="optPushZoomReplay" checked>
+              </label>
+              <label class="setting-row grove-only allin-only">
+                <span class="s-txt"><strong>Calendar today</strong><span>A morning ping when you have a post or a lead follow-up today.</span></span>
+                <input type="checkbox" class="switch" id="optPushCalendarDay" checked>
+              </label>
+              <p class="hub-menu-note" id="pushSettingsMsg" role="status" style="margin-top:8px"></p>
+            </div>
+          </div>
+        </details>
+
+        <details class="hub-set" data-set="prefs">
+          <summary class="hub-set-sum">
+            <span class="hub-set-ico" aria-hidden="true">🎛️</span>
+            <span class="hub-set-copy">
+              <span class="hub-set-title">Preferences</span>
+              <span class="hub-set-sub grove-only" id="settingsPrefsSub">Calendar, reminders, and plant growth</span>
+              <span class="hub-set-sub evergreen-only">Calendar and plant growth</span>
+            </span>
+            <span class="hub-set-chev" aria-hidden="true"></span>
+          </summary>
+          <div class="hub-set-body">
+            <div class="hub-set-block allin-only">
+              <div class="hub-menu-label">Calendar</div>
+              <p class="hub-menu-note">Choose which day your week starts on — month and week views both follow this.</p>
+              <div class="hub-mode-row">
+                <button type="button" class="hub-mode-btn" id="weekStartSun" data-week-start="sunday">Sunday</button>
+                <button type="button" class="hub-mode-btn" id="weekStartMon" data-week-start="monday">Monday</button>
+              </div>
+              <label class="setting-row grove-only" style="margin-top:12px">
+                <span class="s-txt"><strong>Calendar reminders</strong><span>Opted-in names can appear on today after they’ve been quiet. Not a notification. Pace below.</span></span>
+                <input type="checkbox" class="switch" id="optCalLeadFollowUps">
+              </label>
+              <div class="lead-follow-tune grove-only" id="leadFollowTune">
+                <p class="hub-menu-note">How long since you last updated them before a name shows on today. Tapping that name snoozes them for the same stretch.</p>
+                <div class="leads-manual-lane" id="leadFollowQuietLane" role="group" aria-label="Quiet days">
+                  <button type="button" class="leads-manual-lane-btn" data-follow-quiet="2">2 days</button>
+                  <button type="button" class="leads-manual-lane-btn" data-follow-quiet="3">3 days</button>
+                  <button type="button" class="leads-manual-lane-btn" data-follow-quiet="5">5 days</button>
+                  <button type="button" class="leads-manual-lane-btn" data-follow-quiet="7">7 days</button>
+                </div>
+                <p class="hub-menu-note" style="margin-top:10px">How many names on today</p>
+                <div class="leads-manual-lane" id="leadFollowMaxLane" role="group" aria-label="Names on today">
+                  <button type="button" class="leads-manual-lane-btn" data-follow-max="1">1</button>
+                  <button type="button" class="leads-manual-lane-btn" data-follow-max="2">2</button>
+                  <button type="button" class="leads-manual-lane-btn" data-follow-max="3">3</button>
+                </div>
+                <label class="setting-row" style="margin-top:12px">
+                  <span class="s-txt"><strong>Include New</strong><span>People you haven’t marked reached-out yet.</span></span>
+                  <input type="checkbox" class="switch" id="optLeadFollowIncludeNew">
+                </label>
+              </div>
+              <div class="btn-row lead-follow-bulk grove-only" style="margin-top:8px">
+                <button type="button" class="btn-ghost" id="leadFollowAllOn">Opt everyone in</button>
+                <button type="button" class="btn-ghost" id="leadFollowAllOff">Opt everyone out</button>
+              </div>
+            </div>
+            <div class="hub-set-block">
+              <div class="hub-menu-label">Growth</div>
+              <p class="hub-menu-note">See your plant grow when you check something off — even when you're not on Home.</p>
+              <label class="setting-row">
+                <span class="s-txt"><strong>Growth moments</strong><span>Full-screen plant animation when something grows.</span></span>
+                <input type="checkbox" class="switch" id="optGrowthMoment" checked>
+              </label>
+              <label class="setting-row">
+                <span class="s-txt"><strong>Growth notes</strong><span>Small toast when moments are off.</span></span>
+                <input type="checkbox" class="switch" id="optGrowthToast" checked>
+              </label>
+            </div>
+          </div>
+        </details>
+
+        <details class="hub-set" data-set="answers">
+          <summary class="hub-set-sum">
+            <span class="hub-set-ico" aria-hidden="true">📝</span>
+            <span class="hub-set-copy">
+              <span class="hub-set-title">Your answers</span>
+              <span class="hub-set-sub grove-only">How I Grow, download, or start over</span>
+              <span class="hub-set-sub evergreen-only">How I Grow — how your upline can support you</span>
+            </span>
+            <span class="hub-set-chev" aria-hidden="true"></span>
+          </summary>
+          <div class="hub-set-body">
+            <div class="hub-set-block">
+              <div class="hub-menu-actions">
+                <button type="button" class="btn-ghost" id="editHowIGrowBtn">Edit How I Grow</button>
+                <button type="button" class="btn-ghost grove-only" id="exportBtn">Download my answers</button>
+                <button type="button" class="btn-ghost danger-ghost grove-only" id="resetBtn">Start over</button>
+              </div>
+            </div>
+          </div>
+        </details>
+
+        <details class="hub-set" data-set="help">
+          <summary class="hub-set-sum">
+            <span class="hub-set-ico" aria-hidden="true">❓</span>
+            <span class="hub-set-copy">
+              <span class="hub-set-title">Help</span>
+              <span class="hub-set-sub grove-only">Tours, terms, and about</span>
+              <span class="hub-set-sub evergreen-only">Tours, terms, and about</span>
+            </span>
+            <span class="hub-set-chev" aria-hidden="true"></span>
+          </summary>
+          <div class="hub-set-body">
+            <div class="hub-set-block">
+              <div class="hub-menu-label">Tours</div>
+              <p class="hub-menu-note grove-only">Missed Home Screen setup or want a refresher? Replay the welcome screens and app tour, the Grove coachmarks, or the Leads walkthrough — your answers and progress stay saved.</p>
+              <p class="hub-menu-note grove-only shelf-customers-only">There’s also a Clients walkthrough for the desk — replay it anytime.</p>
+              <p class="hub-menu-note evergreen-only">Missed Home Screen setup or want a refresher? Replay the welcome screens and a short tour of this hub — your progress stays saved.</p>
+              <div class="hub-menu-actions">
+                <button type="button" class="btn-ghost" id="replayOnboardingBtn">Replay welcome + app tour</button>
+                <button type="button" class="btn-ghost grove-only" id="replayTeamTourBtn">Replay Grove tour</button>
+                <button type="button" class="btn-ghost grove-only" id="replayLeadsTourBtn">Replay Leads tour</button>
+                <button type="button" class="btn-ghost grove-only shelf-customers-only" id="replayClientsTourBtn">Replay Clients tour</button>
+              </div>
+            </div>
+            <div class="hub-set-block">
+              <div class="hub-menu-label">Term library</div>
+              <p class="hub-menu-note">Quick plain-English definitions for words you'll see in First Seeds.</p>
+              <div class="term-list" id="hubTermList"></div>
+            </div>
+            <div class="hub-set-block hub-menu-foot">
+              <div class="hub-menu-label">About this hub</div>
+              <p class="hub-menu-note grove-only">© 2026 First Seeds. Made for people committed to joining The Fresh Grove at the official Ringana USA launch — and for those who want to partner with you on this mission. Keep it in the circle. Not published by Ringana corporate.</p>
+              <p class="hub-menu-note evergreen-only">© 2026 First Seeds. Made for Evergreen Co. Keep it in the circle. Not published by Ringana corporate.</p>
+            </div>
+          </div>
+        </details>
+
+        <div class="hub-unlock" id="createUnlockCard" hidden>
+          <div class="hub-unlock-head">
+            <span class="hub-set-ico" aria-hidden="true">🔑</span>
+            <div class="hub-set-copy">
+              <span class="hub-set-title-row">
+                <span class="hub-set-title">Grove unlock code</span>
+                <span class="hub-leader-chip">
+                  <span aria-hidden="true">⭐</span>
+                  Leaders only
+                </span>
+              </span>
+              <span class="hub-set-sub">Bring someone over from Evergreen</span>
+            </div>
+          </div>
+          <p class="hub-menu-note">If they’re in Evergreen Co and belong on your team, make a code. They enter it in Settings — same login — and land in Fresh Grove under you. Expires in 7 days.</p>
+          <button type="button" class="btn" id="createUnlockBtn" style="width:100%">Make a code</button>
+          <div id="createUnlockResult" hidden>
+            <input class="invite-input light" id="createUnlockInput" readonly aria-label="Unlock code">
+            <button type="button" class="btn-ghost" id="createUnlockCopy" style="margin-top:10px;width:100%">Copy code</button>
+          </div>
+          <p class="hub-menu-note" id="createUnlockMsg" role="status" style="margin-top:8px"></p>
+        </div>
+
+        <div class="hub-unlock" id="unlockExtrasCard" hidden>
+          <div class="hub-unlock-head">
+            <span class="hub-set-ico" aria-hidden="true">🔒</span>
+            <div class="hub-set-copy">
+              <span class="hub-set-title">Unlock extras</span>
+            </div>
+          </div>
+          <p class="hub-menu-note">Some teams have their own hubs, with exclusive features and resources. If your leader sent you a code, paste it here.</p>
+          <input type="text" class="invite-input light" id="unlockCodeInput" maxlength="12" autocomplete="off" autocapitalize="characters" spellcheck="false" placeholder="Code" aria-label="Team code">
+          <button type="button" class="btn" id="unlockCodeBtn" style="width:100%">Paste the team code</button>
+          <p class="hub-menu-note" id="unlockCodeMsg" role="status" style="margin-top:8px"></p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+      <!-- Calendar card editor (slide-over) -->
+      <div class="cal-sheet" id="calSheet" hidden>
+        <button type="button" class="cal-sheet-backdrop" id="calSheetClose" aria-label="Close editor"></button>
+        <div class="cal-sheet-panel" role="dialog" aria-modal="true" aria-labelledby="calSheetTitle">
+          <div class="cal-sheet-head">
+            <div>
+              <div class="cal-sheet-kicker">Card</div>
+              <h2 id="calSheetTitle">Edit</h2>
+            </div>
+            <button type="button" class="cal-sheet-x" id="calSheetX" aria-label="Close">×</button>
+          </div>
+          <div class="cal-sheet-body" id="calendarDetail"></div>
+        </div>
+      </div>
+
+      <div class="curio-lightbox" id="curiosityLightbox" hidden>
+        <button type="button" class="curio-lightbox-backdrop" id="curiosityLightboxClose" aria-label="Close photo"></button>
+        <div class="curio-lightbox-panel" role="dialog" aria-modal="true" aria-labelledby="curiosityLightboxTitle">
+          <div class="curio-lightbox-head">
+            <h2 id="curiosityLightboxTitle">Photo</h2>
+            <button type="button" class="curio-lightbox-x" id="curiosityLightboxX" aria-label="Close">×</button>
+          </div>
+          <p class="curio-lightbox-cat" id="curiosityLightboxCat" hidden></p>
+          <p class="curio-lightbox-hint">Press and hold the photo to save it to your camera roll.</p>
+          <img class="curio-lightbox-img" id="curiosityLightboxImg" alt="">
+          <p class="curio-lightbox-pairs" id="curiosityLightboxPairs" hidden></p>
+        </div>
+      </div>
+
+<!-- Persistent chrome — outside .layout so position:fixed stays viewport-bound -->
+<nav class="bottom-nav" id="bottomNav" aria-label="Main">
+  <button type="button" class="bottom-nav-btn" data-goto="welcome" data-tab="home">
+    <span class="bottom-nav-ico" aria-hidden="true">🌱</span>
+    <span class="bottom-nav-label">Sprout</span>
+  </button>
+  <button type="button" class="bottom-nav-btn full-only pack-cal" data-goto="tend" data-tab="content">
+    <span class="bottom-nav-ico bottom-nav-ico-cal" aria-hidden="true">🗓️</span>
+    <span class="bottom-nav-label">Calendar</span>
+  </button>
+  <button type="button" class="bottom-nav-btn grove-only" data-goto="leads" data-tab="leads">
+    <span class="bottom-nav-ico" aria-hidden="true">✉</span>
+    <span class="bottom-nav-label">Leads</span>
+  </button>
+  <button type="button" class="bottom-nav-btn" data-goto="know" data-tab="know">
+    <span class="bottom-nav-ico" aria-hidden="true">💡</span>
+    <span class="bottom-nav-label">Learn</span>
+  </button>
+  <button type="button" class="bottom-nav-btn grove-only" data-goto="customers" data-tab="customers" hidden>
+    <span class="bottom-nav-ico" aria-hidden="true">🧴</span>
+    <span class="bottom-nav-label">Clients</span>
+  </button>
+  <button type="button" class="bottom-nav-btn evergreen-only" data-goto="ev-resources" data-tab="resources">
+    <span class="bottom-nav-ico" aria-hidden="true">📎</span>
+    <span class="bottom-nav-label">Resources</span>
+  </button>
+  <button type="button" class="bottom-nav-btn full-only grove-only" data-goto="leader" data-tab="team">
+    <span class="bottom-nav-ico" aria-hidden="true">🌳</span>
+    <span class="bottom-nav-label">Grove</span>
+  </button>
+</nav>
+<div id="cabinetComposerDock" hidden></div>
+<script>
+/* Strip legacy nav badge nodes from older cached HTML before app JS runs. */
+(function () {
+  var nav = document.getElementById("bottomNav");
+  if (!nav) return;
+  var bad = nav.querySelectorAll(".bottom-nav-badge");
+  for (var i = 0; i < bad.length; i++) bad[i].parentNode.removeChild(bad[i]);
+  var wraps = nav.querySelectorAll(".bottom-nav-ico-wrap");
+  for (var w = 0; w < wraps.length; w++) {
+    var wrap = wraps[w];
+    var ico = wrap.querySelector(".bottom-nav-ico");
+    if (ico) wrap.parentNode.insertBefore(ico, wrap);
+    wrap.parentNode.removeChild(wrap);
+  }
+})();
+</script>
+
+<div class="lock-toast" id="lockToast" hidden role="status"></div>
+
+<!-- ═══ GROWTH MOMENT ═══ -->
+<div class="growth-moment" id="growthMoment" role="dialog" aria-modal="true" aria-labelledby="growthMomentMsg" hidden>
+  <button type="button" class="growth-moment-hit" id="growthMomentHit" aria-label="Continue"></button>
+  <div class="growth-moment-card">
+    <div class="plantbox moment-plantbox" id="growthMomentPlant" aria-hidden="true"></div>
+    <p class="growth-moment-msg" id="growthMomentMsg"></p>
+    <p class="growth-moment-hint">tap anywhere to continue</p>
+    <p class="growth-moment-tip" id="growthMomentTip" hidden>You can change how often these pop up in Settings.</p>
+  </div>
+</div>
+
+<div class="growth-toast" id="growthToast" hidden role="status"></div>
+
+<!-- ═══ ONBOARDING ═══ -->
+<div class="overlay onboarding" id="onboarding" role="dialog" aria-modal="true" aria-labelledby="onboardTitle">
+  <div class="overlay-card onboarding-card onboarding-welcome" id="onboardingCard">
+    <button type="button" class="overlay-close" id="onboardingNotifyClose" aria-label="Close" hidden>×</button>
+    <div class="onboarding-dots" id="onboardingDots" aria-hidden="true"></div>
+
+    <div class="onboarding-pane on" data-onboard-step="0">
+      <div class="onboard-mark" aria-hidden="true">
+        <span class="onboard-mark-seed"></span>
+        <span class="onboard-mark-leaf"></span>
+      </div>
+      <p class="onboarding-eyebrow" id="obWelcomeEyebrow">First Seeds</p>
+      <h3 id="onboardTitle">We're so glad you're here.</h3>
+      <p class="lead" id="obWelcomeBody"></p>
+      <button type="button" class="btn overlay-btn" id="onboardingNext">Let's plant something →</button>
+      <button type="button" class="btn-ghost overlay-btn" id="onboardingWelcomeSignIn" style="margin-top:8px">Already have an account? Sign in →</button>
+    </div>
+
+    <div class="onboarding-pane" data-onboard-step="1">
+      <div class="onboard-circle-badge" id="obCircleBadge" aria-hidden="true">Our circle</div>
+      <p class="onboarding-eyebrow" id="obCircleEyebrow">A little house rule</p>
+      <h3 id="obCircleTitle">This one's for our founding circle.</h3>
+      <p class="lead" id="obCircleBody"></p>
+      <div class="onboard-circle-note" id="obCircleNote"></div>
+      <button type="button" class="btn overlay-btn" id="onboardingCircleNext">I'm in — let's grow →</button>
+    </div>
+
+    <div class="onboarding-pane" data-onboard-step="2">
+      <p class="onboarding-eyebrow" id="obInstallEyebrow">Keep it handy</p>
+      <h3 id="obInstallTitle">Save First Seeds on your phone</h3>
+      <p class="lead" id="obInstallLead">You're in the browser right now. Add the Home Screen icon from this window, then close this page and open First Seeds from that new icon. That's where you'll type your name — and how your invite stays attached.</p>
+      <div class="onboard-install-choices" id="onboardInstallChoices" role="group" aria-label="Your device">
+        <button type="button" class="onboard-install-choice" data-install-platform="ios">iPhone / iPad</button>
+        <button type="button" class="onboard-install-choice" data-install-platform="android">Android</button>
+      </div>
+      <div class="onboard-install-guide" id="onboardInstallGuide" hidden></div>
+      <div class="onboard-install-cta">
+        <label class="onboard-install-confirm" id="onboardInstallConfirmWrap" hidden>
+          <input type="checkbox" id="onboardInstallConfirm">
+          <span>The First Seeds icon is on my Home Screen</span>
+        </label>
+        <div class="onboard-install-leave" id="onboardInstallLeave" hidden>
+          <p id="obInstallLeave">Nice. Close this page now, then open First Seeds from your new Home Screen icon. That's where you'll type your name.</p>
+        </div>
+        <button type="button" class="btn overlay-btn" id="onboardingInstallNext" hidden>Continue →</button>
+        <button type="button" class="btn-ghost overlay-btn" id="onboardingInstallSkip" hidden>I'll add it on my phone later</button>
+        <p class="auth-msg" id="onboardingInstallMsg" role="status"></p>
+      </div>
+    </div>
+
+    <div class="onboarding-pane" data-onboard-step="3">
+      <p class="onboarding-eyebrow" id="obNameEyebrow">Nice to meet you</p>
+      <h3 id="obNameTitle">What should we call you?</h3>
+      <p class="lead" id="obNameHint"></p>
+      <div class="onboard-hype" id="obHype">
+        <div class="onboard-hype-num" id="obHypeDays">—</div>
+        <div class="onboard-hype-meta">
+          <div class="onboard-hype-label">days until pre-reg</div>
+          <div class="onboard-hype-line" id="obHypeLine"></div>
+        </div>
+      </div>
+      <div class="onboard-name-field">
+        <label class="sr-only" for="partnerNameInput">First name</label>
+        <input type="text" id="partnerNameInput" maxlength="100" autocomplete="given-name" placeholder="Your first name">
+      </div>
+      <div class="onboard-name-field">
+        <label class="sr-only" for="partnerLastNameInput">Last name</label>
+        <input type="text" id="partnerLastNameInput" maxlength="100" autocomplete="family-name" placeholder="Your last name">
+      </div>
+      <div class="onboard-photo grove-only" id="onboardPhotoWrap" hidden>
+        <button type="button" class="onboard-photo-btn" id="onboardPhotoBtn" aria-label="Add a photo">
+          <span class="person-photo is-lg is-letter" id="onboardPhotoFace" aria-hidden="true">•</span>
+        </button>
+        <p class="onboard-photo-label" id="onboardPhotoLabel">Add a photo <span>(optional)</span></p>
+      </div>
+      <button type="button" class="btn overlay-btn" id="onboardingNameNext" disabled>That's me →</button>
+    </div>
+
+    <div class="onboarding-pane" data-onboard-step="4">
+      <p class="onboarding-eyebrow" id="obAuthEyebrow">Your account</p>
+      <h3 id="obAuthTitle">Create an account to continue</h3>
+      <p class="lead" id="obAuthBody"></p>
+      <form id="onboardingAuthForm" autocomplete="on">
+        <div class="onboard-name-field">
+          <label class="field-label" for="onboardingEmail">Email</label>
+          <input type="email" id="onboardingEmail" placeholder="you@email.com" autocomplete="username" inputmode="email" autocapitalize="none" autocorrect="off" spellcheck="false">
+        </div>
+        <div class="onboard-name-field">
+          <label class="field-label" for="onboardingPassword">Password</label>
+          <input type="password" id="onboardingPassword" placeholder="8+ to create an account · existing sign-in still works" autocomplete="current-password" minlength="6">
+        </div>
+        <button type="submit" hidden tabindex="-1" aria-hidden="true"></button>
+        <div class="onboard-auth-actions">
+          <button type="button" class="btn overlay-btn" id="onboardingCreateBtn">Create account →</button>
+          <button type="button" class="btn-ghost overlay-btn" id="onboardingSignInBtn" style="margin-top:8px">Sign in →</button>
+          <button type="button" class="btn-ghost overlay-btn" id="onboardingForgotBtn" style="margin-top:8px">Forgot your password?</button>
+        </div>
+      </form>
+      <div id="onboardingResetPane" hidden>
+        <div class="onboard-name-field" id="onboardingResetEmailWrap">
+          <label class="field-label" for="onboardingResetEmail">Email</label>
+          <input type="email" id="onboardingResetEmail" placeholder="you@email.com" autocomplete="username" inputmode="email" autocapitalize="none" autocorrect="off" spellcheck="false">
+        </div>
+        <div class="onboard-name-field" id="onboardingResetCodeWrap" hidden>
+          <label class="field-label" for="onboardingResetCode">Code from your email</label>
+          <input type="text" id="onboardingResetCode" class="auth-code-input" inputmode="numeric" pattern="[0-9]*" maxlength="8" autocomplete="one-time-code" enterkeyhint="done">
+        </div>
+        <div class="onboard-name-field" id="onboardingResetPassWrap" hidden>
+          <label class="field-label" for="onboardingResetPass">New password</label>
+          <input type="password" id="onboardingResetPass" placeholder="8+ characters" autocomplete="new-password" minlength="8">
+        </div>
+        <div class="onboard-name-field" id="onboardingResetPass2Wrap" hidden>
+          <label class="field-label" for="onboardingResetPass2">New password again</label>
+          <input type="password" id="onboardingResetPass2" placeholder="Type it once more" autocomplete="new-password" minlength="8">
+        </div>
+        <div class="onboard-auth-actions">
+          <button type="button" class="btn overlay-btn" id="onboardingResetSendBtn">Send a code →</button>
+          <button type="button" class="btn overlay-btn" id="onboardingResetVerifyBtn" hidden>Check code →</button>
+          <button type="button" class="btn overlay-btn" id="onboardingResetSaveBtn" hidden>Save new password →</button>
+          <button type="button" class="btn-ghost overlay-btn" id="onboardingResetResendBtn" hidden style="margin-top:8px">Send a new code</button>
+          <button type="button" class="btn-ghost overlay-btn" id="onboardingResetBackBtn" style="margin-top:8px">Back to sign in</button>
+        </div>
+      </div>
+      <p class="auth-msg" id="onboardingAuthMsg" role="status"></p>
+      <p class="auth-hint" id="obAuthHint"></p>
+    </div>
+
+    <div class="onboarding-pane" data-onboard-step="5">
+      <p class="onboarding-eyebrow" id="obModeEyebrow">Your runway</p>
+      <h3 id="obModeTitle">How deep do you want to go?</h3>
+      <p class="lead" id="obModeLead"></p>
+      <button type="button" class="mode-pick" data-hub-mode="starter" id="modePickStarter">
+        <span class="mode-pick-tag" id="modePickStarterTag">Essentials</span>
+        <strong id="modePickStarterLabel">Soft start</strong>
+        <span id="modePickStarterDesc"></span>
+      </button>
+      <button type="button" class="mode-pick featured" data-hub-mode="full" id="modePickFull">
+        <span class="mode-pick-tag" id="modePickFullTag">Everything</span>
+        <strong id="modePickFullLabel">All in</strong>
+        <span id="modePickFullDesc"></span>
+      </button>
+    </div>
+
+    <div class="onboarding-pane" data-onboard-step="6">
+      <p class="onboarding-eyebrow" id="obNotifyEyebrow">Stay in the loop</p>
+      <h3 id="obNotifyTitle">Want a ping when something happens?</h3>
+      <p class="lead" id="obNotifyBody">We’ll ping you for team messages and team zooms. You can pick which ones in Settings.</p>
+      <p class="onboard-notify-note" id="obNotifyNote">You can turn these on or off later in Settings.</p>
+      <p class="onboard-notify-msg" id="obNotifyMsg" role="status"></p>
+      <button type="button" class="btn overlay-btn" id="onboardingNotifyEnable">Turn on notifications →</button>
+      <button type="button" class="btn-ghost overlay-btn" id="onboardingNotifySkip" style="margin-top:8px">Not now</button>
+    </div>
+  </div>
+</div>
+
+<!-- ═══ HOW I GROW ═══ -->
+<div class="overlay how-grow-overlay" id="howGrowOverlay" role="dialog" aria-modal="true" aria-labelledby="howGrowTitle" hidden>
+  <div class="overlay-card how-grow-card">
+    <button type="button" class="overlay-close" id="howGrowClose" aria-label="Close">×</button>
+    <div class="how-grow-progress" id="howGrowProgress" hidden>
+      <div class="how-grow-progress-meta">
+        <span id="howGrowStepLabel">1 of 12</span>
+      </div>
+      <div class="how-grow-progress-track" aria-hidden="true"><i id="howGrowProgressFill"></i></div>
+    </div>
+
+    <section class="how-grow-pane on" data-how-grow-step="0">
+      <p class="onboarding-eyebrow">HOW I GROW</p>
+      <h3 id="howGrowTitle">A little support map, made for you.</h3>
+      <p class="lead" id="howGrowIntro">The person you sit under would love to know how to best support you on this journey.</p>
+      <p class="how-grow-privacy" id="howGrowPrivacy">Your answers are only seen by the person you sit under — your direct upline. You can change them anytime.</p>
+      <button type="button" class="btn overlay-btn" id="howGrowStart">Let’s do it →</button>
+      <button type="button" class="btn-ghost overlay-btn" id="howGrowLater">Maybe later</button>
+      <p class="how-grow-later-hint" id="howGrowLaterHint">No rush — you’ll find this anytime on Sprout, or in Settings.</p>
+    </section>
+
+    <section class="how-grow-pane" data-how-grow-step="1">
+      <span class="how-grow-chip">How I learn</span>
+      <h3>When you’re learning something new, you prefer…</h3>
+      <div class="how-grow-choices" data-how-grow-group="learning_style">
+        <button type="button" data-how-grow-value="Step-by-step instruction">Step-by-step instruction</button>
+        <button type="button" data-how-grow-value="Watching someone do it first">Watching someone do it first</button>
+        <button type="button" data-how-grow-value="Jumping in and figuring it out">Jumping in and figuring it out</button>
+        <button type="button" data-how-grow-value="Talking it through">Talking it through</button>
+      </div>
+      <div class="how-grow-actions">
+        <button type="button" class="btn-ghost" data-how-grow-back>Back</button>
+        <button type="button" class="btn" data-how-grow-next>Next →</button>
+      </div>
+    </section>
+
+    <section class="how-grow-pane" data-how-grow-step="2">
+      <span class="how-grow-chip">How I learn</span>
+      <h3>If you have a question, you’re most likely to…</h3>
+      <div class="how-grow-choices" data-how-grow-group="question_style">
+        <button type="button" data-how-grow-value="Ask right away">Ask right away</button>
+        <button type="button" data-how-grow-value="Research it first">Research it first</button>
+        <button type="button" data-how-grow-value="Wait until someone checks in">Wait until someone checks in</button>
+        <button type="button" data-how-grow-value="Ask a friend before asking a leader">Ask a friend first</button>
+      </div>
+      <div class="how-grow-actions">
+        <button type="button" class="btn-ghost" data-how-grow-back>Back</button>
+        <button type="button" class="btn" data-how-grow-next>Next →</button>
+      </div>
+    </section>
+
+    <section class="how-grow-pane" data-how-grow-step="3">
+      <span class="how-grow-chip">How to show up for me</span>
+      <h3 id="howGrowStrugglingTitle">When you’re struggling, what’s the most helpful thing a leader can do?</h3>
+      <div class="field">
+        <textarea id="howGrowStruggling" rows="4" maxlength="500" placeholder="A check-in, help me make a plan, give me space…" aria-labelledby="howGrowStrugglingTitle"></textarea>
+      </div>
+      <p class="field-hint">Optional — skip if you’re not sure yet.</p>
+      <div class="how-grow-actions">
+        <button type="button" class="btn-ghost" data-how-grow-back>Back</button>
+        <button type="button" class="btn" data-how-grow-next>Next →</button>
+      </div>
+    </section>
+
+    <section class="how-grow-pane" data-how-grow-step="4">
+      <span class="how-grow-chip">How to show up for me</span>
+      <h3>What kind of accountability helps you most?</h3>
+      <div class="how-grow-choices" data-how-grow-group="accountability">
+        <button type="button" data-how-grow-value="Gentle check-ins">Gentle check-ins</button>
+        <button type="button" data-how-grow-value="Direct coaching">Direct coaching</button>
+        <button type="button" data-how-grow-value="Clear goals">Clear goals</button>
+        <button type="button" data-how-grow-value="I prefer to ask when I need help">I’ll ask when I need help</button>
+      </div>
+      <div class="how-grow-actions">
+        <button type="button" class="btn-ghost" data-how-grow-back>Back</button>
+        <button type="button" class="btn" data-how-grow-next>Next →</button>
+      </div>
+    </section>
+
+    <section class="how-grow-pane" data-how-grow-step="5">
+      <span class="how-grow-chip">How to show up for me</span>
+      <h3>How often would you like support?</h3>
+      <div class="how-grow-choices" data-how-grow-group="support_frequency">
+        <button type="button" data-how-grow-value="Weekly">Weekly</button>
+        <button type="button" data-how-grow-value="Every couple weeks">Every couple weeks</button>
+        <button type="button" data-how-grow-value="Monthly">Monthly</button>
+        <button type="button" data-how-grow-value="Mostly as needed">Mostly as needed</button>
+      </div>
+      <div class="how-grow-actions">
+        <button type="button" class="btn-ghost" data-how-grow-back>Back</button>
+        <button type="button" class="btn" data-how-grow-next>Next →</button>
+      </div>
+    </section>
+
+    <section class="how-grow-pane" data-how-grow-step="6">
+      <span class="how-grow-chip">How to reach me</span>
+      <h3>How do you prefer to hear from your leader?</h3>
+      <p class="field-hint" style="margin:0 0 12px">Tap any that feel right — or skip. Nothing here is required.</p>
+      <div class="how-grow-choices compact multi no-rank" data-how-grow-multi="contact_channels">
+        <button type="button" data-how-grow-value="Text">Text</button>
+        <button type="button" data-how-grow-value="Email">Email</button>
+        <button type="button" data-how-grow-value="Social">Social</button>
+        <button type="button" data-how-grow-value="Phone">Phone</button>
+      </div>
+      <div class="how-grow-contact-fields" id="howGrowContactFields" hidden>
+        <div class="field" id="howGrowContactPhoneWrap" hidden>
+          <label class="field-label" for="howGrowContactPhone">Phone number (optional)</label>
+          <input type="tel" id="howGrowContactPhone" maxlength="40" autocomplete="tel" placeholder="If you want them to have it">
+        </div>
+        <div class="field" id="howGrowContactEmailWrap" hidden>
+          <label class="field-label" for="howGrowContactEmail">Email (optional)</label>
+          <input type="email" id="howGrowContactEmail" maxlength="160" autocomplete="email" placeholder="If you want them to have it">
+        </div>
+        <div class="field" id="howGrowContactSocialWrap" hidden>
+          <label class="field-label" for="howGrowContactIg">Instagram (optional)</label>
+          <input id="howGrowContactIg" maxlength="80" autocomplete="off" placeholder="@handle">
+          <label class="field-label" for="howGrowContactSocialOther" style="margin-top:12px">Other social (optional)</label>
+          <input id="howGrowContactSocialOther" maxlength="160" placeholder="TikTok, Facebook, a link…">
+        </div>
+      </div>
+      <p class="field-hint">You can add details later in Edit How I Grow.</p>
+      <div class="how-grow-actions">
+        <button type="button" class="btn-ghost" data-how-grow-back>Back</button>
+        <button type="button" class="btn" data-how-grow-next>Next →</button>
+      </div>
+    </section>
+
+    <section class="how-grow-pane" data-how-grow-step="7">
+      <span class="how-grow-chip">How I feel seen</span>
+      <h3>What kind of encouragement lands?</h3>
+      <p class="field-hint" style="margin:0 0 12px">Tap in order of preference — up to two. 1st is strongest. Then hit Next.</p>
+      <div class="how-grow-choices multi" data-how-grow-multi="encouragement" data-max="2">
+        <button type="button" data-how-grow-value="Words of encouragement"><strong>Words</strong><span>A thoughtful text, note, or verbal encouragement.</span></button>
+        <button type="button" data-how-grow-value="Quality time"><strong>Quality time</strong><span>Conversation, coaching, or time together.</span></button>
+        <button type="button" data-how-grow-value="Thoughtful gifts"><strong>Thoughtful gifts</strong><span>A small meaningful surprise.</span></button>
+        <button type="button" data-how-grow-value="Acts of service"><strong>Acts of service</strong><span>Help solving a problem or lightening the load.</span></button>
+        <button type="button" data-how-grow-value="Celebration"><strong>Celebration</strong><span>Acknowledging milestones and wins.</span></button>
+      </div>
+      <p class="field-hint" id="howGrowEncouragementHint">Tap your 1st pick, then your 2nd if you have one.</p>
+      <div class="how-grow-actions">
+        <button type="button" class="btn-ghost" data-how-grow-back>Back</button>
+        <button type="button" class="btn" data-how-grow-next>Next →</button>
+      </div>
+    </section>
+
+    <section class="how-grow-pane" data-how-grow-step="8">
+      <span class="how-grow-chip">How I feel seen</span>
+      <h3>How do you feel about recognition?</h3>
+      <p class="field-hint" style="margin:0 0 12px">Tap in order of preference — 1st is strongest. Then hit Next.</p>
+      <div class="how-grow-choices multi" data-how-grow-multi="recognition">
+        <button type="button" data-how-grow-value="I love being celebrated publicly">I love being celebrated publicly</button>
+        <button type="button" data-how-grow-value="A small group is perfect">A small group is perfect</button>
+        <button type="button" data-how-grow-value="A private message means more">A private message means more</button>
+        <button type="button" data-how-grow-value="Please don’t put me in the spotlight">Please don’t put me in the spotlight</button>
+      </div>
+      <div class="how-grow-actions">
+        <button type="button" class="btn-ghost" data-how-grow-back>Back</button>
+        <button type="button" class="btn" data-how-grow-next>Next →</button>
+      </div>
+    </section>
+
+    <section class="how-grow-pane" data-how-grow-step="9">
+      <span class="how-grow-chip">How I feel seen</span>
+      <h3>If we surprised you one day, what would make your heart happiest?</h3>
+      <p class="field-hint" style="margin:0 0 12px">Tap in order of preference — 1st is strongest. Then hit Next. Optional.</p>
+      <div class="how-grow-choices compact multi" data-how-grow-multi="surprises">
+        <button type="button" data-how-grow-value="Coffee">Coffee</button>
+        <button type="button" data-how-grow-value="Books">Books</button>
+        <button type="button" data-how-grow-value="Flowers">Flowers</button>
+        <button type="button" data-how-grow-value="Healthy snacks">Healthy snacks</button>
+        <button type="button" data-how-grow-value="Skincare">Skincare</button>
+        <button type="button" data-how-grow-value="Gift card">Gift card</button>
+        <button type="button" data-how-grow-value="Handwritten note">Handwritten note</button>
+        <button type="button" data-how-grow-value="Time together">Time together</button>
+      </div>
+      <label class="sr-only" for="howGrowSurpriseOther">Something else that would surprise you</label>
+      <input class="cal-input how-grow-other-input" id="howGrowSurpriseOther" maxlength="120" placeholder="Something else…">
+      <div class="how-grow-actions">
+        <button type="button" class="btn-ghost" data-how-grow-back>Back</button>
+        <button type="button" class="btn" data-how-grow-next>Next →</button>
+      </div>
+    </section>
+
+    <section class="how-grow-pane" data-how-grow-step="10">
+      <span class="how-grow-chip">Looking ahead</span>
+      <h3 id="howGrowOneYearTitle">One year from now, what would make you say, “I’m so glad I did this”?</h3>
+      <div class="field">
+        <textarea id="howGrowOneYear" rows="4" maxlength="700" placeholder="Optional — share as much or as little as you like." aria-labelledby="howGrowOneYearTitle"></textarea>
+      </div>
+      <div class="how-grow-actions">
+        <button type="button" class="btn-ghost" data-how-grow-back>Back</button>
+        <button type="button" class="btn" data-how-grow-next>Next →</button>
+      </div>
+    </section>
+
+    <section class="how-grow-pane" data-how-grow-step="11">
+      <span class="how-grow-chip">Looking ahead</span>
+      <h3 id="howGrowLeaderNoteTitle">What’s one thing we should know that would help us be better leaders for you?</h3>
+      <div class="field">
+        <textarea id="howGrowLeaderNote" rows="4" maxlength="700" placeholder="Optional — honesty helps more than polish." aria-labelledby="howGrowLeaderNoteTitle"></textarea>
+      </div>
+      <div class="how-grow-actions">
+        <button type="button" class="btn-ghost" data-how-grow-back>Back</button>
+        <button type="button" class="btn" data-how-grow-next>Next →</button>
+      </div>
+    </section>
+
+    <section class="how-grow-pane" data-how-grow-step="12">
+      <span class="how-grow-chip">Little joys · optional</span>
+      <h3>A few fun things, if you want.</h3>
+      <p class="lead how-grow-joys-lead">Totally optional — leaders love these for thoughtful check-ins and surprises.</p>
+      <div class="how-grow-joy-grid how-grow-joy-grid-open">
+        <div class="field"><label class="field-label" for="howGrowSnack">Favorite snack</label><input id="howGrowSnack" maxlength="100"></div>
+        <div class="field"><label class="field-label" for="howGrowDrink">Favorite drink</label><input id="howGrowDrink" maxlength="100"></div>
+        <div class="field"><label class="field-label" for="howGrowBirthday">Birthday</label><input id="howGrowBirthday" maxlength="40" placeholder="Month + day"></div>
+        <div class="field"><label class="field-label" for="howGrowColor">Favorite color</label><input id="howGrowColor" maxlength="80"></div>
+        <div class="field"><label class="field-label" for="howGrowHobby">Favorite hobby</label><input id="howGrowHobby" maxlength="120"></div>
+        <div class="field"><label class="field-label" for="howGrowTravel">Favorite place traveled</label><input id="howGrowTravel" maxlength="160"></div>
+        <div class="field"><label class="field-label" for="howGrowPets">Dogs, cats… or chickens?</label><input id="howGrowPets" maxlength="120"></div>
+        <div class="field full"><label class="field-label" for="howGrowAnything">Anything else we should know?</label><textarea id="howGrowAnything" rows="3" maxlength="500"></textarea></div>
+      </div>
+      <p class="auth-msg" id="howGrowMsg" role="status"></p>
+      <div class="how-grow-actions">
+        <button type="button" class="btn-ghost" data-how-grow-back>Back</button>
+        <button type="button" class="btn" id="howGrowSubmit">Share with my upline →</button>
+      </div>
+    </section>
+  </div>
+</div>
+
+<!-- ═══ NAME PROMPT (existing accounts) ═══ -->
+<div class="overlay" id="lastNameOverlay" role="dialog" aria-modal="true" aria-labelledby="lastNameTitle" hidden>
+  <div class="overlay-card">
+    <button type="button" class="overlay-close" id="lastNameClose" aria-label="Close">×</button>
+    <p class="onboarding-eyebrow">Quick one</p>
+    <h3 id="lastNameTitle">What’s your last name?</h3>
+    <p class="lead" id="lastNameLead">We need last names so leaders can tell people apart when first names match.</p>
+    <div class="onboard-name-field" id="firstNamePromptField" hidden>
+      <label class="field-label" for="firstNamePromptInput">First name</label>
+      <input type="text" id="firstNamePromptInput" maxlength="100" autocomplete="given-name" placeholder="Your first name">
+    </div>
+    <div class="onboard-name-field" id="lastNamePromptField">
+      <label class="field-label" for="lastNamePromptInput">Last name</label>
+      <input type="text" id="lastNamePromptInput" maxlength="100" autocomplete="family-name" placeholder="Your last name">
+    </div>
+    <button type="button" class="btn overlay-btn" id="lastNameSave" disabled>Save →</button>
+    <button type="button" class="btn-ghost overlay-btn" id="lastNameLater" style="margin-top:8px">Maybe later</button>
+    <p class="auth-msg" id="lastNameMsg" role="status"></p>
+  </div>
+</div>
+
+<!-- ═══ GROVE LEADER WELCOME ═══ -->
+<div class="overlay" id="groveLeaderWelcomeOverlay" role="dialog" aria-modal="true" aria-labelledby="groveLeaderWelcomeTitle" hidden>
+  <div class="overlay-card">
+    <p class="onboarding-eyebrow">Grove Leader</p>
+    <h3 id="groveLeaderWelcomeTitle">Congrats on growing into a Grove Leader.</h3>
+    <p class="lead">A few things just unlocked so you can tend your Grove well.</p>
+    <ul class="grove-leader-welcome-points">
+      <li>You have an exclusive Leaders Only section in Learn.</li>
+      <li>You can rearrange your team tree (in case someone sent the wrong link), and you can send a note to the whole grove — it lands in Messages (💬).</li>
+      <li>Leader-only gatherings now show on Calendar — they’re the ones with the star.</li>
+      <li>If someone in Evergreen belongs on your team, make an unlock code in Settings. They keep the same login and land under you.</li>
+    </ul>
+    <p class="lead grove-leader-welcome-close">We’re so glad you’re growing this with us.</p>
+    <button type="button" class="btn overlay-btn" id="groveLeaderWelcomeOpen">Open Grove Leaders →</button>
+    <button type="button" class="btn-ghost overlay-btn" id="groveLeaderWelcomeGotIt" style="margin-top:8px">Got it</button>
+  </div>
+</div>
+
+<!-- ═══ CLIENTS ARRIVAL ═══ -->
+<div class="overlay" id="clientsArrivalOverlay" role="dialog" aria-modal="true" aria-labelledby="clientsArrivalTitle" hidden>
+  <div class="overlay-card">
+    <p class="onboarding-eyebrow">Clients</p>
+    <h3 id="clientsArrivalTitle">Introducing Clients</h3>
+    <p class="lead">You now have a Clients tab on your bottom menu. This unlocks The Fresh Shelf app for your clients and potential clients. This tab is where you’ll see and communicate with them.</p>
+    <button type="button" class="btn overlay-btn" id="clientsArrivalOpen">Open Clients →</button>
+  </div>
+</div>
+
+<!-- ═══ AUTH ═══ -->
+<div class="overlay auth" id="authOverlay" role="dialog" aria-modal="true" aria-labelledby="authTitle">
+  <div class="overlay-card">
+    <button type="button" class="overlay-close" id="authCloseBtn" aria-label="Close">×</button>
+    <div id="authSignPane">
+      <p class="onboarding-eyebrow" id="authEyebrow">First Seeds</p>
+      <h3 id="authTitle">Save your progress</h3>
+      <p class="lead" id="authLead">Sign in with email + password so your story and calendar stay with you — and so your leader can see how you're doing (progress only, no chat).</p>
+      <div id="authSignFields">
+      <div class="onboard-name-field">
+        <label class="field-label" for="authName">First name</label>
+        <input type="text" id="authName" maxlength="100" placeholder="Your first name" autocomplete="given-name">
+      </div>
+      <div class="onboard-name-field" id="authLastNameField">
+        <label class="field-label" for="authLastName">Last name</label>
+        <input type="text" id="authLastName" maxlength="100" placeholder="Your last name" autocomplete="family-name">
+      </div>
+      <div class="onboard-name-field">
+        <label class="field-label" for="authEmail">Email</label>
+        <input type="email" id="authEmail" placeholder="you@email.com" autocomplete="username" inputmode="email" autocapitalize="none" autocorrect="off" spellcheck="false">
+      </div>
+      <div class="onboard-name-field">
+        <label class="field-label" for="authPassword">Password</label>
+        <input type="password" id="authPassword" placeholder="8+ to create an account · existing sign-in still works" autocomplete="current-password" minlength="6">
+      </div>
+      <button type="button" class="btn overlay-btn" id="authSubmitBtn">Sign in →</button>
+      <button type="button" class="btn-ghost overlay-btn" id="authCreateBtn" style="margin-top:8px">Create account →</button>
+      <button type="button" class="btn-ghost overlay-btn" id="authForgotBtn" style="margin-top:8px">Forgot your password?</button>
+      </div>
+      <div id="authResetPane" hidden>
+        <div class="onboard-name-field" id="authResetEmailWrap">
+          <label class="field-label" for="authResetEmail">Email</label>
+          <input type="email" id="authResetEmail" placeholder="you@email.com" autocomplete="username" inputmode="email" autocapitalize="none" autocorrect="off" spellcheck="false">
+        </div>
+        <div class="onboard-name-field" id="authResetCodeWrap" hidden>
+          <label class="field-label" for="authResetCode">Code from your email</label>
+          <input type="text" id="authResetCode" class="auth-code-input" inputmode="numeric" pattern="[0-9]*" maxlength="8" autocomplete="one-time-code" enterkeyhint="done">
+        </div>
+        <div class="onboard-name-field" id="authResetPassWrap" hidden>
+          <label class="field-label" for="authResetPass">New password</label>
+          <input type="password" id="authResetPass" placeholder="8+ characters" autocomplete="new-password" minlength="8">
+        </div>
+        <div class="onboard-name-field" id="authResetPass2Wrap" hidden>
+          <label class="field-label" for="authResetPass2">New password again</label>
+          <input type="password" id="authResetPass2" placeholder="Type it once more" autocomplete="new-password" minlength="8">
+        </div>
+        <button type="button" class="btn overlay-btn" id="authResetSendBtn">Send a code →</button>
+        <button type="button" class="btn overlay-btn" id="authResetVerifyBtn" hidden>Check code →</button>
+        <button type="button" class="btn overlay-btn" id="authResetSaveBtn" hidden>Save new password →</button>
+        <button type="button" class="btn-ghost overlay-btn" id="authResetResendBtn" hidden style="margin-top:8px">Send a new code</button>
+        <button type="button" class="btn-ghost overlay-btn" id="authResetBackBtn" style="margin-top:8px">Back to sign in</button>
+      </div>
+      <p class="auth-msg" id="authMsg"></p>
+      <p class="auth-hint" id="authSignHint">Works in the home-screen app — no email links. Use the same email every time. A second account looks like your leads disappeared — they are still on the first email. Already started? Tap Sign in. New here? Tap Create account (if that email already exists, we’ll sign you in instead of making a second account).</p>
+    </div>
+    <div id="authAccountPane" hidden>
+      <p class="onboarding-eyebrow">Your account</p>
+      <h3 id="authDisplayName"></h3>
+      <p class="lead" id="authEmailLine"></p>
+      <p class="auth-hint" id="authModeLine"></p>
+      <div class="onboard-name-field">
+        <label class="field-label" for="authInviteInput">Your join link</label>
+        <input type="text" id="authInviteInput" readonly>
+      </div>
+      <button type="button" class="btn overlay-btn" id="authCopyInvite">Copy join link</button>
+      <button type="button" class="btn-ghost overlay-btn" id="authSignOutBtn" style="margin-top:10px">Sign out</button>
+    </div>
+  </div>
+</div>
+
+<!-- ═══ SEND CHEER PREVIEW ═══ -->
+<div class="cheer-sheet" id="cheerSheet" hidden>
+  <button type="button" class="cheer-sheet-backdrop" id="cheerSheetClose" aria-label="Close"></button>
+  <div class="cheer-sheet-card" role="dialog" aria-modal="true" aria-labelledby="cheerSheetTitle">
+    <div class="live-tag" id="cheerSheetTitle">SEND A CHEER</div>
+    <p class="cheer-sheet-meta" id="cheerSheetMeta"></p>
+    <p class="cheer-sheet-preview" id="cheerSheetBody"></p>
+    <p class="cheer-sheet-hint">This shows in their First Seeds app as a banner from you — even if they open it later.</p>
+    <div class="cheer-sheet-actions">
+      <button type="button" class="btn-ghost" id="cheerChooseAnother">Choose another</button>
+      <button type="button" class="btn" id="cheerConfirmSend">Send this →</button>
+    </div>
+    <button type="button" class="cheer-sheet-cancel" id="cheerSheetCancel">Cancel</button>
+  </div>
+</div>
+
+<!-- ═══ LEAVE NOTE ═══ -->
+<div class="cheer-sheet" id="noteSheet" hidden>
+  <button type="button" class="cheer-sheet-backdrop" id="noteSheetClose" aria-label="Close"></button>
+  <div class="cheer-sheet-card" role="dialog" aria-modal="true" aria-labelledby="noteSheetTitle">
+    <div class="live-tag" id="noteSheetTitle">LEAVE A NOTE</div>
+    <p class="cheer-sheet-meta" id="noteSheetMeta"></p>
+    <div class="field note-sheet-field">
+      <label class="field-label" for="noteSheetBody">Your note</label>
+      <textarea class="note-sheet-input" id="noteSheetBody" rows="5" maxlength="500" placeholder="A short personal note…"></textarea>
+    </div>
+    <p class="cheer-sheet-hint">They’ll see this at the top of their runway. If they turned on notifications, they’ll get a ping too.</p>
+    <div class="cheer-sheet-actions note-sheet-actions">
+      <div class="note-sheet-copy-wrap">
+        <button type="button" class="btn-ghost" id="noteSheetCopy">Copy</button>
+        <p class="note-sheet-copy-hint">Paste it wherever you usually chat.</p>
+      </div>
+      <button type="button" class="btn" id="noteConfirmSend">Send note →</button>
+    </div>
+    <button type="button" class="cheer-sheet-cancel" id="noteSheetCancel">Cancel</button>
+  </div>
+</div>
+
+<!-- ═══ MESSAGE THE TEAM ═══ -->
+<div class="cheer-sheet" id="broadcastSheet" hidden>
+  <button type="button" class="cheer-sheet-backdrop" id="broadcastSheetClose" aria-label="Close"></button>
+  <div class="cheer-sheet-card poll-sheet-card" role="dialog" aria-modal="true" aria-labelledby="broadcastSheetTitle">
+    <div class="live-tag" id="broadcastSheetTitle">MESSAGE THE TEAM</div>
+    <div class="broadcast-audience" id="broadcastKind">
+      <div class="live-team-sort" role="group" aria-label="What to send">
+        <button type="button" class="live-team-sort-btn on" data-broadcast-kind="note">Note</button>
+        <button type="button" class="live-team-sort-btn" data-broadcast-kind="poll">Poll</button>
+      </div>
+    </div>
+    <div class="broadcast-audience" id="broadcastAudience" hidden>
+      <div class="live-team-sort" role="group" aria-label="Who to message">
+        <button type="button" class="live-team-sort-btn on" data-broadcast-audience="team">Whole team</button>
+        <button type="button" class="live-team-sort-btn" data-broadcast-audience="level1">Level 1</button>
+        <button type="button" class="live-team-sort-btn" data-broadcast-audience="leaders">Grove Leaders</button>
+      </div>
+    </div>
+    <p class="cheer-sheet-hint" id="broadcastSheetHint">This pings everyone who turned on team messages — a zoom reminder, a last-minute change, a quick hello.</p>
+    <div class="field note-sheet-field">
+      <span class="field-label" id="broadcastSheetBodyLabel">Your note</span>
+      <textarea class="note-sheet-input" id="broadcastSheetBody" rows="4" maxlength="280" placeholder="Keep it short…"></textarea>
+    </div>
+    <p class="cheer-sheet-meta" id="broadcastSheetCount">0 / 280</p>
+    <div class="broadcast-poll-fields" id="broadcastPollFields" hidden>
+      <div class="broadcast-audience" id="broadcastPollChoice">
+        <div class="live-team-sort" role="group" aria-label="How they answer">
+          <button type="button" class="live-team-sort-btn on" data-broadcast-poll-choice="multiple">Pick any</button>
+          <button type="button" class="live-team-sort-btn" data-broadcast-poll-choice="single">Pick one</button>
+        </div>
+      </div>
+      <div class="field">
+        <span class="field-label">Choices</span>
+        <div id="pollSheetSlots"></div>
+        <button type="button" class="btn-ghost overlay-btn" id="pollSheetAddSlot" style="margin-top:8px">Add another choice</button>
+      </div>
+    </div>
+    <p class="cheer-sheet-hint" id="broadcastSheetMsg" role="status"></p>
+    <div class="cheer-sheet-actions">
+      <button type="button" class="btn" id="broadcastConfirmSend">Send to the team →</button>
+    </div>
+    <button type="button" class="cheer-sheet-cancel" id="broadcastSheetCancel">Cancel</button>
+  </div>
+</div>
+
+<!-- ═══ TEAM PERSON DETAIL ═══ -->
+<div class="cheer-sheet" id="teamPersonSheet" hidden>
+  <button type="button" class="cheer-sheet-backdrop" id="teamPersonClose" aria-label="Close"></button>
+  <div class="cheer-sheet-card team-person-card" role="dialog" aria-modal="true" aria-labelledby="teamPersonName">
+    <div class="team-person-head">
+      <div class="live-tag">TEAM MEMBER</div>
+      <button type="button" class="team-person-x" id="teamPersonX" aria-label="Close">×</button>
+    </div>
+    <div class="team-person-identity">
+      <div class="team-person-photo-slot" id="teamPersonPhoto" hidden></div>
+      <h3 id="teamPersonName"></h3>
+    </div>
+    <div class="team-person-chips" id="teamPersonChips"></div>
+    <dl class="team-person-facts" id="teamPersonFacts"></dl>
+    <div class="cheer-sheet-actions" id="teamPersonActions"></div>
+    <button type="button" class="cheer-sheet-cancel" id="teamPersonCancel">Close</button>
+  </div>
+</div>
+
+<!-- ═══ HOW THEY GROW (LEADER VIEW) ═══ -->
+<div class="cheer-sheet" id="howTheyGrowSheet" hidden>
+  <button type="button" class="cheer-sheet-backdrop" id="howTheyGrowClose" aria-label="Close"></button>
+  <div class="cheer-sheet-card how-they-grow-card" role="dialog" aria-modal="true" aria-labelledby="howTheyGrowName">
+    <div class="team-person-head">
+      <div class="live-tag">HOW THEY GROW</div>
+      <button type="button" class="team-person-x" id="howTheyGrowX" aria-label="Close">×</button>
+    </div>
+    <div class="team-person-identity">
+      <div class="team-person-photo-slot" id="howTheyGrowPhoto" hidden></div>
+      <h3 id="howTheyGrowName"></h3>
+    </div>
+    <div id="howTheyGrowBody"></div>
+    <button type="button" class="cheer-sheet-cancel" id="howTheyGrowCancel">Close</button>
+  </div>
+</div>
+
+<!-- ═══ EVERGREEN RESOURCES INVITE ═══ -->
+<div class="cheer-sheet" id="evResInviteSheet" hidden>
+  <button type="button" class="cheer-sheet-backdrop" id="evResInviteClose" aria-label="Close"></button>
+  <div class="cheer-sheet-card team-person-card" role="dialog" aria-modal="true" aria-labelledby="evResInviteTitle">
+    <div class="team-person-head">
+      <div class="live-tag" id="evResInviteTag">YOUR LINK</div>
+      <button type="button" class="team-person-x" id="evResInviteX" aria-label="Close">×</button>
+    </div>
+    <h3 id="evResInviteTitle">Copy my link to join</h3>
+    <p class="team-person-hint" id="evResInviteLead"></p>
+    <div class="field" style="margin:14px 0 12px">
+      <label class="field-label" for="evResInviteUrl">Invite link</label>
+      <input class="cal-input" id="evResInviteUrl" readonly>
+    </div>
+    <button type="button" class="btn" id="evResInviteCopy" style="width:100%">Copy my link to join</button>
+    <button type="button" class="cheer-sheet-cancel" id="evResInviteCancel">Close</button>
+  </div>
+</div>
+
+<!-- ═══ MOVE UNDER PICKER ═══ -->
+<div class="cheer-sheet" id="teamMoveSheet" hidden>
+  <button type="button" class="cheer-sheet-backdrop" id="teamMoveClose" aria-label="Close"></button>
+  <div class="cheer-sheet-card team-person-card" role="dialog" aria-modal="true" aria-labelledby="teamMoveTitle">
+    <div class="team-person-head">
+      <div class="live-tag">MOVE UNDER</div>
+      <button type="button" class="team-person-x" id="teamMoveX" aria-label="Close">×</button>
+    </div>
+    <h3 id="teamMoveTitle">Choose a new Level 1</h3>
+    <p class="team-person-hint" id="teamMoveLead"></p>
+    <div class="field">
+      <span class="field-label">Search</span>
+      <input type="search" class="cal-input" id="teamMoveSearch" placeholder="Name, last name, or email" autocomplete="off">
+    </div>
+    <div class="team-move-list" id="teamMoveList" role="listbox"></div>
+    <button type="button" class="cheer-sheet-cancel" id="teamMoveCancel">Cancel</button>
+  </div>
+</div>
+
+<!-- ═══ MINI TOUR ═══ -->
+<div class="overlay tour" id="tour" role="dialog" aria-modal="true" aria-labelledby="tourTitle">
+  <div class="tour-spotlight" id="tourSpotlight" hidden aria-hidden="true"></div>
+  <div class="overlay-card tour-card" id="tourCard">
+    <div class="onboarding-dots" id="tourDots" aria-hidden="true"></div>
+    <h3 id="tourTitle"></h3>
+    <p class="lead" id="tourBody"></p>
+    <button type="button" class="btn overlay-btn" id="tourNext">Next</button>
+  </div>
+</div>
+
+<div class="leader-pdf-overlay" id="leaderPdfOverlay" hidden>
+  <div class="leader-pdf-bar">
+    <button type="button" class="prod-pill on" id="leaderPdfBack">← Back</button>
+    <span class="leader-pdf-bar-title" id="leaderPdfTitle">Document</span>
+    <button type="button" class="prod-pill" id="leaderPdfShare" hidden>Copy link to share</button>
+    <button type="button" class="prod-pill" id="leaderPdfSave" hidden>Save</button>
+  </div>
+  <div class="leader-pdf-pages" id="leaderPdfPages"></div>
+</div>
+
+<div class="photo-crop-overlay" id="photoCropOverlay" hidden>
+  <div class="photo-crop-card" role="dialog" aria-modal="true" aria-labelledby="photoCropTitle">
+    <p class="photo-crop-kicker">Your photo</p>
+    <h3 id="photoCropTitle">Move it so you’re in the circle</h3>
+    <div class="photo-crop-stage" id="photoCropStage">
+      <canvas id="photoCropCanvas" aria-hidden="true"></canvas>
+      <div class="photo-crop-mask" aria-hidden="true"></div>
+    </div>
+    <p class="photo-crop-hint">Drag to center · pinch to zoom</p>
+    <p class="photo-crop-msg" id="photoCropMsg" role="status"></p>
+    <button type="button" class="btn overlay-btn" id="photoCropUse">Use this</button>
+    <button type="button" class="btn-ghost overlay-btn" id="photoCropCancel">Cancel</button>
+  </div>
+</div>
+
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+<script src="js/config.js?v=405"></script>
+<script src="js/packs.js?v=349"></script>
+<script src="js/packs/evergreen.js?v=381"></script>
+<script src="js/supabase-config.js?v=306"></script>
+<script src="js/ui-dialog.js?v=5"></script>
+<script src="js/data.js?v=314"></script>
+<script src="js/content.js?v=325"></script>
+<script src="js/content-vault.js?v=289"></script>
+<script src="js/products.js?v=316"></script>
+<script src="js/ingredients.js?v=309"></script>
+<script src="assets/products/manifest.js?v=287"></script>
+<script src="js/plant.js?v=290"></script>
+<script src="js/tree.js?v=313"></script>
+<script src="js/calendar.js?v=322"></script>
+<script src="js/cloud.js?v=463"></script>
+<script src="js/push.js?v=362"></script>
+<script src="js/cabinet-faq.js?v=3"></script>
+<script src="js/cabinet-desk.js?v=64"></script>
+<script src="js/bridge-ui.js?v=521"></script>
+<script src="js/comp-plan.js?v=32"></script>
+<script src="js/app.js?v=619"></script>
+<script src="js/pwa.js?v=359"></script>
+</body>
+</html>
