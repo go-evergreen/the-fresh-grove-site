@@ -1068,18 +1068,30 @@ window.FS.normalizeMeetingHref = function (raw, maxLen) {
     "ringana-with-kassidy": true
   };
 
+  var EVERGREEN_CUSTOM_LEAD_PATHS = {
+    "ringana-with-becky": true,
+    "ringana-with-cindee": true,
+    "ringana-with-jennifer": true,
+    "ringana-with-julie": true,
+    "ringana-with-kathryn": true,
+    "ringana-with-kimberly": true,
+    "ringana-with-lily": true,
+    "ringana-with-lisa": true,
+    "ringana-with-roxanne": true
+  };
+
   function prettyCustomLeadShareUrl(url) {
     var raw = String(url || "").trim();
     if (/tayrourke\.github\.io\/tay-goes-fresh/i.test(raw) || /^https:\/\/taygoesfresh\.com\/?$/i.test(raw)) {
       return "https://taygoesfresh.com/";
     }
-    if (/ringana-with-kimberly/i.test(raw)) {
-      return "https://evergreenco.team/ringana-with-kimberly/";
-    }
     var m = raw.match(/\/(ringana-with-[a-z0-9-]+)\/?/i);
     if (m) {
       var path = m[1].toLowerCase();
       if (path === "ringana-with-the-smallwoods") path = "ringana-with-meghan";
+      if (EVERGREEN_CUSTOM_LEAD_PATHS[path]) {
+        return "https://evergreenco.team/" + path + "/";
+      }
       if (PRETTY_CUSTOM_LEAD_PATHS[path]) {
         return "https://thefreshgrove.team/" + path + "/";
       }

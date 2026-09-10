@@ -13,7 +13,7 @@ window.GROVE.SUPABASE = {
 window.GROVE.SITE = {
   name: "The Fresh Grove",
   instagram: "https://instagram.com/the.fresh.grove",
-  quiz: "https://go-evergreen.github.io/the-fresh-match/",
+  quiz: "https://quiz.thefreshgrove.team/",
   cookieDays: 90,
   cookieName: "grove_with"
 };
