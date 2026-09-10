@@ -49,8 +49,8 @@
     location.replace(prettyHops[prettyLead[1].toLowerCase()] + search + hash);
     return;
   }
-  if (/^\/lead(\/|\.html|$)/i.test(path) || /[?&]p=/.test(search)) {
-    location.replace("/lead.html" + search + hash);
+  if (/^\/lead(\/|\.html|$)/i.test(path) || /[?&](?:p|with)=/.test(search) || /[#&?](?:p|with)=/.test(hash)) {
+    location.replace("https://app.thefreshgrove.team/lead.html" + search + hash);
     return;
   }
   if (/^\/thefreshcatalog(\/|\.html|$)/i.test(path)) {

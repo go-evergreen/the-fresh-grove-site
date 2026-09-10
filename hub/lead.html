@@ -12,6 +12,13 @@
 try { if (window.top !== window.self) window.top.location.replace(window.location.href); } catch (e) {}
 (function () {
   try {
+    var host = String(location.hostname || "").toLowerCase();
+    if (host === "thefreshgrove.team" || host === "www.thefreshgrove.team") {
+      location.replace("https://app.thefreshgrove.team/lead.html" + String(location.search || "") + String(location.hash || ""));
+      return;
+    }
+  } catch (eHop) {}
+  try {
     var p = new URLSearchParams(location.search);
     var slug = (p.get("p") || p.get("with") || "").trim().toLowerCase();
     if (!slug && location.hash) {

@@ -134,7 +134,13 @@
     }
 
     var file = "index.html";
-    if (/lead\.html$/i.test(path) || params.has("p") || params.has("with")) file = "lead.html";
+    if (/lead\.html$/i.test(path) || params.has("p") || params.has("with")) {
+      if (host === "thefreshgrove.team" || host === "www.thefreshgrove.team") {
+        location.replace("https://app.thefreshgrove.team/lead.html" + search + hash);
+        return;
+      }
+      file = "lead.html";
+    }
 
     var dest = base + file + (params.toString() ? "?" + params.toString() : "") + hash;
     var a = document.getElementById("fsGo");

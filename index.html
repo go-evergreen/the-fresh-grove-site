@@ -3,6 +3,20 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<script>
+(function () {
+  try {
+    var q = new URLSearchParams(location.search);
+    var slug = String(q.get("with") || q.get("p") || "").trim();
+    if (!slug && location.hash) {
+      var hm = String(location.hash).match(/(?:^|[?#&])(?:p|with)=([^&]+)/i);
+      if (hm) slug = decodeURIComponent(hm[1] || "").trim();
+    }
+    if (!slug) return;
+    location.replace("https://app.thefreshgrove.team/lead.html" + String(location.search || "") + String(location.hash || ""));
+  } catch (e) {}
+})();
+</script>
 <title>The Fresh Grove — a founding Ringana team</title>
 <meta name="description" content="The Fresh Grove is a founding U.S. Ringana team. Frequent zooms, real support, and a private hub — your runway to launch. Come into the grove before October 1.">
 <link rel="canonical" href="https://thefreshgrove.team/">

@@ -258,7 +258,14 @@ try {
     var withSlug = "";
     try { withSlug = String(new URLSearchParams(location.search).get("with") || new URLSearchParams(location.search).get("p") || "").trim(); } catch (eW) {}
     if (withSlug && !join) {
-      location.replace("lead.html" + location.search + location.hash);
+      var leadDest = "lead.html" + location.search + location.hash;
+      try {
+        var leadHost = String(location.hostname || "").toLowerCase();
+        if (leadHost === "thefreshgrove.team" || leadHost === "www.thefreshgrove.team") {
+          leadDest = "https://app.thefreshgrove.team/lead.html" + location.search + location.hash;
+        }
+      } catch (eLeadHop) {}
+      location.replace(leadDest);
       return;
     }
     var evHost = host === "app.evergreenco.team";
