@@ -1727,7 +1727,7 @@ window.FS.YouTube = (function () {
         id: p.id,
         display_name: p.display_name,
         last_name: p.last_name || "",
-        email: p.email,
+        email: (!isEv && Cloud.isSuperAdmin && Cloud.isSuperAdmin()) ? (p.email || "") : "",
         hub_mode: p.hub_mode,
         created_at: p.created_at || "",
         is_org_admin: !!p.is_org_admin,
@@ -1750,7 +1750,9 @@ window.FS.YouTube = (function () {
       if (p.last_name && !teamPersonCache[p.id].last_name) {
         teamPersonCache[p.id].last_name = p.last_name;
       }
-      if (p.email && !teamPersonCache[p.id].email) teamPersonCache[p.id].email = p.email;
+      if (!isEv && Cloud.isSuperAdmin && Cloud.isSuperAdmin() && p.email && !teamPersonCache[p.id].email) {
+        teamPersonCache[p.id].email = p.email;
+      }
       if (p.created_at && !teamPersonCache[p.id].created_at) {
         teamPersonCache[p.id].created_at = p.created_at;
       }
@@ -2151,6 +2153,9 @@ window.FS.YouTube = (function () {
           if (p.created_at && !teamPersonCache[p.id].created_at) {
             teamPersonCache[p.id].created_at = p.created_at;
           }
+          if (!packEvergreen() && Cloud.isSuperAdmin && Cloud.isSuperAdmin() && p.email) {
+            teamPersonCache[p.id].email = p.email;
+          }
         });
       } catch (e) {}
     } else if (adminProfileCache.length) {
@@ -2160,6 +2165,9 @@ window.FS.YouTube = (function () {
         teamPersonCache[p.id].is_hub_admin = !!p.is_hub_admin;
         teamPersonCache[p.id].is_super_admin = !!p.is_super_admin;
         if (p.org_id) teamPersonCache[p.id].org_id = p.org_id;
+        if (!packEvergreen() && Cloud.isSuperAdmin && Cloud.isSuperAdmin() && p.email) {
+          teamPersonCache[p.id].email = p.email;
+        }
       });
     }
     var person = teamPersonCache[partnerId];
@@ -2197,8 +2205,11 @@ window.FS.YouTube = (function () {
     } else if (person.sectionsDone != null) {
       factRows.push(["Progress", person.sectionsDone + "/" + person.sectionTotal + " sections"]);
     }
-    if (person.email) factRows.push(["Email", person.email]);
+    if (person.email) factRows.push(["Email", person.email, "mail"]);
     facts.innerHTML = factRows.map(function (pair) {
+      if (pair[2] === "mail") {
+        return "<div><dt>" + esc(pair[0]) + "</dt><dd><a href=\"mailto:" + esc(pair[1]) + "\">" + esc(pair[1]) + "</a></dd></div>";
+      }
       return "<div><dt>" + esc(pair[0]) + "</dt><dd>" + esc(pair[1]) + "</dd></div>";
     }).join("");
     var html = "";
@@ -2913,11 +2924,16 @@ window.FS.YouTube = (function () {
       var isLeader = evergreen
         ? personIsEvergreenOrg(p) && !!(p.is_org_admin || p.is_hub_admin || (admin && (admin.is_org_admin || admin.is_hub_admin)))
         : personIsGroveLeader(p, leaderIds);
+      if (!evergreen && Cloud.isSuperAdmin && Cloud.isSuperAdmin() && admin && admin.email && !p.email) {
+        p.email = admin.email;
+      }
       teamPersonCache[p.id] = {
         id: p.id,
         display_name: p.display_name,
         last_name: p.last_name || "",
-        email: p.email,
+        email: String((p.email ||
+          (!evergreen && Cloud.isSuperAdmin && Cloud.isSuperAdmin() && admin && admin.email) ||
+          (down && down.email) || "")).trim(),
         hub_mode: p.hub_mode,
         created_at: p.created_at || (down && down.created_at) || "",
         last_active_at: p.last_active_at,
