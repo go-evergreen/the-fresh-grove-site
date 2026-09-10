@@ -49,8 +49,14 @@
     location.replace(prettyHops[prettyLead[1].toLowerCase()] + search + hash);
     return;
   }
+  var leadPretty = String(path || "").match(/^\/lead\/([a-z0-9][a-z0-9-]{1,38})\/?$/i);
+  if (leadPretty) {
+    var leadSlug = decodeURIComponent(leadPretty[1] || "").trim().toLowerCase();
+    location.replace("/lead.html?p=" + encodeURIComponent(leadSlug) + "#p=" + encodeURIComponent(leadSlug));
+    return;
+  }
   if (/^\/lead(\/|\.html|$)/i.test(path) || /[?&](?:p|with)=/.test(search) || /[#&?](?:p|with)=/.test(hash)) {
-    location.replace("https://app.thefreshgrove.team/lead.html" + search + hash);
+    location.replace("/lead.html" + search + hash);
     return;
   }
   if (/^\/thefreshcatalog(\/|\.html|$)/i.test(path)) {

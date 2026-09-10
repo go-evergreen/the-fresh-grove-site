@@ -262,7 +262,7 @@ try {
       try {
         var leadHost = String(location.hostname || "").toLowerCase();
         if (leadHost === "thefreshgrove.team" || leadHost === "www.thefreshgrove.team") {
-          leadDest = "https://app.thefreshgrove.team/lead.html" + location.search + location.hash;
+          leadDest = "/lead.html" + location.search + location.hash;
         }
       } catch (eLeadHop) {}
       location.replace(leadDest);

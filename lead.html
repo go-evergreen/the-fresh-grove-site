@@ -2,27 +2,175 @@
 <html lang="en">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1">
-<title>The Fresh Grove</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+<title>Stay in the loop — The Fresh Grove</title>
+<meta name="description" content="Fresh-made, toxin-free wellness from Austria is coming to America. Leave your info to hear first.">
+<meta name="theme-color" content="#1a2f26">
+<meta name="referrer" content="strict-origin-when-cross-origin">
 <meta name="robots" content="noindex">
 <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate">
-<style>
-  html,body{margin:0;min-height:100%;background:#f6f2ea;color:#22301f;font-family:"Work Sans",system-ui,sans-serif}
-  body{display:grid;place-items:center;padding:2rem;text-align:center}
-  p{max-width:22rem;line-height:1.5}
-  a{color:#1c3227}
-</style>
-</head>
-<body>
-<p>Opening this page…</p>
-<p><a id="go" href="https://app.thefreshgrove.team/lead.html">Continue</a></p>
 <script>
+try { if (window.top !== window.self) window.top.location.replace(window.location.href); } catch (e) {}
 (function () {
-  var dest = "https://app.thefreshgrove.team/lead.html" + String(location.search || "") + String(location.hash || "");
-  var a = document.getElementById("go");
-  if (a) a.href = dest;
-  location.replace(dest);
+  try {
+    var p = new URLSearchParams(location.search);
+    var slug = (p.get("p") || p.get("with") || "").trim().toLowerCase();
+    if (!slug && location.hash) {
+      var hm = String(location.hash).match(/(?:^|[?#&])(?:p|with)=([^&]+)/i);
+      if (hm) slug = decodeURIComponent(hm[1] || "").trim().toLowerCase();
+    }
+    if (!slug) return;
+    var needQ = !p.get("p") && !p.get("with");
+    var needH = !/#(?:p|with)=/i.test(String(location.hash || ""));
+    if (!needQ && !needH) return;
+    var next = new URL(location.href);
+    if (needQ) next.searchParams.set("p", slug);
+    if (needH) next.hash = "p=" + encodeURIComponent(slug);
+    history.replaceState(null, "", next.pathname + next.search + next.hash);
+  } catch (eLead) {}
 })();
 </script>
+<link rel="icon" href="/hub/icons/favicon.svg" type="image/svg+xml">
+<link rel="icon" href="/hub/icons/favicon-32.png" sizes="32x32" type="image/png">
+<link rel="apple-touch-icon" href="/hub/icons/apple-touch-icon.png">
+<link rel="stylesheet" href="/hub/css/lead.css?v=327">
+</head>
+<body class="lead-body">
+  <div class="lead-arcs" aria-hidden="true"></div>
+  <a class="lead-back" id="leadBack" href="https://app.thefreshgrove.team/index.html?go=leads" hidden>← Back to the app</a>
+
+  <main class="lead-shell" id="leadShell">
+    <div class="lead-loading" id="leadLoading">Loading…</div>
+
+    <div class="lead-missing" id="leadMissing" hidden>
+      <p class="lead-brand">The Fresh Grove</p>
+      <h1>This page isn’t live yet</h1>
+      <p>The link may be mistyped, or your friend hasn’t finished setting it up. Ask them to open <strong>Leads</strong> in First Seeds and share their link again.</p>
+    </div>
+
+    <div class="lead-missing" id="leadLoadError" hidden>
+      <p class="lead-brand">The Fresh Grove</p>
+      <h1>Couldn’t load this page</h1>
+      <p>Check your connection and try again in a moment.</p>
+      <button type="button" class="lead-submit" id="leadRetry">Try again →</button>
+    </div>
+
+    <div class="lead-page" id="leadPage" hidden>
+      <header class="lead-hero">
+        <p class="lead-brand">Ringana · with <span id="leadBrandName">a friend</span></p>
+        <p class="lead-kicker"><span class="lead-kicker-rule"></span> Coming to America · 2026</p>
+        <h1 class="lead-headline">Wellness that was never meant to <em>compromise.</em></h1>
+        <p class="lead-lede" id="leadLede">For thirty years, a family in Austria has made skincare and supplements the hard way — totally toxin free, made fresh, honest about every ingredient. Now Ringana is coming to America.</p>
+        <p class="lead-blurb" id="leadBlurb"></p>
+      </header>
+
+      <section class="lead-proof" aria-label="Why Ringana">
+        <div class="lead-proof-item">
+          <strong>Made fresh</strong>
+          <span>Small batches from their own campus — plant actives at full potency, with an expiration date like food.</span>
+        </div>
+        <div class="lead-proof-item">
+          <strong>Toxin free</strong>
+          <span>No synthetic preservatives or fillers. What goes on your body and in your body should need no apology.</span>
+        </div>
+        <div class="lead-proof-item">
+          <strong>Founding moment</strong>
+          <span>$85M U.S. home in Virginia. The community that shows up now helps write the American chapter.</span>
+        </div>
+      </section>
+
+      <section class="lead-launch" id="leadLaunchNote" hidden>
+        <strong id="leadLaunchTitle">Just landing in America</strong>
+        <p id="leadLaunchBody"></p>
+      </section>
+
+      <section class="lead-card" id="leadFormCard">
+        <h2 class="lead-card-title">Be first when it arrives</h2>
+        <p class="lead-card-sub" id="leadCardSub">Leave your name and how to reach you. You’ll get launch timing, honest product notes, and a real seat if you want to build alongside — no spam list.</p>
+
+        <form class="lead-form" id="leadForm" novalidate>
+          <div class="lead-field">
+            <label for="leadName">Your name</label>
+            <input type="text" id="leadName" name="name" maxlength="80" autocomplete="name" required placeholder="First and last name">
+          </div>
+
+          <div class="lead-contact-row">
+            <div class="lead-field">
+              <label for="leadEmail">Email</label>
+              <input type="email" id="leadEmail" name="email" maxlength="120" autocomplete="email" placeholder="you@email.com" aria-describedby="leadContactHint">
+            </div>
+            <div class="lead-field">
+              <label for="leadPhone">Phone</label>
+              <input type="tel" id="leadPhone" name="phone" maxlength="40" autocomplete="tel" placeholder="Or phone" aria-describedby="leadContactHint">
+            </div>
+          </div>
+          <p class="lead-hint" id="leadContactHint">Email <em>or</em> phone — whichever you prefer.</p>
+
+          <div class="lead-field">
+            <label for="leadSocial">Instagram or Facebook <span class="lead-opt">(optional)</span></label>
+            <input type="text" id="leadSocial" name="social" maxlength="80" autocomplete="off" placeholder="@handle or Facebook name">
+          </div>
+
+          <div class="lead-hp" aria-hidden="true">
+            <label for="leadCompany">Company</label>
+            <input type="text" id="leadCompany" name="company" tabindex="-1" autocomplete="off">
+          </div>
+
+          <fieldset class="lead-interest" id="leadInterestField">
+            <legend>I’m curious about <span class="lead-req">(required)</span></legend>
+            <div class="lead-interest-row" role="group" aria-label="Interest" aria-required="true">
+              <button type="button" class="lead-chip" data-interest="products" aria-pressed="false">The products</button>
+              <button type="button" class="lead-chip" data-interest="business" aria-pressed="false">The business</button>
+              <button type="button" class="lead-chip" data-interest="both" aria-pressed="false">Both</button>
+            </div>
+            <input type="hidden" id="leadInterest" name="interest" value="" required>
+          </fieldset>
+
+          <button type="submit" class="lead-submit" id="leadSubmit">Get first access →</button>
+          <p class="lead-form-msg" id="leadFormMsg" role="status"></p>
+        </form>
+      </section>
+
+      <section class="lead-stories" aria-label="Go deeper">
+        <details class="lead-story" id="leadProductStory">
+          <summary class="lead-story-sum">
+            <span class="lead-story-sum-row">
+              <span class="lead-story-sum-text">
+                <span class="lead-story-kicker">The products</span>
+                <span class="lead-story-title">Worth talking about</span>
+              </span>
+              <span class="lead-story-chev" aria-hidden="true"></span>
+            </span>
+          </summary>
+          <div class="lead-story-body" id="leadProductBubbles"></div>
+        </details>
+        <details class="lead-story" id="leadBusinessStory">
+          <summary class="lead-story-sum">
+            <span class="lead-story-sum-row">
+              <span class="lead-story-sum-text">
+                <span class="lead-story-kicker">The partnership</span>
+                <span class="lead-story-title">Worth building now</span>
+              </span>
+              <span class="lead-story-chev" aria-hidden="true"></span>
+            </span>
+          </summary>
+          <div class="lead-story-body" id="leadBusinessBubbles"></div>
+        </details>
+      </section>
+
+      <p class="lead-foot">Independent partner page — not an official Ringana corporate site. Details reflect Ringana’s international offering ahead of U.S. launch.</p>
+    </div>
+
+    <div class="lead-thanks" id="leadThanks" hidden>
+      <p class="lead-brand">You’re in</p>
+      <h1>Got it.</h1>
+      <p id="leadThanksBody">Thanks for adding your info! I’ll be in touch with some exciting Ringana details soon!</p>
+    </div>
+  </main>
+
+  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+  <script src="/hub/js/supabase-config.js?v=306"></script>
+  <script src="/hub/js/cloud.js?v=463"></script>
+  <script src="/hub/js/leads-public.js?v=338"></script>
 </body>
 </html>

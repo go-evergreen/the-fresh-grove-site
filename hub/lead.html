@@ -13,8 +13,9 @@ try { if (window.top !== window.self) window.top.location.replace(window.locatio
 (function () {
   try {
     var host = String(location.hostname || "").toLowerCase();
-    if (host === "thefreshgrove.team" || host === "www.thefreshgrove.team") {
-      location.replace("https://app.thefreshgrove.team/lead.html" + String(location.search || "") + String(location.hash || ""));
+    var path = String(location.pathname || "");
+    if ((host === "thefreshgrove.team" || host === "www.thefreshgrove.team") && /\/hub\//i.test(path)) {
+      location.replace("/lead.html" + String(location.search || "") + String(location.hash || ""));
       return;
     }
   } catch (eHop) {}
@@ -177,6 +178,6 @@ try { if (window.top !== window.self) window.top.location.replace(window.locatio
   <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
   <script src="js/supabase-config.js?v=306"></script>
   <script src="js/cloud.js?v=463"></script>
-  <script src="js/leads-public.js?v=337"></script>
+  <script src="js/leads-public.js?v=338"></script>
 </body>
 </html>

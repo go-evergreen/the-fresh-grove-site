@@ -47,8 +47,8 @@ window.FS.CONFIG = {
   groveSiteUrl: "https://thefreshgrove.team/",
   groveAppUrl: "https://app.thefreshgrove.team/",
   evergreenSiteUrl: "https://app.evergreenco.team/",
-  /* Pretty Grove door (join/lead) stays on thefreshgrove.team for iMessage,
-     then hops once onto app.thefreshgrove.team. Evergreen lives on
+  /* Pretty Grove door: join hops onto the app. Lead stays on
+     thefreshgrove.team/lead.html?p=slug. Evergreen lives on
      app.evergreenco.team. No cross-team hops. Shelf and quiz stay put. */
   groveJoinUrl: "https://thefreshgrove.team/join.html",
   groveLeadUrl: "https://thefreshgrove.team/lead.html",

@@ -49,6 +49,13 @@
         } catch (err) {}
         try { window.close(); } catch (err2) {}
         setTimeout(function () {
+          try {
+            var host = String(location.hostname || "").toLowerCase();
+            if (host === "thefreshgrove.team" || host === "www.thefreshgrove.team") {
+              location.href = "https://app.thefreshgrove.team/index.html?go=leads";
+              return;
+            }
+          } catch (eHost) {}
           location.href = "index.html?go=leads";
         }, 80);
       });

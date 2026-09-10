@@ -13,7 +13,7 @@
       if (hm) slug = decodeURIComponent(hm[1] || "").trim();
     }
     if (!slug) return;
-    location.replace("https://app.thefreshgrove.team/lead.html" + String(location.search || "") + String(location.hash || ""));
+    location.replace("/lead.html" + String(location.search || "") + String(location.hash || ""));
   } catch (e) {}
 })();
 </script>
