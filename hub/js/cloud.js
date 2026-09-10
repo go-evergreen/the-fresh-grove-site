@@ -1073,6 +1073,9 @@ window.FS.normalizeMeetingHref = function (raw, maxLen) {
     if (/tayrourke\.github\.io\/tay-goes-fresh/i.test(raw) || /^https:\/\/taygoesfresh\.com\/?$/i.test(raw)) {
       return "https://taygoesfresh.com/";
     }
+    if (/ringana-with-kimberly/i.test(raw)) {
+      return "https://evergreenco.team/ringana-with-kimberly/";
+    }
     var m = raw.match(/\/(ringana-with-[a-z0-9-]+)\/?/i);
     if (m) {
       var path = m[1].toLowerCase();
@@ -1088,6 +1091,7 @@ window.FS.normalizeMeetingHref = function (raw, maxLen) {
     url = String(url || "").trim();
     if (!url) return false;
     if (/thefreshgrove\.team\/ringana-with-/i.test(url)) return true;
+    if (/evergreenco\.team\/ringana-with-/i.test(url)) return true;
     if (/go-evergreen\.github\.io\/ringana-with-/i.test(url)) return true;
     if (/tayrourke\.github\.io/i.test(url)) return true;
     if (/^https:\/\/taygoesfresh\.com\/?$/i.test(url)) return true;

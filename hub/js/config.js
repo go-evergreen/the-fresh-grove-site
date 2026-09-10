@@ -65,7 +65,7 @@ window.FS.CONFIG = {
     kim: "https://thefreshgrove.team/ringana-with-kim/",
     meghan: "https://thefreshgrove.team/ringana-with-meghan/",
     tania: "https://thefreshgrove.team/ringana-with-tania/",
-    "kim-huck": "https://go-evergreen.github.io/ringana-with-kimberly/"
+    "kim-huck": "https://evergreenco.team/ringana-with-kimberly/"
   },
 
   modes: {
