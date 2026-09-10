@@ -1,0 +1,838 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<!-- CLIENT:START head -->
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>About Meghan &amp; Michael — Ringana with the Smallwoods</title>
+<meta name="description" content="Meghan and Michael Smallwood — a husband-and-wife team building Ringana's American founding community together.">
+<meta property="og:type" content="website">
+<meta property="og:title" content="About Meghan &amp; Michael — Ringana with the Smallwoods">
+<meta property="og:description" content="A husband-and-wife team building Ringana's American founding community together.">
+<meta property="og:image" content="og-image.jpg?v=10">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="800">
+<meta property="og:locale" content="en_US">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="About Meghan &amp; Michael — Ringana with the Smallwoods">
+<meta name="twitter:description" content="A husband-and-wife team building Ringana's American founding community together.">
+<meta name="twitter:image" content="og-image.jpg?v=10">
+<link rel="preload" as="image" href="smallwoods-couple.webp" type="image/webp">
+<meta name="theme-color" content="#1c3227">
+<link rel="icon" href="favicon.svg" type="image/svg+xml">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Caveat:wght@400;500;600&family=Fraunces:opsz,wght@9..144,300;9..144,400;9..144,500;9..144,600&family=Work+Sans:wght@300;400;500;600&display=swap" rel="stylesheet">
+<link rel="preconnect" href="https://assets.flodesk.com" crossorigin>
+<script>
+(function(w, d, t, h, s, n) {
+w.FlodeskObject = n;
+var fn = function() {
+(w[n].q = w[n].q || []).push(arguments);
+};
+w[n] = w[n] || fn;
+var f = d.getElementsByTagName(t)[0];
+var v = '?v=' + Math.floor(new Date().getTime() / (120 * 1000)) * 60;
+var sm = d.createElement(t);
+sm.async = true;
+sm.type = 'module';
+sm.src = h + s + '.mjs' + v;
+f.parentNode.insertBefore(sm, f);
+var sn = d.createElement(t);
+sn.async = true;
+sn.noModule = true;
+sn.src = h + s + '.js' + v;
+f.parentNode.insertBefore(sn, f);
+})(window, document, 'script', 'https://assets.flodesk.com', '/universal', 'fd');
+</script>
+<!-- CLIENT:END head -->
+<style>
+/* CLIENT:START theme */
+:root{
+  --pine:#1c3227;
+  --pine-deep:#142519;
+  --linen:#f6f2ea;
+  --linen-warm:#efe8db;
+  --brass:#b3893c;
+  --brass-light:#cfa95e;
+  --sage:#8ea38f;
+  --ink:#22301f;
+  --white:#fdfcf9;
+  --header-expanded:7.5rem;
+  --header-offset:7.5rem;
+}
+/* CLIENT:END theme */
+/* CORE:START css */
+*{margin:0;padding:0;box-sizing:border-box;}
+html{scroll-behavior:smooth;}
+body{font-family:'Work Sans',sans-serif;font-weight:300;color:var(--ink);background:var(--linen);line-height:1.7;font-size:17px;-webkit-font-smoothing:antialiased;}
+body::before{
+  content:'';
+  position:fixed;inset:0;
+  pointer-events:none;z-index:9998;opacity:.04;
+  background-image:url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+  background-size:180px 180px;
+}
+body.nav-open{overflow:hidden;}
+h1,h2,h3,.serif{font-family:'Fraunces',serif;font-weight:400;line-height:1.15;}
+a{color:inherit;}
+a:focus-visible,button:focus-visible{outline:2px solid var(--brass-light);outline-offset:3px;}
+
+.site-header{
+  position:fixed;top:0;left:0;right:0;z-index:100;
+  background:rgba(28,50,39,0.95);
+  padding:1.35rem 2rem 1rem;
+  transition:padding .35s ease,background .35s ease,box-shadow .35s ease;
+}
+.site-header.is-scrolled{
+  padding:.8rem 2rem;
+  background:rgba(20,37,25,.98);
+  box-shadow:0 4px 24px rgba(0,0,0,.18);
+}
+.site-header-inner{
+  max-width:1060px;margin:0 auto;
+  display:flex;flex-direction:column;align-items:center;gap:.9rem;
+  transition:gap .35s ease;
+}
+.site-header.is-scrolled .site-header-inner{
+  flex-direction:row;justify-content:space-between;align-items:center;gap:1.25rem;
+}
+.site-brand{
+  font-family:'Fraunces',serif;
+  color:var(--linen);
+  font-size:clamp(1.15rem,3vw,1.6rem);
+  letter-spacing:.2em;
+  text-transform:uppercase;
+  text-decoration:none;
+  white-space:nowrap;
+  line-height:1.2;
+  transition:font-size .35s ease,letter-spacing .35s ease;
+}
+.site-brand span{color:var(--brass-light);}
+.site-header.is-scrolled .site-brand{
+  font-size:clamp(.82rem,2.2vw,1rem);
+  letter-spacing:.14em;
+}
+.site-nav{
+  display:flex;flex-wrap:wrap;align-items:center;justify-content:center;
+  gap:1.2rem 2rem;
+  transition:gap .35s ease;
+}
+.site-header.is-scrolled .site-nav{justify-content:flex-end;align-items:center;gap:.85rem 1.15rem;flex-wrap:nowrap;}
+.site-nav .nav-about{margin-left:0;transition:margin-left .35s ease;}
+.site-header.is-scrolled .site-nav .nav-about{margin-left:.85rem;}
+.site-nav a{color:var(--linen);text-decoration:none;font-size:.82rem;letter-spacing:.08em;text-transform:uppercase;font-weight:400;opacity:.85;transition:opacity .2s,color .2s;}
+.site-nav a:hover{opacity:1;color:var(--brass-light);}
+.site-nav a.active{opacity:1;color:var(--brass-light);}
+.nav-cta{border:1px solid var(--brass-light);padding:.45rem 1.15rem;border-radius:2px;color:var(--brass-light) !important;opacity:1 !important;font-size:.78rem;letter-spacing:.08em;text-transform:uppercase;white-space:nowrap;transition:background .2s,color .2s,opacity .35s ease,max-width .35s ease,padding .35s ease,margin .35s ease,border-color .35s ease,visibility 0s;}
+.nav-cta:hover{background:var(--brass-light);color:var(--pine) !important;}
+.nav-cta-scroll{max-width:0;padding-left:0;padding-right:0;margin-left:0;border-color:transparent;opacity:0;visibility:hidden;overflow:hidden;pointer-events:none;}
+.site-header.is-scrolled .nav-cta-scroll{max-width:11rem;padding:.45rem 1.15rem;margin-left:1rem;border-color:var(--brass-light);opacity:1;visibility:visible;pointer-events:auto;}
+
+.page-hero{background:linear-gradient(168deg,var(--pine-deep) 0%,var(--pine) 60%,#24402f 100%);color:var(--linen);padding:calc(var(--header-expanded) + 3rem) 2rem 5rem;position:relative;overflow:hidden;}
+.page-hero::after{content:'';position:absolute;right:-14vw;top:-16vh;width:52vw;height:52vw;max-width:700px;max-height:700px;border:1px solid rgba(207,169,94,.16);border-radius:50%;pointer-events:none;}
+.page-hero-inner{max-width:1060px;margin:0 auto;position:relative;z-index:2;}
+.hero-eyebrow{font-size:.8rem;letter-spacing:.22em;text-transform:uppercase;color:var(--brass-light);font-weight:500;margin-bottom:1.4rem;display:flex;align-items:center;gap:.9rem;}
+.hero-eyebrow::before{content:'';width:36px;height:1px;background:var(--brass-light);}
+.page-hero h1{font-size:clamp(2.4rem,5.4vw,4rem);font-weight:300;margin-bottom:1.4rem;max-width:16ch;}
+.page-hero h1 em{font-style:italic;color:var(--brass-light);}
+.page-hero p{font-size:clamp(1.02rem,1.5vw,1.2rem);max-width:56ch;opacity:.88;}
+
+section{padding:5.5rem 2rem;}
+.container{max-width:1060px;margin:0 auto;}
+.eyebrow{font-size:.78rem;letter-spacing:.22em;text-transform:uppercase;color:var(--brass);font-weight:600;margin-bottom:1rem;}
+.section-title{font-size:clamp(1.8rem,3.6vw,2.6rem);font-weight:400;margin-bottom:1.3rem;max-width:24ch;}
+.lede{font-size:1.12rem;max-width:62ch;margin-bottom:1.6rem;}
+
+.btn{display:inline-block;padding:.95rem 2.4rem;font-family:'Work Sans',sans-serif;font-size:.82rem;font-weight:500;letter-spacing:.13em;text-transform:uppercase;text-decoration:none;border-radius:1px;transition:transform .22s ease,box-shadow .22s ease,background .22s ease;border:1px solid transparent;cursor:pointer;}
+.btn-brass{background:linear-gradient(160deg,#c49a4a 0%,var(--brass) 50%,#9a7530 100%);color:var(--white);box-shadow:0 2px 0 rgba(0,0,0,.14),0 6px 20px rgba(179,137,60,.3);}
+.btn-brass:hover{background:linear-gradient(160deg,#d4ad5e 0%,var(--brass-light) 55%,var(--brass) 100%);transform:translateY(-2px);box-shadow:0 3px 0 rgba(0,0,0,.1),0 10px 28px rgba(179,137,60,.38);}
+.btn-pine{background:var(--pine);color:var(--linen);box-shadow:0 4px 16px rgba(28,50,39,.2);}
+.btn-pine:hover{background:var(--pine-deep);transform:translateY(-2px);}
+.btn-row{display:flex;flex-direction:column;align-items:center;gap:1.15rem;margin-top:2rem;}
+.btn-row .btn{min-width:min(100%,300px);text-align:center;}
+
+/* Story layout */
+.story-intro{display:grid;grid-template-columns:minmax(220px,280px) 1fr;gap:2.8rem;align-items:start;}
+.story-intro--wide{grid-template-columns:minmax(240px,320px) 1fr;}
+.story-intro--wide .about-photo-wrap{max-width:320px;}
+.about-photo-wrap{position:relative;max-width:280px;margin-top:.25rem;}
+.about-photo{position:relative;aspect-ratio:4/5;max-height:340px;border-radius:2px;overflow:hidden;background:var(--linen-warm);box-shadow:0 8px 24px rgba(28,50,39,.08);}
+.about-photo img{width:100%;height:100%;object-fit:cover;object-position:50% 18%;display:block;}
+.about-photo.portrait img{object-position:50% 12%;}
+.about-photo.couple{max-width:320px;max-height:420px;aspect-ratio:3/4;}
+.about-photo.couple img{object-position:50% 18%;}
+.story-intro p{margin-bottom:1.2rem;max-width:54ch;}
+.pull{font-family:'Fraunces',serif;font-style:italic;font-size:1.3rem;color:var(--pine);border-left:2px solid var(--brass);padding-left:1.3rem;margin:2rem 0;line-height:1.4;max-width:48ch;}
+
+/* Chapters */
+.chapters{background:var(--linen-warm);}
+.chapter{display:grid;grid-template-columns:120px 1fr;gap:2rem;padding:2.4rem 0;border-top:1px solid #ddd5c5;align-items:start;}
+.chapter:first-child{border-top:none;padding-top:0;}
+.chapter-num{font-family:'Fraunces',serif;font-size:2.4rem;color:var(--brass);line-height:1;opacity:.7;}
+.chapter h3{font-size:1.25rem;margin-bottom:.6rem;}
+.chapter p{font-size:.98rem;max-width:58ch;margin-bottom:.8rem;}
+
+/* Origin + health journey */
+.origin p{margin-bottom:1.1rem;max-width:62ch;}
+
+/* Right fit */
+.right-fit{background:var(--pine);color:var(--linen);}
+.right-fit .eyebrow{color:var(--brass-light);}
+.right-fit .section-title{color:var(--linen);max-width:28ch;}
+.right-fit .lede{opacity:.9;}
+.fit-grid{display:grid;grid-template-columns:1.1fr .9fr;gap:3rem;margin-top:2.5rem;align-items:start;}
+.fit-callout{
+  border-left:3px solid var(--brass-light);
+  padding:0 0 0 2rem;
+  font-family:'Fraunces',serif;
+  font-style:italic;
+  font-size:1.35rem;
+  line-height:1.45;
+  color:var(--brass-light);
+}
+.fit-list p{margin-bottom:1rem;opacity:.9;max-width:52ch;}
+.fit-list p:last-child{margin-bottom:0;}
+
+/* Why build */
+.why-build{background:var(--white);}
+.why-partner{
+  margin-top:2rem;
+  padding:2.2rem 2rem;
+  background:var(--linen-warm);
+  border-left:3px solid var(--brass);
+  border-radius:2px;
+  max-width:68ch;
+}
+.why-partner h3{font-size:1.25rem;margin-bottom:.9rem;color:var(--pine);}
+.why-partner p{margin-bottom:.9rem;max-width:62ch;}
+.why-partner p:last-child{margin-bottom:0;}
+
+/* CTA */
+.cta-band{background:var(--white);text-align:center;}
+.cta-band .section-title{margin-left:auto;margin-right:auto;}
+.cta-band .lede{margin-left:auto;margin-right:auto;}
+
+/* Letter modal */
+.connect-modal{position:fixed;inset:0;z-index:10000;display:flex;align-items:center;justify-content:center;padding:1.4rem;opacity:0;visibility:hidden;pointer-events:none;transition:opacity .25s ease,visibility .25s ease;}
+.connect-modal.open{opacity:1;visibility:visible;pointer-events:auto;}
+.connect-modal-backdrop{position:absolute;inset:0;background:rgba(20,37,25,.65);}
+.connect-modal-panel.letter-panel{position:relative;z-index:2;width:min(100%,560px);max-height:min(92dvh,820px);overflow:auto;background:transparent;border:none;box-shadow:none;padding:0;}
+.connect-modal-close{position:absolute;top:.6rem;right:.8rem;z-index:3;background:rgba(255,255,255,.7);border:1px solid #e3d9c8;border-radius:50%;font-size:1.5rem;line-height:1;color:var(--pine);cursor:pointer;width:2.2rem;height:2.2rem;display:flex;align-items:center;justify-content:center;}
+.letter-paper{background:linear-gradient(175deg,#fffcf7 0%,#f8f3ea 100%);border:1px solid #e3d9c8;border-radius:2px;padding:2.8rem 2.6rem 2.4rem;box-shadow:0 24px 60px rgba(28,50,39,.24),inset 0 1px 0 rgba(255,255,255,.85);position:relative;}
+.letter-paper::before{content:'';position:absolute;inset:0;background-image:url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");opacity:.05;pointer-events:none;border-radius:2px;}
+.letter-head,.letter-body-copy,.letter-form,.letter-interest,.letter-sign,.modal-fine{position:relative;z-index:1;}
+.letter-form{margin-top:.4rem;}
+.letter-signup{display:flex;flex-direction:column;gap:0;}
+.letter-interest{width:100%;margin:0 0 .75rem;}
+.letter-interest-label{
+  font-family:'Work Sans',sans-serif;
+  font-size:.72rem;
+  font-weight:600;
+  letter-spacing:.07em;
+  text-transform:uppercase;
+  color:var(--pine);
+  margin:0 0 .45rem;
+}
+.letter-interest-row{display:flex;flex-wrap:nowrap;gap:.32rem;width:100%;}
+.letter-interest-chip{
+  flex:1 1 0;
+  min-width:0;
+  font-family:'Work Sans',sans-serif;
+  font-size:.68rem;
+  font-weight:600;
+  line-height:1.25;
+  text-align:center;
+  color:var(--ink);
+  background:#fff;
+  border:1.5px solid rgba(95,122,99,.28);
+  border-radius:999px;
+  padding:.5rem .15rem;
+  cursor:pointer;
+  transition:background .15s,border-color .15s,color .15s,box-shadow .15s;
+}
+.letter-interest-chip:hover{border-color:var(--brass);}
+.letter-interest-chip.on{
+  background:var(--pine);
+  border-color:var(--pine);
+  color:#fff;
+  box-shadow:0 2px 10px rgba(68,90,72,.22);
+}
+.letter-interest-error{
+  font-family:'Work Sans',sans-serif;
+  font-size:.82rem;
+  color:#9b3b3b;
+  margin:.4rem 0 0;
+}
+
+#fd-form-modal,#fd-form-modal > *{margin:0 !important;}
+#fd-form-modal .ff-6a7a21f9053086f8c4da83df__form{padding:0 !important;margin:0 !important;background:transparent !important;}
+#fd-form-modal .ff-6a7a21f9053086f8c4da83df,
+#fd-form-modal [data-ff-el="root"].ff-6a7a21f9053086f8c4da83df{
+  background:transparent !important;
+  background-color:transparent !important;
+  box-shadow:none !important;
+  border:none !important;
+  padding:0 !important;
+  margin:0 !important;
+  max-width:100% !important;
+}
+#fd-form-modal .ff-6a7a21f9053086f8c4da83df__container{
+  background:transparent !important;
+  background-color:transparent !important;
+  box-shadow:none !important;
+  border:none !important;
+  padding:0 !important;
+  max-width:100% !important;
+}
+#fd-form-modal .ff-6a7a21f9053086f8c4da83df__title,
+#fd-form-modal .ff-6a7a21f9053086f8c4da83df__subtitle{
+  display:none !important;
+  height:0 !important;
+  margin:0 !important;
+  padding:0 !important;
+  overflow:hidden !important;
+  visibility:hidden !important;
+}
+#fd-form-modal .ff-6a7a21f9053086f8c4da83df__content{
+  padding:0 !important;
+  margin:0 !important;
+  display:flex !important;
+  flex-direction:column !important;
+  align-items:stretch !important;
+  width:100% !important;
+  gap:.85rem !important;
+  background:transparent !important;
+}
+#fd-form-modal .ff-6a7a21f9053086f8c4da83df__fields{
+  margin:0 !important;
+  padding:0 !important;
+  background:transparent !important;
+  width:100% !important;
+  max-width:100% !important;
+}
+#fd-form-modal .ff-6a7a21f9053086f8c4da83df__footer{
+  width:100% !important;
+  max-width:100% !important;
+  margin-top:.35rem !important;
+}
+#fd-form-modal .ff-6a7a21f9053086f8c4da83df__footer > *{
+  width:100% !important;
+}
+#fd-form-modal input,
+#fd-form-modal textarea,
+#fd-form-modal select,
+#fd-form-modal button{
+  font-family:'Work Sans',sans-serif !important;
+  border-radius:1px !important;
+}
+#fd-form-modal .ff-6a7a21f9053086f8c4da83df__control,
+#fd-form-modal input.ff-6a7a21f9053086f8c4da83df__control,
+#fd-form-modal input.fd-form-control{
+  background:#fffcf7 !important;
+  border:1px solid rgba(28,50,39,.18) !important;
+  color:var(--ink) !important;
+  padding:.85rem 1rem !important;
+  font-size:.95rem !important;
+  box-shadow:none !important;
+}
+#fd-form-modal input:focus,
+#fd-form-modal textarea:focus,
+#fd-form-modal select:focus{
+  outline:2px solid var(--brass) !important;
+  outline-offset:1px !important;
+  border-color:var(--brass) !important;
+}
+#fd-form-modal .ff-6a7a21f9053086f8c4da83df__label,
+#fd-form-modal label{
+  font-family:'Work Sans',sans-serif !important;
+  font-weight:400 !important;
+  color:rgba(34,48,31,.55) !important;
+}
+#fd-form-modal .ff-6a7a21f9053086f8c4da83df__button,
+#fd-form-modal button.fd-btn{
+  background:linear-gradient(160deg,#c49a4a 0%,var(--brass) 50%,#9a7530 100%) !important;
+  color:var(--white,#fff) !important;
+  border:1px solid rgba(255,255,255,.1) !important;
+  box-shadow:0 2px 0 rgba(0,0,0,.14),0 6px 20px rgba(179,137,60,.3) !important;
+  letter-spacing:.13em !important;
+  text-transform:uppercase !important;
+  font-weight:500 !important;
+  font-size:.82rem !important;
+  padding:.95rem 2.4rem !important;
+  width:100% !important;
+  max-width:100% !important;
+  display:block !important;
+  box-sizing:border-box !important;
+  cursor:pointer !important;
+  transition:transform .22s ease,box-shadow .22s ease,background .22s ease !important;
+}
+#fd-form-modal .ff-6a7a21f9053086f8c4da83df__button:hover,
+#fd-form-modal button.fd-btn:hover{
+  background:linear-gradient(160deg,#d4ad5e 0%,var(--brass-light) 55%,var(--brass) 100%) !important;
+  transform:translateY(-2px);
+  box-shadow:0 3px 0 rgba(0,0,0,.1),0 10px 28px rgba(179,137,60,.38) !important;
+}
+
+
+#fd-form-modal .ff-6a7a21f9053086f8c4da83df__success,
+#fd-form-modal .ff-6a7a21f9053086f8c4da83df__success-message{
+  display:none !important;
+  visibility:hidden !important;
+  height:0 !important;
+  overflow:hidden !important;
+  padding:0 !important;
+  margin:0 !important;
+}
+#fd-form-modal.is-submitted .ff-6a7a21f9053086f8c4da83df__form{
+  display:none !important;
+}
+.optin-success{
+  display:none;
+  text-align:center;
+  padding:1.75rem 1.25rem 1.35rem;
+  margin-top:.35rem;
+  border:1px solid rgba(179,137,60,.42);
+  border-radius:2px;
+  background:linear-gradient(175deg,#fffdf8 0%,#f3ebdc 100%);
+  box-shadow:0 10px 32px rgba(179,137,60,.22),inset 0 1px 0 rgba(255,255,255,.9);
+}
+.optin-success.is-visible{display:block;}
+.optin-success-mark{
+  width:3.25rem;height:3.25rem;
+  margin:0 auto 1rem;
+  border-radius:50%;
+  background:linear-gradient(160deg,#c49a4a 0%,var(--brass) 50%,#9a7530 100%);
+  color:var(--white,#fff);
+  font-size:1.55rem;
+  line-height:3.25rem;
+  font-weight:600;
+  box-shadow:0 4px 16px rgba(179,137,60,.35);
+}
+.optin-success-eyebrow{
+  font-size:.72rem;
+  letter-spacing:.22em;
+  text-transform:uppercase;
+  color:var(--brass);
+  margin-bottom:.5rem;
+  font-weight:500;
+}
+.optin-success-title{
+  font-family:'Fraunces',serif;
+  font-size:1.75rem;
+  color:var(--pine);
+  margin-bottom:.7rem;
+  line-height:1.25;
+}
+.optin-success-copy{
+  font-family:'Work Sans',sans-serif;
+  font-size:1rem;
+  line-height:1.62;
+  color:rgba(34,48,31,.82);
+  max-width:34ch;
+  margin:0 auto;
+}
+.letter-paper.is-submitted .letter-body-copy,
+.letter-paper.is-submitted .letter-interest,
+.letter-paper.is-submitted .letter-sign,
+.letter-paper.is-submitted .modal-fine{display:none;}
+.letter-paper.is-submitted .letter-salutation{
+  font-size:2rem;
+  margin-bottom:.15rem;
+}
+.letter-salutation{font-family:'Caveat',cursive;font-size:2.4rem;font-weight:500;margin-bottom:.6rem;color:var(--pine);line-height:1.1;transform:rotate(-.8deg);transform-origin:left center;}
+.letter-body-copy p{font-family:'Caveat',cursive;font-size:1.45rem;line-height:1.55;margin-bottom:1.2rem;max-width:48ch;color:var(--ink);}
+.letter-sign{font-family:'Caveat',cursive;margin-top:1.4rem;color:var(--pine);font-size:1.75rem;font-weight:500;transform:rotate(-1.2deg);transform-origin:left center;}
+.modal-fine{font-size:.75rem;opacity:.55;margin-top:1.2rem;text-align:left;}
+
+footer{background:var(--pine-deep);color:var(--linen);padding:3rem 2rem 2.2rem;text-align:center;}
+.foot-brand{font-family:'Fraunces',serif;letter-spacing:.14em;text-transform:uppercase;font-size:1rem;margin-bottom:.8rem;}
+.foot-brand span{color:var(--brass-light);}
+.foot-cta{
+  font-family:'Fraunces',serif;
+  font-style:italic;
+  font-size:1.02rem;
+  opacity:.82;
+  margin-bottom:1.1rem;
+  max-width:48ch;
+  margin-left:auto;
+  margin-right:auto;
+}
+.foot-cta a{color:var(--brass-light);text-decoration:none;border-bottom:1px solid rgba(207,169,94,.35);}
+.foot-cta a:hover{opacity:1;border-bottom-color:var(--brass-light);}
+footer p{font-size:.8rem;opacity:.6;max-width:70ch;margin:0 auto .5rem;}
+.foot-social{margin:1.2rem 0;}
+.foot-social a{color:var(--linen);text-decoration:none;font-size:.85rem;letter-spacing:.08em;margin:0 .9rem;opacity:.8;}
+.foot-social a:hover{opacity:1;color:var(--brass-light);}
+
+.reveal{opacity:0;transform:translateY(22px);transition:opacity .7s ease,transform .7s ease;}
+.reveal.visible{opacity:1;transform:none;}
+@media (prefers-reduced-motion:reduce){html{scroll-behavior:auto;}.reveal{opacity:1;transform:none;transition:none;}}
+
+@media (max-width:880px){
+  .site-header{padding:1rem .9rem .9rem;}
+  .site-header.is-scrolled{padding:.85rem .9rem;}
+  .site-header.is-scrolled .site-header-inner{
+    flex-direction:column;
+    align-items:center;
+    gap:.65rem;
+  }
+  .site-brand{font-size:1.02rem;letter-spacing:.12em;text-align:center;width:100%;padding-right:.12em;}
+  .site-header.is-scrolled .site-brand{font-size:.92rem;letter-spacing:.1em;width:100%;}
+  .site-nav{gap:.15rem .2rem;justify-content:center;width:100%;flex-wrap:nowrap;}
+  .site-header.is-scrolled .site-nav{justify-content:center;align-items:center;gap:.1rem .12rem;width:100%;flex-wrap:nowrap;}
+  .site-header.is-scrolled .site-nav a:not(.nav-cta){padding:.5rem .42rem;}
+  .site-nav a{
+    font-size:.68rem;
+    letter-spacing:.06em;
+    padding:.55rem .7rem;
+    opacity:.95;
+  }
+  .site-header.is-scrolled .site-nav .nav-about{margin-left:0;}
+  .nav-cta{padding:.6rem 1.05rem;font-size:.68rem;letter-spacing:.07em;}
+  .site-header.is-scrolled .nav-cta-scroll{
+    max-width:9.6rem;
+    padding:.42rem .65rem;
+    margin-left:.4rem;
+    margin-top:0;
+    font-size:.6rem;
+    flex:0 0 auto;
+    display:inline-flex;
+    align-items:center;
+    justify-content:center;
+  }
+  .story-intro,.story-intro--wide,.fit-grid{grid-template-columns:1fr;gap:2.4rem;}
+  .about-photo-wrap,
+  .story-intro--wide .about-photo-wrap{max-width:240px;margin:0 auto;}
+  .chapter{grid-template-columns:72px 1fr;gap:1.2rem;}
+}
+@media (max-width:640px){
+  section{padding:4rem 1.4rem;}
+  .page-hero{padding:calc(var(--header-expanded) + 2rem) 1.4rem 3.6rem;}
+  .site-header{padding:.95rem .85rem .85rem;}
+  .site-nav a{font-size:.66rem;padding:.55rem .55rem;}
+  .site-header.is-scrolled .site-nav a:not(.nav-cta){padding:.45rem .28rem;font-size:.6rem;}
+  .site-header.is-scrolled .nav-cta-scroll{padding:.4rem .55rem;font-size:.56rem;margin-left:.28rem;}
+}
+footer .foot-copy a,footer .foot-legal a{color:var(--brass-light);text-decoration:none;border-bottom:1px solid rgba(207,169,94,.35);}
+footer .foot-copy a:hover,footer .foot-legal a:hover{border-bottom-color:var(--brass-light);}
+footer .foot-legal{max-width:78ch;}
+.letter-join-consent{display:flex;align-items:flex-start;gap:.55rem;margin:.15rem 0 0;font-size:.78rem;line-height:1.45;opacity:.78;text-align:left;font-family:'Work Sans',system-ui,sans-serif;}
+.letter-join-consent input{margin-top:.2rem;flex:0 0 auto;}
+.letter-join-consent a{color:var(--brass);text-decoration:underline;}
+/* CORE:END css */
+</style>
+</head>
+<body>
+
+<!-- CLIENT:START site-header -->
+<header class="site-header" id="siteHeader">
+  <div class="site-header-inner">
+    <a href="index.html" class="site-brand">Ringana <span>·</span> with the Smallwoods</a>
+    <nav class="site-nav" aria-label="Primary">
+      <a href="index.html">Home</a>
+      <a href="products.html">The Products</a>
+      <a href="business.html">The Business</a>
+      <a href="about.html" class="nav-about active">About Us</a>
+      <a href="#" class="nav-cta nav-cta-scroll" data-open-connect>Get First Access</a>
+    </nav>
+  </div>
+</header>
+<!-- CLIENT:END site-header -->
+<!-- CLIENT:START page-about -->
+
+<header class="page-hero">
+  <div class="page-hero-inner">
+    <div class="hero-eyebrow">About Us</div>
+    <h1>Building this <em>together.</em></h1>
+    <p>Health and wellness is our life — and now we are building a family wellness business, and inviting you along on the journey.</p>
+  </div>
+</header>
+
+<section>
+  <div class="container">
+    <div class="story-intro reveal">
+      <div class="about-photo-wrap">
+        <div class="about-photo couple">
+          <img src="smallwoods-couple.webp" alt="Meghan and Michael Smallwood" fetchpriority="high" decoding="async" width="768" height="1024">
+        </div>
+      </div>
+      <div>
+        <p class="eyebrow">The Short Version</p>
+        <h2 class="section-title">Hi, we're Meghan &amp; Michael!</h2>
+        <p>I'm the face behind the Mindful Mommy community — a follower of Jesus above all, a wife to the most amazing husband and chiropractor, and a mama to 4 wild homeschooled children. I have the blessing of working from home doing what I love.</p>
+        <p>For the last decade I have been reading labels and finding the safest products for my family, which then led to me sharing my favorite safe swaps with families all over the country and building one of the largest organizations in the clean beauty direct sales industry.</p>
+        <div class="pull">And this time? We get to build Ringana together — as a husband-and-wife team.</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="chapters">
+  <div class="container reveal">
+    <p class="eyebrow">Our Story</p>
+    <h2 class="section-title">How we got here.</h2>
+
+    <div class="chapter">
+      <span class="chapter-num">01</span>
+      <div>
+        <h3>A decade of safe swaps</h3>
+        <p>For the last decade I have been reading labels and finding the safest products for my family. That passion led me to share my favorite safe swaps with families all over the country. I feel truly honored to help thousands of people feel more confident about the products they bring into their homes.</p>
+      </div>
+    </div>
+
+    <div class="chapter">
+      <span class="chapter-num">02</span>
+      <div>
+        <h3>Building in clean beauty</h3>
+        <p>My passion for clean products led me to a beauty brand where I built one of the largest organizations in the clean beauty direct sales industry — over $7 million in sales and countless lives changed.</p>
+      </div>
+    </div>
+
+    <div class="chapter">
+      <span class="chapter-num">03</span>
+      <div>
+        <h3>A family pivot</h3>
+        <p>With the growth of my business, our family had the flexibility to pivot and make some pretty big life changes. Michael and I felt the Lord calling us to a different lifestyle in a different state. After much prayer we sold our chiropractic practice, our home, most of our possessions, and moved south.</p>
+        <p>We now are blessed to have our family together 24/7, working and schooling from home while building a little homestead — a dream come true.</p>
+      </div>
+    </div>
+
+    <div class="chapter">
+      <span class="chapter-num">04</span>
+      <div>
+        <h3>Why Ringana — together</h3>
+        <p>Recently we've felt God shifting some things around and sensed another big change coming for our family. Despite not looking for a new business opportunity, we found Ringana and everything in our gut said <em>YES!</em></p>
+        <p>The fun thing about starting another business is this time we get to build together as a husband-wife team.</p>
+      </div>
+    </div>
+
+    <div class="chapter">
+      <span class="chapter-num">05</span>
+      <div>
+        <h3>What's next?</h3>
+        <p>As Ringana prepares to launch in the United States, we're documenting everything — testing products before anyone else in the USA, sharing what we're learning, and inviting an exclusive group of people to explore this journey with us from the very beginning.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="why-build">
+  <div class="container">
+    <div class="story-intro story-intro--wide reveal">
+      <div class="about-photo-wrap">
+        <div class="about-photo couple">
+          <img src="smallwoods-couple.webp" alt="Meghan and Michael Smallwood" loading="lazy" decoding="async" width="768" height="1024">
+        </div>
+      </div>
+      <div>
+        <p class="eyebrow">Why Build With Us</p>
+        <h2 class="section-title">Both of us in your corner.</h2>
+        <p>You get both of us in your corner — Meghan's decade of label reading, ingredient education, and experience in direct sales &amp; leadership, paired with Michael's knowledge in health, wellness &amp; fitness. We are building Ringana's American founding team side by side.</p>
+        <p>When you join our founding team, you get all of it: the systems we're building through early access, our direct mentorship and a supportive community that is building together!</p>
+        <div class="btn-row" style="align-items:flex-start;margin-top:1.6rem;">
+          <a href="#" class="btn btn-brass" data-open-connect>Get First Access</a>
+          <a href="https://instagram.com/meg.made.fresh" class="btn btn-pine" target="_blank" rel="noopener">Message Us on Instagram</a>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+<section class="right-fit">
+  <div class="container reveal">
+    <p class="eyebrow">The Right Fit</p>
+    <h2 class="section-title">It's important to us that we feel like the right fit for you.</h2>
+    <div class="fit-grid">
+      <blockquote class="fit-callout">Honesty first — whether you're here for the products, the business, or just exploring.</blockquote>
+      <div class="fit-list">
+        <p>We're not here to pressure anyone. We're here to share what we've found, answer your questions honestly, and help you decide if this is right for your life — whether that's as a customer, a teammate, or neither.</p>
+        <p>Whether you're simply curious about the products or wondering if this business could become part of your own story, we're grateful you're here. We can't wait to explore it together.</p>
+        <p>The best partnerships start with honesty on both sides. That's how we've always operated, and it's not changing now.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="cta-band">
+  <div class="container reveal">
+    <p class="eyebrow">Stay Connected</p>
+    <h2 class="section-title">Want to follow along?</h2>
+    <p class="lede">Follow along at <a href="https://instagram.com/meg.made.fresh" target="_blank" rel="noopener">@meg.made.fresh</a> — or join our <a href="https://www.facebook.com/share/g/1HBH9mrr3e/?mibextid=wwXIfr" target="_blank" rel="noopener">Facebook group</a> for founding updates.</p>
+    <div class="btn-row">
+      <a href="https://instagram.com/meg.made.fresh" class="btn btn-brass" target="_blank" rel="noopener">Message Us on Instagram</a>
+      <a href="https://www.facebook.com/share/g/1HBH9mrr3e/?mibextid=wwXIfr" class="btn btn-pine" target="_blank" rel="noopener">Join the Facebook Group</a>
+    </div>
+  </div>
+</section>
+
+<!-- CLIENT:END page-about -->
+<!-- CLIENT:START connect-modal -->
+<div class="connect-modal" id="connectModal" aria-hidden="true" role="dialog" aria-labelledby="connectModalTitle">
+  <div class="connect-modal-backdrop" data-close-connect></div>
+  <div class="connect-modal-panel letter-panel">
+    <button class="connect-modal-close" type="button" aria-label="Close" data-close-connect>&times;</button>
+    <div class="letter-paper">
+      <header class="letter-head">
+        <h2 id="connectModalTitle" class="letter-salutation">friends,</h2>
+      </header>
+      <div class="letter-body-copy">
+        <p>We'll personally email you when Ringana arrives in America — launch updates, honest notes as we try products, and first access if you want to build alongside us.</p>
+      </div>
+      <div class="letter-signup" id="site-signup">
+        <div class="letter-interest" data-fs-interest>
+          <p class="letter-interest-label">What are you most interested in?</p>
+          <div class="letter-interest-row" role="group" aria-label="What are you most interested in?">
+            <button type="button" class="letter-interest-chip" data-interest="products" aria-pressed="false">The products</button>
+            <button type="button" class="letter-interest-chip" data-interest="business" aria-pressed="false">The business</button>
+            <button type="button" class="letter-interest-chip" data-interest="both" aria-pressed="false">Both</button>
+          </div>
+          <input type="hidden" id="fs-interest" value="">
+          <p class="letter-interest-error" id="fs-interest-error" hidden>Pick what you're most interested in.</p>
+        </div>
+        <div id="fd-form-modal" class="letter-form"></div>
+      </div>
+      <div id="optin-success" class="optin-success" hidden aria-live="polite">
+        <div class="optin-success-mark" aria-hidden="true">&#10003;</div>
+        <p class="optin-success-eyebrow">You're in</p>
+        <p class="optin-success-title">Welcome to the founding list.</p>
+        <p class="optin-success-copy">We'll personally email you as launch updates roll in — honest notes, first access, and everything we're learning along the way.</p>
+      </div>
+      <p class="letter-sign">— Meghan &amp; Michael</p>
+      <p class="modal-fine">No spam, ever. Just the good stuff, and only until you say otherwise.</p>
+    </div>
+  </div>
+</div>
+<!-- CLIENT:END connect-modal -->
+
+<!-- CLIENT:START footer -->
+<footer>
+  <p class="foot-brand">Ringana <span>·</span> with the Smallwoods</p>
+  <p class="foot-cta">Questions before launch? <a href="https://instagram.com/meg.made.fresh" target="_blank" rel="noopener">DM us on Instagram</a> — we read every message.</p>
+  <div class="foot-social">
+    <a href="https://instagram.com/meg.made.fresh" target="_blank" rel="noopener">@meg.made.fresh</a>
+    <a href="https://www.facebook.com/share/g/1HBH9mrr3e/?mibextid=wwXIfr" target="_blank" rel="noopener">Facebook Group</a>
+    <a href="https://www.facebook.com/share/1DXbf1TXgT/?mibextid=wwXIfr" target="_blank" rel="noopener">Facebook</a>
+  </div>
+  <p class="foot-legal">Meghan and Michael are independent Ringana Fresh Partners (pending U.S. launch). This is a personal page and is not an official Ringana corporate website. These statements have not been evaluated by the FDA; products are not intended to diagnose, treat, cure, or prevent any disease.</p>
+  <p class="foot-copy">&copy; 2026 Meghan & Michael Smallwood · <a href="privacy.html">Privacy Policy</a> · <a href="terms.html">Terms of Use</a></p>
+</footer>
+<!-- CLIENT:END footer -->
+
+<script>
+/* CORE:START js */
+const siteHeader=document.getElementById('siteHeader');
+let headerTicking=false;
+
+function measureExpandedHeader(){
+  if(!siteHeader)return;
+  const wasScrolled=siteHeader.classList.contains('is-scrolled');
+  siteHeader.classList.remove('is-scrolled');
+  document.documentElement.style.setProperty('--header-expanded',siteHeader.offsetHeight+'px');
+  if(wasScrolled)siteHeader.classList.add('is-scrolled');
+  document.documentElement.style.setProperty('--header-offset',siteHeader.offsetHeight+'px');
+}
+
+function updateSiteHeader(){
+  if(!siteHeader)return;
+  const y=window.scrollY;
+  if(siteHeader.classList.contains('is-scrolled')){
+    if(y<32)siteHeader.classList.remove('is-scrolled');
+  }else if(y>72){
+    siteHeader.classList.add('is-scrolled');
+  }
+  document.documentElement.style.setProperty('--header-offset',siteHeader.offsetHeight+'px');
+}
+
+measureExpandedHeader();
+window.addEventListener('resize',measureExpandedHeader);
+window.addEventListener('scroll',()=>{
+  if(headerTicking)return;
+  headerTicking=true;
+  requestAnimationFrame(()=>{
+    updateSiteHeader();
+    headerTicking=false;
+  });
+},{passive:true});
+
+
+const io=new IntersectionObserver(entries=>{entries.forEach(e=>{if(e.isIntersecting){e.target.classList.add('visible');io.unobserve(e.target);}});},{threshold:0.12});
+document.querySelectorAll('.reveal').forEach(el=>io.observe(el));
+// Failsafe if observer never fires
+setTimeout(()=>{
+  document.querySelectorAll('.reveal:not(.visible)').forEach(el=>el.classList.add('visible'));
+},3000);
+
+/* CORE:END js */
+/* CLIENT:START js-optin */
+const FD_FORM='6a7a21f9053086f8c4da83df';
+const fdFormRoot=document.getElementById('fd-form-modal');
+const optinSuccess=document.getElementById('optin-success');
+window.fd('form',{
+  formId:FD_FORM,
+  containerEl:'#fd-form-modal'
+});
+const connectModal=document.getElementById('connectModal');
+const letterPaper=connectModal?.querySelector('.letter-paper');
+let fdFormWasReady=false;
+function flodeskFieldsVisible(){
+  const fields=fdFormRoot?.querySelector(`.ff-${FD_FORM}__fields`);
+  if(!fields||getComputedStyle(fields).display==='none')return false;
+  return [...fields.querySelectorAll(`.ff-${FD_FORM}__field`)].some(el=>getComputedStyle(el).display!=='none');
+}
+function armFlodeskSubmit(){
+  const form=fdFormRoot?.querySelector(`form.ff-${FD_FORM}__form`);
+  if(!form||form.dataset.optinBound)return;
+  form.dataset.optinBound='1';
+  form.addEventListener('submit',()=>setTimeout(showOptinSuccess,350));
+}
+function showOptinSuccess(){
+  if(!fdFormRoot||!optinSuccess||optinSuccess.classList.contains('is-visible'))return;
+  fdFormRoot.classList.add('is-submitted');
+  letterPaper?.classList.add('is-submitted');
+  optinSuccess.removeAttribute('hidden');
+  optinSuccess.classList.add('is-visible');
+}
+function syncOptinSuccess(){
+  armFlodeskSubmit();
+  if(flodeskFieldsVisible()){
+    fdFormWasReady=true;
+    return;
+  }
+  if(fdFormWasReady)showOptinSuccess();
+}
+if(fdFormRoot){
+  const obs=new MutationObserver(syncOptinSuccess);
+  obs.observe(fdFormRoot,{childList:true,subtree:true,attributes:true,attributeFilter:['style','class']});
+}
+function setConnectOpen(open){
+  if(!connectModal)return;
+  connectModal.classList.toggle('open',open);
+  connectModal.setAttribute('aria-hidden',open?'false':'true');
+  document.body.classList.toggle('nav-open',open);
+  if(open){syncOptinSuccess();nudgeSiteLead();setTimeout(nudgeSiteLead,300);setTimeout(nudgeSiteLead,1200);}
+}
+function nudgeSiteLead(){
+  try{
+    if(window.FSSiteLead&&window.FSSiteLead.refresh&&window.FS_SITE_LEAD){
+      window.FSSiteLead.refresh(window.FS_SITE_LEAD.root||'#site-signup');
+    }
+  }catch(e){}
+}
+document.querySelectorAll('[data-open-connect]').forEach(el=>{
+  el.addEventListener('click',e=>{e.preventDefault();setConnectOpen(true);});
+});
+connectModal?.querySelectorAll('[data-close-connect]').forEach(el=>{
+  el.addEventListener('click',()=>setConnectOpen(false));
+});
+document.addEventListener('keydown',e=>{
+  if(e.key==='Escape'&&connectModal?.classList.contains('open'))setConnectOpen(false);
+});
+window.FS_SITE_LEAD={slug:"meghan",root:"#site-signup"};
+(function(){function go(){try{window.FSSiteLead&&window.FSSiteLead.watch(window.FS_SITE_LEAD)}catch(e){}}if(window.FSSiteLead){go();return;}var s=document.createElement('script');s.src='site-lead-bridge.js';s.async=true;s.onload=go;s.onerror=function(){};document.head.appendChild(s);})();
+/* CLIENT:END js-optin */
+
+</script>
+</body>
+</html>

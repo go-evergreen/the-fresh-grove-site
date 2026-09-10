@@ -1061,6 +1061,7 @@ window.FS.normalizeMeetingHref = function (raw, maxLen) {
   var PRETTY_CUSTOM_LEAD_PATHS = {
     "ringana-with-brittany": true,
     "ringana-with-the-smallwoods": true,
+    "ringana-with-meghan": true,
     "ringana-with-tania": true,
     "ringana-with-kim": true,
     "ringana-with-kelly": true,
@@ -1069,9 +1070,13 @@ window.FS.normalizeMeetingHref = function (raw, maxLen) {
 
   function prettyCustomLeadShareUrl(url) {
     var raw = String(url || "").trim();
+    if (/tayrourke\.github\.io\/tay-goes-fresh/i.test(raw) || /^https:\/\/taygoesfresh\.com\/?$/i.test(raw)) {
+      return "https://taygoesfresh.com/";
+    }
     var m = raw.match(/\/(ringana-with-[a-z0-9-]+)\/?/i);
     if (m) {
       var path = m[1].toLowerCase();
+      if (path === "ringana-with-the-smallwoods") path = "ringana-with-meghan";
       if (PRETTY_CUSTOM_LEAD_PATHS[path]) {
         return "https://thefreshgrove.team/" + path + "/";
       }
@@ -1085,6 +1090,7 @@ window.FS.normalizeMeetingHref = function (raw, maxLen) {
     if (/thefreshgrove\.team\/ringana-with-/i.test(url)) return true;
     if (/go-evergreen\.github\.io\/ringana-with-/i.test(url)) return true;
     if (/tayrourke\.github\.io/i.test(url)) return true;
+    if (/^https:\/\/taygoesfresh\.com\/?$/i.test(url)) return true;
     var map = (window.FS.CONFIG && window.FS.CONFIG.customLeadPages) || {};
     var want = url.replace(/\/$/, "").toLowerCase();
     var k;

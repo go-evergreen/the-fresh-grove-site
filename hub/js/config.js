@@ -58,12 +58,12 @@ window.FS.CONFIG = {
   /* Personal landing pages that dual-write into the Leads inbox.
      Keyed by lead_slug. Only these people see the share-link toggle. */
   customLeadPages: {
-    taylor: "https://tayrourke.github.io/tay-goes-fresh/",
+    taylor: "https://taygoesfresh.com/",
     brittany: "https://thefreshgrove.team/ringana-with-brittany/",
     kassidy: "https://thefreshgrove.team/ringana-with-kassidy/",
     "kelly-amorose": "https://thefreshgrove.team/ringana-with-kelly/",
     kim: "https://thefreshgrove.team/ringana-with-kim/",
-    meghan: "https://thefreshgrove.team/ringana-with-the-smallwoods/",
+    meghan: "https://thefreshgrove.team/ringana-with-meghan/",
     tania: "https://thefreshgrove.team/ringana-with-tania/",
     "kim-huck": "https://go-evergreen.github.io/ringana-with-kimberly/"
   },
