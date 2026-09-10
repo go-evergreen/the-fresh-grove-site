@@ -177,13 +177,13 @@ try {
   if ("serviceWorker" in navigator) {
     window.FS = window.FS || {};
     window.FS.freshBuildPending = true;
-    navigator.serviceWorker.register("./sw.js?v=725", { updateViaCache: "none" }).then(function (reg) {
+    navigator.serviceWorker.register("./sw.js?v=726", { updateViaCache: "none" }).then(function (reg) {
       try { reg.update(); } catch (eUp) {}
     });
   }
 } catch (eSwEarly) {}
 </script>
-<link rel="stylesheet" href="css/styles.css?v=633">
+<link rel="stylesheet" href="css/styles.css?v=634">
 <style>
   .boot-cover{
     position:fixed;inset:0;z-index:10000;
@@ -2523,11 +2523,11 @@ try {
       <form id="onboardingAuthForm" autocomplete="on">
         <div class="onboard-name-field">
           <label class="field-label" for="onboardingEmail">Email</label>
-          <input type="email" id="onboardingEmail" placeholder="you@email.com" autocomplete="username" inputmode="email" autocapitalize="none" autocorrect="off" spellcheck="false">
+          <input type="email" id="onboardingEmail" placeholder="you@email.com" autocomplete="username" inputmode="email" enterkeyhint="next" autocapitalize="none" autocorrect="off" spellcheck="false">
         </div>
         <div class="onboard-name-field">
           <label class="field-label" for="onboardingPassword">Password</label>
-          <input type="password" id="onboardingPassword" placeholder="8+ to create an account · existing sign-in still works" autocomplete="current-password" minlength="6">
+          <input type="password" id="onboardingPassword" placeholder="8+ to create an account · existing sign-in still works" autocomplete="current-password" enterkeyhint="go" minlength="6">
         </div>
         <button type="submit" hidden tabindex="-1" aria-hidden="true"></button>
         <div class="onboard-auth-actions">
@@ -2891,11 +2891,11 @@ try {
       </div>
       <div class="onboard-name-field">
         <label class="field-label" for="authEmail">Email</label>
-        <input type="email" id="authEmail" placeholder="you@email.com" autocomplete="username" inputmode="email" autocapitalize="none" autocorrect="off" spellcheck="false">
+        <input type="email" id="authEmail" placeholder="you@email.com" autocomplete="username" inputmode="email" enterkeyhint="next" autocapitalize="none" autocorrect="off" spellcheck="false">
       </div>
       <div class="onboard-name-field">
         <label class="field-label" for="authPassword">Password</label>
-        <input type="password" id="authPassword" placeholder="8+ to create an account · existing sign-in still works" autocomplete="current-password" minlength="6">
+        <input type="password" id="authPassword" placeholder="8+ to create an account · existing sign-in still works" autocomplete="current-password" enterkeyhint="go" minlength="6">
       </div>
       <button type="button" class="btn overlay-btn" id="authSubmitBtn">Sign in →</button>
       <button type="button" class="btn-ghost overlay-btn" id="authCreateBtn" style="margin-top:8px">Create account →</button>
@@ -3154,9 +3154,9 @@ try {
 <script src="js/push.js?v=362"></script>
 <script src="js/cabinet-faq.js?v=3"></script>
 <script src="js/cabinet-desk.js?v=64"></script>
-<script src="js/bridge-ui.js?v=523"></script>
+<script src="js/bridge-ui.js?v=524"></script>
 <script src="js/comp-plan.js?v=34"></script>
-<script src="js/app.js?v=624"></script>
+<script src="js/app.js?v=625"></script>
 <script src="js/pwa.js?v=359"></script>
 </body>
 </html>

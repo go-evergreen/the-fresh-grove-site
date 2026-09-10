@@ -9711,9 +9711,24 @@
     return isTextEntry(document.activeElement) && keyboardInset() > 72;
   }
 
+  function isAuthEntry(el) {
+    if (!el || !el.closest) return false;
+    return !!(
+      el.closest("#onboardingAuthForm") ||
+      el.closest("#onboardingResetPane") ||
+      el.closest("#authSignFields") ||
+      el.closest("#authResetPane")
+    );
+  }
+
+  function syncAuthTyping(el) {
+    document.documentElement.classList.toggle("fs-auth-typing", !!(el && isAuthEntry(el)));
+  }
+
   function liftKeyboardPin() {
     var root = document.documentElement;
     root.classList.remove("fs-kb-open");
+    root.classList.remove("fs-auth-typing");
     root.style.removeProperty("--fs-kb-inset");
     root.style.removeProperty("--fs-vv-height");
     root.style.removeProperty("--fs-vv-offset");
@@ -9888,26 +9903,44 @@
       setTimeout(function () { restoreAfterKeyboard(); }, 80);
       setTimeout(function () { restoreAfterKeyboard(); }, 400);
     });
+    var kbRestoreTimer = 0;
+    function cancelKeyboardRestore() {
+      if (kbRestoreTimer) {
+        clearTimeout(kbRestoreTimer);
+        kbRestoreTimer = 0;
+      }
+    }
+    function scheduleKeyboardRestore() {
+      cancelKeyboardRestore();
+      /* iOS password fields (and Keychain) take longer than 50ms to take
+         focus. Restoring that fast dismisses the keyboard and dumps people
+         back on Sign in before they can type a password. */
+      kbRestoreTimer = setTimeout(function () {
+        kbRestoreTimer = 0;
+        if (isTextEntry(document.activeElement)) return;
+        restoreAfterKeyboard();
+      }, 480);
+    }
     document.addEventListener("focusin", function (e) {
       if (!isTextEntry(e.target)) return;
+      cancelKeyboardRestore();
       var el = e.target;
+      syncAuthTyping(el);
       syncKeyboardPin();
       setTimeout(function () {
         if (document.activeElement !== el) return;
+        syncAuthTyping(el);
         syncKeyboardPin();
         scrollFieldIntoVisible(el);
       }, 400);
     });
     document.addEventListener("focusout", function (e) {
       if (!isTextEntry(e.target)) return;
-      setTimeout(function () {
-        if (isTextEntry(document.activeElement)) return;
-        restoreAfterKeyboard();
-      }, 50);
-      setTimeout(function () {
-        if (isTextEntry(document.activeElement)) return;
-        restoreAfterKeyboard();
-      }, 360);
+      if (isTextEntry(e.relatedTarget)) {
+        syncAuthTyping(e.relatedTarget);
+        return;
+      }
+      scheduleKeyboardRestore();
     });
     document.addEventListener("visibilitychange", function () {
       if (document.visibilityState === "visible" && !isTextEntry(document.activeElement)) restoreAfterKeyboard();
@@ -13350,6 +13383,17 @@
         return;
       }
       if (!email || !password) {
+        if (!email && emailInput) {
+          onboardAuthMsg(creating
+            ? "Enter your email and a password (at least 8 characters)."
+            : "Enter your email and password.");
+          emailInput.focus();
+          return;
+        }
+        if (passwordInput) {
+          passwordInput.focus();
+          return;
+        }
         onboardAuthMsg(creating
           ? "Enter your email and a password (at least 8 characters)."
           : "Enter your email and password.");

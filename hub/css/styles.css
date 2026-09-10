@@ -5958,6 +5958,39 @@ html:has(#growthMoment.open) .layout{overflow:hidden;overscroll-behavior:none}
     max-height:var(--fs-vv-height, 100dvh);
     margin:0 auto
   }
+  /* Compact sign-in as soon as they tap a field — otherwise the sticky
+     Sign in / Create / Forgot stack covers the password box on a phone. */
+  html.fs-auth-typing #onboarding.overlay .onboarding-card.onboarding-auth .onboarding-eyebrow,
+  html.fs-kb-open #onboarding.overlay .onboarding-card.onboarding-auth .onboarding-eyebrow,
+  html.fs-auth-typing #onboarding.overlay .onboarding-card.onboarding-auth .lead,
+  html.fs-kb-open #onboarding.overlay .onboarding-card.onboarding-auth .lead,
+  html.fs-auth-typing #onboarding.overlay .onboarding-dots,
+  html.fs-kb-open #onboarding.overlay .onboarding-dots,
+  html.fs-auth-typing #onboarding.overlay .onboarding-card.onboarding-auth .auth-hint,
+  html.fs-kb-open #onboarding.overlay .onboarding-card.onboarding-auth .auth-hint,
+  html.fs-auth-typing #authOverlay.overlay .onboarding-eyebrow,
+  html.fs-kb-open #authOverlay.overlay .onboarding-eyebrow,
+  html.fs-auth-typing #authOverlay.overlay .lead,
+  html.fs-kb-open #authOverlay.overlay .lead,
+  html.fs-auth-typing #authOverlay.overlay .auth-hint,
+  html.fs-kb-open #authOverlay.overlay .auth-hint,
+  html.fs-auth-typing #authOverlay.overlay .overlay-close,
+  html.fs-kb-open #authOverlay.overlay .overlay-close{
+    display:none
+  }
+  html.fs-auth-typing #onboarding.overlay .onboarding-card.onboarding-auth h3,
+  html.fs-kb-open #onboarding.overlay .onboarding-card.onboarding-auth h3,
+  html.fs-auth-typing #authOverlay.overlay h3,
+  html.fs-kb-open #authOverlay.overlay h3{
+    font-size:1.15rem;
+    margin-bottom:10px
+  }
+  html.fs-auth-typing .onboard-auth-actions .btn-ghost,
+  html.fs-kb-open .onboard-auth-actions .btn-ghost,
+  html.fs-auth-typing #authSignFields > .btn-ghost,
+  html.fs-kb-open #authSignFields > .btn-ghost{
+    display:none!important
+  }
 }
 
 /* ── compensation plan walkthrough ── */

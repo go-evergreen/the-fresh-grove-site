@@ -11687,6 +11687,20 @@ window.FS.YouTube = (function () {
         if (creating && lastField) lastField.hidden = false;
         try {
           t.disabled = true;
+          if (!(String(email || "").trim()) || !password) {
+            var emailEl = $("authEmail");
+            if (!(String(email || "").trim()) && emailEl) {
+              if (msg) msg.textContent = creating
+                ? "Enter your email and a password (at least 8 characters)."
+                : "Enter your email and password.";
+              emailEl.focus();
+              return;
+            }
+            if (passEl) {
+              passEl.focus();
+              return;
+            }
+          }
           if (creating) {
             if (!(name || "").trim()) {
               if (msg) msg.textContent = "Add your first name.";
