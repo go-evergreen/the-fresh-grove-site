@@ -118,7 +118,7 @@
     try {
       if (!navigator.serviceWorker.controller) {
         try {
-          await navigator.serviceWorker.register("./sw.js?v=717", { updateViaCache: "none" });
+          await navigator.serviceWorker.register("./sw.js?v=728", { updateViaCache: "none" });
         } catch (e) {}
       }
       var reg = await Promise.race([

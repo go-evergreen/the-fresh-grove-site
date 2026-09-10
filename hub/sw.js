@@ -5,7 +5,7 @@
    they are served straight from cache instead of re-fetched on every open.
    Offline: fall back to last good cache.
 */
-const CACHE_VERSION = "fs-v723";
+const CACHE_VERSION = "fs-v725";
 const CACHE_NAME = "first-seeds-" + CACHE_VERSION;
 const JOIN_CACHE = "fs-pending-join";
 const JOIN_REQ = "./__pending_join";
@@ -180,6 +180,19 @@ function manifestWithJoin(event) {
           if (hub) start.searchParams.set("hub", hub);
           if (wantSignin) start.searchParams.set("signin", "1");
           man.start_url = start.pathname + start.search;
+          /* Identity is the person unique, not signin= and not a shared "./".
+             A shared id made generic and unique installs the same app, so a
+             later generic Add to Home Screen could drop the invite. */
+          if (join && !looksGenericOrgJoin(join)) {
+            var ident = new URL("./index.html", self.registration.scope);
+            ident.searchParams.set("join", join);
+            if (hub) ident.searchParams.set("hub", hub);
+            man.id = ident.pathname + ident.search;
+          } else {
+            try { delete man.id; } catch (eId) {}
+          }
+        } else {
+          try { delete man.id; } catch (eId2) {}
         }
         return new Response(JSON.stringify(man), {
           headers: { "Content-Type": "application/manifest+json", "Cache-Control": "no-store" }

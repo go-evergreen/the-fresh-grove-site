@@ -11212,9 +11212,26 @@
   var lastOnboardAuthIntent = "create";
   var AUTH_INTENT_KEY = "firstSeeds_onboard_auth";
 
+  function refreshInstallGuideIfOpen() {
+    if (onboardingStep !== 2) return;
+    if (isRunningAsInstalledApp()) return;
+    var live = guessInstallPlatform();
+    if (live === "android" || live === "ios") selectInstallPlatform(live);
+  }
+
   window.addEventListener("beforeinstallprompt", function (e) {
     e.preventDefault();
     deferredInstallPrompt = e;
+    refreshInstallGuideIfOpen();
+  });
+  window.addEventListener("appinstalled", function () {
+    deferredInstallPrompt = null;
+    try {
+      var confirm = document.getElementById("onboardInstallConfirm");
+      if (confirm) confirm.checked = true;
+    } catch (eInst) {}
+    refreshInstallGuideIfOpen();
+    syncInstallLeaveUi();
   });
 
   function cloudSignedIn() {
@@ -11316,17 +11333,82 @@
     } catch (e) {}
   }
 
+  function hardenedAppUrl() {
+    try {
+      var u = new URL(location.href);
+      var Cloud = window.FS && window.FS.Cloud;
+      var code = "";
+      try {
+        if (Cloud && Cloud.pendingJoinCode) {
+          code = String(Cloud.pendingJoinCode() || "").trim().toLowerCase();
+        }
+      } catch (eC) {}
+      if (code && code !== "evergreen") {
+        u.searchParams.set("join", code);
+        if (!u.searchParams.get("hub")) {
+          try {
+            var share = Cloud.joinUrl && Cloud.joinUrl(code);
+            if (share) {
+              var sh = new URL(share, location.href);
+              var h = String(sh.searchParams.get("hub") || "").trim().toLowerCase();
+              if (h) u.searchParams.set("hub", h);
+            }
+          } catch (eS) {}
+        }
+        if (!/(?:^|[?#&])(?:fs)?join=/i.test(String(u.hash || ""))) {
+          u.hash = "join=" + encodeURIComponent(code);
+        }
+      }
+      return u.href;
+    } catch (e) {
+      try { return String(location.href || ""); } catch (e2) { return ""; }
+    }
+  }
+
   function currentAppUrl() {
-    try { return String(location.href || ""); } catch (e) { return ""; }
+    return hardenedAppUrl() || (function () {
+      try { return String(location.href || ""); } catch (e) { return ""; }
+    })();
   }
 
   function safariOpenHref() {
     try {
-      var u = new URL(location.href);
+      var u = new URL(hardenedAppUrl() || location.href);
       if (u.protocol === "https:") return "x-safari-https://" + u.host + u.pathname + u.search + u.hash;
       if (u.protocol === "http:") return "x-safari-http://" + u.host + u.pathname + u.search + u.hash;
     } catch (e) {}
     return "";
+  }
+
+  /* Texts on Android often open a Chrome preview (or the Google app) that
+     cannot save a Home Screen icon. This hops the same URL into real Chrome.
+     Never put #join= before #Intent — that breaks unique links. */
+  function chromeIntentHref(url) {
+    try {
+      var u = new URL(url || hardenedAppUrl() || location.href);
+      if (u.protocol !== "https:" && u.protocol !== "http:") return "";
+      var scheme = u.protocol === "https:" ? "https" : "http";
+      if (!u.searchParams.get("join") && u.hash) {
+        var hm = String(u.hash).match(/(?:^|[?#&])(?:fs)?join=([^&]+)/i);
+        if (hm) {
+          var hashJoin = decodeURIComponent(hm[1] || "").trim().toLowerCase();
+          if (hashJoin && hashJoin !== "evergreen") u.searchParams.set("join", hashJoin);
+        }
+      }
+      var path = u.host + u.pathname + u.search;
+      return "intent://" + path + "#Intent;scheme=" + scheme +
+        ";package=com.android.chrome;S.browser_fallback_url=" +
+        encodeURIComponent(u.href) + ";end";
+    } catch (e) {
+      return "";
+    }
+  }
+
+  function openInChromeActionHtml() {
+    var href = chromeIntentHref();
+    if (!href) return "";
+    return '<a class="btn overlay-btn" id="onboardInstallOpenChrome" href="' +
+      href.replace(/"/g, "") + '">Open in Chrome →</a>';
   }
 
   function copyCurrentAppLink(btn) {
@@ -11383,13 +11465,13 @@
       title = "You’re inside " + name;
       body = ios
         ? "Home Screen only works from Safari. Tap the <strong>•••</strong> menu, then <strong>Open in Safari</strong>. Come back to these steps there — not from " + name + "."
-        : "Home Screen only works from Chrome. Tap the <strong>•••</strong> menu, then <strong>Open in Chrome</strong> or <strong>Open in browser</strong>.";
+        : "Home Screen only works from Chrome. Tap <strong>Open in Chrome</strong> below — then you can save First Seeds on your Home Screen.";
     } else if (ctx.kind === "chrome-ios") {
       title = name + " on iPhone can’t add this as an app";
       body = "Copy the link, then open the <strong>Safari</strong> app (the compass) and paste it there. Add to Home Screen only works in Safari — not in " + name + ".";
     } else if (ctx.kind === "google-app") {
       title = "This is the Google app, not Chrome";
-      body = "Copy the link, open the <strong>Chrome</strong> app (the colorful circle), and paste it in the address bar — not in Search. Search turns this into a 404.";
+      body = "Tap <strong>Open in Chrome</strong> below. Chrome is the colorful circle — that’s the one that can save First Seeds on your Home Screen. Don’t paste this link into Google Search (that’s a 404).";
     } else {
       return "";
     }
@@ -11398,6 +11480,11 @@
     var safari = ios ? safariOpenHref() : "";
     if (safari && /^x-safari-https?:\/\//i.test(safari)) {
       actions += '<a class="btn-ghost overlay-btn" id="onboardInstallOpenSafari" href="' + safari.replace(/"/g, "") + '">Try Open in Safari →</a>';
+    }
+    if (!ios) {
+      var chromeOpen = openInChromeActionHtml();
+      if (chromeOpen) actions = '<div class="onboard-install-switch-actions">' + chromeOpen +
+        '<button type="button" class="btn-ghost overlay-btn" id="onboardInstallCopyLink">Copy this link</button>';
     }
     actions += '<button type="button" class="btn-ghost overlay-btn" id="onboardInstallSignInAnyway">I already have an account — sign in here →</button>';
     actions += "</div>";
@@ -11432,8 +11519,12 @@
     if (trap) return trap;
     var signIn = wantsSignIn();
     var afterOpen = signIn
-      ? "That’s where you’ll sign in. This browser page and the Home Screen icon don’t share a login."
-      : "That’s where you’ll type your name.";
+      ? (platform === "android"
+          ? "Open that new icon and sign in there."
+          : "That’s where you’ll sign in. This browser page and the Home Screen icon don’t share a login.")
+      : (platform === "android"
+          ? "Open that new icon to keep going."
+          : "That’s where you’ll type your name.");
     var here = platform === "ios" ? "Safari" : "Chrome";
     var head = '<p class="onboard-install-do">Do these steps here in ' + here + "</p>";
     var joinSaved = "";
@@ -11464,16 +11555,20 @@
       var installBtn = deferredInstallPrompt
         ? '<button type="button" class="btn overlay-btn" id="onboardInstallPromptBtn" style="margin-bottom:12px">Install First Seeds →</button>'
         : "";
-      return head + installBtn +
+      var chromeBtn = openInChromeActionHtml();
+      var chromeWrap = (!deferredInstallPrompt && chromeBtn)
+        ? '<div class="onboard-install-switch-actions" style="margin-bottom:12px">' + chromeBtn + "</div>" +
+          '<p class="onboard-install-note">If this opened from a text, you’re often in a preview that can’t save the icon. Tap <strong>Open in Chrome</strong> first — then Install.</p>'
+        : "";
+      return head + installBtn + chromeWrap +
         '<ol class="onboard-install-steps">' +
-        '<li class="onboard-install-key">Stay in <strong>Chrome</strong> — the browser with the colorful circle. Not the Google app, and don’t paste this link into Google Search (that’s a 404).</li>' +
-        "<li>Tap the <strong>⋮</strong> menu (top right).</li>" +
-        '<li class="onboard-install-key">Tap <strong>Install app</strong> or <strong>Add to Home screen</strong>.</li>' +
-        "<li>Confirm — then look for the First Seeds icon on your Home Screen.</li>" +
-        '<li class="onboard-install-key">Then close this Chrome page and open First Seeds from that icon. ' + afterOpen + "</li>" +
+        '<li class="onboard-install-key">Stay in <strong>Chrome</strong> — the colorful circle. Not the Google app, and don’t paste this link into Google Search.</li>' +
+        '<li class="onboard-install-key">Tap <strong>Install First Seeds</strong> above, or <strong>Install</strong> in the address bar, or the <strong>⋮</strong> menu → <strong>Install app</strong>.</li>' +
+        "<li>Confirm — you should see a First Seeds icon on your Home Screen.</li>" +
+        '<li class="onboard-install-key">Open First Seeds from that new icon. ' + afterOpen + "</li>" +
         "</ol>" +
         joinSaved +
-        '<p class="onboard-install-note">On some Androids it says “Install” in the address bar instead of the menu.</p>';
+        '<p class="onboard-install-note">If you only see a preview from a text, tap ⋮ then <strong>Open in Chrome</strong>, then come back to Install.</p>';
     }
     return "";
   }
@@ -11660,6 +11755,10 @@
         installLead.textContent = wantsSignIn()
           ? "This window can’t keep you signed in. Open the same link in Safari (iPhone) or Chrome (Android), or sign in here for now with the same email as the first time."
           : "This window can’t add First Seeds to your Home Screen. Open the same link in Safari (iPhone) or Chrome (Android) first.";
+      } else if (installLead && guessInstallPlatform() === "android") {
+        installLead.textContent = wantsSignIn()
+          ? "Tap Install so First Seeds sits on your Home Screen like an app. Then open that new icon and sign in."
+          : "Tap Install so First Seeds sits on your Home Screen like an app. Then open it from that new icon.";
       } else if (installLead && wantsSignIn()) {
         installLead.textContent = "Add the Home Screen icon from this window, then close this page and open First Seeds from that new icon. That’s where you’ll sign in — this browser page and the icon don’t share a login.";
       }

@@ -15,7 +15,7 @@
      reloading people who only left for a second. */
   var coldOpenCheck = !justTookBuild;
   /* Bust browser HTTP cache of sw.js itself — critical for team PWAs. */
-  var SW_URL = "./sw.js?v=717";
+  var SW_URL = "./sw.js?v=728";
   /* How often to look for a deploy while the app sits open. The real check is
      the one on return-to-foreground; this is just a backstop for a session
      that stays open all day. */
