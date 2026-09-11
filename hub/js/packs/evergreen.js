@@ -30,7 +30,7 @@ window.FS.EVERGREEN = {
     },
     {
       term: "Your team",
-      def: "People who sit under you. How I Grow cards for your Level 1 show on the board. Named Leaders can open their growing team — most partners won’t see a separate team page."
+      def: "People who sit under you. How I Grow cards for your Level 1 show on the board. Named Leaders also see How I Grow for everyone on their tree — most partners won’t see a separate team page."
     },
     {
       term: "Evergreen Leader",
@@ -251,7 +251,7 @@ window.FS.EVERGREEN = {
     },
     {
       title: "Your growing team",
-      body: "The tree button up top opens your people. Tap a name to see How I Grow for people who sit directly under you.",
+      body: "The tree button up top opens your people. Tap a name to see How I Grow for anyone on your team.",
       panel: "ev-home",
       target: "#evTeamNavBtn",
       placement: "below",
@@ -405,7 +405,7 @@ window.FS.EVERGREEN = {
         {
           id: "how_i_grow",
           q: "What is How I Grow?",
-          a: "A short support map so the person you sit under — your direct upline — knows how to show up for you. You’ll see a reminder on Sprout until you fill it out. You can edit it anytime in Settings → Your answers."
+          a: "A short support map so the person you sit under — your direct upline — knows how to show up for you. Named Leaders on your tree can read it too. You’ll see a reminder on Sprout until you fill it out. You can edit it anytime in Settings → Your answers."
         }
       ]
     },

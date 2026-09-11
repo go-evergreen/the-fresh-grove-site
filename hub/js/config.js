@@ -230,7 +230,7 @@ window.FS.CONFIG = {
     },
     {
       title: "Messages lives up top",
-      body: "The 💬 next to Settings opens What’s new. Cheers, notes, grove messages, and polls land here — plus announcements for the whole grove. If someone who sits under you fills out How I Grow, their support map lands here too. It’s there on Soft start too.",
+      body: "The 💬 next to Settings opens What’s new. Cheers, notes, grove messages, and polls land here — plus announcements for the whole grove. It’s there on Soft start too.",
       panel: "welcome",
       target: "#groveBoardNavBtn",
       placement: "below"

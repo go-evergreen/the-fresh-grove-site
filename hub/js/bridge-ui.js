@@ -2219,17 +2219,15 @@ window.FS.YouTube = (function () {
     } else if (!packEvergreen() && !Cloud.isOrgAdmin()) {
       html += '<p class="team-person-hint">Cheer and notes are for your Level 1 — this person is deeper on the tree.</p>';
     }
-    if (packEvergreen() && personIsEvergreenOrg(person)) {
-      var supportRec = supportProfileByPartner[partnerId];
-      if (!supportRec || !supportRec.allowed) {
-        try {
-          await hydrateHowIGrowForIds([partnerId]);
-        } catch (eGrow) {}
-        supportRec = supportProfileByPartner[partnerId];
-      }
-      if (supportRec && supportRec.allowed) {
-        html += supportSnapshotHtml(partnerId, supportRec.support);
-      }
+    var supportRec = supportProfileByPartner[partnerId];
+    if (!supportRec || !supportRec.allowed) {
+      try {
+        await hydrateHowIGrowForIds([partnerId]);
+      } catch (eGrow) {}
+      supportRec = supportProfileByPartner[partnerId];
+    }
+    if (supportRec && supportRec.allowed) {
+      html += supportSnapshotHtml(partnerId, supportRec.support);
     }
     if (canRearrangeCurrentTeam() && teamRearrangeOn()) {
       var skipMove = packEvergreen() && (
@@ -2890,6 +2888,14 @@ window.FS.YouTube = (function () {
     }
     var sortMode = teamSortMode();
     sortTeamNodes(roots, sortMode);
+    if (Cloud.isOrgAdmin && Cloud.isOrgAdmin()) {
+      var teamGrowIds = flattenTeamGraph(roots).map(function (item) {
+        return item && item.profile && item.profile.id;
+      }).filter(Boolean);
+      if (teamGrowIds.length) {
+        try { await hydrateHowIGrowForIds(teamGrowIds); } catch (eGrow) {}
+      }
+    }
     lastTeamGraphPaint = {
       graph: { roots: roots, depth: graph.depth || 6 },
       downline: downlineRows || [],
@@ -5028,10 +5034,6 @@ window.FS.YouTube = (function () {
     var tab = groveBoardTab === "announcements" ? "announcements" : "messages";
     var hub = { posts: [], inbox: [], latest_at: null };
     var hubOk = false;
-    var growPeople = [];
-    var growP = tab === "messages"
-      ? loadHowGrowBoardPeople(false).catch(function () { return howGrowBoardCache.rows || []; })
-      : Promise.resolve([]);
     try {
       var raw = await loadGroveHub(false);
       hub = {
@@ -5050,11 +5052,6 @@ window.FS.YouTube = (function () {
         };
       }
     }
-    try {
-      growPeople = await growP;
-    } catch (eGrow) {
-      growPeople = howGrowBoardCache.rows || [];
-    }
     if (hubOk) {
       if (hub.latest_at) markGroveBoardSeen(hub.latest_at);
       else markGroveBoardSeen(new Date().toISOString());
@@ -5069,9 +5066,8 @@ window.FS.YouTube = (function () {
       polls = (polls || []).filter(Boolean);
     }
     if (run !== groveBoardRun) return;
-    var growHtml = tab === "messages" ? howGrowBoardHtml(growPeople) : "";
     var html = groveBoardAppUpdatesHtml() + groveBoardTabsHtml();
-    if (!hubOk && !(hub.posts || []).length && !(hub.inbox || []).length && !growHtml) {
+    if (!hubOk && !(hub.posts || []).length && !(hub.inbox || []).length) {
       html += '<p class="grove-board-empty">Couldn’t load notes just now. Try again in a moment.</p>';
       if (groveBoardComposeFieldFocused()) {
         paintGroveBoardCount();
@@ -5090,7 +5086,6 @@ window.FS.YouTube = (function () {
       html += groveBoardPollsHtml(polls);
       if ((hub.posts || []).length || !polls.length) html += groveBoardPostsHtml(hub.posts);
     } else {
-      html += growHtml;
       html += groveBoardInboxHtml(hub.inbox);
     }
     if (run !== groveBoardRun) return;

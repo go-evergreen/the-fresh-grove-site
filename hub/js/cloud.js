@@ -3119,8 +3119,25 @@ window.FS.normalizeMeetingHref = function (raw, maxLen) {
         if (id !== me && u.sponsor_id !== me) {
           var amSuper = Cloud.isSuperAdmin && Cloud.isSuperAdmin();
           var amHub = Cloud.isHubAdmin && Cloud.isHubAdmin();
-          if (!amSuper && !amHub) return null;
-          if (!amSuper && String(u.org_id || "") !== String(sessionUser.org_id || "")) return null;
+          var amLead = Cloud.isOrgAdmin && Cloud.isOrgAdmin();
+          var sameOrg = String(u.org_id || "") === String(sessionUser.org_id || "");
+          if (amSuper) {
+            /* any org */
+          } else if (amHub && sameOrg) {
+            /* hub org-wide */
+          } else if (amLead && sameOrg) {
+            var walk = u.sponsor_id;
+            var hop = 0;
+            var onTeam = false;
+            while (walk && hop < 12) {
+              if (walk === me) { onTeam = true; break; }
+              hop += 1;
+              walk = store.users[walk] && store.users[walk].sponsor_id;
+            }
+            if (!onTeam) return null;
+          } else {
+            return null;
+          }
         }
         return {
           partner_id: id,
