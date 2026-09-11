@@ -1160,12 +1160,13 @@ window.FS.normalizeMeetingHref = function (raw, maxLen) {
         "https://thefreshgrove.team/thefreshcatalog").trim();
     }
     var slug = leadSlugFromShareUrl(url);
-    if (slug && /(?:lead\.html|[?&#](?:p|with)=)/i.test(url) && !/[?&#]join=/i.test(url)) {
+    var isBusinessWith = /[?&#]with=/i.test(url);
+    if (slug && !isBusinessWith && /(?:lead\.html|[?&#]p=)/i.test(url) && !/[?&#]join=/i.test(url)) {
       var leadBase = grovePublicLeadBase();
       var leadGlue = leadBase.indexOf("?") >= 0 ? "&" : "?";
       return leadBase + leadGlue + "p=" + encodeURIComponent(slug) + "#p=" + encodeURIComponent(slug);
     }
-    if (slug && /thefreshgrove\.team/i.test(url) && /[?&#]with=/i.test(url)) {
+    if (slug && isBusinessWith && /thefreshgrove\.team/i.test(url)) {
       var site = grovePublicHubBase();
       return site + "?with=" + encodeURIComponent(slug) + "#with=" + encodeURIComponent(slug);
     }
