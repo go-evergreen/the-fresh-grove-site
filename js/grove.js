@@ -152,7 +152,7 @@
         if (data && data.slug) {
           person = {
             slug: data.slug,
-            name: firstName(data.display_name || data.slug),
+            name: firstName(data.display_name || data.last_name || "Friend"),
             ig: data.instagram || "",
             note: ""
           };
@@ -191,6 +191,10 @@
   async function resolveAttribution() {
     var params = new URLSearchParams(window.location.search);
     var fromUrl = (params.get("with") || params.get("p") || "").trim().toLowerCase();
+    if (!fromUrl && location.hash) {
+      var hm = String(location.hash).match(/(?:^|[?#&])(?:p|with)=([^&]+)/i);
+      if (hm) fromUrl = decodeURIComponent(hm[1] || "").trim().toLowerCase();
+    }
     if (fromUrl) {
       await lockFromSlug(fromUrl);
       return;

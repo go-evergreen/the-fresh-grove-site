@@ -7,13 +7,20 @@
 (function () {
   try {
     var q = new URLSearchParams(location.search);
-    var slug = String(q.get("with") || q.get("p") || "").trim();
-    if (!slug && location.hash) {
-      var hm = String(location.hash).match(/(?:^|[?#&])(?:p|with)=([^&]+)/i);
-      if (hm) slug = decodeURIComponent(hm[1] || "").trim();
+    var leadSlug = String(q.get("p") || "").trim();
+    var withSlug = String(q.get("with") || "").trim();
+    if (!leadSlug && !withSlug && location.hash) {
+      var hm = String(location.hash).match(/(?:^|[?#&])(p|with)=([^&]+)/i);
+      if (hm) {
+        if (String(hm[1]).toLowerCase() === "p") leadSlug = decodeURIComponent(hm[2] || "").trim();
+        else withSlug = decodeURIComponent(hm[2] || "").trim();
+      }
     }
-    if (!slug) return;
-    location.replace("/lead.html" + String(location.search || "") + String(location.hash || ""));
+    /* Lead copies that hit the homepage. Business-info ?with= stays here
+       so the team form can lock to that partner’s slug. */
+    if (leadSlug && !withSlug) {
+      location.replace("/lead.html" + String(location.search || "") + String(location.hash || ""));
+    }
   } catch (e) {}
 })();
 </script>
@@ -1009,7 +1016,7 @@ if (window.caches) {
 <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
 <script src="js/config.js?v=fresh86"></script>
 <script src="js/plant.js?v=fresh86"></script>
-<script src="js/grove.js?v=fresh86"></script>
+<script src="js/grove.js?v=fresh87"></script>
 <script src="js/motion.js?v=fresh86"></script>
 <script src="js/demo.js?v=fresh86"></script>
 </body>

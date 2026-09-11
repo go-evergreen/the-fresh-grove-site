@@ -62,8 +62,14 @@
     location.replace("/lead.html?p=" + encodeURIComponent(leadSlug) + "#p=" + encodeURIComponent(leadSlug));
     return;
   }
-  if (/^\/lead(\/|\.html|$)/i.test(path) || /[?&](?:p|with)=/.test(search) || /[#&?](?:p|with)=/.test(hash)) {
+  var hasLead = /[?&]p=/.test(search) || /[#&?]p=/.test(hash);
+  var hasWith = /[?&]with=/.test(search) || /[#&?]with=/.test(hash);
+  if (/^\/lead(\/|\.html|$)/i.test(path) || (hasLead && !hasWith)) {
     location.replace("/lead.html" + search + hash);
+    return;
+  }
+  if (hasWith) {
+    location.replace("/" + search + hash);
     return;
   }
   if (/^\/thefreshcatalog(\/|\.html|$)/i.test(path)) {
