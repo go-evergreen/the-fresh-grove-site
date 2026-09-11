@@ -36,6 +36,12 @@
     location.replace("/join.html" + extra + hash);
     return;
   }
+  var karenHop = String(path || "").match(/^\/ringana-with-karen(\/.*)?$/i);
+  if (karenHop) {
+    var karenRest = karenHop[1] || "/";
+    location.replace("https://freshwithkaren.com" + karenRest + search + hash);
+    return;
+  }
   var prettyLead = String(path || "").match(/\/(ringana-with-[a-z0-9-]+)\/?$/i);
   var prettyStay = {
     "ringana-with-brittany": true,
@@ -44,8 +50,7 @@
     "ringana-with-tania": true,
     "ringana-with-kim": true,
     "ringana-with-kelly": true,
-    "ringana-with-kassidy": true,
-    "ringana-with-karen": true
+    "ringana-with-kassidy": true
   };
   if (prettyLead && prettyStay[prettyLead[1].toLowerCase()]) {
     location.replace("/" + prettyLead[1].toLowerCase() + "/" + search + hash);
