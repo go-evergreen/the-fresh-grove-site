@@ -2537,20 +2537,34 @@ window.FS.YouTube = (function () {
     var person = teamPersonCache[partnerId] || {};
     if (!(Cloud.canRemoveTeamPerson && Cloud.canRemoveTeamPerson(person))) return;
     var name = personLabel(person);
-    var ok = await FS.UI.ask(
-      "They lose access right away. Anyone sitting under them stays on the tree under their upline. This email can’t create another account.",
-      { title: "Remove " + name + " from the app?", okText: "Remove them", danger: true }
+    var answer = await FS.UI.ask(
+      "They lose access right away. Anyone sitting under them stays on the tree under their upline.",
+      {
+        title: "Remove " + name + " from the app?",
+        okText: "Remove them",
+        danger: true,
+        check: {
+          label: "Block this email from making a new account",
+          hint: "Check this if they joined another team. Leave it off if they might come back later."
+        }
+      }
     );
-    if (!ok) return;
+    if (!answer) return;
+    var blockEmail = !!(answer && answer.checked);
     try {
-      await Cloud.removeTeamPerson(partnerId);
+      await Cloud.removeTeamPerson(partnerId, { blockEmail: blockEmail });
       delete teamPersonCache[partnerId];
       adminProfileCache = [];
       closeTeamPersonSheet();
       if (packEvergreen()) await renderEvergreenLeadersRoster();
       else await renderLeader();
       if (window.FS.UI && window.FS.UI.toast) {
-        window.FS.UI.toast(name + " is off the app.", { tone: "good" });
+        window.FS.UI.toast(
+          blockEmail
+            ? name + " is off the app. This email can’t come back."
+            : name + " is off the app. They can join again later with the same email.",
+          { tone: "good" }
+        );
       }
     } catch (err) {
       FS.UI.toast((err && err.message) || "Could not remove this person.", { tone: "bad" });
@@ -5578,6 +5592,93 @@ window.FS.YouTube = (function () {
     return (href && href((ev && ev.meeting_url) || "", 2000)) || "";
   }
 
+  function meetingHref(raw) {
+    var norm = window.FS && (window.FS.normalizeMeetingHref || window.FS.safeHref);
+    return (norm && norm(raw, 2000)) || "";
+  }
+
+  function meetingShellNeedsEscape() {
+    try {
+      if (window.matchMedia && window.matchMedia("(display-mode: standalone)").matches) return true;
+      if (window.navigator.standalone === true) return true;
+    } catch (e) {}
+    var ua = navigator.userAgent || "";
+    return /Instagram|IGL\/|FBAN|FBAV|FB_IAB|FB4A|FBIOS|Messenger|Line\/|TikTok|musical_ly|BytedanceWebview|Snapchat|WhatsApp|; wv\)/i.test(ua);
+  }
+
+  function isIosDevice() {
+    var ua = navigator.userAgent || "";
+    if (/iPhone|iPad|iPod/i.test(ua)) return true;
+    try {
+      if (navigator.platform === "MacIntel" && navigator.maxTouchPoints > 1) return true;
+    } catch (e) {}
+    return false;
+  }
+
+  function safariOpenExternalHref(href) {
+    try {
+      var u = new URL(href, location.href);
+      if (u.protocol === "https:") return "x-safari-https://" + u.host + u.pathname + u.search + u.hash;
+      if (u.protocol === "http:") return "x-safari-http://" + u.host + u.pathname + u.search + u.hash;
+    } catch (e) {}
+    return "";
+  }
+
+  function androidIntentHref(href, pkg) {
+    try {
+      var u = new URL(href, location.href);
+      if (u.protocol !== "https:" && u.protocol !== "http:") return "";
+      var scheme = u.protocol === "https:" ? "https" : "http";
+      return "intent://" + u.host + u.pathname + u.search + "#Intent;scheme=" + scheme +
+        ";package=" + pkg + ";S.browser_fallback_url=" + encodeURIComponent(u.href) + ";end";
+    } catch (e) {
+      return "";
+    }
+  }
+
+  function isZoomHref(href) {
+    return /(?:^|[/.])zoom(?:gov)?\.(?:us|com)\b/i.test(String(href || ""));
+  }
+
+  /* Zoom’s web client spins forever inside the home-screen app / in-app
+     browsers. Hop out to Safari, the Zoom app, or Chrome first. */
+  function openMeetingLink(raw, e) {
+    var href = meetingHref(raw);
+    if (!href) {
+      if (e) e.preventDefault();
+      return false;
+    }
+    if (e) e.preventDefault();
+    var ios = isIosDevice();
+    var android = /Android/i.test(navigator.userAgent || "");
+    var escape = meetingShellNeedsEscape();
+    if (ios && escape) {
+      var safari = safariOpenExternalHref(href);
+      if (safari) {
+        window.location.href = safari;
+        return true;
+      }
+    }
+    if (android && escape) {
+      var jump = (isZoomHref(href) && androidIntentHref(href, "us.zoom.videomeetings")) ||
+        androidIntentHref(href, "com.android.chrome");
+      if (jump) {
+        window.location.href = jump;
+        return true;
+      }
+    }
+    var w = null;
+    try { w = window.open(href, "_blank", "noopener,noreferrer"); } catch (err) {}
+    if (w) {
+      try { w.opener = null; } catch (e2) {}
+      return true;
+    }
+    window.location.href = href;
+    return true;
+  }
+
+  window.FS.openMeetingLink = openMeetingLink;
+
   function orgEventReplayMap(ev) {
     var src = ev && ev.replay_by_date;
     if (!src || typeof src !== "object" || Array.isArray(src)) return {};
@@ -6565,7 +6666,7 @@ window.FS.YouTube = (function () {
     var actionsHtml;
     if (joinReady && join && joinCta.live) {
       actionsHtml = '<a class="gathering-banner-join" href="' + esc(join) +
-        '" target="_blank" rel="noopener noreferrer">Join now</a>';
+        '" target="_blank" rel="noopener noreferrer" data-meeting-open>Join now</a>';
     } else if (joinReady && join && !revealed) {
       actionsHtml = '<button type="button" class="gathering-banner-join is-early" data-gathering-reveal="' +
         esc(ev.id) + '" data-gathering-on="' + esc(onYmd) + '">Tap for the link</button>';
@@ -6590,6 +6691,8 @@ window.FS.YouTube = (function () {
         (revealed
           ? '<div class="gathering-banner-linkbox">' +
             '<p class="gathering-banner-url">' + esc(join) + "</p>" +
+            '<a class="gathering-banner-join" href="' + esc(join) +
+              '" target="_blank" rel="noopener noreferrer" data-meeting-open>Open Zoom</a>' +
             '<button type="button" class="gathering-banner-join" data-org-copy-link="' +
               esc(ev.id) + '">Copy the link</button>' +
             "</div>"
@@ -6809,13 +6912,13 @@ window.FS.YouTube = (function () {
       html += '<div class="org-event-actions">';
       if (replay && ytReplay) {
         html += '<a class="btn-ghost" href="' + esc(replay) +
-          '" target="_blank" rel="noopener noreferrer">Open on YouTube</a>';
+          '" target="_blank" rel="noopener noreferrer" data-meeting-open>Open on YouTube</a>';
         if (viewKind !== "info_zoom") {
           html += '<button type="button" class="btn-ghost" data-org-copy-replay="' + esc(ev.id) + '">Copy replay link</button>';
         }
       } else if (replay) {
         html += '<a class="btn org-event-join is-replay" href="' + esc(replay) +
-          '" target="_blank" rel="noopener noreferrer">Watch replay</a>';
+          '" target="_blank" rel="noopener noreferrer" data-meeting-open>Watch replay</a>';
         if (viewKind !== "info_zoom") {
           html += '<button type="button" class="btn-ghost" data-org-copy-replay="' + esc(ev.id) + '">Copy replay link</button>';
         }
@@ -6833,7 +6936,7 @@ window.FS.YouTube = (function () {
       if (joinReady && join && !replay) {
         var joinCta = orgEventJoinCta(ev);
         html += '<a class="btn org-event-join' + (joinCta.live ? "" : " is-early") +
-          '" href="' + esc(join) + '" target="_blank" rel="noopener noreferrer">' +
+          '" href="' + esc(join) + '" target="_blank" rel="noopener noreferrer" data-meeting-open>' +
           esc(joinCta.label) + "</a>";
         if (joinCta.live) {
           html += '<button type="button" class="btn-ghost" data-org-copy-link="' + esc(ev.id) + '">Copy meeting link</button>';
@@ -10718,6 +10821,19 @@ window.FS.YouTube = (function () {
       if (dd && dd.classList.contains("is-open") && Date.now() < leadMenuTouchGuardUntil) return;
       toggleLeadMenu(dd);
     }, true);
+
+    document.addEventListener("click", function (e) {
+      if (e.defaultPrevented) return;
+      if (e.button != null && e.button !== 0) return;
+      if (e.metaKey || e.ctrlKey || e.shiftKey || e.altKey) return;
+      var a = e.target && e.target.closest ? e.target.closest("a[href]") : null;
+      if (!a) return;
+      var href = a.getAttribute("href") || "";
+      var meeting = a.hasAttribute("data-meeting-open") ||
+        /(?:^|[/.])zoom(?:gov)?\.(?:us|com)\b/i.test(href);
+      if (!meeting) return;
+      openMeetingLink(href, e);
+    });
 
     document.addEventListener("pointerdown", function (e) {
       if (!e.target || !e.target.closest) return;

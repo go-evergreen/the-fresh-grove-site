@@ -5344,6 +5344,15 @@ button.vault-week-day:hover{border-color:var(--moss);box-shadow:0 6px 18px rgba(
 .fs-dialog-row{display:flex;gap:10px;justify-content:flex-end;flex-wrap:wrap}
 .fs-dialog-row .btn,.fs-dialog-row .btn-ghost{flex:1 1 auto;min-width:120px;text-align:center;padding:13px 20px;font-size:14.5px;cursor:pointer;font-family:inherit}
 .fs-dialog-row .btn.is-danger{background:#a4462f}
+.fs-dialog-check{
+  display:flex;align-items:flex-start;gap:10px;margin:0 0 16px;padding:11px 12px;
+  border-radius:12px;background:rgba(61,90,74,.08);border:1px solid rgba(61,90,74,.16);
+  cursor:pointer;text-align:left
+}
+.fs-dialog-check-input{width:20px;height:20px;flex:0 0 20px;margin:1px 0 0;accent-color:var(--green)}
+.fs-dialog-check-copy{display:flex;flex-direction:column;gap:3px;min-width:0}
+.fs-dialog-check-label{font-size:14px;font-weight:700;color:var(--green);line-height:1.35}
+.fs-dialog-check-hint{font-size:12.5px;line-height:1.4;color:var(--bark);font-weight:400}
 
 .fs-toasts{position:fixed;left:0;right:0;bottom:calc(env(safe-area-inset-bottom, 0px) + 84px);z-index:97;display:flex;flex-direction:column;align-items:center;gap:8px;padding:0 14px;pointer-events:none}
 html.fs-kb-open .fs-toasts,

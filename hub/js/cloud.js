@@ -1065,7 +1065,8 @@ window.FS.normalizeMeetingHref = function (raw, maxLen) {
     "ringana-with-tania": true,
     "ringana-with-kim": true,
     "ringana-with-kelly": true,
-    "ringana-with-kassidy": true
+    "ringana-with-kassidy": true,
+    "ringana-with-karen": true
   };
 
   var EVERGREEN_CUSTOM_LEAD_PATHS = {
@@ -1084,6 +1085,9 @@ window.FS.normalizeMeetingHref = function (raw, maxLen) {
     var raw = String(url || "").trim();
     if (/tayrourke\.github\.io\/tay-goes-fresh/i.test(raw) || /^https:\/\/taygoesfresh\.com\/?$/i.test(raw)) {
       return "https://taygoesfresh.com/";
+    }
+    if (/freshwithkaren\.com/i.test(raw) || /ringana-with-karen/i.test(raw)) {
+      return "https://freshwithkaren.com/";
     }
     var m = raw.match(/\/(ringana-with-[a-z0-9-]+)\/?/i);
     if (m) {
@@ -1107,6 +1111,7 @@ window.FS.normalizeMeetingHref = function (raw, maxLen) {
     if (/go-evergreen\.github\.io\/ringana-with-/i.test(url)) return true;
     if (/tayrourke\.github\.io/i.test(url)) return true;
     if (/^https:\/\/taygoesfresh\.com\/?$/i.test(url)) return true;
+    if (/^https:\/\/(www\.)?freshwithkaren\.com\/?$/i.test(url)) return true;
     var map = (window.FS.CONFIG && window.FS.CONFIG.customLeadPages) || {};
     var want = url.replace(/\/$/, "").toLowerCase();
     var k;
@@ -2605,10 +2610,13 @@ window.FS.normalizeMeetingHref = function (raw, maxLen) {
       if (creating && /cannot create an account|email is blocked/i.test(low)) {
         return "This email can’t be used to create an account. Ask your leader if you think that’s a mistake.";
       }
+      if (code === "email_not_found" || /we don[’']t have an account with that email|no account with that email|email is not on an account/i.test(low)) {
+        return "We don’t have an account with that email. Check the spelling, or tap Create account.";
+      }
       if (code === "invalid_credentials" || low.indexOf("invalid login") >= 0 || low.indexOf("invalid credentials") >= 0) {
         return creating
           ? "That email already has an account, or the password didn’t match. Tap Sign in with the password you used before."
-          : "Email or password didn’t match. Try Sign in again, or Forgot your password.";
+          : "That password didn’t match. Try again, or tap Forgot your password.";
       }
       if (code === "otp_expired" || ((/expired/i.test(low)) && /otp|token|code/i.test(low))) {
         return "That code expired. Send a new one.";
@@ -2620,6 +2628,19 @@ window.FS.normalizeMeetingHref = function (raw, maxLen) {
         return "That code didn’t match. Check the number and try again.";
       }
       return raw || (creating ? "Could not create account." : "Could not sign in.");
+    },
+
+    authEmailRegistered: async function (email) {
+      email = normalizeAuthEmail(email);
+      if (!email || email.indexOf("@") < 1) return false;
+      if (!configured() || !client) return null;
+      try {
+        var { data, error } = await client.rpc("auth_email_registered", { p_email: email });
+        if (error) return null;
+        return !!data;
+      } catch (e) {
+        return null;
+      }
     },
 
     lastEmail: lastRememberedEmail,
@@ -2643,18 +2664,16 @@ window.FS.normalizeMeetingHref = function (raw, maxLen) {
           code === "user_not_found" ||
           /signups? not allowed|user not found/i.test(low)
         ) {
-          writePasswordReset({ email: email, step: "code" });
-          return {
-            kind: "code_sent",
-            message: "If that inbox is on an account, a code is on the way. Come back here and type it — don’t tap a link if one shows up."
-          };
+          var missing = new Error("We don’t have an account with that email. Check the spelling, or tap Create account.");
+          missing.code = "email_not_found";
+          throw missing;
         }
         throw error;
       }
       writePasswordReset({ email: email, step: "code" });
       return {
         kind: "code_sent",
-        message: "If that inbox is on an account, a code is on the way. Come back here and type it — don’t tap a link if one shows up."
+        message: "A code is on the way to that inbox. Come back here and type it — don’t tap a link if one shows up."
       };
     },
 
@@ -2784,7 +2803,19 @@ window.FS.normalizeMeetingHref = function (raw, maxLen) {
           data = retry.data;
           error = retry.error;
         }
-        if (error) throw error;
+        if (error) {
+          var credCode = String((error && (error.code || error.error_code)) || "").toLowerCase();
+          var credLow = errText(error).toLowerCase();
+          if (credCode === "invalid_credentials" || /invalid login|invalid credentials/.test(credLow)) {
+            var exists = await Cloud.authEmailRegistered(creds.email);
+            if (exists === false) {
+              var missing = new Error("We don’t have an account with that email. Check the spelling, or tap Create account.");
+              missing.code = "email_not_found";
+              throw missing;
+            }
+          }
+          throw error;
+        }
         if (data && data.user) {
           await adoptSessionUser(data.user);
           rememberLastEmail(creds.email);
@@ -3635,12 +3666,16 @@ window.FS.normalizeMeetingHref = function (raw, maxLen) {
       return { partner_id: partnerId, is_org_admin: !!enabled };
     },
 
-    removeTeamPerson: async function (partnerId) {
+    removeTeamPerson: async function (partnerId, opts) {
       if (!sessionUser) throw new Error("Sign in first.");
       if (!Cloud.canRemoveTeamPerson()) throw new Error("Not allowed.");
       if (partnerId === sessionUser.id) throw new Error("You cannot remove yourself.");
+      var blockEmail = !!(opts && opts.blockEmail);
       if (configured() && client) {
-        return rpcWrite("remove_team_person", { partner: partnerId }, "Could not remove this person.");
+        return rpcWrite("remove_team_person", {
+          partner: partnerId,
+          block_email: blockEmail
+        }, "Could not remove this person.");
       }
       var store = localStore();
       var partner = store.users[partnerId];
@@ -3657,10 +3692,10 @@ window.FS.normalizeMeetingHref = function (raw, maxLen) {
       });
       if (!store.blockedEmails) store.blockedEmails = [];
       var email = String(partner.email || "").trim().toLowerCase();
-      if (email && store.blockedEmails.indexOf(email) < 0) store.blockedEmails.push(email);
+      if (blockEmail && email && store.blockedEmails.indexOf(email) < 0) store.blockedEmails.push(email);
       delete store.users[partnerId];
       localSave(store);
-      return { ok: true, partner_id: partnerId, email: email };
+      return { ok: true, partner_id: partnerId, email: email, blocked: blockEmail };
     },
 
     setHubAdmin: async function (partnerId, enabled) {

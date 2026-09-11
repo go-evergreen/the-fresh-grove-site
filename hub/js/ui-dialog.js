@@ -79,6 +79,15 @@ window.FS.dismissGuarded = function () {
       ? '<button type="button" class="btn-ghost fs-dialog-no">' + esc(opts.cancelText || "Cancel") + "</button>" +
         '<button type="button" class="btn fs-dialog-yes' + (opts.danger ? " is-danger" : "") + '">' + esc(opts.okText || "Yes") + "</button>"
       : '<button type="button" class="btn fs-dialog-yes">' + esc(opts.okText || "OK") + "</button>";
+    var check = opts.check && opts.check.label
+      ? '<label class="fs-dialog-check">' +
+        '<input type="checkbox" class="fs-dialog-check-input"' +
+        (opts.check.checked ? " checked" : "") + ">" +
+        '<span class="fs-dialog-check-copy">' +
+        '<span class="fs-dialog-check-label">' + esc(opts.check.label) + "</span>" +
+        (opts.check.hint ? '<span class="fs-dialog-check-hint">' + esc(opts.check.hint) + "</span>" : "") +
+        "</span></label>"
+      : "";
     wrap.innerHTML =
       '<div class="overlay-card fs-dialog-card" role="dialog" aria-modal="true"' +
       (opts.title
@@ -87,6 +96,7 @@ window.FS.dismissGuarded = function () {
       ">" +
       (opts.title ? '<h2 class="fs-dialog-title" id="fsDialogTitle">' + esc(opts.title) + "</h2>" : "") +
       '<p class="fs-dialog-msg">' + esc(msg) + "</p>" +
+      check +
       '<div class="fs-dialog-row">' + buttons + "</div>" +
       "</div>";
     return wrap;
@@ -154,7 +164,14 @@ window.FS.dismissGuarded = function () {
       }
     }
 
-    wrap.querySelector(".fs-dialog-yes").addEventListener("click", function () { settle(true); });
+    wrap.querySelector(".fs-dialog-yes").addEventListener("click", function () {
+      if (opts.check && opts.check.label) {
+        var box = wrap.querySelector(".fs-dialog-check-input");
+        settle({ ok: true, checked: !!(box && box.checked) });
+        return;
+      }
+      settle(true);
+    });
     var no = wrap.querySelector(".fs-dialog-no");
     if (no) no.addEventListener("click", function () { settle(false); });
     /* Tapping the backdrop is a cancel, same as Escape. */
