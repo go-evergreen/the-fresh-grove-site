@@ -771,8 +771,9 @@ window.FS.YouTube = (function () {
       var row = byId[id];
       if (!row || !row.allowed) return;
       var person = teamPersonCache[id] || {};
+      var named = person.id ? personLabel(person) : (supportProfileByPartner[id] && supportProfileByPartner[id].name) || "";
       supportProfileByPartner[id] = {
-        name: personLabel(person),
+        name: named,
         support: row.support || null,
         allowed: true
       };
@@ -800,8 +801,9 @@ window.FS.YouTube = (function () {
     var body = $("howTheyGrowBody");
     if (!sheet || !name || !body) return;
     closeAllSheets("howTheyGrow");
-    fillPhotoSlot($("howTheyGrowPhoto"), teamPersonCache[partnerId] || { display_name: record.name }, "lg");
-    name.textContent = record.name || "Partner";
+    var sheetPerson = teamPersonCache[partnerId] || { display_name: record.name };
+    fillPhotoSlot($("howTheyGrowPhoto"), sheetPerson, "lg");
+    name.textContent = (sheetPerson.id ? personLabel(sheetPerson) : record.name) || "Partner";
     var recognitionAliases = {
       "Public celebration": "I love being celebrated publicly",
       "Small group recognition": "A small group is perfect",
@@ -2227,6 +2229,7 @@ window.FS.YouTube = (function () {
       supportRec = supportProfileByPartner[partnerId];
     }
     if (supportRec && supportRec.allowed) {
+      supportRec.name = personLabel(person);
       html += supportSnapshotHtml(partnerId, supportRec.support);
     }
     if (canRearrangeCurrentTeam() && teamRearrangeOn()) {
