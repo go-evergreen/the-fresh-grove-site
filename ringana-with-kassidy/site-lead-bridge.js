@@ -80,13 +80,17 @@
     return { name: name, email: email, phone: phone };
   }
 
+  function prettyFirstFromEmail(email) {
+    var local = trim(email).split("@")[0];
+    var token = (local.split(/[._+\s-]+/).filter(Boolean)[0] || "").replace(/\d+$/g, "");
+    if (token.length < 2 || !/^[a-zA-Z][a-zA-Z']*$/.test(token)) return "";
+    return token.charAt(0).toUpperCase() + token.slice(1).toLowerCase();
+  }
+
   function fallbackName(fields) {
     var n = trim(fields.name);
-    if (n.length >= 2) return n.slice(0, 80);
-    var local = (fields.email || "").split("@")[0].replace(/[._-]+/g, " ");
-    local = trim(local);
-    if (local.length >= 2) return local.slice(0, 80);
-    return "Friend";
+    if (n.length >= 2 && !looksLikeEmailValue(n) && n.indexOf("@") < 0) return n.slice(0, 80);
+    return prettyFirstFromEmail(n.indexOf("@") >= 0 ? n : fields.email) || "Friend";
   }
 
   function send(opts, fields) {
