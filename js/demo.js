@@ -30,6 +30,11 @@
       kicker: "🌳 Grove",
       title: "So you’re not doing this alone.",
       line: "The live tree, who needs a nudge, who’s in motion, who’s ready. Check in, send a cheer, watch the family grow — with a person who knows your name, and a team that stays."
+    },
+    clients: {
+      kicker: "🧴 Clients",
+      title: "Their side is The Fresh Shelf.",
+      line: "Yours is this tab. Names, notes, and a line back to you — not another group chat."
     }
   };
 
@@ -375,6 +380,7 @@
   var toastEl = document.getElementById("demoToast");
   var toastTimer = 0;
   var currentTab = "sprout";
+  var groveReturnTab = "sprout";
   var plant = { roots: 0, checks: { products: false, ground: false, map: false } };
   var introTimers = [];
   var introDone = false;
@@ -591,6 +597,16 @@
     html.style.scrollBehavior = prev;
   }
 
+  function paintGroveTree(tab) {
+    var tree = byId("demoGroveTree");
+    if (!tree) return;
+    var on = tab === "grove";
+    tree.classList.toggle("on", on);
+    tree.setAttribute("aria-pressed", on ? "true" : "false");
+    tree.setAttribute("aria-label", on ? "Close Grow Your Grove" : "Grow Your Grove");
+    tree.setAttribute("title", on ? "Close Grow Your Grove" : "Grow Your Grove");
+  }
+
   function showTab(tab) {
     qsa(".demo-tab", app).forEach(function (el) {
       var on = el.getAttribute("data-tab") === tab;
@@ -601,6 +617,7 @@
     qsa(".demo-nav button", app).forEach(function (btn) {
       btn.classList.toggle("on", btn.getAttribute("data-tab") === tab);
     });
+    paintGroveTree(tab);
   }
 
   function closeSheet() {
@@ -672,6 +689,17 @@
 
   app.addEventListener("click", function (e) {
     if (e.target.closest("#demoGuide") || e.target.closest("#demoBack")) return;
+    var treeBtn = e.target.closest("#demoGroveTree");
+    if (treeBtn && app.contains(treeBtn)) {
+      e.preventDefault();
+      pauseTour();
+      if (currentTab === "grove") gotoTab(groveReturnTab || "sprout");
+      else {
+        groveReturnTab = currentTab;
+        gotoTab("grove");
+      }
+      return;
+    }
     var tabBtn = e.target.closest(".demo-nav button[data-tab]");
     if (tabBtn && app.contains(tabBtn)) {
       e.preventDefault();
@@ -692,7 +720,7 @@
   var back = document.getElementById("demoBack");
   if (back) back.addEventListener("click", function () { closeSheet(); });
 
-  var tour = ["sprout", "learn", "calendar", "leads", "grove"];
+  var tour = ["sprout", "learn", "calendar", "leads", "clients"];
   var tourI = 0;
   var tourTimer = 0;
   var tourPaused = false;

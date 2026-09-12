@@ -46,7 +46,7 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Caveat:wght@500;600&family=DM+Sans:ital,wght@0,400;0,500;0,600;0,700;1,400&family=Fraunces:ital,opsz,wght@0,9..144,300;0,9..144,400;0,9..144,500;0,9..144,600;1,9..144,400&family=Work+Sans:wght@300;400;500;600&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="css/grove.css?v=fresh87">
+<link rel="stylesheet" href="css/grove.css?v=fresh88">
 </head>
 <body>
 
@@ -218,15 +218,16 @@
     <div class="hub-copy reveal">
       <p class="eyebrow">The hub</p>
       <h2 class="section-title">Where this team actually lives.</h2>
-      <p>First Seeds is this team’s exclusive, custom-built hub — the runway to October, plus the library, calendar, and inbox that stay after. The phone is a walkthrough — tap around, or tap Next.</p>
+      <p>First Seeds is this team’s exclusive, custom-built hub — the runway to October, plus the library, calendar, inbox, and client desk that stay after. The phone is a walkthrough — tap around, or tap Next.</p>
       <p class="hub-hold">You’re walked from day one. A person who knows your name, zooms you can actually get to, and a live team that stays. You’re not guessing — and you’re not doing this alone.</p>
       <ul class="hub-points">
         <li><strong>A runway, not a scramble.</strong> Your story, first products, your page, then who you’d tell — in that order, so you always know the next quiet step. Peek ahead anytime. When you’re ready, Post Studio, the calendar, and growing a team are already here.</li>
         <li><strong>Look it up in one place.</strong> Company, products, ingredients, and launch facts — all searchable, so you can find what you need.</li>
         <li><strong>Dates, drafts, and follow-ups.</strong> Grove Gatherings and October on the calendar. A vault of ready posts to rewrite in your voice. Add your own events and follow-ups, so the week has a home.</li>
-        <li><strong>Your grove, your inbox.</strong> A lead page that’s yours. Curious names land with you. Leaders check in and send cheers — without a group chat swallowing it.</li>
+        <li><strong>Your page, your inbox.</strong> A lead page that’s yours. Curious names land with you. Leaders check in and send cheers — without a group chat swallowing it.</li>
+        <li><strong>Clients, not a group chat.</strong> Their side is The Fresh Shelf. Yours is the Clients tab — names, notes, and a line back to you. Grow Your Grove is the tree up top.</li>
       </ul>
-      <p class="hub-more">This isn’t everything in the hub — and more is already in the works.</p>
+      <p class="hub-more">The Fresh Shelf is already live for clients and potentials. This still isn’t everything in the hub.</p>
       <a href="#connect" class="btn btn-brass" data-open-connect>Join the Fresh Grove</a>
     </div>
 
@@ -250,6 +251,7 @@
                   <div class="demo-brand-title">First Seeds</div>
                 </div>
                 <div class="demo-rail-actions">
+                  <button type="button" class="demo-gear" id="demoGroveTree" aria-label="Grow Your Grove" aria-pressed="false" title="Grow Your Grove">🌳</button>
                   <button type="button" class="demo-gear" data-locked aria-label="Messages">💬</button>
                   <button type="button" class="demo-gear" data-locked aria-label="Settings">⚙️</button>
                 </div>
@@ -586,6 +588,59 @@
                 </div>
               </div>
 
+              <div class="demo-tab" data-tab="clients">
+                <p class="demo-eye">Your side of The Fresh Shelf</p>
+                <h2 class="demo-h1">Clients</h2>
+                <p class="demo-sub demo-blur">Their side is The Fresh Shelf. Yours is this tab.</p>
+                <div class="fs-share">
+                  <div class="fs-share-row">
+                    <button type="button" class="fs-bloom" data-locked aria-label="Copy my shelf link">
+                      <span class="fs-bloom-ico" aria-hidden="true">
+                        <svg viewBox="0 0 48 48" width="40" height="40" overflow="visible">
+                          <defs><radialGradient id="demoBloomShelf" cx="50%" cy="42%" r="62%">
+                            <stop offset="0%" stop-color="#fff4c8"/>
+                            <stop offset="45%" stop-color="#f0d06a"/>
+                            <stop offset="100%" stop-color="#c9922e"/>
+                          </radialGradient></defs>
+                          <ellipse cx="24" cy="24" rx="5.2" ry="17" fill="url(#demoBloomShelf)" transform="rotate(0 24 24)" opacity=".96"/>
+                          <ellipse cx="24" cy="24" rx="5.2" ry="17" fill="url(#demoBloomShelf)" transform="rotate(72 24 24)" opacity=".96"/>
+                          <ellipse cx="24" cy="24" rx="5.2" ry="17" fill="url(#demoBloomShelf)" transform="rotate(144 24 24)" opacity=".96"/>
+                          <ellipse cx="24" cy="24" rx="5.2" ry="17" fill="url(#demoBloomShelf)" transform="rotate(216 24 24)" opacity=".96"/>
+                          <ellipse cx="24" cy="24" rx="5.2" ry="17" fill="url(#demoBloomShelf)" transform="rotate(288 24 24)" opacity=".96"/>
+                          <circle cx="24" cy="24" r="4.4" fill="#5a4a37"/>
+                          <circle cx="24" cy="24" r="2.5" fill="#e8c45a" opacity=".92"/>
+                          <circle cx="24" cy="24" r="3.1" fill="#fff4c8" opacity=".5"/>
+                        </svg>
+                      </span>
+                      <span class="fs-bloom-label">Copy my shelf link</span>
+                    </button>
+                  </div>
+                </div>
+                <div class="demo-live-tag">Today</div>
+                <article class="demo-lead-card is-new" data-locked>
+                  <div class="demo-lead-head">
+                    <div class="demo-lead-head-main">
+                      <div class="demo-lead-name-row">
+                        <strong class="demo-lead-name demo-blur">Casey L.</strong>
+                      </div>
+                      <p class="demo-lead-meta demo-blur">New on The Fresh Shelf</p>
+                    </div>
+                  </div>
+                </article>
+                <div class="demo-live-tag">With you</div>
+                <article class="demo-lead-card" data-locked>
+                  <div class="demo-lead-head">
+                    <div class="demo-lead-head-main">
+                      <div class="demo-lead-name-row">
+                        <strong class="demo-lead-name demo-blur">Riley P.</strong>
+                      </div>
+                      <p class="demo-lead-meta demo-blur">Left a note</p>
+                    </div>
+                  </div>
+                </article>
+                <p class="demo-lock">Dummy names — not a real client on this page.</p>
+              </div>
+
               <div class="demo-tab" data-tab="grove">
                 <p class="demo-eye">The Fresh Grove</p>
                 <div class="fs-team-head">
@@ -711,7 +766,7 @@
               <button type="button" data-tab="calendar"><span class="demo-nav-ico">📅</span>Calendar</button>
               <button type="button" data-tab="leads"><span class="demo-nav-ico" aria-hidden="true">&#x1F4E7;</span>Leads</button>
               <button type="button" data-tab="learn"><span class="demo-nav-ico">💡</span>Learn</button>
-              <button type="button" data-tab="grove"><span class="demo-nav-ico">🌳</span>Grove</button>
+              <button type="button" data-tab="clients"><span class="demo-nav-ico">🧴</span>Clients</button>
             </nav>
           </div>
         </div>
@@ -727,6 +782,36 @@
     <span>Frequent zooms</span><span>Support that answers</span><span>Strategy for your pace</span><span>Products, team, or both</span><span>A hub, not a group chat</span><span>Ready before Oct 1</span>
   </div>
 </div>
+
+<section class="shelf" id="shelf">
+  <div class="container">
+    <div class="shelf-head reveal">
+      <p class="eyebrow">The client app</p>
+      <h2 class="section-title">The Fresh Shelf.</h2>
+      <p class="lede">An exclusive app for our clients and potential clients — ready now. Each partner has their own link to share.</p>
+    </div>
+    <ul class="shelf-points reveal">
+      <li>
+        <em>Learn</em>
+        <b>the products</b>
+        <p>They can look things up themselves — then come back to you with a real question.</p>
+      </li>
+      <li>
+        <em>Connect</em>
+        <b>with their partner</b>
+        <p>A line to the person who shared it. Not another group chat.</p>
+      </li>
+      <li>
+        <em>And more</em>
+        <b>on their own link</b>
+        <p>Their shelf, their person. The rest stays inside the grove.</p>
+      </li>
+    </ul>
+    <p class="section-cta reveal">
+      <a href="#connect" class="btn btn-brass" data-open-connect>Join the Fresh Grove</a>
+    </p>
+  </div>
+</section>
 
 <section class="why" id="why">
   <div class="container">
@@ -837,7 +922,11 @@
           </details>
           <details name="faq-grove">
             <summary>What is First Seeds?</summary>
-            <p>The private hub for this team: your sprout (the path to launch), Learn (facts you can stand behind), the calendar, your own lead inbox, and the live grove. The phone on this page is a walkthrough. The real rooms stay inside the team.</p>
+            <p>The private hub for this team: your sprout (the path to launch), Learn (facts you can stand behind), the calendar, your own lead inbox, Clients — your side of The Fresh Shelf — and the live grove up top. The phone on this page is a walkthrough. The real rooms stay inside the team.</p>
+          </details>
+          <details name="faq-grove">
+            <summary>What’s The Fresh Shelf?</summary>
+            <p>It’s an exclusive app for our clients and potential clients. Each partner has their own link to share. They can learn more about the products, connect with their partner, and more.</p>
           </details>
           <details name="faq-grove">
             <summary>Why isn’t this just someone’s lead page?</summary>
@@ -1021,6 +1110,6 @@ if (window.caches) {
 <script src="js/plant.js?v=fresh86"></script>
 <script src="js/grove.js?v=fresh88"></script>
 <script src="js/motion.js?v=fresh86"></script>
-<script src="js/demo.js?v=fresh86"></script>
+<script src="js/demo.js?v=fresh88"></script>
 </body>
 </html>
