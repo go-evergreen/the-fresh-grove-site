@@ -13,6 +13,7 @@
   var selected = null;
   var urlLocked = false;
   var skipComboOpen = false;
+  var openConnect = function () {};
 
   function $(id) { return document.getElementById(id); }
   function qs(sel, root) { return (root || document).querySelector(sel); }
@@ -140,6 +141,23 @@
           (ig ? " · @" + ig : "") + ".";
       }
     }
+    paintWithChip();
+  }
+
+  function paintWithChip() {
+    var chip = $("withLockChip");
+    var cta = qs(".nav-cta");
+    var lockedTo = urlLocked && selected && !selected.unknown;
+    if (chip) {
+      if (lockedTo) {
+        chip.hidden = false;
+        chip.textContent = "With " + firstName(selected.name);
+      } else {
+        chip.hidden = true;
+        chip.textContent = "";
+      }
+    }
+    if (cta) cta.textContent = lockedTo ? ("Join " + firstName(selected.name)) : "Join Us";
   }
 
   async function lockFromSlug(slug) {
@@ -195,8 +213,13 @@
       var hm = String(location.hash).match(/(?:^|[?#&])(?:p|with)=([^&]+)/i);
       if (hm) fromUrl = decodeURIComponent(hm[1] || "").trim().toLowerCase();
     }
+    if (!fromUrl) {
+      var pm = String(location.pathname || "").match(/\/with\/([a-z0-9][a-z0-9-]{1,38})\/?$/i);
+      if (pm) fromUrl = decodeURIComponent(pm[1] || "").trim().toLowerCase();
+    }
     if (fromUrl) {
       await lockFromSlug(fromUrl);
+      try { openConnect(true); } catch (eOpen) {}
       return;
     }
     lockWho(false);
@@ -513,6 +536,7 @@
       if (e.key === "Escape" && modalOpen) setConnectOpen(false);
     });
     if (location.hash === "#connect") setConnectOpen(true);
+    openConnect = setConnectOpen;
   }
 
   function bindSwitchers() {

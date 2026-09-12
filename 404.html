@@ -56,6 +56,16 @@
     location.replace("/" + prettyLead[1].toLowerCase() + "/" + search + hash);
     return;
   }
+  var withPretty = String(path || "").match(/^\/with\/([a-z0-9][a-z0-9-]{1,38})\/?$/i);
+  if (withPretty) {
+    var withSlug = decodeURIComponent(withPretty[1] || "").trim().toLowerCase();
+    location.replace("/with.html?with=" + encodeURIComponent(withSlug) + "#with=" + encodeURIComponent(withSlug));
+    return;
+  }
+  if (/^\/with(\.html)?$/i.test(path) && (/[?&](?:p|with)=/.test(search) || /[#&?](?:p|with)=/.test(hash))) {
+    location.replace("/with.html" + search + hash);
+    return;
+  }
   var leadPretty = String(path || "").match(/^\/lead\/([a-z0-9][a-z0-9-]{1,38})\/?$/i);
   if (leadPretty) {
     var leadSlug = decodeURIComponent(leadPretty[1] || "").trim().toLowerCase();
@@ -69,7 +79,7 @@
     return;
   }
   if (hasWith) {
-    location.replace("/" + search + hash);
+    location.replace("/with.html" + search + hash);
     return;
   }
   if (/^\/thefreshcatalog(\/|\.html|$)/i.test(path)) {

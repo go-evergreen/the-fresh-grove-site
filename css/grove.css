@@ -80,6 +80,12 @@ a:focus-visible,button:focus-visible,input:focus-visible,summary:focus-visible{
   box-shadow:0 0 0 3px rgba(246,242,234,.08)
 }
 .site-brand-text span{color:var(--brass-light)}
+.with-lock-chip{
+  margin:0;padding:.28rem .7rem;border-radius:999px;
+  border:1px solid rgba(207,169,94,.45);
+  color:var(--brass-light);font-size:.68rem;letter-spacing:.08em;
+  text-transform:uppercase;white-space:nowrap
+}
 .site-nav{display:flex;align-items:center;gap:.35rem 1.1rem}
 .site-nav a{
   color:var(--linen);text-decoration:none;

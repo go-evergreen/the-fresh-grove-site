@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>The Fresh Grove</title>
+<meta name="robots" content="noindex">
+<meta name="description" content="A note for someone on The Fresh Grove.">
+<!-- No og:url / canonical pointing at the bare homepage — Messenger and
+     Facebook were rewriting ?with=slug shares to thefreshgrove.team/ -->
+<script>
+(function () {
+  function slugFromHere() {
+    try {
+      var q = new URLSearchParams(location.search);
+      var slug = String(q.get("with") || q.get("p") || "").trim().toLowerCase();
+      if (!slug && location.hash) {
+        var hm = String(location.hash).match(/(?:^|[?#&])(?:p|with)=([^&]+)/i);
+        if (hm) slug = decodeURIComponent(hm[1] || "").trim().toLowerCase();
+      }
+      if (!slug) {
+        var pm = String(location.pathname || "").match(/\/with\/([a-z0-9][a-z0-9-]{1,38})\/?$/i);
+        if (pm) slug = decodeURIComponent(pm[1] || "").trim().toLowerCase();
+      }
+      return slug;
+    } catch (e) {
+      return "";
+    }
+  }
+  var slug = slugFromHere();
+  if (slug) {
+    location.replace("/index.html?with=" + encodeURIComponent(slug) + "#with=" + encodeURIComponent(slug));
+    return;
+  }
+  location.replace("/index.html");
+})();
+</script>
+</head>
+<body>
+<p><a href="/">The Fresh Grove</a></p>
+</body>
+</html>

@@ -16,6 +16,10 @@
         else withSlug = decodeURIComponent(hm[2] || "").trim();
       }
     }
+    if (!leadSlug && !withSlug) {
+      var pm = String(location.pathname || "").match(/\/with\/([a-z0-9][a-z0-9-]{1,38})\/?$/i);
+      if (pm) withSlug = decodeURIComponent(pm[1] || "").trim();
+    }
     /* Lead copies that hit the homepage. Business-info ?with= stays here
        so the team form can lock to that partner’s slug. */
     if (leadSlug && !withSlug) {
@@ -26,9 +30,7 @@
 </script>
 <title>The Fresh Grove — a founding Ringana team</title>
 <meta name="description" content="The Fresh Grove is a founding U.S. Ringana team. Frequent zooms, real support, and a private hub — your runway to launch. Come into the grove before October 1.">
-<link rel="canonical" href="https://thefreshgrove.team/">
 <meta property="og:type" content="website">
-<meta property="og:url" content="https://thefreshgrove.team/">
 <meta property="og:title" content="The Fresh Grove — a founding Ringana team">
 <meta property="og:description" content="You’re not joining a company. You’re joining a grove. Walk through the hub, then come in.">
 <meta property="og:image" content="https://thefreshgrove.team/assets/og-image.jpg?v=2">
@@ -44,7 +46,7 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Caveat:wght@500;600&family=DM+Sans:ital,wght@0,400;0,500;0,600;0,700;1,400&family=Fraunces:ital,opsz,wght@0,9..144,300;0,9..144,400;0,9..144,500;0,9..144,600;1,9..144,400&family=Work+Sans:wght@300;400;500;600&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="css/grove.css?v=fresh86">
+<link rel="stylesheet" href="css/grove.css?v=fresh87">
 </head>
 <body>
 
@@ -54,6 +56,7 @@
       <img class="site-logo" src="assets/grove-logo.jpg" alt="" width="44" height="44">
       <span class="site-brand-text">The Fresh <span>Grove</span></span>
     </a>
+    <p class="with-lock-chip" id="withLockChip" hidden></p>
     <nav class="site-nav" aria-label="Primary">
       <a href="#ringana">Why Ringana</a>
       <a href="#hub">The hub</a>
@@ -1016,7 +1019,7 @@ if (window.caches) {
 <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
 <script src="js/config.js?v=fresh86"></script>
 <script src="js/plant.js?v=fresh86"></script>
-<script src="js/grove.js?v=fresh87"></script>
+<script src="js/grove.js?v=fresh88"></script>
 <script src="js/motion.js?v=fresh86"></script>
 <script src="js/demo.js?v=fresh86"></script>
 </body>

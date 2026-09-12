@@ -1052,6 +1052,8 @@ window.FS.normalizeMeetingHref = function (raw, maxLen) {
       var u = new URL(String(url || ""), "https://thefreshgrove.team/");
       var slug = String(u.searchParams.get("p") || u.searchParams.get("with") || "").trim().toLowerCase();
       if (slug) return slug;
+      var wm = String(u.pathname || "").match(/\/with\/([a-z0-9][a-z0-9-]{1,38})\/?$/i);
+      if (wm) return decodeURIComponent(wm[1] || "").trim().toLowerCase();
       var hm = String(u.hash || "").match(/(?:^|[?#&])(?:p|with)=([^&]+)/i);
       if (hm) return decodeURIComponent(hm[1] || "").trim().toLowerCase();
     } catch (e) {}
@@ -1160,7 +1162,7 @@ window.FS.normalizeMeetingHref = function (raw, maxLen) {
         "https://thefreshgrove.team/thefreshcatalog").trim();
     }
     var slug = leadSlugFromShareUrl(url);
-    var isBusinessWith = /[?&#]with=/i.test(url);
+    var isBusinessWith = /[?&#]with=/i.test(url) || /\/with\.html/i.test(url) || /\/with\/[a-z0-9-]+/i.test(url);
     if (slug && !isBusinessWith && /(?:lead\.html|[?&#]p=)/i.test(url) && !/[?&#]join=/i.test(url)) {
       var leadBase = grovePublicLeadBase();
       var leadGlue = leadBase.indexOf("?") >= 0 ? "&" : "?";
@@ -1168,7 +1170,7 @@ window.FS.normalizeMeetingHref = function (raw, maxLen) {
     }
     if (slug && isBusinessWith && /thefreshgrove\.team/i.test(url)) {
       var site = grovePublicHubBase();
-      return site + "?with=" + encodeURIComponent(slug) + "#with=" + encodeURIComponent(slug);
+      return site + "with.html?with=" + encodeURIComponent(slug) + "#with=" + encodeURIComponent(slug);
     }
     var code = joinCodeFromShareUrl(url);
     if (code && code !== "evergreen") return grovePersonJoinShareUrl(code);
@@ -4037,8 +4039,9 @@ window.FS.normalizeMeetingHref = function (raw, maxLen) {
     groveWithUrl: function (slug) {
       var base = Cloud.groveSiteUrl();
       if (!base) return "";
-      var key = encodeURIComponent(slug || "");
-      return base + "?with=" + key + "#with=" + key;
+      var key = encodeURIComponent(String(slug || "").trim().toLowerCase());
+      if (!key) return "";
+      return base + "with.html?with=" + key + "#with=" + key;
     },
 
     groveDoorEligibility: async function () {
