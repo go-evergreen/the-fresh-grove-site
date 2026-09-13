@@ -708,7 +708,7 @@ window.FS.CONFIG = {
     title: "The Fresh Catalog",
     blurb: "The current fresh book — skincare, body, baby, supplements, the whole range in one flip-through.",
     cta: "Open catalog →",
-    url: "assets/company/fresh-catalog.pdf?v=3"
+    url: "https://thefreshgrove.team/hub/assets/company/fresh-catalog.pdf?v=4"
   },
 
   companyReports: [
@@ -718,7 +718,7 @@ window.FS.CONFIG = {
       sub: "The sustainability report — climate, packaging, water, and people, in their numbers.",
       blurb: "The sustainability report — climate, packaging, water, and people, in their numbers.",
       cta: "Open report →",
-      url: "assets/company/ringana-fresh-impact-2025.pdf"
+      url: "https://thefreshgrove.team/hub/assets/company/ringana-fresh-impact-2025.pdf"
     },
     {
       eyebrow: "From Ringana",
@@ -726,7 +726,7 @@ window.FS.CONFIG = {
       sub: "How they measure sustainability — the official transparency report.",
       blurb: "How they measure sustainability — the official transparency report.",
       cta: "Open report →",
-      url: "assets/company/ringana-transparency-report-2023.pdf"
+      url: "https://thefreshgrove.team/hub/assets/company/ringana-transparency-report-2023.pdf"
     }
   ],
 

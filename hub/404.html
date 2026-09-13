@@ -64,12 +64,9 @@
 
     var groveDoor = host === "thefreshgrove.team" || host === "www.thefreshgrove.team" || host === "app.thefreshgrove.team";
     if (/\/thefreshcatalog(?:\.html)?\/?$/i.test(path)) {
-      var pdfRoot = groveDoor ? "/" : (
-        (host === "go-evergreen.github.io" || path.indexOf("/first-seeds") >= 0)
-          ? "/first-seeds/"
-          : "/"
-      );
-      location.replace(pdfRoot + "assets/company/fresh-catalog.pdf");
+      location.replace(groveDoor
+        ? "https://thefreshgrove.team/hub/assets/company/fresh-catalog.pdf"
+        : "https://app.evergreenco.team/assets/company/fresh-catalog.pdf");
       return;
     }
     var query = "";

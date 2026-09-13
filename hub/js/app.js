@@ -43,6 +43,38 @@
     } catch (e) {}
     return "";
   }
+  /* Company PDFs live on the custom domains. github.io and /first-seeds/
+     are dead doors — never open those. */
+  function companyPdfName(url) {
+    var path = String(url || "").split("?")[0].split("#")[0];
+    var m = path.match(/(?:^|\/)(?:first-seeds\/)?assets\/company\/([A-Za-z0-9._-]+\.pdf)$/i);
+    if (m) return m[1];
+    m = path.match(/(?:^|\/)(fresh-catalog|ringana-fresh-impact-2025|ringana-transparency-report-2023)\.pdf$/i);
+    return m ? m[1].toLowerCase() + ".pdf" : "";
+  }
+  function liveCompanyPdfBase() {
+    try {
+      var host = String(location.hostname || "");
+      var path = String(location.pathname || "/");
+      if (host === "app.evergreenco.team") return "https://app.evergreenco.team/";
+      if (host === "app.thefreshgrove.team") return "https://app.thefreshgrove.team/";
+      if (host === "thefreshgrove.team" || host === "www.thefreshgrove.team") {
+        return path.indexOf("/hub") === 0 ? "https://thefreshgrove.team/hub/" : "https://app.thefreshgrove.team/";
+      }
+    } catch (e) {}
+    return packEvergreen() ? "https://app.evergreenco.team/" : "https://app.thefreshgrove.team/";
+  }
+  function resolvePdfHref(raw) {
+    var s = String(raw || "").trim();
+    if (!s || s === "leader-pdf") return s;
+    var name = companyPdfName(s);
+    if (!name && (/go-evergreen\.github\.io/i.test(s) || /\/first-seeds\/assets\/company\//i.test(s))) {
+      var tail = s.split("?")[0].split("#")[0].split("/").pop() || "";
+      if (/\.pdf$/i.test(tail)) name = tail;
+    }
+    if (name) return liveCompanyPdfBase() + "assets/company/" + name;
+    return safeHref(s);
+  }
   function canSeeEvergreenTeamPage() {
     if (!packEvergreen()) return false;
     var Cloud = window.FS.Cloud;
@@ -2944,7 +2976,7 @@
       return "🔗";
     }
     function evResBubbleHtml(item) {
-      var url = safeHref(item.url);
+      var url = /\.pdf(\?|#|$)/i.test(String((item && item.url) || "")) ? resolvePdfHref(item.url) : safeHref(item.url);
       var title = String(item.title || "Link").trim();
       var inner =
         '<span class="ev-res-bubble-emo" aria-hidden="true">' + evResBubbleEmoji(item) + "</span>" +
@@ -2959,7 +2991,7 @@
       );
     }
     function evResCardHtml(item) {
-      var url = safeHref(item.url);
+      var url = /\.pdf(\?|#|$)/i.test(String((item && item.url) || "")) ? resolvePdfHref(item.url) : safeHref(item.url);
       var soon = !!item.comingSoon || !url;
       var title = String(item.title || "Link").trim();
       var blurb = String(item.blurb || "").trim();
@@ -3095,7 +3127,9 @@
     var sub = String(item.sub || item.blurb || "").trim();
     var url = String(item.url || "").trim();
     var goto = String(item.goto || "").trim();
-    if (url && url !== "leader-pdf" && !/^mailto:/i.test(url)) url = safeHref(url);
+    if (url && url !== "leader-pdf" && !/^mailto:/i.test(url)) {
+      url = /\.pdf(\?|#|$)/i.test(url) ? resolvePdfHref(url) : safeHref(url);
+    }
     else if (/^mailto:/i.test(url) && url.slice(7).split("?")[0].indexOf("@") < 1) url = "";
     var soon = !!item.comingSoon || (!url && !goto);
     var cta = String(item.cta || (soon ? "Coming soon" : "Open →")).trim();
@@ -3430,7 +3464,7 @@
     url = String(url || "").trim();
     if (!url) return;
     if (url !== "leader-pdf") {
-      var safe = safeHref(url);
+      var safe = resolvePdfHref(url);
       if (!safe) return;
       url = safe;
     }
@@ -6834,14 +6868,13 @@
       title: "The Fresh Catalog",
       blurb: "The current fresh book — skincare, body, baby, supplements, the whole range in one flip-through.",
       cta: "Open catalog →",
-      url: "assets/company/fresh-catalog.pdf?v=3"
+      url: "https://thefreshgrove.team/hub/assets/company/fresh-catalog.pdf?v=4"
     };
   }
 
-  /* Public file only — never join codes, hub, query, or a page in the app. */
-  var FRESH_CATALOG_SHARE_HOST = "https://app.evergreenco.team/";
-  var FRESH_CATALOG_SHARE_FILE = "assets/company/fresh-catalog.pdf";
+  /* Pretty catalog doors only — never join codes, hub, query, or github.io. */
   var GROVE_CATALOG_SHARE_URL = "https://thefreshgrove.team/thefreshcatalog";
+  var EVERGREEN_CATALOG_SHARE_URL = "https://app.evergreenco.team/thefreshcatalog";
 
   function isFreshCatalogAsset(url) {
     var path = String(url || "").split("?")[0].split("#")[0];
@@ -6851,30 +6884,20 @@
   }
 
   function freshCatalogShareUrl() {
-    var groveAccount = false;
     try {
       var CloudCat = window.FS.Cloud;
-      groveAccount = !!(CloudCat && CloudCat.groveCopiesPrettyLinks && CloudCat.groveCopiesPrettyLinks());
+      if (CloudCat && CloudCat.catalogShareUrl) {
+        var next = String(CloudCat.catalogShareUrl() || "").trim();
+        if (next) return next;
+      }
     } catch (eAcc) {}
-    if (groveAccount) {
-      var grove = "";
-      try { grove = String((CFG && CFG.groveCatalogUrl) || "").trim(); } catch (eG) {}
-      if (grove === GROVE_CATALOG_SHARE_URL) return grove;
-      return GROVE_CATALOG_SHARE_URL;
-    }
-    var rel = FRESH_CATALOG_SHARE_FILE;
-    try {
-      var raw = String((freshCatalogCopy() && freshCatalogCopy().url) || "").trim();
-      raw = raw.split("?")[0].split("#")[0].replace(/^\.\//, "").replace(/^\/+/, "");
-      if (/^assets\/company\/[A-Za-z0-9._-]+\.pdf$/.test(raw)) rel = raw;
-    } catch (e) {}
-    return FRESH_CATALOG_SHARE_HOST + rel;
+    if (packEvergreen()) return EVERGREEN_CATALOG_SHARE_URL;
+    return GROVE_CATALOG_SHARE_URL;
   }
 
   function isAllowedCatalogShareUrl(url) {
     var clean = String(url || "").split("?")[0].split("#")[0].replace(/\/$/, "");
-    if (clean === GROVE_CATALOG_SHARE_URL) return true;
-    return /^https:\/\/(?:app\.evergreenco\.team|thefreshgrove\.team\/hub|go-evergreen\.github\.io\/first-seeds)\/assets\/company\/[A-Za-z0-9._-]+\.pdf$/.test(clean);
+    return clean === GROVE_CATALOG_SHARE_URL || clean === EVERGREEN_CATALOG_SHARE_URL;
   }
 
   function copyFreshCatalogShareLink(btn) {
@@ -6938,7 +6961,7 @@
   function officialFreshCatalogFoldHtml() {
     var cat = freshCatalogCopy();
     var title = String(cat.title || "The Fresh Catalog").trim();
-    var url = String(cat.url || "").trim();
+    var url = resolvePdfHref(String(cat.url || "").trim());
     var cta = String(cat.cta || "Open catalog →").trim();
     return '<div class="prod-catalog-card">' +
       '<button type="button" class="leads-pages-fold prod-catalog-fold" data-open-pdf="' +
