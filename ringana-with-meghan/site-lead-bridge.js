@@ -12,22 +12,37 @@
   }
 
   function fieldLabel(el) {
-    var wrap = el.closest && el.closest('[class*="__field"]');
+    if (!el) return "";
+    if (el.id) {
+      try {
+        var byFor = document.querySelector('label[for="' + el.id + '"]');
+        if (byFor) return trim(byFor.textContent);
+      } catch (err) {}
+    }
+    var wrap = el.closest && el.closest('[class*="__field"], [data-fs-lead-name]');
     if (!wrap) return "";
     var label = wrap.querySelector("label");
     return label ? trim(label.textContent) : "";
   }
 
   function fieldVisible(el) {
+    if (!el) return false;
     var wrap = el.closest && el.closest('[class*="__field"]');
-    if (!wrap) return true;
-    return getComputedStyle(wrap).display !== "none";
+    if (wrap && getComputedStyle(wrap).display === "none") return false;
+    var r = el.getBoundingClientRect();
+    if (r.width < 8 || r.height < 8) return false;
+    return true;
   }
 
   function fieldHint(el) {
-    return String(
-      el.name || el.id || el.placeholder || el.getAttribute("aria-label") || fieldLabel(el) || ""
-    ).toLowerCase();
+    var label = fieldLabel(el);
+    var aria = el.getAttribute("aria-label") || "";
+    var raw = String(el.name || el.id || el.placeholder || aria || label || "").toLowerCase();
+    /* Flodesk / Kit hash the name/id/placeholder. Prefer the visible label. */
+    if (/name|first|last|email|phone|tel|mobile|given|surname/.test(raw)) return raw;
+    if (label) return label.toLowerCase();
+    if (aria) return String(aria).toLowerCase();
+    return raw;
   }
 
   function looksLikeEmailValue(v) {
@@ -49,21 +64,54 @@
     return looksLikePhoneValue(v);
   }
 
-  function looksName(n, t, v) {
+  function looksHandleField(n) {
+    return /(user\s*name|username|\bhandle\b|instagram|facebook|social)/.test(n);
+  }
+
+  function looksName(n, t, v, el) {
     if (t === "hidden" || t === "submit" || t === "checkbox" || t === "radio") return false;
     if (looksEmail(n, t, v) || looksPhone(n, t, v)) return false;
-    return /name|first|last|fname|lname/.test(n);
+    if (looksHandleField(n)) return false;
+    var ac = el ? String(el.getAttribute("autocomplete") || "").toLowerCase() : "";
+    if (/^(name|given-name|family-name|nickname|additional-name)$/.test(ac)) return true;
+    return /name|first|last|fname|lname|given|surname|fullname/.test(n);
+  }
+
+  function emailLocalPart(email) {
+    return trim(email).toLowerCase().split("@")[0];
+  }
+
+  function isHandleLikeName(name, email) {
+    var n = trim(name);
+    if (n.length < 2) return true;
+    if (looksLikeEmailValue(n) || n.indexOf("@") >= 0) return true;
+    if (/\s/.test(n)) return false;
+    if (/[._0-9]/.test(n)) return true;
+    var local = emailLocalPart(email);
+    var compactN = n.toLowerCase().replace(/[._+-]+/g, "");
+    var compactLocal = local.replace(/[._+-]+/g, "");
+    if (local && compactN === compactLocal && n.length >= 8 && n === n.toLowerCase()) return true;
+    return false;
+  }
+
+  function ourNameInput(scope) {
+    return (scope || document).querySelector("#fs-lead-name, [data-fs-lead-name] input");
+  }
+
+  function readOwnName(scope) {
+    var el = ourNameInput(scope);
+    return el ? trim(el.value) : "";
   }
 
   function readFields(scope) {
-    var name = "";
+    var name = readOwnName(scope);
     var last = "";
     var email = "";
     var phone = "";
     var nodes = (scope || document).querySelectorAll("input, textarea");
     for (var i = 0; i < nodes.length; i++) {
       var el = nodes[i];
-      if (el.closest && el.closest("[data-fs-interest]")) continue;
+      if (el.closest && el.closest("[data-fs-interest], [data-fs-lead-name]")) continue;
       if (el.disabled || el.type === "password" || el.getAttribute("aria-hidden") === "true") continue;
       if (!fieldVisible(el)) continue;
       var t = String(el.type || "text").toLowerCase();
@@ -73,13 +121,32 @@
       if (!v) continue;
       if (looksEmail(n, t, v)) email = v.toLowerCase();
       else if (looksPhone(n, t, v)) phone = v;
-      else if (/last/.test(n)) last = v;
-      else if (looksName(n, t, v)) {
-        if (!name) name = v;
-      }
+      else if (/last|family-name|surname/.test(n) || String(el.getAttribute("autocomplete") || "").toLowerCase() === "family-name") last = v;
+      else if (!name && looksName(n, t, v, el)) name = v;
     }
     if (last && name && name.toLowerCase() !== last.toLowerCase()) name = name + " " + last;
     return { name: name, email: email, phone: phone };
+  }
+
+  function visibleNameFieldExists(scope) {
+    if (ourNameInput(scope)) return true;
+    var nodes = (scope || document).querySelectorAll("input, textarea");
+    for (var i = 0; i < nodes.length; i++) {
+      var el = nodes[i];
+      if (el.closest && el.closest("[data-fs-interest]")) continue;
+      if (el.disabled || el.type === "password" || el.getAttribute("aria-hidden") === "true") continue;
+      if (!fieldVisible(el)) continue;
+      var t = String(el.type || "text").toLowerCase();
+      if (t === "hidden") continue;
+      if (looksName(fieldHint(el), t, trim(el.value), el)) return true;
+    }
+    return false;
+  }
+
+  function nameReady(scope) {
+    if (!visibleNameFieldExists(scope)) return true;
+    var fields = readFields(scope);
+    return !isHandleLikeName(fields.name, fields.email);
   }
 
   function readInterest(scope) {
@@ -134,6 +201,29 @@
     }
   }
 
+  function showNameError(scope) {
+    var box = scope || document;
+    var err = box.querySelector("#fs-name-error, [data-fs-name-error]");
+    if (!err) {
+      var host = box.querySelector("[data-fs-lead-name]") || box.querySelector("[data-fs-interest]") || box;
+      err = document.createElement("p");
+      err.id = "fs-name-error";
+      err.className = "letter-interest-error";
+      err.textContent = "Please enter your name.";
+      host.appendChild(err);
+    }
+    err.hidden = false;
+    err.textContent = "Please enter your name.";
+    if (err.scrollIntoView) err.scrollIntoView({ block: "nearest", behavior: "smooth" });
+    var input = ourNameInput(box);
+    if (input && input.focus) input.focus();
+  }
+
+  function hideNameError(scope) {
+    var err = (scope || document).querySelector("#fs-name-error, [data-fs-name-error]");
+    if (err) err.hidden = true;
+  }
+
   /* Never inject custom chips into Flodesk/Kit. Their observers fight
      insertBefore and freeze the whole page so Get First Access won't tap. */
   function keepInterestPickerOutsideForm(box) {
@@ -148,26 +238,58 @@
     parent.insertBefore(picker, host || null);
   }
 
-  function blockIfNoInterest(box, e) {
-    if (interestReady(box)) return false;
+  function hideVendorNameFields(box) {
+    if (!ourNameInput(box)) return;
+    var nodes = box.querySelectorAll("input, textarea");
+    for (var i = 0; i < nodes.length; i++) {
+      var el = nodes[i];
+      if (el.closest && el.closest("[data-fs-interest], [data-fs-lead-name]")) continue;
+      var t = String(el.type || "text").toLowerCase();
+      if (t === "hidden" || t === "email") continue;
+      if (!looksName(fieldHint(el), t, trim(el.value), el)) continue;
+      var wrap = el.closest && el.closest('[class*="__field"]');
+      if (wrap) wrap.style.display = "none";
+      else el.style.display = "none";
+    }
+  }
+
+  function syncNameIntoForm(box) {
+    var ours = readOwnName(box);
+    if (!ours) return;
+    var nodes = box.querySelectorAll("input, textarea");
+    for (var i = 0; i < nodes.length; i++) {
+      var el = nodes[i];
+      if (el.closest && el.closest("[data-fs-interest], [data-fs-lead-name]")) continue;
+      if (el.disabled || el.type === "password") continue;
+      var t = String(el.type || "text").toLowerCase();
+      if (t === "hidden") continue;
+      if (looksName(fieldHint(el), t, trim(el.value), el)) el.value = ours;
+    }
+  }
+
+  function blockIfIncomplete(box, e) {
+    var needInterest = !interestReady(box);
+    var needName = !nameReady(box);
+    if (!needInterest && !needName) return false;
     e.preventDefault();
     e.stopImmediatePropagation();
-    showInterestError(box);
+    if (needInterest) showInterestError(box);
+    if (needName) showNameError(box);
     return true;
   }
 
-  function armInterestGate(scope) {
+  function armFormGates(scope) {
     var box = scope || document;
     var form = box.querySelector('form[class*="__form"]');
     if (!form || form.dataset.fsInterestGate === "1") return;
-    if (!box.querySelector("[data-fs-interest]")) return;
+    if (!box.querySelector("[data-fs-interest]") && !visibleNameFieldExists(box)) return;
     form.dataset.fsInterestGate = "1";
     form.addEventListener("submit", function (e) {
-      blockIfNoInterest(box, e);
+      blockIfIncomplete(box, e);
     }, true);
     form.addEventListener("click", function (e) {
       if (!isSubmitControl(e.target)) return;
-      blockIfNoInterest(box, e);
+      blockIfIncomplete(box, e);
     }, true);
   }
 
@@ -180,7 +302,7 @@
 
   function fallbackName(fields) {
     var n = trim(fields.name);
-    if (n.length >= 2 && !looksLikeEmailValue(n) && n.indexOf("@") < 0) return n.slice(0, 80);
+    if (n.length >= 2 && !isHandleLikeName(n, fields.email)) return n.slice(0, 80);
     return prettyFirstFromEmail(n.indexOf("@") >= 0 ? n : fields.email) || "Friend";
   }
 
@@ -188,7 +310,7 @@
     if (!opts || !opts.slug) return;
     if (!fields.email && !fields.phone) return;
     var picked = trim(interest || "").toLowerCase();
-    if (INTERESTS.indexOf(picked) < 0) picked = "";
+    if (INTERESTS.indexOf(picked) < 0) picked = "both";
     var payload = {
       p_slug: String(opts.slug).toLowerCase(),
       p_name: fallbackName(fields),
@@ -245,7 +367,9 @@
     function tickArms() {
       keepInterestPickerOutsideForm(root);
       bindInterestPicker(root);
-      armInterestGate(root);
+      hideVendorNameFields(root);
+      syncNameIntoForm(root);
+      armFormGates(root);
     }
     function scheduleArms() {
       if (armTimer) return;
@@ -263,7 +387,7 @@
     }
 
     function maybeSend() {
-      if (!interestReady(root)) return;
+      if (!interestReady(root) || !nameReady(root)) return;
       harvest();
       if (!last.email && !last.phone) return;
       var interest = readInterest(root);
@@ -274,12 +398,17 @@
     }
 
     tickArms();
-    root.addEventListener("input", harvest, true);
+    root.addEventListener("input", function () {
+      hideNameError(root);
+      harvest();
+      syncNameIntoForm(root);
+    }, true);
     root.addEventListener("change", harvest, true);
     root.addEventListener("submit", function () { maybeSend(); }, true);
     root.addEventListener("click", function (e) {
       if (isSubmitControl(e.target)) {
         harvest();
+        syncNameIntoForm(root);
         maybeSend();
         setTimeout(maybeSend, 120);
         setTimeout(maybeSend, 500);
@@ -334,7 +463,7 @@
       var hp = form.querySelector(".letter-join-hp, input[name=website]");
       if (hp && trim(hp.value)) return;
       var fields = readFields(form);
-      if (trim(fields.name).length < 2 || !trim(fields.phone)) {
+      if (trim(fields.name).length < 2 || isHandleLikeName(fields.name, fields.email) || !trim(fields.phone)) {
         showJoinError(form, true);
         return;
       }
@@ -358,7 +487,7 @@
     if (!root) return;
     keepInterestPickerOutsideForm(root);
     bindInterestPicker(root);
-    armInterestGate(root);
+    armFormGates(root);
   }
 
   root.FSSiteLead = { watch: watch, send: send, bindSmsJoin: bindSmsJoin, refresh: refresh };

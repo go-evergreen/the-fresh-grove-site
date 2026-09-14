@@ -1006,6 +1006,23 @@ section{padding:6rem 2rem;}
   color:#9b3b3b;
   margin:.4rem 0 0;
 }
+.letter-name{width:100%;margin:0 0 .75rem;}
+.letter-name-input{
+  width:100%;
+  box-sizing:border-box;
+  font-family:'Work Sans',sans-serif;
+  background:#fffcf7;
+  border:1px solid rgba(28,50,39,.18);
+  color:var(--ink);
+  padding:.85rem 1rem;
+  font-size:.95rem;
+  border-radius:1px;
+}
+.letter-name-input:focus{
+  outline:2px solid var(--brass);
+  outline-offset:1px;
+  border-color:var(--brass);
+}
 
 #fd-form-modal,#fd-form-modal > *{margin:0 !important;}
 #fd-form-modal .ff-6a7a21f9053086f8c4da83df__form{padding:0 !important;margin:0 !important;background:transparent !important;}
@@ -1174,6 +1191,7 @@ section{padding:6rem 2rem;}
 }
 .letter-paper.is-submitted .letter-body-copy,
 .letter-paper.is-submitted .letter-interest,
+.letter-paper.is-submitted .letter-name,
 .letter-paper.is-submitted .letter-sign,
 .letter-paper.is-submitted .modal-fine{display:none;}
 .letter-paper.is-submitted .letter-salutation{
@@ -1686,6 +1704,11 @@ footer .foot-legal{max-width:78ch;}
           </div>
           <input type="hidden" id="fs-interest" value="">
           <p class="letter-interest-error" id="fs-interest-error" hidden>Pick what you're most interested in.</p>
+        </div>
+        <div class="letter-name" data-fs-lead-name>
+          <label class="letter-interest-label" for="fs-lead-name">Your name</label>
+          <input type="text" id="fs-lead-name" class="letter-name-input" name="fs-name" autocomplete="name" maxlength="80" placeholder="First and last name">
+          <p class="letter-interest-error" id="fs-name-error" hidden>Please enter your name.</p>
         </div>
         <div id="fd-form-modal" class="letter-form"></div>
       </div>
