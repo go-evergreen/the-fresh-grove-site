@@ -6184,12 +6184,12 @@ window.FS.YouTube = (function () {
       orgEventsLoadedAt = 0;
       return [];
     }
-    if (Cloud.eventsScopeReady && !Cloud.eventsScopeReady()) {
-      orgEventsCache = [];
-      orgEventsLoadedAt = 0;
-      return [];
-    }
+    /* Keep last-known dates while org scope is still loading. Clearing here
+       is what blanked Calendar when everyone opened the app at Zoom time. */
     hydrateOrgEventsFromStore();
+    if (Cloud.eventsScopeReady && !Cloud.eventsScopeReady()) {
+      return orgEventsCache;
+    }
     var now = Date.now();
     if (!force && orgEventsLoadedAt && now - orgEventsLoadedAt < 90000) {
       return orgEventsCache;
