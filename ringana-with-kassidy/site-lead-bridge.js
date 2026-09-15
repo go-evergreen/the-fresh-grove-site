@@ -95,7 +95,8 @@
   }
 
   function ourNameInput(scope) {
-    return (scope || document).querySelector("#fs-lead-name, [data-fs-lead-name] input");
+    return (scope || document).querySelector("#fs-lead-name, [data-fs-lead-name] input")
+      || document.querySelector("#fs-lead-name, [data-fs-lead-name] input");
   }
 
   function readOwnName(scope) {
@@ -203,9 +204,13 @@
 
   function showNameError(scope) {
     var box = scope || document;
-    var err = box.querySelector("#fs-name-error, [data-fs-name-error]");
+    var err = box.querySelector("#fs-name-error, [data-fs-name-error]")
+      || document.querySelector("#fs-name-error, [data-fs-name-error]");
     if (!err) {
-      var host = box.querySelector("[data-fs-lead-name]") || box.querySelector("[data-fs-interest]") || box;
+      var host = box.querySelector("[data-fs-lead-name]")
+        || document.querySelector("[data-fs-lead-name]")
+        || box.querySelector("[data-fs-interest]")
+        || box;
       err = document.createElement("p");
       err.id = "fs-name-error";
       err.className = "letter-interest-error";
@@ -220,7 +225,8 @@
   }
 
   function hideNameError(scope) {
-    var err = (scope || document).querySelector("#fs-name-error, [data-fs-name-error]");
+    var err = (scope || document).querySelector("#fs-name-error, [data-fs-name-error]")
+      || document.querySelector("#fs-name-error, [data-fs-name-error]");
     if (err) err.hidden = true;
   }
 
@@ -358,6 +364,10 @@
   function watch(opts) {
     if (!opts || !opts.slug) return;
     var root = document.querySelector(opts.root || "#fd-form-modal") || document.body;
+    var nameWrap = document.querySelector("[data-fs-lead-name]");
+    if (nameWrap && nameWrap.parentNode && nameWrap.parentNode.contains(root)) {
+      root = nameWrap.parentNode;
+    }
     if (!root || root.getAttribute("data-fs-site-lead") === "1") return;
     root.setAttribute("data-fs-site-lead", "1");
     var last = { name: "", email: "", phone: "" };
