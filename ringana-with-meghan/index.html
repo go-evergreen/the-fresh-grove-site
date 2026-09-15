@@ -1024,6 +1024,44 @@ section{padding:6rem 2rem;}
   border-color:var(--brass);
 }
 
+
+/* fs-submit-visible */
+.connect-modal-panel.letter-panel{
+  -webkit-overflow-scrolling:touch;
+  scroll-padding-bottom:6rem;
+}
+#fd-form-modal [class*="__content"],
+#fd-form-modal [class*="__fields"],
+#fd-form-modal [class*="__footer"]{
+  display:flex !important;
+  flex-direction:column !important;
+  width:100% !important;
+  max-width:100% !important;
+}
+#fd-form-modal [class*="__footer"],
+#fd-form-modal [class*="__button"],
+#fd-form-modal button.fd-btn,
+#kit-form-modal .formkit-submit,
+#kit-form-modal [data-element="submit"]{
+  display:block !important;
+  visibility:visible !important;
+  opacity:1 !important;
+  width:100% !important;
+  max-width:100% !important;
+  box-sizing:border-box !important;
+  margin-top:.65rem !important;
+}
+@media (max-width:720px){
+  .connect-modal{padding:.7rem .7rem max(.7rem, env(safe-area-inset-bottom));align-items:flex-start;}
+  .connect-modal-panel.letter-panel{max-height:96dvh;}
+  .letter-paper{padding:1.5rem 1.15rem 1.25rem;}
+  .letter-salutation{font-size:2rem;margin-bottom:.35rem;}
+  .letter-body-copy p{font-size:1.2rem;margin-bottom:.7rem;}
+}
+@media (max-height:740px){
+  .letter-body-copy p{margin-bottom:.45rem;}
+  .letter-sign{margin-top:.8rem;}
+}
 #fd-form-modal,#fd-form-modal > *{margin:0 !important;}
 #fd-form-modal .ff-6a7a21f9053086f8c4da83df__form{padding:0 !important;margin:0 !important;background:transparent !important;}
 #fd-form-modal .ff-6a7a21f9053086f8c4da83df,

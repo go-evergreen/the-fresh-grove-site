@@ -251,12 +251,35 @@
       var el = nodes[i];
       if (el.closest && el.closest("[data-fs-interest], [data-fs-lead-name]")) continue;
       var t = String(el.type || "text").toLowerCase();
-      if (t === "hidden" || t === "email") continue;
+      if (t === "hidden" || t === "email" || t === "submit" || t === "button") continue;
       if (!looksName(fieldHint(el), t, trim(el.value), el)) continue;
-      var wrap = el.closest && el.closest('[class*="__field"]');
-      if (wrap) wrap.style.display = "none";
-      else el.style.display = "none";
+      var wrap = el.closest && el.closest('[class*="__field"]:not([class*="__fields"]):not([class*="__footer"])');
+      if (wrap && /__field(\s|$)/.test(wrap.className || "")) wrap.style.display = "none";
+      else if (!wrap) el.style.display = "none";
     }
+  }
+
+  function submitButton(box) {
+    return (box || document).querySelector(
+      'button[type="submit"], input[type="submit"], button.fd-btn, [class*="__button"], .formkit-submit, [data-element="submit"]'
+    );
+  }
+
+  function revealSubmit(box) {
+    var btn = submitButton(box);
+    if (!btn) return;
+    var footer = btn.closest && btn.closest('[class*="__footer"]');
+    if (footer) {
+      footer.style.display = "block";
+      footer.style.visibility = "visible";
+      footer.style.width = "100%";
+    }
+    btn.style.display = "block";
+    btn.style.visibility = "visible";
+    btn.style.width = "100%";
+    try {
+      btn.scrollIntoView({ block: "nearest", inline: "nearest" });
+    } catch (err) {}
   }
 
   function syncNameIntoForm(box) {
@@ -380,6 +403,7 @@
       hideVendorNameFields(root);
       syncNameIntoForm(root);
       armFormGates(root);
+      revealSubmit(root);
     }
     function scheduleArms() {
       if (armTimer) return;
@@ -412,6 +436,10 @@
       hideNameError(root);
       harvest();
       syncNameIntoForm(root);
+      revealSubmit(root);
+    }, true);
+    root.addEventListener("focusin", function () {
+      revealSubmit(root);
     }, true);
     root.addEventListener("change", harvest, true);
     root.addEventListener("submit", function () { maybeSend(); }, true);

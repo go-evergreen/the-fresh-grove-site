@@ -206,6 +206,44 @@ section{padding:5.5rem 2rem;}
 .letter-head,.letter-body-copy,.letter-form,.letter-sign,.modal-fine{position:relative;z-index:1;}
 .letter-salutation{font-family:'Caveat',cursive;font-size:2.4rem;font-weight:500;margin-bottom:.6rem;color:var(--pine);line-height:1.1;transform:rotate(-.8deg);transform-origin:left center;}
 .letter-body-copy p{font-family:'Caveat',cursive;font-size:1.45rem;line-height:1.55;margin-bottom:1.2rem;max-width:48ch;color:var(--ink);}
+
+/* fs-submit-visible */
+.connect-modal-panel.letter-panel{
+  -webkit-overflow-scrolling:touch;
+  scroll-padding-bottom:6rem;
+}
+#fd-form-modal [class*="__content"],
+#fd-form-modal [class*="__fields"],
+#fd-form-modal [class*="__footer"]{
+  display:flex !important;
+  flex-direction:column !important;
+  width:100% !important;
+  max-width:100% !important;
+}
+#fd-form-modal [class*="__footer"],
+#fd-form-modal [class*="__button"],
+#fd-form-modal button.fd-btn,
+#kit-form-modal .formkit-submit,
+#kit-form-modal [data-element="submit"]{
+  display:block !important;
+  visibility:visible !important;
+  opacity:1 !important;
+  width:100% !important;
+  max-width:100% !important;
+  box-sizing:border-box !important;
+  margin-top:.65rem !important;
+}
+@media (max-width:720px){
+  .connect-modal{padding:.7rem .7rem max(.7rem, env(safe-area-inset-bottom));align-items:flex-start;}
+  .connect-modal-panel.letter-panel{max-height:96dvh;}
+  .letter-paper{padding:1.5rem 1.15rem 1.25rem;}
+  .letter-salutation{font-size:2rem;margin-bottom:.35rem;}
+  .letter-body-copy p{font-size:1.2rem;margin-bottom:.7rem;}
+}
+@media (max-height:740px){
+  .letter-body-copy p{margin-bottom:.45rem;}
+  .letter-sign{margin-top:.8rem;}
+}
 .letter-sign{font-family:'Caveat',cursive;margin-top:1.4rem;color:var(--pine);font-size:1.75rem;font-weight:500;transform:rotate(-1.2deg);transform-origin:left center;}
 .modal-fine{font-size:.75rem;opacity:.55;margin-top:1.2rem;text-align:left;}
 
