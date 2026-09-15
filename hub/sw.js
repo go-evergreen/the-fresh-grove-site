@@ -5,7 +5,7 @@
    they are served straight from cache instead of re-fetched on every open.
    Offline: fall back to last good cache.
 */
-const CACHE_VERSION = "fs-v727";
+const CACHE_VERSION = "fs-v728";
 const CACHE_NAME = "first-seeds-" + CACHE_VERSION;
 const JOIN_CACHE = "fs-pending-join";
 const JOIN_REQ = "./__pending_join";
@@ -417,6 +417,43 @@ function cacheFirst(event, req) {
   });
 }
 
+function isFreshCode(url) {
+  try {
+    return /\.(?:js|css)(?:\?|$)/i.test(new URL(url).pathname);
+  } catch (e) {
+    return false;
+  }
+}
+
+/* JS/CSS must be this deploy, not last week’s cache. Same URL with a
+   new file still wins. Offline falls back to the last good copy. */
+function networkFirst(event, req) {
+  var net = fetch(req, { cache: "no-store" }).then(function (res) {
+    return keep(event, req, res);
+  });
+  net.catch(function () {});
+  return new Promise(function (resolve) {
+    var settled = false;
+    function done(res) {
+      if (settled || !res) return;
+      settled = true;
+      resolve(res);
+    }
+    var timer = setTimeout(function () {
+      caches.match(req).then(done);
+    }, NAV_TIMEOUT_MS);
+    net.then(function (res) {
+      clearTimeout(timer);
+      done(res);
+    }).catch(function () {
+      clearTimeout(timer);
+      caches.match(req).then(function (cached) {
+        done(cached || Response.error());
+      });
+    });
+  });
+}
+
 function staleWhileRevalidate(event, req) {
   var net = fetch(req).then(function (res) {
     return keep(event, req, res);
@@ -466,7 +503,8 @@ self.addEventListener("fetch", function (event) {
   }
   if (!isAppAsset(url)) return;
 
-  if (isVersioned(url)) event.respondWith(cacheFirst(event, req));
+  if (isFreshCode(url)) event.respondWith(networkFirst(event, req));
+  else if (isVersioned(url)) event.respondWith(cacheFirst(event, req));
   else event.respondWith(staleWhileRevalidate(event, req));
 });
 
