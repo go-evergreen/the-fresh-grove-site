@@ -494,19 +494,16 @@
     var host = "";
     try { host = window.FS && window.FS.cabinetShelfHost && window.FS.cabinetShelfHost(); } catch (e) {}
     host = String(host || "").replace(/\/$/, "");
-    if (host) return host;
-    try {
-      var user = window.FS && window.FS.Cloud && window.FS.Cloud.user && window.FS.Cloud.user();
-      var slug = user && user.lead_slug ? String(user.lead_slug).trim().toLowerCase() : "";
-      if (slug === "taylor") return "https://shelf.taygoesfresh.com";
-    } catch (e2) {}
-    return "https://shelf.thefreshgrove.team";
+    if (/^https:\/\/shelf\.(thefreshgrove\.team|taygoesfresh\.com)$/i.test(host)) return host;
+    return "";
   }
 
   function loadCatalog() {
     if (!deskAllowed()) return Promise.resolve(catalog);
     if (catalog.length) return Promise.resolve(catalog);
-    return fetch(shelfPublicHost() + "/door-catalog.json", { cache: "force-cache" })
+    var host = shelfPublicHost();
+    if (!host) return Promise.resolve(catalog);
+    return fetch(host + "/door-catalog.json", { cache: "force-cache" })
       .then(function (res) { return res.ok ? res.json() : []; })
       .then(function (rows) {
         catalog = Array.isArray(rows) ? rows : [];
@@ -680,7 +677,9 @@
     else if (s === "ringanachi") file = "drinks-chi";
     else if (s === "ringanadea") file = "drinks-dea";
     else if (s === "ringanabty") file = "drinks-bty";
-    return shelfPublicHost() + "/products/" + folder + "/" + file + ".png";
+    var host = shelfPublicHost();
+    if (!host) return local || "";
+    return host + "/products/" + folder + "/" + file + ".png";
   }
 
   function isMatchLine(line) {

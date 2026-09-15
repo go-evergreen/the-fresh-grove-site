@@ -2101,6 +2101,14 @@ window.FS.normalizeMeetingHref = function (raw, maxLen) {
       if (groveCopiesPrettyLinks() || sessionIsGrove() || groveShareDoor()) {
         return grovePersonJoinShareUrl(code);
       }
+      try {
+        if (onGroveHost(String(window.location.hostname || ""))) return grovePersonJoinShareUrl(code);
+      } catch (eHost) {}
+      try {
+        if (window.FS.Pack && window.FS.Pack.isEvergreen && !window.FS.Pack.isEvergreen()) {
+          return grovePersonJoinShareUrl(code);
+        }
+      } catch (ePack) {}
       return evergreenJoinShareUrl(code);
     },
 
@@ -2118,7 +2126,12 @@ window.FS.normalizeMeetingHref = function (raw, maxLen) {
         }
       } catch (ePack) {}
       try { return window.location.origin + joinBasePath(); }
-      catch (e) { return evergreenPublicHubBase(); }
+      catch (e) {
+        try {
+          if (onGroveHost(String(window.location.hostname || ""))) return grovePublicHubBase();
+        } catch (eHost) {}
+        return evergreenPublicHubBase();
+      }
     },
 
     init: async function () {

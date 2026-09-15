@@ -2360,7 +2360,12 @@
       else if (path && path.charAt(path.length - 1) !== "/") path += "/";
       return hardenCopiedUrl(window.location.origin + (path || "/"));
     } catch (e) {
-      return "https://app.evergreenco.team/";
+      try {
+        if (window.FS.Pack && window.FS.Pack.isEvergreen && window.FS.Pack.isEvergreen()) {
+          return "https://app.evergreenco.team/";
+        }
+      } catch (ePack) {}
+      return "https://app.thefreshgrove.team/";
     }
   }
 
@@ -2563,11 +2568,12 @@
   }
 
   function quizMatchInviteUrl() {
+    if (packEvergreen() || cabinetUserIsEvergreen()) return "";
     var cfg = (window.FS.CONFIG && window.FS.CONFIG.groveQuizUrl) || "";
     var fromCfg = String(cfg || "").trim();
-    if (fromCfg) return fromCfg;
     var el = document.getElementById("quizShareInput");
-    return (el && el.value ? String(el.value).trim() : "") || "https://quiz.thefreshgrove.team/";
+    var url = fromCfg || (el && el.value ? String(el.value).trim() : "") || "https://quiz.thefreshgrove.team/";
+    return hardenCopiedUrl(url);
   }
 
   function paintQuizShareButton() {
@@ -11435,7 +11441,7 @@
   }
 
   function copyCurrentAppLink(btn) {
-    var url = currentAppUrl();
+    var url = hardenCopiedUrl(currentAppUrl());
     if (!url) return;
     function done() {
       if (btn) btn.textContent = "Link copied ✓";
