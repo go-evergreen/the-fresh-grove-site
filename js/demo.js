@@ -8,38 +8,38 @@
   var captions = {
     sprout: {
       kicker: "🌱 Sprout",
-      title: "So you’re not guessing.",
-      line: "Your runway to October, in order: your story, first products, your page, then who you’d tell. Peek ahead anytime. When you’re ready, Post Studio, the calendar, and growing a team are already here — so a new partner always knows the next quiet step."
+      title: "The path is already built.",
+      line: "Story, a few products, your page, then who you’d tell. Post Studio and Calendar are waiting when you want them."
     },
     learn: {
       kicker: "💡 Learn",
-      title: "Facts before you hit post.",
-      line: "Company, products, ingredients, and talking points you can actually stand behind — all searchable, including FAQs. Launch details live in the questions. Not a Drive folder. Not last week’s screenshot."
+      title: "The whole library.",
+      line: "Company, products, ingredients, FAQs, talking points, and The Fresh Match. Search any of it."
     },
     calendar: {
       kicker: "📅 Calendar",
-      title: "Dates, a plan, a vault.",
-      line: "Grove Gatherings and October live here. A vault of ready posts, photos you can grab, and a growing library of posts from the team — plus your own events and follow-ups, so the week has a home instead of a scramble."
+      title: "More than dates.",
+      line: "Zooms. October. A post vault. Pictures and videos. Posts from the team. Your own follow-ups."
     },
     leads: {
       kicker: "📧 Leads",
       title: "Your page. Your inbox.",
-      line: "Everyone gets a lead page that’s theirs. Curious names land with you — interest, status, and quiz stay on the card. Leaders check in beside you. No group chat swallowing it."
+      line: "They leave a name. You see what they want and if they took the quiz."
     },
     grove: {
       kicker: "🌳 Grove",
-      title: "So you’re not doing this alone.",
-      line: "The live tree, who needs a nudge, who’s in motion, who’s ready. Check in, send a cheer, watch the family grow — with a person who knows your name, and a team that stays."
+      title: "The tree up top.",
+      line: "Who joined with you. Who could use a cheer. A note you can send. That’s the tree in the header."
     },
     clients: {
       kicker: "🧴 Clients",
-      title: "Their side is The Fresh Shelf.",
-      line: "Yours is this tab. Names, notes, and a line back to you — not another group chat."
+      title: "Your clients live here.",
+      line: "Share your Fresh Shelf. See who showed up, leave a note, write them from this tab."
     },
     messages: {
       kicker: "💬 Messages",
-      title: "What’s new, in one tap.",
-      line: "Team notes and a line back to you — from the header, not buried in a chat."
+      title: "What’s going on.",
+      line: "Team notes, a zoom change, a message from the person walking you. Chat icon in the header."
     }
   };
 
@@ -325,10 +325,10 @@
     photos: {
       tab: "calendar",
       html:
-        '<p class="demo-kicker">Photos</p>' +
-        '<h2 class="demo-h1">Grab a photo</h2>' +
-        '<p class="demo-p">Circle previews in the real hub — tap to open, press and hold to save to your camera roll.</p>' +
-        '<p class="demo-lock">Photo library stays in the private hub. This preview won’t show them.</p>'
+        '<p class="demo-kicker">Pictures & videos</p>' +
+        '<h2 class="demo-h1">Pictures & videos</h2>' +
+        '<p class="demo-p">Browse the library — tap to open, press and hold to save. Pictures and videos, not just stills.</p>' +
+        '<p class="demo-lock">The library stays in the private hub. This preview won’t show them.</p>'
     },
     "launch-snap": {
       tab: "learn",
@@ -747,7 +747,7 @@
   var back = document.getElementById("demoBack");
   if (back) back.addEventListener("click", function () { closeSheet(); });
 
-  var tour = ["sprout", "learn", "calendar", "leads", "clients", "grove", "messages"];
+  var tour = ["sprout", "calendar", "leads", "learn", "clients", "grove", "messages"];
   var tourI = 0;
   var tourTimer = 0;
   var tourPaused = false;
