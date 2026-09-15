@@ -219,7 +219,6 @@
     }
     if (fromUrl) {
       await lockFromSlug(fromUrl);
-      try { openConnect(true); } catch (eOpen) {}
       return;
     }
     lockWho(false);

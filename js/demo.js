@@ -35,6 +35,11 @@
       kicker: "🧴 Clients",
       title: "Their side is The Fresh Shelf.",
       line: "Yours is this tab. Names, notes, and a line back to you — not another group chat."
+    },
+    messages: {
+      kicker: "💬 Messages",
+      title: "What’s new, in one tap.",
+      line: "Team notes and a line back to you — from the header, not buried in a chat."
     }
   };
 
@@ -380,7 +385,8 @@
   var toastEl = document.getElementById("demoToast");
   var toastTimer = 0;
   var currentTab = "sprout";
-  var groveReturnTab = "sprout";
+  var headerReturnTab = "sprout";
+  var headerTabs = { grove: true, messages: true };
   var plant = { roots: 0, checks: { products: false, ground: false, map: false } };
   var introTimers = [];
   var introDone = false;
@@ -597,14 +603,32 @@
     html.style.scrollBehavior = prev;
   }
 
-  function paintGroveTree(tab) {
+  function paintHeaderActions(tab) {
     var tree = byId("demoGroveTree");
-    if (!tree) return;
-    var on = tab === "grove";
-    tree.classList.toggle("on", on);
-    tree.setAttribute("aria-pressed", on ? "true" : "false");
-    tree.setAttribute("aria-label", on ? "Close Grow Your Grove" : "Grow Your Grove");
-    tree.setAttribute("title", on ? "Close Grow Your Grove" : "Grow Your Grove");
+    if (tree) {
+      var treeOn = tab === "grove";
+      tree.classList.toggle("on", treeOn);
+      tree.setAttribute("aria-pressed", treeOn ? "true" : "false");
+      tree.setAttribute("aria-label", treeOn ? "Close Grow Your Grove" : "Grow Your Grove");
+      tree.setAttribute("title", treeOn ? "Close Grow Your Grove" : "Grow Your Grove");
+    }
+    var msg = byId("demoMessagesBtn");
+    if (msg) {
+      var msgOn = tab === "messages";
+      msg.classList.toggle("on", msgOn);
+      msg.setAttribute("aria-pressed", msgOn ? "true" : "false");
+      msg.setAttribute("aria-label", msgOn ? "Close Messages" : "Messages");
+      msg.setAttribute("title", msgOn ? "Close Messages" : "Messages");
+    }
+  }
+
+  function toggleHeaderTab(tab) {
+    if (currentTab === tab) {
+      gotoTab(headerReturnTab || "sprout");
+      return;
+    }
+    if (!headerTabs[currentTab]) headerReturnTab = currentTab;
+    gotoTab(tab);
   }
 
   function showTab(tab) {
@@ -617,7 +641,7 @@
     qsa(".demo-nav button", app).forEach(function (btn) {
       btn.classList.toggle("on", btn.getAttribute("data-tab") === tab);
     });
-    paintGroveTree(tab);
+    paintHeaderActions(tab);
   }
 
   function closeSheet() {
@@ -693,11 +717,14 @@
     if (treeBtn && app.contains(treeBtn)) {
       e.preventDefault();
       pauseTour();
-      if (currentTab === "grove") gotoTab(groveReturnTab || "sprout");
-      else {
-        groveReturnTab = currentTab;
-        gotoTab("grove");
-      }
+      toggleHeaderTab("grove");
+      return;
+    }
+    var msgBtn = e.target.closest("#demoMessagesBtn");
+    if (msgBtn && app.contains(msgBtn)) {
+      e.preventDefault();
+      pauseTour();
+      toggleHeaderTab("messages");
       return;
     }
     var tabBtn = e.target.closest(".demo-nav button[data-tab]");
@@ -720,7 +747,7 @@
   var back = document.getElementById("demoBack");
   if (back) back.addEventListener("click", function () { closeSheet(); });
 
-  var tour = ["sprout", "learn", "calendar", "leads", "clients"];
+  var tour = ["sprout", "learn", "clients", "grove", "messages"];
   var tourI = 0;
   var tourTimer = 0;
   var tourPaused = false;

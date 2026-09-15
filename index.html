@@ -46,7 +46,7 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Caveat:wght@500;600&family=DM+Sans:ital,wght@0,400;0,500;0,600;0,700;1,400&family=Fraunces:ital,opsz,wght@0,9..144,300;0,9..144,400;0,9..144,500;0,9..144,600;1,9..144,400&family=Work+Sans:wght@300;400;500;600&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="css/grove.css?v=fresh89">
+<link rel="stylesheet" href="css/grove.css?v=fresh90">
 </head>
 <body>
 
@@ -228,7 +228,7 @@
         </li>
         <li>
           <b>No team required</b>
-          <p>Not common — and still true. You can go to the top of the plan with no team at all.</p>
+          <p>You can go to the top of the plan with no team at all. Not common — still true.</p>
         </li>
       </ul>
     </div>
@@ -247,7 +247,7 @@
         <li><strong>Look it up in one place.</strong> Company, products, ingredients, and launch facts — all searchable, so you can find what you need.</li>
         <li><strong>Dates, drafts, and follow-ups.</strong> Grove Gatherings and October on the calendar. A vault of ready posts to rewrite in your voice. Add your own events and follow-ups, so the week has a home.</li>
         <li><strong>Your page, your inbox.</strong> A lead page that’s yours. Curious names land with you. Leaders check in and send cheers — without a group chat swallowing it.</li>
-        <li><strong>Clients, not a group chat.</strong> Their side is The Fresh Shelf. Yours is the Clients tab — names, notes, and a line back to you. Grow Your Grove is the tree up top.</li>
+        <li><strong>Connect directly with your clients.</strong> Their side is The Fresh Shelf. Yours is the Clients tab — names, notes, and a line back to you.</li>
       </ul>
       <p class="hub-more">The Fresh Shelf is already live for clients and potentials. This still isn’t everything in the hub.</p>
       <a href="#connect" class="btn btn-brass" data-open-connect>Join the Fresh Grove</a>
@@ -274,7 +274,7 @@
                 </div>
                 <div class="demo-rail-actions">
                   <button type="button" class="demo-gear" id="demoGroveTree" aria-label="Grow Your Grove" aria-pressed="false" title="Grow Your Grove">🌳</button>
-                  <button type="button" class="demo-gear" data-locked aria-label="Messages">💬</button>
+                  <button type="button" class="demo-gear" id="demoMessagesBtn" aria-label="Messages" aria-pressed="false" title="Messages">💬</button>
                   <button type="button" class="demo-gear" data-locked aria-label="Settings">⚙️</button>
                 </div>
               </div>
@@ -769,6 +769,35 @@
                 <p class="demo-lock">Dummy names — not a real team on this page.</p>
               </div>
 
+              <div class="demo-tab" data-tab="messages">
+                <p class="demo-eye">The Fresh Grove</p>
+                <h2 class="demo-h1">What’s new</h2>
+                <p class="demo-sub">Notes from the team, and a line back to you — from the header, not another group chat.</p>
+                <div class="demo-live-tag">From the grove</div>
+                <article class="demo-lead-card is-new" data-locked>
+                  <div class="demo-lead-head">
+                    <div class="demo-lead-head-main">
+                      <div class="demo-lead-name-row">
+                        <strong class="demo-lead-name">Grove Gathering</strong>
+                      </div>
+                      <p class="demo-lead-meta">This week’s zoom is on the calendar. Come if you can — replay lives here after.</p>
+                    </div>
+                  </div>
+                </article>
+                <div class="demo-live-tag">For you</div>
+                <article class="demo-lead-card" data-locked>
+                  <div class="demo-lead-head">
+                    <div class="demo-lead-head-main">
+                      <div class="demo-lead-name-row">
+                        <strong class="demo-lead-name demo-blur">A note from your person</strong>
+                      </div>
+                      <p class="demo-lead-meta demo-blur">Proud of the quiet work this week.</p>
+                    </div>
+                  </div>
+                </article>
+                <p class="demo-lock">Demo notes — your real messages stay in the hub.</p>
+              </div>
+
               <div class="demo-sheet" id="demoSheet" hidden>
                 <button type="button" class="demo-back" id="demoBack">← Back</button>
                 <div id="demoSheetBody"></div>
@@ -936,7 +965,7 @@
           </details>
           <details name="faq-grove">
             <summary>Do I have to build a team?</summary>
-            <p>Nope. Enjoy the products, share them, or build if you want to. The zooms, the support, and the hub are still yours. And this isn’t just permission to stay small — you can actually go all the way to the top of the compensation plan with no team at all. That isn’t common. It’s still how the plan is written.</p>
+            <p>Nope. Enjoy the products, share them, or build if you want to. The zooms, the support, and the hub are still yours. And this isn’t just permission to stay small — you can actually go all the way to the top of the compensation plan with no team at all. Not common — still true.</p>
           </details>
           <details name="faq-grove">
             <summary>What does community actually look like?</summary>
@@ -1130,8 +1159,8 @@ if (window.caches) {
 <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
 <script src="js/config.js?v=fresh86"></script>
 <script src="js/plant.js?v=fresh86"></script>
-<script src="js/grove.js?v=fresh88"></script>
+<script src="js/grove.js?v=fresh90"></script>
 <script src="js/motion.js?v=fresh86"></script>
-<script src="js/demo.js?v=fresh88"></script>
+<script src="js/demo.js?v=fresh90"></script>
 </body>
 </html>

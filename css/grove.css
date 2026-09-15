@@ -1921,6 +1921,7 @@ footer{background:var(--pine-deep);color:var(--linen);padding:3.2rem 2rem 2.4rem
   }
   .hero-stats{grid-template-columns:1fr 1fr 1fr;max-width:none}
   .site-nav a:not(.nav-cta){display:none}
+  .with-lock-chip{display:none}
   .sticky-cta.on{display:block}
   section{padding:4rem 1.4rem}
   .hub{padding:4rem 0 4.6rem}
