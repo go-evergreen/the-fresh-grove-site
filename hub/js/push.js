@@ -336,7 +336,7 @@
       if (note) {
         note.hidden = false;
         note.textContent = isIos()
-          ? "On iPhone or iPad, add First Seeds to your Home Screen (Safari → Share → Add to Home Screen), open it from that icon, then come back here."
+          ? "On iPhone or iPad, add First Seeds to your Home Screen (Safari → ⋯ if you don’t see Share → Share → View More if needed → Add to Home Screen), open it from that icon, then come back here."
           : "Try the Chrome browser (colorful circle — not the Google app) or Edge, or install First Seeds to your Home Screen.";
       }
       return;
@@ -350,7 +350,7 @@
       if (enable) enable.hidden = true;
       if (note) {
         note.hidden = false;
-        note.innerHTML = "Open <strong>Safari</strong> → Share → <strong>Add to Home Screen</strong>. Then open First Seeds from that icon and turn notifications on here.";
+        note.innerHTML = "Open <strong>Safari</strong> → <strong>⋯</strong> if you don’t see Share → <strong>Share</strong> → <strong>View More</strong> if needed → <strong>Add to Home Screen</strong>. Then open First Seeds from that icon and turn notifications on here.";
       }
       return;
     }

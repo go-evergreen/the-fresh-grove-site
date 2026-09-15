@@ -11491,7 +11491,7 @@
         : "Home Screen only works from Chrome. Tap <strong>Open in Chrome</strong> below — then you can save First Seeds on your Home Screen.";
     } else if (ctx.kind === "chrome-ios") {
       title = name + " on iPhone can’t add this as an app";
-      body = "Copy the link, then open the <strong>Safari</strong> app (the compass) and paste it there. Add to Home Screen only works in Safari — not in " + name + ".";
+      body = "Copy the link, then open the <strong>Safari</strong> app and paste it there. Add to Home Screen only works in Safari — not in " + name + ".";
     } else if (ctx.kind === "google-app") {
       title = "This is the Google app, not Chrome";
       body = "Tap <strong>Open in Chrome</strong> below. Chrome is the colorful circle — that’s the one that can save First Seeds on your Home Screen. Don’t paste this link into Google Search (that’s a 404).";
@@ -11565,14 +11565,14 @@
         '<ol class="onboard-install-steps">' +
         "<li>Stay in <strong>Safari</strong> (not Chrome, and not inside Instagram or Texts).</li>" +
         "<li>Tap the <strong>Share</strong> button " +
-        '<span class="onboard-install-glyph" aria-hidden="true">□↑</span> ' +
-        "at the bottom of Safari (or top on iPad).</li>" +
-        '<li class="onboard-install-key">Scroll and tap <strong>Add to Home Screen</strong>.</li>' +
-        "<li>Tap <strong>Add</strong> in the top right — you should see a First Seeds icon on your Home Screen.</li>" +
+        '<span class="onboard-install-glyph" aria-hidden="true">□↑</span>. ' +
+        "Don’t see Share? Tap <strong>⋯</strong> at the bottom right of Safari first, then <strong>Share</strong>.</li>" +
+        '<li class="onboard-install-key">If you don’t see <strong>Add to Home Screen</strong>, tap <strong>View More</strong> or scroll. Then tap it.</li>' +
+        "<li>Tap <strong>Add</strong> — you should see a First Seeds icon on your Home Screen.</li>" +
         '<li class="onboard-install-key">Then close this Safari page and open First Seeds from that new icon. ' + afterOpen + "</li>" +
         "</ol>" +
         joinSaved +
-        '<p class="onboard-install-note">If you don’t see “Add to Home Screen,” scroll the share sheet all the way down. Still missing? Tap <strong>Edit Actions</strong> and turn it on.</p>';
+        '<p class="onboard-install-note">Still missing? You’re probably in Texts or another app. Copy this link, open the <strong>Safari</strong> app, and paste it there. Add to Home Screen only works in Safari.</p>';
     }
     if (platform === "android") {
       var installBtn = deferredInstallPrompt
