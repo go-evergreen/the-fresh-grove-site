@@ -236,6 +236,38 @@ section{padding:5.5rem 2rem;}
 .letter-head,.letter-body-copy,.letter-form,.letter-sign,.modal-fine{position:relative;z-index:1;}
 .letter-salutation{font-family:'Caveat',cursive;font-size:2.4rem;font-weight:500;margin-bottom:.6rem;color:var(--ink);line-height:1.1;transform:rotate(-.8deg);transform-origin:left center;}
 .letter-body-copy p{font-family:'Caveat',cursive;font-size:1.45rem;line-height:1.55;margin-bottom:1.2rem;max-width:48ch;color:var(--ink);}
+.letter-name{width:100%;margin:0 0 .75rem;}
+.letter-name-input{
+  width:100%;
+  box-sizing:border-box;
+  font-family:'Work Sans',sans-serif;
+  background:#fffcf7;
+  border:1px solid rgba(28,50,39,.18);
+  color:var(--ink);
+  padding:.85rem 1rem;
+  font-size:.95rem;
+  border-radius:1px;
+}
+.letter-name-input:focus{
+  outline:2px solid var(--brass);
+  outline-offset:1px;
+  border-color:var(--brass);
+}
+.letter-interest-label{
+  display:block;
+  font-family:'Work Sans',sans-serif;
+  font-size:.72rem;
+  letter-spacing:.14em;
+  text-transform:uppercase;
+  color:rgba(12,14,13,.55);
+  margin:0 0 .4rem;
+}
+.letter-interest-error{
+  font-family:'Work Sans',sans-serif;
+  font-size:.82rem;
+  color:#9b3b3b;
+  margin:.4rem 0 0;
+}
 #fd-form-modal,#fd-form-modal > *{margin:0 !important;}
 #fd-form-modal .ff-6a721591c6c2caebdb6c50a7__form{padding:0 !important;margin:0 !important;background:transparent !important;}
 #fd-form-modal .ff-6a721591c6c2caebdb6c50a7,
@@ -564,6 +596,11 @@ footer .foot-legal{max-width:78ch;}
       </header>
       <div class="letter-body-copy">
         <p>I'll personally email you when Ringana arrives in America — launch updates, honest first impressions as I try what I'm most excited about, and first access if you want to build alongside me.</p>
+      </div>
+      <div class="letter-name" data-fs-lead-name>
+      <label class="letter-interest-label" for="fs-lead-name">Your name</label>
+      <input type="text" id="fs-lead-name" class="letter-name-input" name="fs-name" autocomplete="name" maxlength="80" placeholder="First and last name">
+      <p class="letter-interest-error" id="fs-name-error" hidden>Please enter your name.</p>
       </div>
       <div id="fd-form-modal" class="letter-form"></div>
       <p class="letter-sign">— Kassidy</p>

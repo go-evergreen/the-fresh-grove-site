@@ -834,6 +834,38 @@ section{padding:6rem 2rem;}
   color:var(--ink);
 }
 .letter-form{margin-top:.4rem;}
+.letter-name{width:100%;margin:0 0 .75rem;}
+.letter-name-input{
+  width:100%;
+  box-sizing:border-box;
+  font-family:'Work Sans',sans-serif;
+  background:#fffcf7;
+  border:1px solid rgba(28,50,39,.18);
+  color:var(--ink);
+  padding:.85rem 1rem;
+  font-size:.95rem;
+  border-radius:1px;
+}
+.letter-name-input:focus{
+  outline:2px solid var(--brass);
+  outline-offset:1px;
+  border-color:var(--brass);
+}
+.letter-interest-label{
+  display:block;
+  font-family:'Work Sans',sans-serif;
+  font-size:.72rem;
+  letter-spacing:.14em;
+  text-transform:uppercase;
+  color:rgba(12,14,13,.55);
+  margin:0 0 .4rem;
+}
+.letter-interest-error{
+  font-family:'Work Sans',sans-serif;
+  font-size:.82rem;
+  color:#9b3b3b;
+  margin:.4rem 0 0;
+}
 #fd-form-modal,#fd-form-modal > *{margin:0 !important;}
 #fd-form-modal .ff-6a6e50903ac7f9d13c8f7862__form{padding:0 !important;margin:0 !important;}
 #fd-form-modal input,#fd-form-modal textarea,#fd-form-modal select,#fd-form-modal button{font-family:'Work Sans',sans-serif !important;border-radius:1px !important;}
@@ -1242,6 +1274,11 @@ footer .foot-legal{max-width:78ch;}
       </header>
       <div class="letter-body-copy">
         <p>We'll personally email you when Ringana arrives in America — launch updates, honest notes as we try products, and first access if you want to build alongside us.</p>
+      </div>
+      <div class="letter-name" data-fs-lead-name>
+      <label class="letter-interest-label" for="fs-lead-name">Your name</label>
+      <input type="text" id="fs-lead-name" class="letter-name-input" name="fs-name" autocomplete="name" maxlength="80" placeholder="First and last name">
+      <p class="letter-interest-error" id="fs-name-error" hidden>Please enter your name.</p>
       </div>
       <div id="fd-form-modal" class="letter-form"></div>
       <p class="letter-sign">— Brittany &amp; Tyler</p>
