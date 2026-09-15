@@ -747,7 +747,7 @@
   var back = document.getElementById("demoBack");
   if (back) back.addEventListener("click", function () { closeSheet(); });
 
-  var tour = ["sprout", "learn", "clients", "grove", "messages"];
+  var tour = ["sprout", "learn", "calendar", "leads", "clients", "grove", "messages"];
   var tourI = 0;
   var tourTimer = 0;
   var tourPaused = false;
