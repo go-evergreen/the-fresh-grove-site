@@ -318,9 +318,9 @@ window.FS.INGREDIENT_GUIDE = {
       "id": "moisturizers",
       "aliases": [
         "moisturizer",
-        "moisturiser",
+        "moisturizer",
         "moisturizers",
-        "moisturisers",
+        "moisturizers",
         "humectant",
         "humectants",
         "hydration",
@@ -339,7 +339,7 @@ window.FS.INGREDIENT_GUIDE = {
         "glycerin",
         "pentylene-glycol",
         "sodium-hyaluronate",
-        "hydrolysed-hyaluronic-acid",
+        "hydrolyzed-hyaluronic-acid",
         "sodium-lactate",
         "betaine"
       ],
@@ -362,7 +362,7 @@ window.FS.INGREDIENT_GUIDE = {
         "glucose",
         "glutamine",
         "glycerin",
-        "hydrolysed-hyaluronic-acid",
+        "hydrolyzed-hyaluronic-acid",
         "hydrolyzed-hyaluronic-acid",
         "isosorbide-dicaprylate",
         "liquid-food-supplement-with-a-vegan-amino-acid-mixture",
@@ -610,7 +610,7 @@ window.FS.INGREDIENT_GUIDE = {
         "botanicals",
         "postbiotic",
         "licorice",
-        "liquorice"
+        "licorice"
       ],
       "title": "Extracts, ferments & botanicals",
       "blurb": "Plant extracts, ferments, and cultured actives.",
@@ -720,7 +720,7 @@ window.FS.INGREDIENT_GUIDE = {
         "hippophae-rhamnoides-extract",
         "honeybush-leaf-extract",
         "hop-blossom-extract",
-        "hydrolysed-walnut-extract",
+        "hydrolyzed-walnut-extract",
         "hydrolyzed-acacia-macrostachya-seed-extract",
         "hydrolyzed-pea-extract",
         "hydrolyzed-walnut-extract",
@@ -939,7 +939,7 @@ window.FS.INGREDIENT_GUIDE = {
         "coriandrum-sativum-fruit-extract",
         "d-biotin-gluten-free",
         "fibre-and-vitamins-ingredients-enzymatically-fermented-guar-bean-fibre",
-        "hydrolysed-hyaluronic-acid",
+        "hydrolyzed-hyaluronic-acid",
         "hydrolyzed-hyaluronic-acid",
         "kaolin",
         "maclura-cochinchinensis-leaf-prenylflavonoids",
@@ -1467,7 +1467,7 @@ window.FS.INGREDIENT_GUIDE = {
     },
     {
       "id": "acacia-fibre",
-      "inciName": "Acacia fibre",
+      "inciName": "Acacia fiber",
       "commonName": "Acacia senegal",
       "altNames": [],
       "roles": [
@@ -1475,7 +1475,7 @@ window.FS.INGREDIENT_GUIDE = {
       ],
       "blurb": "Acacia senegal. Listed on Ringana product INCIs in this library — open Products that contain it to see where it shows up, and confirm wording on the current pack.",
       "match": [
-        "acacia fibre",
+        "acacia fiber",
         "acacia senegal"
       ],
       "productIds": [
@@ -1990,7 +1990,7 @@ window.FS.INGREDIENT_GUIDE = {
     },
     {
       "id": "apple-fibre",
-      "inciName": "Apple fibre",
+      "inciName": "Apple fiber",
       "commonName": "Malus domestica",
       "altNames": [],
       "roles": [
@@ -1998,7 +1998,7 @@ window.FS.INGREDIENT_GUIDE = {
       ],
       "blurb": "Malus domestica. Listed on Ringana product INCIs in this library — open Products that contain it to see where it shows up, and confirm wording on the current pack.",
       "match": [
-        "apple fibre",
+        "apple fiber",
         "malus domestica"
       ],
       "productIds": [
@@ -2008,15 +2008,15 @@ window.FS.INGREDIENT_GUIDE = {
     {
       "id": "apple-fruit-extract",
       "inciName": "Apple fruit extract",
-      "commonName": "Malus domestica) (sulphites",
+      "commonName": "Malus domestica) (sulfites",
       "altNames": [],
       "roles": [
         "extracts-ferments"
       ],
-      "blurb": "Malus domestica) (sulphites. A botanical extract, ferment, or cultured active in the supporting cast. Don’t overclaim every extract — point to product heroes first, then the full INCI.",
+      "blurb": "Malus domestica) (sulfites. A botanical extract, ferment, or cultured active in the supporting cast. Don’t overclaim every extract — point to product heroes first, then the full INCI.",
       "match": [
         "apple fruit extract",
-        "malus domestica) (sulphites"
+        "malus domestica) (sulfites"
       ],
       "productIds": [
         "caps-beauty-hair"
@@ -2599,15 +2599,15 @@ window.FS.INGREDIENT_GUIDE = {
     {
       "id": "bacillus-ferment",
       "inciName": "Bacillus ferment",
-      "commonName": "Revitalising ferment",
+      "commonName": "Revitalizing ferment",
       "altNames": [],
       "roles": [
         "extracts-ferments"
       ],
-      "blurb": "Revitalising ferment. A botanical extract, ferment, or cultured active in the supporting cast. Don’t overclaim every extract — point to product heroes first, then the full INCI.",
+      "blurb": "Revitalizing ferment. A botanical extract, ferment, or cultured active in the supporting cast. Don’t overclaim every extract — point to product heroes first, then the full INCI.",
       "match": [
         "bacillus ferment",
-        "revitalising ferment"
+        "revitalizing ferment"
       ],
       "productIds": [
         "adds-glow",
@@ -3584,7 +3584,7 @@ window.FS.INGREDIENT_GUIDE = {
     },
     {
       "id": "carrot-fibre",
-      "inciName": "Carrot fibre",
+      "inciName": "Carrot fiber",
       "commonName": "Daucus carota",
       "altNames": [],
       "roles": [
@@ -3592,7 +3592,7 @@ window.FS.INGREDIENT_GUIDE = {
       ],
       "blurb": "Daucus carota. Listed on Ringana product INCIs in this library — open Products that contain it to see where it shows up, and confirm wording on the current pack.",
       "match": [
-        "carrot fibre",
+        "carrot fiber",
         "daucus carota"
       ],
       "productIds": [
@@ -3826,7 +3826,7 @@ window.FS.INGREDIENT_GUIDE = {
       "roles": [
         "other"
       ],
-      "blurb": "A fatty alcohol that thickens and stabilises emulsions. Despite the word “alcohol,” it’s an emollient texture helper — not drying ethanol.",
+      "blurb": "A fatty alcohol that thickens and stabilizes emulsions. Despite the word “alcohol,” it’s an emollient texture helper — not drying ethanol.",
       "match": [
         "cetearyl alcohol",
         "fatty alcohol (texture / emulsion support)"
@@ -3942,15 +3942,15 @@ window.FS.INGREDIENT_GUIDE = {
     {
       "id": "chlorella-algae-powder",
       "inciName": "Chlorella algae powder",
-      "commonName": "Chlorella vulgaris) (sulphites",
+      "commonName": "Chlorella vulgaris) (sulfites",
       "altNames": [],
       "roles": [
         "other"
       ],
-      "blurb": "Chlorella vulgaris) (sulphites. Listed on Ringana product INCIs in this library — open Products that contain it to see where it shows up, and confirm wording on the current pack.",
+      "blurb": "Chlorella vulgaris) (sulfites. Listed on Ringana product INCIs in this library — open Products that contain it to see where it shows up, and confirm wording on the current pack.",
       "match": [
         "chlorella algae powder",
-        "chlorella vulgaris) (sulphites"
+        "chlorella vulgaris) (sulfites"
       ],
       "productIds": [
         "beyond-spermidine",
@@ -4408,7 +4408,7 @@ window.FS.INGREDIENT_GUIDE = {
     },
     {
       "id": "citrus-fibre",
-      "inciName": "Citrus fibre",
+      "inciName": "Citrus fiber",
       "commonName": "Citrus sinensis, Citrus limon",
       "altNames": [],
       "roles": [
@@ -4416,7 +4416,7 @@ window.FS.INGREDIENT_GUIDE = {
       ],
       "blurb": "Citrus sinensis, Citrus limon. Listed on Ringana product INCIs in this library — open Products that contain it to see where it shows up, and confirm wording on the current pack.",
       "match": [
-        "citrus fibre",
+        "citrus fiber",
         "citrus sinensis, citrus limon"
       ],
       "productIds": [
@@ -5257,15 +5257,15 @@ window.FS.INGREDIENT_GUIDE = {
     {
       "id": "dipotassium-glycyrrhizate",
       "inciName": "Dipotassium glycyrrhizate",
-      "commonName": "Skin soothing substance from liquorice root",
+      "commonName": "Skin soothing substance from licorice root",
       "altNames": [],
       "roles": [
         "other"
       ],
-      "blurb": "Skin soothing substance from liquorice root. Listed on Ringana product INCIs in this library — open Products that contain it to see where it shows up, and confirm wording on the current pack.",
+      "blurb": "Skin soothing substance from licorice root. Listed on Ringana product INCIs in this library — open Products that contain it to see where it shows up, and confirm wording on the current pack.",
       "match": [
         "dipotassium glycyrrhizate",
-        "skin soothing substance from liquorice root"
+        "skin soothing substance from licorice root"
       ],
       "productIds": [
         "adds-glow",
@@ -5314,7 +5314,7 @@ window.FS.INGREDIENT_GUIDE = {
       "blurb": "Sulphites. Listed on Ringana product INCIs in this library — open Products that contain it to see where it shows up, and confirm wording on the current pack.",
       "match": [
         "dried microalgae tetraselmis chuii",
-        "sulphites"
+        "sulfites"
       ],
       "productIds": [
         "beyond-spermidine"
@@ -5391,7 +5391,7 @@ window.FS.INGREDIENT_GUIDE = {
     },
     {
       "id": "encapsulated-melon-juice-concentrate-enzymatically-fermented-guar-bean-fibre",
-      "inciName": "Encapsulated melon juice concentrate [enzymatically fermented guar bean fibre",
+      "inciName": "Encapsulated melon juice concentrate [enzymatically fermented guar bean fiber",
       "commonName": "Cyamopsis tetragonoloba",
       "altNames": [],
       "roles": [
@@ -5399,7 +5399,7 @@ window.FS.INGREDIENT_GUIDE = {
       ],
       "blurb": "Cyamopsis tetragonoloba. A botanical extract, ferment, or cultured active in the supporting cast. Don’t overclaim every extract — point to product heroes first, then the full INCI.",
       "match": [
-        "encapsulated melon juice concentrate [enzymatically fermented guar bean fibre",
+        "encapsulated melon juice concentrate [enzymatically fermented guar bean fiber",
         "cyamopsis tetragonoloba"
       ],
       "productIds": [
@@ -5425,7 +5425,7 @@ window.FS.INGREDIENT_GUIDE = {
     },
     {
       "id": "enzymatically-fermented-guar-bean-fibre",
-      "inciName": "Enzymatically fermented guar bean fibre",
+      "inciName": "Enzymatically fermented guar bean fiber",
       "commonName": "Cyamopsis tetragonoloba",
       "altNames": [],
       "roles": [
@@ -5433,7 +5433,7 @@ window.FS.INGREDIENT_GUIDE = {
       ],
       "blurb": "Cyamopsis tetragonoloba. A botanical extract, ferment, or cultured active in the supporting cast. Don’t overclaim every extract — point to product heroes first, then the full INCI.",
       "match": [
-        "enzymatically fermented guar bean fibre",
+        "enzymatically fermented guar bean fiber",
         "cyamopsis tetragonoloba"
       ],
       "productIds": [
@@ -5638,7 +5638,7 @@ window.FS.INGREDIENT_GUIDE = {
     },
     {
       "id": "fibre-and-vitamins-ingredients-enzymatically-fermented-guar-bean-fibre",
-      "inciName": "Fibre and vitamins. INGREDIENTS Enzymatically fermented guar bean fibre",
+      "inciName": "Fiber and vitamins. INGREDIENTS Enzymatically fermented guar bean fiber",
       "commonName": "Cyamopsis tetragonoloba",
       "altNames": [],
       "roles": [
@@ -5647,7 +5647,7 @@ window.FS.INGREDIENT_GUIDE = {
       ],
       "blurb": "Cyamopsis tetragonoloba. An active / antioxidant support ingredient. Freshness matters for many of these — a natural bridge to Ringana’s small-batch and dating story.",
       "match": [
-        "fibre and vitamins. ingredients enzymatically fermented guar bean fibre",
+        "fiber and vitamins. ingredients enzymatically fermented guar bean fiber",
         "cyamopsis tetragonoloba"
       ],
       "productIds": [
@@ -5656,8 +5656,8 @@ window.FS.INGREDIENT_GUIDE = {
     },
     {
       "id": "fibres",
-      "inciName": "Fibres",
-      "commonName": "Fibres",
+      "inciName": "Fibers",
+      "commonName": "Fibers",
       "altNames": [],
       "roles": [
         "other"
@@ -5737,15 +5737,15 @@ window.FS.INGREDIENT_GUIDE = {
     },
     {
       "id": "food-supplement-with-fibre",
-      "inciName": "Food supplement with fibre",
-      "commonName": "Food supplement with fibre",
+      "inciName": "Food supplement with fiber",
+      "commonName": "Food supplement with fiber",
       "altNames": [],
       "roles": [
         "other"
       ],
       "blurb": "Listed on Ringana product INCIs in this library. Open Products that contain it to see where it shows up, and confirm the current packaging / ringana.com for the latest wording.",
       "match": [
-        "food supplement with fibre"
+        "food supplement with fiber"
       ],
       "productIds": [
         "fresh-pack-cleansing"
@@ -6691,7 +6691,7 @@ window.FS.INGREDIENT_GUIDE = {
       "blurb": "Sulphites) (Vitis vinifera, Malus pumila. A botanical extract, ferment, or cultured active in the supporting cast. Don’t overclaim every extract — point to product heroes first, then the full INCI.",
       "match": [
         "grape flesh and apple peel extract",
-        "sulphites) (vitis vinifera, malus pumila"
+        "sulfites) (vitis vinifera, malus pumila"
       ],
       "productIds": [
         "sport-endurance"
@@ -7299,7 +7299,7 @@ window.FS.INGREDIENT_GUIDE = {
       "blurb": "Texturising olive oil esters. Helps oil and water stay blended so creams and lotions feel even and stable. On Ringana labels, emulsifiers are often named with a plant source — a useful teaching contrast to mystery “emulsifying wax.”",
       "match": [
         "hydrogenated olive oil stearyl esters",
-        "texturising olive oil esters"
+        "texturizing olive oil esters"
       ],
       "productIds": [
         "fresh-eye-cream",
@@ -7392,7 +7392,7 @@ window.FS.INGREDIENT_GUIDE = {
     },
     {
       "id": "hydrolysed-corn-protein",
-      "inciName": "Hydrolysed corn protein",
+      "inciName": "Hydrolyzed corn protein",
       "commonName": "Grooming corn proteins",
       "altNames": [],
       "roles": [
@@ -7400,7 +7400,7 @@ window.FS.INGREDIENT_GUIDE = {
       ],
       "blurb": "Grooming corn proteins. Listed on Ringana product INCIs in this library — open Products that contain it to see where it shows up, and confirm wording on the current pack.",
       "match": [
-        "hydrolysed corn protein",
+        "hydrolyzed corn protein",
         "grooming corn proteins"
       ],
       "productIds": [
@@ -7409,18 +7409,18 @@ window.FS.INGREDIENT_GUIDE = {
     },
     {
       "id": "hydrolysed-hyaluronic-acid",
-      "inciName": "Hydrolysed hyaluronic acid",
-      "commonName": "Hyaluronic acid (hydrolysed)",
+      "inciName": "Hydrolyzed hyaluronic acid",
+      "commonName": "Hyaluronic acid (hydrolyzed)",
       "altNames": [
         "HA"
       ],
       "roles": [
         "hyaluronic"
       ],
-      "blurb": "A smaller-piece (hydrolysed) hyaluronic acid that can support hydration in the skin’s surface layers — often paired with classic sodium hyaluronate for a fuller moisture story.",
+      "blurb": "A smaller-piece (hydrolyzed) hyaluronic acid that can support hydration in the skin’s surface layers — often paired with classic sodium hyaluronate for a fuller moisture story.",
       "match": [
-        "hydrolysed hyaluronic acid",
-        "hyaluronic acid (hydrolysed)",
+        "hydrolyzed hyaluronic acid",
+        "hyaluronic acid (hydrolyzed)",
         "ha"
       ],
       "productIds": [
@@ -7439,7 +7439,7 @@ window.FS.INGREDIENT_GUIDE = {
     },
     {
       "id": "hydrolysed-soy-protein",
-      "inciName": "Hydrolysed soy protein",
+      "inciName": "Hydrolyzed soy protein",
       "commonName": "Grooming soya proteins",
       "altNames": [],
       "roles": [
@@ -7447,7 +7447,7 @@ window.FS.INGREDIENT_GUIDE = {
       ],
       "blurb": "Grooming soya proteins. Listed on Ringana product INCIs in this library — open Products that contain it to see where it shows up, and confirm wording on the current pack.",
       "match": [
-        "hydrolysed soy protein",
+        "hydrolyzed soy protein",
         "grooming soya proteins"
       ],
       "productIds": [
@@ -7456,7 +7456,7 @@ window.FS.INGREDIENT_GUIDE = {
     },
     {
       "id": "hydrolysed-walnut-extract",
-      "inciName": "Hydrolysed walnut extract",
+      "inciName": "Hydrolyzed walnut extract",
       "commonName": "Walnut extract",
       "altNames": [],
       "roles": [
@@ -7464,7 +7464,7 @@ window.FS.INGREDIENT_GUIDE = {
       ],
       "blurb": "Walnut extract. A botanical extract, ferment, or cultured active in the supporting cast. Don’t overclaim every extract — point to product heroes first, then the full INCI.",
       "match": [
-        "hydrolysed walnut extract",
+        "hydrolyzed walnut extract",
         "walnut extract"
       ],
       "productIds": [
@@ -7508,7 +7508,7 @@ window.FS.INGREDIENT_GUIDE = {
     {
       "id": "hydrolyzed-hyaluronic-acid",
       "inciName": "Hydrolyzed hyaluronic acid",
-      "commonName": "Hyaluronic acid (hydrolysed)",
+      "commonName": "Hyaluronic acid (hydrolyzed)",
       "altNames": [
         "Hyaluronic acid (hydrolyzed)",
         "HA"
@@ -7516,10 +7516,10 @@ window.FS.INGREDIENT_GUIDE = {
       "roles": [
         "hyaluronic"
       ],
-      "blurb": "Hyaluronic acid (hydrolysed). A hyaluronic-acid family ingredient that binds water for hydrated, comfortable-feeling skin. Formulas may use more than one HA size for a fuller moisture story.",
+      "blurb": "Hyaluronic acid (hydrolyzed). A hyaluronic-acid family ingredient that binds water for hydrated, comfortable-feeling skin. Formulas may use more than one HA size for a fuller moisture story.",
       "match": [
         "hydrolyzed hyaluronic acid",
-        "hyaluronic acid (hydrolysed)",
+        "hyaluronic acid (hydrolyzed)",
         "hyaluronic acid (hydrolyzed)",
         "ha"
       ],
@@ -8156,15 +8156,15 @@ window.FS.INGREDIENT_GUIDE = {
     {
       "id": "lamium-album-extract",
       "inciName": "Lamium album extract",
-      "commonName": "Hair revitalising extract of white dead nettle",
+      "commonName": "Hair revitalizing extract of white dead nettle",
       "altNames": [],
       "roles": [
         "extracts-ferments"
       ],
-      "blurb": "Hair revitalising extract of white dead nettle. A botanical extract, ferment, or cultured active in the supporting cast. Don’t overclaim every extract — point to product heroes first, then the full INCI.",
+      "blurb": "Hair revitalizing extract of white dead nettle. A botanical extract, ferment, or cultured active in the supporting cast. Don’t overclaim every extract — point to product heroes first, then the full INCI.",
       "match": [
         "lamium album extract",
-        "hair revitalising extract of white dead nettle"
+        "hair revitalizing extract of white dead nettle"
       ],
       "productIds": [
         "fresh-volume-shampoo"
@@ -8552,15 +8552,15 @@ window.FS.INGREDIENT_GUIDE = {
     },
     {
       "id": "liquid-food-supplement-with-fibre",
-      "inciName": "Liquid food supplement with fibre",
-      "commonName": "Liquid food supplement with fibre",
+      "inciName": "Liquid food supplement with fiber",
+      "commonName": "Liquid food supplement with fiber",
       "altNames": [],
       "roles": [
         "other"
       ],
       "blurb": "Listed on Ringana product INCIs in this library. Open Products that contain it to see where it shows up, and confirm the current packaging / ringana.com for the latest wording.",
       "match": [
-        "liquid food supplement with fibre"
+        "liquid food supplement with fiber"
       ],
       "productIds": [
         "ringanadea"
@@ -8664,7 +8664,7 @@ window.FS.INGREDIENT_GUIDE = {
       "blurb": "Highly effect extract with an effect similar to Vitamin A. An active / antioxidant support ingredient. Freshness matters for many of these — a natural bridge to Ringana’s small-batch and dating story.",
       "match": [
         "maclura cochinchinensis leaf prenylflavonoids",
-        "highly effect extract with an effect similar to vitamin a"
+        "highly effective extract with an effect similar to vitamin a"
       ],
       "productIds": [
         "fresh-anti-wrinkle-serum",
@@ -8774,16 +8774,16 @@ window.FS.INGREDIENT_GUIDE = {
     },
     {
       "id": "magnesium-sulphate",
-      "inciName": "Magnesium sulphate",
-      "commonName": "Emulsion stabiliser)Polyhydroxystearic acid (plant-derived dispersing agent",
+      "inciName": "Magnesium sulfate",
+      "commonName": "Emulsion stabilizer)Polyhydroxystearic acid (plant-derived dispersing agent",
       "altNames": [],
       "roles": [
         "other"
       ],
-      "blurb": "Emulsion stabiliser)Polyhydroxystearic acid (plant-derived dispersing agent. Listed on Ringana product INCIs in this library — open Products that contain it to see where it shows up, and confirm wording on the current pack.",
+      "blurb": "Emulsion stabilizer)Polyhydroxystearic acid (plant-derived dispersing agent. Listed on Ringana product INCIs in this library — open Products that contain it to see where it shows up, and confirm wording on the current pack.",
       "match": [
-        "magnesium sulphate",
-        "emulsion stabiliser)polyhydroxystearic acid (plant-derived dispersing agent"
+        "magnesium sulfate",
+        "emulsion stabilizer)polyhydroxystearic acid (plant-derived dispersing agent"
       ],
       "productIds": [
         "fresh-baby-bum-cream",
@@ -9638,7 +9638,7 @@ window.FS.INGREDIENT_GUIDE = {
     },
     {
       "id": "oat-fibre-containing-beta-glucans",
-      "inciName": "Oat fibre containing beta-glucans",
+      "inciName": "Oat fiber containing beta-glucans",
       "commonName": "Avena sativa",
       "altNames": [],
       "roles": [
@@ -9646,7 +9646,7 @@ window.FS.INGREDIENT_GUIDE = {
       ],
       "blurb": "Avena sativa. Listed on Ringana product INCIs in this library — open Products that contain it to see where it shows up, and confirm wording on the current pack.",
       "match": [
-        "oat fibre containing beta-glucans",
+        "oat fiber containing beta-glucans",
         "avena sativa"
       ],
       "productIds": [
@@ -11476,15 +11476,15 @@ window.FS.INGREDIENT_GUIDE = {
     {
       "id": "reishi-mushroom-extract",
       "inciName": "Reishi mushroom extract",
-      "commonName": "Ganoderma lucidum) (sulphites",
+      "commonName": "Ganoderma lucidum) (sulfites",
       "altNames": [],
       "roles": [
         "extracts-ferments"
       ],
-      "blurb": "Ganoderma lucidum) (sulphites. A botanical extract, ferment, or cultured active in the supporting cast. Don’t overclaim every extract — point to product heroes first, then the full INCI.",
+      "blurb": "Ganoderma lucidum) (sulfites. A botanical extract, ferment, or cultured active in the supporting cast. Don’t overclaim every extract — point to product heroes first, then the full INCI.",
       "match": [
         "reishi mushroom extract",
-        "ganoderma lucidum) (sulphites"
+        "ganoderma lucidum) (sulfites"
       ],
       "productIds": [
         "caps-immu"
@@ -11546,15 +11546,15 @@ window.FS.INGREDIENT_GUIDE = {
     {
       "id": "rhododendron-ferrugineum-extract",
       "inciName": "Rhododendron ferrugineum extract",
-      "commonName": "Reduces signal-transmitted cell-ageing",
+      "commonName": "Reduces signal-transmitted cell-aging",
       "altNames": [],
       "roles": [
         "extracts-ferments"
       ],
-      "blurb": "Reduces signal-transmitted cell-ageing. A botanical extract, ferment, or cultured active in the supporting cast. Don’t overclaim every extract — point to product heroes first, then the full INCI.",
+      "blurb": "Reduces signal-transmitted cell-aging. A botanical extract, ferment, or cultured active in the supporting cast. Don’t overclaim every extract — point to product heroes first, then the full INCI.",
       "match": [
         "rhododendron ferrugineum extract",
-        "reduces signal-transmitted cell-ageing"
+        "reduces signal-transmitted cell-aging"
       ],
       "productIds": [
         "fresh-overnight-face-treatment"
@@ -12513,15 +12513,15 @@ window.FS.INGREDIENT_GUIDE = {
     {
       "id": "sodium-bicarbonate",
       "inciName": "Sodium bicarbonate",
-      "commonName": "Deodorising sodium bicarbonate",
+      "commonName": "Deodorizing sodium bicarbonate",
       "altNames": [],
       "roles": [
         "other"
       ],
-      "blurb": "Deodorising sodium bicarbonate. Listed on Ringana product INCIs in this library — open Products that contain it to see where it shows up, and confirm wording on the current pack.",
+      "blurb": "Deodorizing sodium bicarbonate. Listed on Ringana product INCIs in this library — open Products that contain it to see where it shows up, and confirm wording on the current pack.",
       "match": [
         "sodium bicarbonate",
-        "deodorising sodium bicarbonate"
+        "deodorizing sodium bicarbonate"
       ],
       "productIds": [
         "fresh-deodorant",
@@ -12843,15 +12843,15 @@ window.FS.INGREDIENT_GUIDE = {
     {
       "id": "sodium-zinc-polyitaconate",
       "inciName": "Sodium zinc polyitaconate",
-      "commonName": "Neutralises odours",
+      "commonName": "Neutralizes odors",
       "altNames": [],
       "roles": [
         "other"
       ],
-      "blurb": "Neutralises odours. Listed on Ringana product INCIs in this library — open Products that contain it to see where it shows up, and confirm wording on the current pack.",
+      "blurb": "Neutralizes odors. Listed on Ringana product INCIs in this library — open Products that contain it to see where it shows up, and confirm wording on the current pack.",
       "match": [
         "sodium zinc polyitaconate",
-        "neutralises odours"
+        "neutralizes odors"
       ],
       "productIds": [
         "fresh-deodorant",
@@ -12980,7 +12980,7 @@ window.FS.INGREDIENT_GUIDE = {
       "blurb": "Sulphites) (Spirulina platensis. Listed on Ringana product INCIs in this library — open Products that contain it to see where it shows up, and confirm wording on the current pack.",
       "match": [
         "spirulina algae powder",
-        "sulphites) (spirulina platensis"
+        "sulfites) (spirulina platensis"
       ],
       "productIds": [
         "fresh-pack-balancing"
@@ -13074,7 +13074,7 @@ window.FS.INGREDIENT_GUIDE = {
     },
     {
       "id": "stabiliser-gum-arabic",
-      "inciName": "Stabiliser: gum arabic",
+      "inciName": "Stabilizer: gum arabic",
       "commonName": "Acacia senegal",
       "altNames": [],
       "roles": [
@@ -13082,7 +13082,7 @@ window.FS.INGREDIENT_GUIDE = {
       ],
       "blurb": "Acacia senegal. Listed on Ringana product INCIs in this library — open Products that contain it to see where it shows up, and confirm wording on the current pack.",
       "match": [
-        "stabiliser: gum arabic",
+        "stabilizer: gum arabic",
         "acacia senegal"
       ],
       "productIds": [
@@ -13439,15 +13439,15 @@ window.FS.INGREDIENT_GUIDE = {
     {
       "id": "trametes-versicolor-extract",
       "inciName": "Trametes versicolor extract",
-      "commonName": "Heat and colour protection complex from bamboo and turkey tail fungus",
+      "commonName": "Heat and color protection complex from bamboo and turkey tail fungus",
       "altNames": [],
       "roles": [
         "extracts-ferments"
       ],
-      "blurb": "Heat and colour protection complex from bamboo and turkey tail fungus. A botanical extract, ferment, or cultured active in the supporting cast. Don’t overclaim every extract — point to product heroes first, then the full INCI.",
+      "blurb": "Heat and color protection complex from bamboo and turkey tail fungus. A botanical extract, ferment, or cultured active in the supporting cast. Don’t overclaim every extract — point to product heroes first, then the full INCI.",
       "match": [
         "trametes versicolor extract",
-        "heat and colour protection complex from bamboo and turkey tail fungus"
+        "heat and color protection complex from bamboo and turkey tail fungus"
       ],
       "productIds": [
         "fresh-hair-treatment",
@@ -14061,7 +14061,7 @@ window.FS.INGREDIENT_GUIDE = {
     },
     {
       "id": "vitamins-and-minerals-a-powder-for-making-shakes-ingredients-enzymatically-ferme",
-      "inciName": "Vitamins and minerals. A powder for making shakes. INGREDIENTS Enzymatically fermented guar bean fibre",
+      "inciName": "Vitamins and minerals. A powder for making shakes. INGREDIENTS Enzymatically fermented guar bean fiber",
       "commonName": "Cyamopsis tetragonoloba",
       "altNames": [],
       "roles": [
@@ -14070,7 +14070,7 @@ window.FS.INGREDIENT_GUIDE = {
       ],
       "blurb": "Cyamopsis tetragonoloba. An active / antioxidant support ingredient. Freshness matters for many of these — a natural bridge to Ringana’s small-batch and dating story.",
       "match": [
-        "vitamins and minerals. a powder for making shakes. ingredients enzymatically fermented guar bean fibre",
+        "vitamins and minerals. a powder for making shakes. ingredients enzymatically fermented guar bean fiber",
         "cyamopsis tetragonoloba"
       ],
       "productIds": [
@@ -14874,17 +14874,17 @@ window.FS.INGREDIENT_GUIDE = {
     },
     {
       "id": "sig-inavea",
-      "inciName": "Inavea Original™ acacia fibre",
-      "commonName": "Inavea Original acacia fibre",
+      "inciName": "Inavea Original™ acacia fiber",
+      "commonName": "Inavea Original acacia fiber",
       "altNames": [],
       "roles": [
         "signature-nutrition",
         "supplement"
       ],
-      "blurb": "contains soluble fibres as well as the minerals magnesium and calcium. Magnesium contributes to energy metabolism. Calcium supports the function of digestive enzymes. (From Ringana’s published Hero Ingredients on the product page — always re-check the live page and pack.)",
+      "blurb": "contains soluble fibers as well as the minerals magnesium and calcium. Magnesium contributes to energy metabolism. Calcium supports the function of digestive enzymes. (From Ringana’s published Hero Ingredients on the product page — always re-check the live page and pack.)",
       "match": [
-        "inavea original™ acacia fibre",
-        "inavea original acacia fibre",
+        "inavea original™ acacia fiber",
+        "inavea original acacia fiber",
         "inavea"
       ],
       "productIds": [
@@ -15345,19 +15345,19 @@ window.FS.INGREDIENT_GUIDE = {
     },
     {
       "id": "sig-sunfiber",
-      "inciName": "SunFiber® enzymatically fermented guar bean fibre",
-      "commonName": "SunFiber enzymatically fermented guar bean fibre",
+      "inciName": "SunFiber® enzymatically fermented guar bean fiber",
+      "commonName": "SunFiber enzymatically fermented guar bean fiber",
       "altNames": [
-        "Sunfiber® enzymatically fermented guar bean fibre"
+        "Sunfiber® enzymatically fermented guar bean fiber"
       ],
       "roles": [
         "signature-nutrition",
         "supplement"
       ],
-      "blurb": "combined with FOS ensures a high fibre content. (From Ringana’s published Hero Ingredients on the product page — always re-check the live page and pack.)",
+      "blurb": "combined with FOS ensures a high fiber content. (From Ringana’s published Hero Ingredients on the product page — always re-check the live page and pack.)",
       "match": [
-        "sunfiber® enzymatically fermented guar bean fibre",
-        "sunfiber enzymatically fermented guar bean fibre",
+        "sunfiber® enzymatically fermented guar bean fiber",
+        "sunfiber enzymatically fermented guar bean fiber",
         "sunfiber"
       ],
       "productIds": [
