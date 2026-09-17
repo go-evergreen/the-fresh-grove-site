@@ -12,60 +12,48 @@
   main{max-width:28rem;margin:0 auto}
   h1{font-size:1.45rem;font-weight:600;letter-spacing:.03em;margin:0 0 10px}
   p{margin:0 0 14px}
-  ol{margin:0 0 22px;padding-left:1.2em}
-  li{margin:0 0 10px}
+  ol{margin:0 0 18px;padding-left:1.2em}
+  li{margin:0 0 8px}
   .note{opacity:.78;font-size:.95rem}
-  label{display:flex;gap:10px;align-items:flex-start;margin:18px 0 16px;cursor:pointer}
-  input{margin-top:.35em}
-  a.btn,button.btn{
+  a.btn{
     display:block;width:100%;box-sizing:border-box;text-align:center;
     text-decoration:none;border:0;border-radius:999px;padding:14px 18px;
     font:600 16px/1 Georgia,serif;letter-spacing:.02em;color:#3d453c;
-    background:#efe8d6
+    background:#efe8d6;margin:18px 0 28px
   }
-  a.btn[aria-disabled="true"]{opacity:.4;pointer-events:none}
-  .more{margin-top:28px;padding-top:18px;border-top:1px solid #d8dcd4}
+  details{margin-top:8px}
+  summary{cursor:pointer;font-weight:600}
+  details[open] summary{margin-bottom:10px}
 </style>
 </head>
 <body>
 <main>
-  <h1>Your phone is still holding an old copy</h1>
-  <p>Deleting the icon does not clear it. The reset link on the app also cannot clear it — Chrome is keeping the stuck page.</p>
-  <p>Do this in <strong>Chrome</strong> (the colorful circle), not the Grove icon:</p>
-  <ol>
-    <li>Open Chrome.</li>
-    <li>Tap the three dots, then <strong>Settings</strong>.</li>
-    <li>Tap <strong>Site settings</strong>, then <strong>All sites</strong>.</li>
-    <li>Find and tap <strong>app.thefreshgrove.team</strong>.</li>
-    <li>Tap <strong>Clear &amp; reset</strong>.</li>
-  </ol>
-  <p class="note">If you also see thefreshgrove.team in that list, clear that one too.</p>
-  <label>
-    <input type="checkbox" id="cleared">
-    <span>I tapped Clear &amp; reset</span>
-  </label>
-  <a class="btn" id="open" href="https://app.thefreshgrove.team/index.html?fsbust=1" aria-disabled="true">Open Fresh Grove</a>
-  <div class="more">
-    <p class="note">If a Fresh Grove app is still in your phone’s Settings → Apps, open it, tap Storage, then Clear storage, then Uninstall. After that, come back here and open Fresh Grove again.</p>
-  </div>
+  <h1>Open Fresh Grove</h1>
+  <p>Use <strong>Chrome</strong> (the colorful circle), not the old Grove icon.</p>
+  <p>Tap the button, then wait about 4 seconds. The flower should lift on its own.</p>
+  <a class="btn" id="open" href="https://app.thefreshgrove.team/index.html?fsbust=1">Open Fresh Grove</a>
+  <details>
+    <summary>Flower still there?</summary>
+    <p>Chrome is still holding the old copy. In Chrome:</p>
+    <ol>
+      <li>Tap the three dots → <strong>Settings</strong></li>
+      <li><strong>Site settings</strong> → <strong>All sites</strong></li>
+      <li>Tap <strong>app.thefreshgrove.team</strong> → <strong>Clear &amp; reset</strong></li>
+      <li>Come back here and tap the button again</li>
+    </ol>
+    <p class="note">If a Fresh Grove app is still in your phone’s Settings → Apps, open it → Storage → Clear storage → Uninstall, then use the button above.</p>
+  </details>
 </main>
 <script>
 (function () {
-  var box = document.getElementById("cleared");
   var btn = document.getElementById("open");
   function dest() {
     return "https://app.thefreshgrove.team/index.html?fsbust=" + Date.now();
   }
-  function sync() {
-    btn.href = dest();
-    if (box.checked) btn.removeAttribute("aria-disabled");
-    else btn.setAttribute("aria-disabled", "true");
-  }
-  box.addEventListener("change", sync);
+  btn.href = dest();
   btn.addEventListener("click", function () {
     btn.href = dest();
   });
-  sync();
 })();
 </script>
 </body>
