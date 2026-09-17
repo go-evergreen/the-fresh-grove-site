@@ -14,49 +14,29 @@
   p{margin:0 0 14px}
   ol{margin:0 0 18px;padding-left:1.2em}
   li{margin:0 0 10px}
-  code,.type{
+  .type{
     display:block;margin:8px 0 0;padding:10px 12px;border-radius:10px;
     background:#efe8d6;font:15px/1.4 ui-monospace,Menlo,monospace;word-break:break-all
   }
   .note{opacity:.78;font-size:.95rem}
-  button{
-    display:block;width:100%;box-sizing:border-box;margin-top:12px;
-    border:0;border-radius:999px;padding:12px 18px;
-    font:600 15px/1 Georgia,serif;letter-spacing:.02em;color:#3d453c;background:#efe8d6
-  }
 </style>
 </head>
 <body>
 <main>
-  <h1>Do not tap a Grove link</h1>
-  <p>A link opens the stuck icon. Type these in <strong>Chrome</strong> (the colorful circle).</p>
+  <h1>Close Messenger first</h1>
+  <p>If a delete-app bar is at the bottom, ignore it. This is not done in the chat.</p>
   <ol>
-    <li>Open Chrome yourself. Do not use the Grove flower icon.</li>
-    <li>Tap the address bar and type this, then go:
-      <span class="type">chrome://settings/content/all</span>
-    </li>
-    <li>Search for <strong>freshgrove</strong>.</li>
-    <li>Tap <strong>app.thefreshgrove.team</strong>, then <strong>Clear &amp; reset</strong>.</li>
-    <li>Tap the address bar again and type this, then go:
+    <li>Open your phone <strong>Settings</strong> (the gear).</li>
+    <li>Tap <strong>Apps</strong>, then <strong>See all apps</strong>.</li>
+    <li>Search <strong>First Seeds</strong>. If you do not see that, search <strong>Fresh Grove</strong>.</li>
+    <li>Tap it → <strong>Storage</strong> → <strong>Clear storage</strong> (not only Clear cache).</li>
+    <li>Go back one screen and tap <strong>Uninstall</strong>.</li>
+    <li>Open the real <strong>Chrome</strong> app (colorful circle). Close Messenger first.</li>
+    <li>Tap the address bar at the very top and type this, then go:
       <span class="type">app.thefreshgrove.team</span>
     </li>
   </ol>
-  <p class="note">If a Fresh Grove app is still in your phone’s Settings → Apps, open it → Storage → Clear storage → Uninstall, then type the address in Chrome again.</p>
-  <button type="button" id="copy" hidden>Copy the Chrome settings address</button>
+  <p class="note">Chrome’s site list will not say “freshgrove.” Look for First Seeds, or thefreshgrove.team.</p>
 </main>
-<script>
-(function () {
-  var btn = document.getElementById("copy");
-  if (!navigator.clipboard || !navigator.clipboard.writeText) return;
-  btn.hidden = false;
-  btn.addEventListener("click", function () {
-    navigator.clipboard.writeText("chrome://settings/content/all").then(function () {
-      btn.textContent = "Copied — paste it in Chrome’s address bar";
-    }).catch(function () {
-      btn.textContent = "Type chrome://settings/content/all in Chrome";
-    });
-  });
-})();
-</script>
 </body>
 </html>
