@@ -177,7 +177,7 @@ try {
   if ("serviceWorker" in navigator) {
     window.FS = window.FS || {};
     window.FS.freshBuildPending = true;
-    navigator.serviceWorker.register("./sw.js?v=731", { updateViaCache: "none" }).then(function (reg) {
+    navigator.serviceWorker.register("./sw.js?v=770", { updateViaCache: "none" }).then(function (reg) {
       try { reg.update(); } catch (eUp) {}
     });
   }
@@ -3135,7 +3135,7 @@ try {
   </div>
 </div>
 
-<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+<script src="js/vendor/supabase.js?v=2116"></script>
 <script src="js/config.js?v=410"></script>
 <script src="js/packs.js?v=349"></script>
 <script src="js/packs/evergreen.js?v=383"></script>
@@ -3157,6 +3157,6 @@ try {
 <script src="js/bridge-ui.js?v=526"></script>
 <script src="js/comp-plan.js?v=34"></script>
 <script src="js/app.js?v=627"></script>
-<script src="js/pwa.js?v=363"></script>
+<script src="js/pwa.js?v=364"></script>
 </body>
 </html>

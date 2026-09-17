@@ -5,7 +5,7 @@
    they are served straight from cache instead of re-fetched on every open.
    Offline: fall back to last good cache.
 */
-const CACHE_VERSION = "fs-v728";
+const CACHE_VERSION = "fs-v770";
 const CACHE_NAME = "first-seeds-" + CACHE_VERSION;
 const JOIN_CACHE = "fs-pending-join";
 const JOIN_REQ = "./__pending_join";
@@ -27,6 +27,7 @@ const PRECACHE = [
   "./fonts/DMSans-italic.woff2",
   "./fonts/Fraunces-normal.woff2",
   "./fonts/Fraunces-italic.woff2",
+  "./js/vendor/supabase.js",
   "./js/supabase-config.js",
   "./js/cloud.js",
   "./js/cabinet-desk.js",
