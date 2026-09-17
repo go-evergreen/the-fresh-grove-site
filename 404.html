@@ -66,6 +66,10 @@
     location.replace("/with.html" + search + hash);
     return;
   }
+  if (/^\/with(\.html)?$/i.test(path)) {
+    location.replace("/index.html?door=open");
+    return;
+  }
   var leadPretty = String(path || "").match(/^\/lead\/([a-z0-9][a-z0-9-]{1,38})\/?$/i);
   if (leadPretty) {
     var leadSlug = decodeURIComponent(leadPretty[1] || "").trim().toLowerCase();

@@ -11,6 +11,12 @@
       if (slugHash) slug = decodeURIComponent(slugHash[1] || "").trim().toLowerCase();
     } catch (eSlugHash) {}
   }
+  if (!slug) {
+    try {
+      var slugPath = String(window.location.pathname || "").match(/\/(?:lead|p)\/([a-z0-9][a-z0-9-]{1,38})\/?$/i);
+      if (slugPath) slug = decodeURIComponent(slugPath[1] || "").trim().toLowerCase();
+    } catch (eSlugPath) {}
+  }
   var joinCode = (params.get("join") || "").trim().toLowerCase();
   if (!joinCode || joinCode === "evergreen") {
     try {

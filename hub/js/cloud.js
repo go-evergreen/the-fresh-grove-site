@@ -1052,7 +1052,7 @@ window.FS.normalizeMeetingHref = function (raw, maxLen) {
       var u = new URL(String(url || ""), "https://thefreshgrove.team/");
       var slug = String(u.searchParams.get("p") || u.searchParams.get("with") || "").trim().toLowerCase();
       if (slug) return slug;
-      var wm = String(u.pathname || "").match(/\/with\/([a-z0-9][a-z0-9-]{1,38})\/?$/i);
+      var wm = String(u.pathname || "").match(/\/(?:with|lead)\/([a-z0-9][a-z0-9-]{1,38})\/?$/i);
       if (wm) return decodeURIComponent(wm[1] || "").trim().toLowerCase();
       var hm = String(u.hash || "").match(/(?:^|[?#&])(?:p|with)=([^&]+)/i);
       if (hm) return decodeURIComponent(hm[1] || "").trim().toLowerCase();
@@ -1163,14 +1163,11 @@ window.FS.normalizeMeetingHref = function (raw, maxLen) {
     }
     var slug = leadSlugFromShareUrl(url);
     var isBusinessWith = /[?&#]with=/i.test(url) || /\/with\.html/i.test(url) || /\/with\/[a-z0-9-]+/i.test(url);
-    if (slug && !isBusinessWith && /(?:lead\.html|[?&#]p=)/i.test(url) && !/[?&#]join=/i.test(url)) {
-      var leadBase = grovePublicLeadBase();
-      var leadGlue = leadBase.indexOf("?") >= 0 ? "&" : "?";
-      return leadBase + leadGlue + "p=" + encodeURIComponent(slug) + "#p=" + encodeURIComponent(slug);
+    if (slug && !isBusinessWith && /(?:lead\.html|[?&#]p=|\/lead\/)/i.test(url) && !/[?&#]join=/i.test(url)) {
+      return grovePublicHubBase() + "lead/" + encodeURIComponent(slug);
     }
     if (slug && isBusinessWith && /thefreshgrove\.team/i.test(url)) {
-      var site = grovePublicHubBase();
-      return site + "with.html?with=" + encodeURIComponent(slug) + "#with=" + encodeURIComponent(slug);
+      return grovePublicHubBase() + "with/" + encodeURIComponent(slug);
     }
     var code = joinCodeFromShareUrl(url);
     if (code && code !== "evergreen") return grovePersonJoinShareUrl(code);
@@ -4035,9 +4032,11 @@ window.FS.normalizeMeetingHref = function (raw, maxLen) {
       if (!key) return "";
       /* Lead pages are Grove-only. After the hop, hostname is github.io —
          never build a share from the current origin. */
-      var leadBase = grovePublicLeadBase();
-      var glue = leadBase.indexOf("?") >= 0 ? "&" : "?";
-      return leadBase + glue + "p=" + key + "#p=" + key;
+      /* Path form survives Instagram / Facebook bios. Query-only links
+         get stripped and land on the team homepage. */
+      var site = Cloud.groveSiteUrl();
+      if (!site) return "";
+      return site + "lead/" + key;
     },
 
     groveSiteUrl: function () {
@@ -4054,7 +4053,7 @@ window.FS.normalizeMeetingHref = function (raw, maxLen) {
       if (!base) return "";
       var key = encodeURIComponent(String(slug || "").trim().toLowerCase());
       if (!key) return "";
-      return base + "with.html?with=" + key + "#with=" + key;
+      return base + "with/" + key;
     },
 
     groveDoorEligibility: async function () {

@@ -246,6 +246,19 @@
     }
     lockWho(false);
     var fromCookie = getCookie();
+    try {
+      var door = String(params.get("door") || "").trim().toLowerCase();
+      var ref = String(document.referrer || "").toLowerCase();
+      if (door === "open" || door === "1") fromCookie = "";
+      if (/instagram\.com|l\.instagram\.com|facebook\.com|m\.facebook\.com|lm\.facebook\.com/.test(ref)) {
+        fromCookie = "";
+      }
+    } catch (eRef) {}
+    /* Taylor is on the public roster. A leftover cookie must not
+       steal a stripped Instagram bio and show Join Taylor. */
+    if (fromCookie && fallback.slug && fromCookie === String(fallback.slug).toLowerCase()) {
+      fromCookie = "";
+    }
     if (!fromCookie) return;
     if (fromCookie === OWN_COOKIE) {
       setSelected(Object.assign({}, fallback, { unknown: true }), true);
