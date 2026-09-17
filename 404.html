@@ -86,6 +86,10 @@
     location.replace("/with.html" + search + hash);
     return;
   }
+  if (/^\/unstick(\/|\.html|$)/i.test(path)) {
+    location.replace("/unstick.html" + search + hash);
+    return;
+  }
   if (/^\/thefreshcatalog(\/|\.html|$)/i.test(path)) {
     location.replace("/thefreshcatalog");
     return;

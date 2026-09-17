@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="noindex">
+<title>Open Fresh Grove</title>
+<meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate">
+<style>
+  html,body{margin:0;min-height:100%;background:#f5f6f2;color:#3d453c}
+  body{font:16px/1.5 Georgia,"Times New Roman",serif;padding:28px 22px 48px}
+  main{max-width:28rem;margin:0 auto}
+  h1{font-size:1.45rem;font-weight:600;letter-spacing:.03em;margin:0 0 10px}
+  p{margin:0 0 14px}
+  ol{margin:0 0 22px;padding-left:1.2em}
+  li{margin:0 0 10px}
+  .note{opacity:.78;font-size:.95rem}
+  label{display:flex;gap:10px;align-items:flex-start;margin:18px 0 16px;cursor:pointer}
+  input{margin-top:.35em}
+  a.btn,button.btn{
+    display:block;width:100%;box-sizing:border-box;text-align:center;
+    text-decoration:none;border:0;border-radius:999px;padding:14px 18px;
+    font:600 16px/1 Georgia,serif;letter-spacing:.02em;color:#3d453c;
+    background:#efe8d6
+  }
+  a.btn[aria-disabled="true"]{opacity:.4;pointer-events:none}
+  .more{margin-top:28px;padding-top:18px;border-top:1px solid #d8dcd4}
+</style>
+</head>
+<body>
+<main>
+  <h1>Your phone is still holding an old copy</h1>
+  <p>Deleting the icon does not clear it. The reset link on the app also cannot clear it — Chrome is keeping the stuck page.</p>
+  <p>Do this in <strong>Chrome</strong> (the colorful circle), not the Grove icon:</p>
+  <ol>
+    <li>Open Chrome.</li>
+    <li>Tap the three dots, then <strong>Settings</strong>.</li>
+    <li>Tap <strong>Site settings</strong>, then <strong>All sites</strong>.</li>
+    <li>Find and tap <strong>app.thefreshgrove.team</strong>.</li>
+    <li>Tap <strong>Clear &amp; reset</strong>.</li>
+  </ol>
+  <p class="note">If you also see thefreshgrove.team in that list, clear that one too.</p>
+  <label>
+    <input type="checkbox" id="cleared">
+    <span>I tapped Clear &amp; reset</span>
+  </label>
+  <a class="btn" id="open" href="https://app.thefreshgrove.team/index.html?fsbust=1" aria-disabled="true">Open Fresh Grove</a>
+  <div class="more">
+    <p class="note">If a Fresh Grove app is still in your phone’s Settings → Apps, open it, tap Storage, then Clear storage, then Uninstall. After that, come back here and open Fresh Grove again.</p>
+  </div>
+</main>
+<script>
+(function () {
+  var box = document.getElementById("cleared");
+  var btn = document.getElementById("open");
+  function dest() {
+    return "https://app.thefreshgrove.team/index.html?fsbust=" + Date.now();
+  }
+  function sync() {
+    btn.href = dest();
+    if (box.checked) btn.removeAttribute("aria-disabled");
+    else btn.setAttribute("aria-disabled", "true");
+  }
+  box.addEventListener("change", sync);
+  btn.addEventListener("click", function () {
+    btn.href = dest();
+  });
+  sync();
+})();
+</script>
+</body>
+</html>
