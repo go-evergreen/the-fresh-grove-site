@@ -160,16 +160,36 @@
     if (cta) cta.textContent = lockedTo ? ("Join " + firstName(selected.name)) : "Join Us";
   }
 
+  function showUnmatchedWithLink() {
+    selected = null;
+    lockWho(false);
+    var hidden = $("whoSlug");
+    if (hidden) hidden.value = "";
+    var input = $("whoInput");
+    if (input) input.value = "";
+    var assigned = $("assignedTo");
+    if (assigned) {
+      assigned.hidden = false;
+      assigned.textContent = "That teammate link isn’t live yet — pick who sent you, or choose “I landed here on my own.”";
+    }
+    var cta = qs(".nav-cta");
+    if (cta) cta.textContent = "Join Us";
+  }
+
   async function lockFromSlug(slug) {
     var person = personOnRoster(slug);
     if (!person) {
       try {
         var sb = ensureClient();
         var res = await sb.rpc("get_lead_page", { p_slug: slug });
+        if (res && res.error) throw res.error;
         var data = res && res.data;
+        if (typeof data === "string") {
+          try { data = JSON.parse(data); } catch (eParse) { data = null; }
+        }
         if (data && data.slug) {
           person = {
-            slug: data.slug,
+            slug: String(data.slug).trim().toLowerCase(),
             name: firstName(data.display_name || data.last_name || "Friend"),
             ig: data.instagram || "",
             note: ""
@@ -177,7 +197,10 @@
         }
       } catch (e) {}
     }
-    if (!person) person = Object.assign({}, fallback);
+    if (!person) {
+      showUnmatchedWithLink();
+      return;
+    }
     setSelected(person, true);
     lockWho(true);
   }
