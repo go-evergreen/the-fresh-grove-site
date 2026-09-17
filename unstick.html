@@ -4,7 +4,7 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <meta name="robots" content="noindex">
-<title>Open Fresh Grove</title>
+<title>Unstick Fresh Grove</title>
 <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate">
 <style>
   html,body{margin:0;min-height:100%;background:#f5f6f2;color:#3d453c}
@@ -13,46 +13,48 @@
   h1{font-size:1.45rem;font-weight:600;letter-spacing:.03em;margin:0 0 10px}
   p{margin:0 0 14px}
   ol{margin:0 0 18px;padding-left:1.2em}
-  li{margin:0 0 8px}
-  .note{opacity:.78;font-size:.95rem}
-  a.btn{
-    display:block;width:100%;box-sizing:border-box;text-align:center;
-    text-decoration:none;border:0;border-radius:999px;padding:14px 18px;
-    font:600 16px/1 Georgia,serif;letter-spacing:.02em;color:#3d453c;
-    background:#efe8d6;margin:18px 0 28px
+  li{margin:0 0 10px}
+  code,.type{
+    display:block;margin:8px 0 0;padding:10px 12px;border-radius:10px;
+    background:#efe8d6;font:15px/1.4 ui-monospace,Menlo,monospace;word-break:break-all
   }
-  details{margin-top:8px}
-  summary{cursor:pointer;font-weight:600}
-  details[open] summary{margin-bottom:10px}
+  .note{opacity:.78;font-size:.95rem}
+  button{
+    display:block;width:100%;box-sizing:border-box;margin-top:12px;
+    border:0;border-radius:999px;padding:12px 18px;
+    font:600 15px/1 Georgia,serif;letter-spacing:.02em;color:#3d453c;background:#efe8d6
+  }
 </style>
 </head>
 <body>
 <main>
-  <h1>Open Fresh Grove</h1>
-  <p>Use <strong>Chrome</strong> (the colorful circle), not the old Grove icon.</p>
-  <p>Tap the button, then wait about 4 seconds. The flower should lift on its own.</p>
-  <a class="btn" id="open" href="https://app.thefreshgrove.team/index.html?fsbust=1">Open Fresh Grove</a>
-  <details>
-    <summary>Flower still there?</summary>
-    <p>Chrome is still holding the old copy. In Chrome:</p>
-    <ol>
-      <li>Tap the three dots → <strong>Settings</strong></li>
-      <li><strong>Site settings</strong> → <strong>All sites</strong></li>
-      <li>Tap <strong>app.thefreshgrove.team</strong> → <strong>Clear &amp; reset</strong></li>
-      <li>Come back here and tap the button again</li>
-    </ol>
-    <p class="note">If a Fresh Grove app is still in your phone’s Settings → Apps, open it → Storage → Clear storage → Uninstall, then use the button above.</p>
-  </details>
+  <h1>Do not tap a Grove link</h1>
+  <p>A link opens the stuck icon. Type these in <strong>Chrome</strong> (the colorful circle).</p>
+  <ol>
+    <li>Open Chrome yourself. Do not use the Grove flower icon.</li>
+    <li>Tap the address bar and type this, then go:
+      <span class="type">chrome://settings/content/all</span>
+    </li>
+    <li>Search for <strong>freshgrove</strong>.</li>
+    <li>Tap <strong>app.thefreshgrove.team</strong>, then <strong>Clear &amp; reset</strong>.</li>
+    <li>Tap the address bar again and type this, then go:
+      <span class="type">app.thefreshgrove.team</span>
+    </li>
+  </ol>
+  <p class="note">If a Fresh Grove app is still in your phone’s Settings → Apps, open it → Storage → Clear storage → Uninstall, then type the address in Chrome again.</p>
+  <button type="button" id="copy" hidden>Copy the Chrome settings address</button>
 </main>
 <script>
 (function () {
-  var btn = document.getElementById("open");
-  function dest() {
-    return "https://app.thefreshgrove.team/index.html?fsbust=" + Date.now();
-  }
-  btn.href = dest();
+  var btn = document.getElementById("copy");
+  if (!navigator.clipboard || !navigator.clipboard.writeText) return;
+  btn.hidden = false;
   btn.addEventListener("click", function () {
-    btn.href = dest();
+    navigator.clipboard.writeText("chrome://settings/content/all").then(function () {
+      btn.textContent = "Copied — paste it in Chrome’s address bar";
+    }).catch(function () {
+      btn.textContent = "Type chrome://settings/content/all in Chrome";
+    });
   });
 })();
 </script>
