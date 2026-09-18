@@ -561,7 +561,10 @@
 
   function setCountdown() {
     function daysUntil(y, m, d) {
-      return Math.max(0, Math.ceil((Date.UTC(y, m, d) - Date.now()) / 86400000));
+      var now = new Date();
+      var start = Date.UTC(now.getFullYear(), now.getMonth(), now.getDate());
+      var end = Date.UTC(y, m, d);
+      return Math.max(0, Math.round((end - start) / 86400000));
     }
     var pre = byId("demoCdPre");
     var launch = byId("demoCdLaunch");
