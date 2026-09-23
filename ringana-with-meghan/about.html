@@ -264,6 +264,7 @@ section{padding:5.5rem 2rem;}
   color:#9b3b3b;
   margin:.4rem 0 0;
 }
+
 .letter-name{width:100%;margin:0 0 .75rem;}
 .letter-name-input{
   width:100%;
@@ -281,6 +282,31 @@ section{padding:5.5rem 2rem;}
   outline-offset:1px;
   border-color:var(--brass);
 }
+.letter-float{position:relative;}
+.letter-float-label{
+  position:absolute;
+  left:1rem;
+  right:1rem;
+  top:0;
+  height:3rem;
+  display:flex;
+  align-items:center;
+  margin:0;
+  pointer-events:none;
+  font-family:'Work Sans',system-ui,sans-serif;
+  font-size:.72rem;
+  font-weight:600;
+  letter-spacing:.07em;
+  text-transform:uppercase;
+  color:var(--pine);
+  white-space:nowrap;
+  overflow:hidden;
+  text-overflow:ellipsis;
+}
+.letter-float .letter-name-input{min-height:3rem;}
+.letter-float input::placeholder{color:transparent;}
+.letter-float input:focus + .letter-float-label,
+.letter-float input:not(:placeholder-shown) + .letter-float-label{opacity:0;}
 
 
 /* fs-submit-visible */
@@ -747,10 +773,10 @@ footer .foot-legal{max-width:78ch;}
           <input type="hidden" id="fs-interest" value="">
           <p class="letter-interest-error" id="fs-interest-error" hidden>Pick what you're most interested in.</p>
         </div>
-        <div class="letter-name" data-fs-lead-name>
-          <label class="letter-interest-label" for="fs-lead-name">Your name</label>
-          <input type="text" id="fs-lead-name" class="letter-name-input" name="fs-name" autocomplete="name" maxlength="80" placeholder="First and last name">
-          <p class="letter-interest-error" id="fs-name-error" hidden>Please enter your name.</p>
+        <div class="letter-name letter-float" data-fs-lead-name>
+        <input type="text" id="fs-lead-name" class="letter-name-input" name="fs-name" autocomplete="name" maxlength="80" placeholder="Your name">
+        <label class="letter-float-label" for="fs-lead-name">Your name</label>
+        <p class="letter-interest-error" id="fs-name-error" hidden>Please enter your name.</p>
         </div>
         <div id="fd-form-modal" class="letter-form"></div>
       </div>
