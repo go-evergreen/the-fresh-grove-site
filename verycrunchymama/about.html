@@ -153,7 +153,7 @@ a:focus-visible,button:focus-visible{outline:2px solid var(--brass-light);outlin
 .nav-cta-scroll{max-width:0;width:0;padding-left:0;padding-right:0;margin-left:0;border-color:transparent;border-width:0;opacity:0;visibility:hidden;overflow:hidden;pointer-events:none;position:absolute;}
 .site-header.is-scrolled .nav-cta-scroll{max-width:11rem;width:auto;padding:.45rem 1.15rem;margin-left:1rem;border-color:var(--brass-light);border-width:1px;opacity:1;visibility:visible;pointer-events:auto;position:static;}
 
-.page-hero{background:linear-gradient(168deg,var(--pine-deep) 0%,var(--pine) 60%,#6f8b73 100%);color:var(--linen);padding:calc(var(--header-expanded) + 3rem) 2rem 5rem;position:relative;overflow-x:hidden;overflow-y:visible;}
+.page-hero{background:linear-gradient(168deg,var(--pine-deep) 0%,var(--pine) 60%,#6f8b73 100%);color:var(--linen);padding:calc(var(--header-expanded) + 3rem) 2rem 5rem;position:relative;overflow:hidden;}
 .page-hero::after{content:'';position:absolute;right:-14vw;top:-16vh;width:52vw;height:52vw;max-width:700px;max-height:700px;border:1px solid rgba(207,169,94,.16);border-radius:50%;pointer-events:none;}
 .page-hero-inner{max-width:1060px;margin:0 auto;position:relative;z-index:2;}
 .hero-eyebrow{font-size:.8rem;letter-spacing:.22em;text-transform:uppercase;color:var(--brass-light);font-weight:500;margin-bottom:1.4rem;display:flex;align-items:center;gap:.9rem;}
@@ -177,10 +177,35 @@ section{padding:5.5rem 2rem;}
 .btn-row .btn{min-width:min(100%,300px);text-align:center;}
 
 /* Story layout */
-.story-intro{display:grid;grid-template-columns:minmax(220px,280px) 1fr;gap:2.8rem;align-items:start;}
-.about-photo-wrap{position:relative;max-width:280px;margin-top:.25rem;}
-.about-photo{position:relative;aspect-ratio:4/5;max-height:340px;border-radius:2px;overflow:hidden;background:var(--linen-warm);box-shadow:0 8px 24px rgba(68,90,72,.08);}
-.about-photo img{width:100%;height:100%;object-fit:cover;object-position:50% 28%;display:block;}
+.story-intro{display:grid;grid-template-columns:minmax(260px,420px) 1fr;gap:2.4rem 3rem;align-items:center;}
+.about-collage{position:relative;min-height:460px;}
+.about-collage .shot-family{
+  width:78%;
+  aspect-ratio:4/5;
+  border-radius:2px;
+  overflow:hidden;
+  box-shadow:0 16px 40px rgba(68,90,72,.14);
+}
+.about-collage .shot-family img,
+.about-collage .shot-portrait img,
+.life-photo img{width:100%;height:100%;object-fit:cover;display:block;}
+.about-collage .shot-family img{object-position:50% 30%;}
+.about-collage .shot-portrait{
+  position:absolute;
+  right:0;
+  bottom:0;
+  width:46%;
+  aspect-ratio:3/4;
+  border-radius:2px;
+  overflow:hidden;
+  border:6px solid var(--linen);
+  box-shadow:0 12px 28px rgba(68,90,72,.16);
+}
+.about-collage .shot-portrait img{object-position:50% 18%;}
+.life-split{display:grid;grid-template-columns:1.05fr .95fr;gap:2.4rem 3rem;align-items:center;}
+.life-photo{border-radius:2px;overflow:hidden;box-shadow:0 14px 36px rgba(68,90,72,.12);aspect-ratio:3/4;max-height:520px;}
+.life-photo img{object-position:50% 20%;}
+.life-copy p{margin-bottom:1.1rem;max-width:48ch;}
 .story-intro p{margin-bottom:1.2rem;max-width:54ch;}
 .pull{font-family:'Fraunces',serif;font-style:italic;font-size:1.3rem;color:var(--pine);border-left:2px solid var(--brass);padding-left:1.3rem;margin:2rem 0;line-height:1.4;max-width:48ch;}
 
@@ -484,8 +509,9 @@ footer p{font-size:.8rem;opacity:.6;max-width:70ch;margin:0 auto .5rem;padding:0
     align-items:center;
     justify-content:center;
   }
-  .story-intro,.fit-grid{grid-template-columns:1fr;gap:2.4rem;}
-  .about-photo-wrap{max-width:240px;margin:0 auto;}
+  .story-intro,.fit-grid,.life-split{grid-template-columns:1fr;gap:1.8rem;}
+  .about-collage{min-height:0;max-width:420px;margin:0 auto;}
+  .life-photo{max-height:460px;max-width:420px;}
   .chapter{grid-template-columns:72px 1fr;gap:1.2rem;}
 }
 @media (max-width:640px){
@@ -537,47 +563,61 @@ html.is-inapp .site-nav{flex-wrap:nowrap;}
   <div class="page-hero-inner">
     <div class="hero-eyebrow">About Morgan</div>
     <h1>I learned this the <em>hard way.</em></h1>
-    <p>I didn't grow up reading labels. Health struggles sent me digging — and now I help other moms build a holistic life for their families. This is how I got here, and why Ringana fits.</p>
+    <p>I didn't grow up reading labels. My own health made me start. Now I help other moms do the same at home.</p>
   </div>
 </header>
 
 <section>
   <div class="container">
-    <div class="story-intro reveal">
-      <div class="about-photo-wrap">
-        <div class="about-photo">
-          <img src="morgan.webp" alt="Morgan, holistic mom and the girl behind Very Crunchy Mama" fetchpriority="high" decoding="async" width="576" height="1024">
+    <div class="story-intro">
+      <div class="about-collage">
+        <div class="shot-family">
+          <img src="morgan-family.webp" alt="Morgan outside with her family" fetchpriority="high" decoding="async" width="1024" height="682">
+        </div>
+        <div class="shot-portrait">
+          <img src="morgan.webp" alt="Morgan, the girl behind Very Crunchy Mama" decoding="async" width="576" height="1024">
         </div>
       </div>
       <div>
         <p class="eyebrow">The Short Version</p>
         <h2 class="section-title">Hey, I'm Morgan.</h2>
-        <p>I'm a holistic mom, wife, homeschool mama, and the girl behind <a href="https://www.instagram.com/verycrunchymama/" target="_blank" rel="noopener">@verycrunchymama</a>. Real food, lower-tox living, homeopathy, clean beauty, natural wellness, safer homes, healthier kids, and more informed motherhood.</p>
-        <p>I didn't grow up knowing how to read ingredient labels, question what was in my home, or think twice about the products I was buying. I learned all of this the hard way.</p>
-        <div class="pull">What began as trying to figure out my own health turned into rethinking the way we live.</div>
+        <p>Holistic mom, wife, homeschool mama, and the girl behind <a href="https://www.instagram.com/verycrunchymama/" target="_blank" rel="noopener">@verycrunchymama</a>. Real food, lower-tox living, homeopathy, clean beauty, and a safer house for my kids.</p>
+        <p>I didn't grow up reading labels or questioning what was in the bathroom. I learned it because I had to.</p>
+        <div class="pull">Figuring out my own health turned into changing how we live.</div>
       </div>
     </div>
   </div>
 </section>
 
 <section class="origin">
-  <div class="container reveal">
-    <p class="eyebrow">Where I Started</p>
-    <h2 class="section-title">A body that was constantly fighting me.</h2>
-    <p>After years of dealing with my own health struggles — infertility, thyroid issues, mold exposure, exhaustion — I started digging. Not because I had a plan. Because I needed answers my usual routine wasn't giving me.</p>
-    <p>I began paying attention to what we eat, how we clean, what we put on our skin, and how we care for our home. One question led to another. The house, the kids, the products, the food — it all started to feel like one story.</p>
+  <div class="container">
+    <div class="life-split">
+      <div class="life-copy">
+        <p class="eyebrow">Where I Started</p>
+        <h2 class="section-title">My body kept fighting me.</h2>
+        <p>Infertility, thyroid issues, mold exposure, exhaustion. I started looking because the usual answers weren't helping.</p>
+        <p>Food, cleaning, what goes on our skin, how we keep the house. It stopped being one swap and became the way we live.</p>
+      </div>
+      <div class="life-photo">
+        <img src="morgan-chair.webp" alt="Morgan with her baby in a wicker chair" loading="lazy" decoding="async" width="682" height="1024">
+      </div>
+    </div>
   </div>
 </section>
 
 <section class="origin" style="background:var(--linen-warm);">
-  <div class="container reveal">
-    <div class="about-photo" style="max-width:420px;margin:0 auto 1.6rem;">
-      <img src="morgan-chair.webp" alt="Morgan sitting with her baby in a wicker chair" loading="lazy" decoding="async" width="682" height="1024">
+  <div class="container">
+    <div class="life-split">
+      <div class="life-photo">
+        <img src="morgan-couple.webp" alt="Morgan and her husband" loading="lazy" decoding="async" width="1024" height="682">
+      </div>
+      <div class="life-copy">
+        <p class="eyebrow">What I Share</p>
+        <h2 class="section-title">Other moms, same questions.</h2>
+        <p>I help moms build this at home. Not a perfect version. A more informed one. Real food, lower-tox living, homeopathy, clean beauty, safer homes, healthier kids.</p>
+        <p>Stay crunchy. That's the whole sign-off.</p>
+      </div>
     </div>
-    <p class="eyebrow">What Changed</p>
-    <h2 class="section-title">A holistic life, built at home.</h2>
-    <p>Now I help other moms create that kind of lifestyle for their families too. Not a perfect one. A more informed one. Real food. Lower-tox living. Homeopathy. Clean beauty. Natural wellness. Safer homes. Healthier kids.</p>
-    <p>Stay crunchy is the short version. The longer version is: ask better questions, choose better inputs, and don't do it alone.</p>
   </div>
 </section>
 
@@ -617,7 +657,7 @@ html.is-inapp .site-nav{flex-wrap:nowrap;}
       <span class="chapter-num">05</span>
       <div>
         <h3>Finding Ringana</h3>
-        <p>A family company in Austria has been making fresh, toxin free skincare and supplements since 1996. Made to order. No artificial preservatives propping formulas up on a shelf. The standard I've been asking the industry to meet.</p>
+        <p>A family company in Austria has made fresh, toxin free skincare and supplements since 1996. Made to order. No artificial preservatives holding formulas on a shelf.</p>
       </div>
     </div>
     <div class="chapter">
@@ -635,8 +675,8 @@ html.is-inapp .site-nav{flex-wrap:nowrap;}
     <p class="eyebrow">Why Walk With Me</p>
     <div class="why-taylor">
       <h3>Why me?</h3>
-      <p>I'm not here with a highlight reel. I'm a mom who had to learn this for her own body and her own kids, and who now helps other moms do the same.</p>
-      <p>If you join this founding circle, you get honest notes, a real person on the other side of the message, and a team that remembers what it feels like to be new.</p>
+      <p>I'm a mom who had to learn this for my own body and my own kids. That's the only reason I'm sharing it.</p>
+      <p>If you join the list, you get my notes and a real person writing back.</p>
     </div>
   </div>
 </section>
@@ -644,12 +684,12 @@ html.is-inapp .site-nav{flex-wrap:nowrap;}
 <section class="right-fit">
   <div class="container reveal">
     <p class="eyebrow">The Right Fit</p>
-    <h2 class="section-title">I'd rather be the right person than the loudest one.</h2>
+    <h2 class="section-title">If it fits, we'll talk. If it doesn't, that's fine.</h2>
     <div class="fit-grid">
-      <blockquote class="fit-callout">Ten moms who actually want this will always matter more to me than a hundred who don't.</blockquote>
+      <blockquote class="fit-callout">I'd rather help a few moms who actually want this than chase a crowd that doesn't.</blockquote>
       <div class="fit-list">
-        <p>I'm not here to pressure anyone. I'm here to share what I've found and help you decide if it fits your family — as a customer, a teammate, or neither.</p>
-        <p>If you care about real food, lower-tox living, and products you can stand behind for your kids, we should talk. If you're looking for a get-rich-quick plan, I'm not your person, and that's okay.</p>
+        <p>I'm not here to pressure anyone. I'll share what I've found, and you can decide if it fits your family.</p>
+        <p>If you care about real food, lower-tox living, and products you'd use on your kids, say hi. If you want a get-rich-quick plan, I'm not your person.</p>
       </div>
     </div>
   </div>

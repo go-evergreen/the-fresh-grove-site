@@ -44,13 +44,15 @@ html.is-inapp .modal-fine,html.is-ios .modal-fine{
   letter-spacing:.04em;
 }
 #connectModal.connect-modal.open{
-  align-items:flex-start;
-  justify-content:flex-start;
-  padding:max(5.6rem,15vh) 1.4rem 1.4rem;
+  align-items:center;
+  justify-content:center;
+  padding:1.4rem;
 }
 @media (max-width:720px){
   #connectModal.connect-modal.open{
-    padding:max(5.8rem,14vh) .75rem max(.85rem, env(safe-area-inset-bottom));
+    align-items:center;
+    justify-content:center;
+    padding:.85rem .75rem max(.85rem, env(safe-area-inset-bottom));
   }
 }
 

@@ -41,8 +41,8 @@
 }
 .phone-wrap{display:flex;flex-direction:column;align-items:center;position:relative;max-width:100%}
 @media (min-width:901px){
-  .phone-wrap{transform:rotate(-1.35deg);transform-origin:center top}
-  .phone-hint{transform:rotate(1.35deg)}
+  .phone-wrap{transform:none}
+  .phone-hint{transform:none}
 }
 .phone-glow{
   position:absolute;width:120%;height:70%;top:18%;left:-10%;

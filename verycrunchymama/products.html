@@ -494,17 +494,17 @@ section{padding:5.5rem 2rem;}
 }
 .carousel-copy{width:100%;max-width:54ch;margin:0 auto;}
 .carousel-copy .chip-row{
-  flex-direction:column;
-  flex-wrap:nowrap;
-  align-items:stretch;
-  justify-content:flex-start;
-  gap:.38rem;
-  width:max-content;
+  flex-direction:row;
+  flex-wrap:wrap;
+  align-items:center;
+  justify-content:center;
+  gap:.4rem;
+  width:100%;
   max-width:100%;
   margin:.55rem auto 0;
 }
 .carousel-copy .chip{
-  width:100%;
+  width:auto;
   text-align:center;
 }
 .radar-kicker{
@@ -990,7 +990,7 @@ html.is-inapp .site-nav{flex-wrap:nowrap;}
   <div class="page-hero-inner">
     <div class="hero-eyebrow">Ringana Products</div>
     <h1>Your entire routine. <em>One standard.</em></h1>
-    <p>Ringana makes a tightly curated system of skincare, supplements, and functional nutrition — every product fresh and totally toxin free. I've already fallen for a handful (honest notes below), and I'm sharing what I learn with this community as more early-access products show up before launch.</p>
+    <p>Skincare, supplements, and drinks, all made fresh and toxin free. The two I've already tried and loved are on my home page. Down here is the rest of the system, plus a few I'm still waiting to try.</p>
   </div>
 </header>
 
@@ -1005,67 +1005,11 @@ html.is-inapp .site-nav{flex-wrap:nowrap;}
 
 <nav class="page-subnav" aria-label="On this page">
   <div class="page-subnav-inner">
-    <a href="#love">Products I Love</a>
     <a href="#system">The System</a>
     <a href="#freshness">Freshness</a>
     <a href="#radar">On My Radar</a>
   </div>
 </nav>
-
-<!-- ============ PRODUCTS I LOVE ============ -->
-<section class="loved" id="love">
-  <div class="container">
-    <div class="reveal" style="text-align:center;">
-      <p class="eyebrow">Products I Love</p>
-      <h2 class="section-title" style="margin-left:auto;margin-right:auto;max-width:22ch;">The ones I'm genuinely obsessed with.</h2>
-      <p class="lede loved-note">I've tried two so far — the hydro serum and the deodorant — and loved both. Honest notes below. The rest of my list is what I'm most excited to get my hands on next.</p>
-    </div>
-    <div class="radar-carousel product-carousel reveal" id="lovedCarousel" aria-roledescription="carousel" aria-label="Products I love">
-      <button type="button" class="carousel-btn prev" aria-label="Previous product">&#8249;</button>
-      <div class="carousel-viewport">
-        <div class="carousel-track">
-<div class="carousel-slide" data-slide="0">
-            <div class="carousel-shot">
-              <img src="fresh-hydro-serum-tried.webp" alt="Ringana FRESH hydro serum — toxin free hydrating face serum" loading="lazy" decoding="async" width="286" height="900">
-            </div>
-            <div class="carousel-copy">
-              <p class="radar-kicker">FRESH · Hydration</p>
-              <p class="loved-verdict">My skin still feels hydrated and soft hours later — not that temporary dewy look that disappears by lunch.</p>
-              <p><strong>FRESH hydro serum</strong> sinks in beautifully. Twelve hours later my skin is still plump and soft instead of begging for another layer. If you've been disappointed by "hydrating" serums that only look good for an hour, this is the difference fresh, full-potency actives make.</p>
-              <div class="chip-row">
-                <button type="button" class="chip ingredient-chip" data-label="All-day hydration" data-ingredients="Hyaluronic acid (sodium hyaluronate), betaine, glycerin, glyceryl glucoside, and cactus (Opuntia) seed oil." data-why="These pull moisture in and help your barrier hold onto it — so hydration lasts instead of evaporating off your face by lunch.">All-day hydration</button>
-                <button type="button" class="chip ingredient-chip" data-label="Fresh-made actives" data-ingredients="Resurrection plant (Selaginella) extract, kiwi fruit water, orange fruit water, Lactobacillus ferment, and CoQ10 (ubiquinone)." data-why="These are the sensitive botanicals that fade fast in conventional, shelf-stable formulas. Ringana makes products fresh so they arrive working — not half-dead from sitting in a warehouse.">Fresh-made actives</button>
-                <button type="button" class="chip ingredient-chip" data-label="How I use it" data-ingredients="Airless pump bottle — 1–2 pumps on clean skin morning and night, before cream." data-why="The patented airless pump keeps air out so the formula stays fresh after you open it. I layer hydro serum under skin perfection and my face stays comfortable all day.">How I use it</button>
-              </div>
-            </div>
-          </div>
-
-          <div class="carousel-slide" data-slide="1">
-            <div class="carousel-shot">
-              <img src="fresh-deodorant.webp" alt="Ringana FRESH deodorant — toxin free daily deodorant" loading="lazy" decoding="async" width="320" height="900">
-            </div>
-            <div class="carousel-copy">
-              <p class="radar-kicker">FRESH · Body</p>
-              <p class="loved-verdict">I was nervous about the white pump formula. Then it rubbed in, stayed put, and worked all day.</p>
-              <p><strong>FRESH deodorant</strong> comes out creamy-white from a pump — which honestly made me side-eye it. Then it disappeared into skin, wasn't sticky, and held up through a full day. I've even put it on when I already smelled… and yes, it still worked. No aluminum salts. Just plant care that actually performs.</p>
-              <div class="chip-row">
-                <button type="button" class="chip ingredient-chip" data-label="No aluminum" data-ingredients="Frankincense (Boswellia), rice husk water, and zinc compounds — formulated without aluminum salts." data-why="Most conventional deodorants block sweat with aluminum. This supports odor control while still letting your underarms be underarms — and it still worked on a day I already needed it.">No aluminum</button>
-                <button type="button" class="chip ingredient-chip" data-label="Skincare, not chalk" data-ingredients="Sesame oil, orange fruit water, baobab and cactus seed oils, plus cupuaçu and mango butters." data-why="It's a cream emulsion on purpose — so deodorant actives show up with real moisture and oils. That's why it rubs in so easily instead of sitting white and chalky.">Skincare, not chalk</button>
-                <button type="button" class="chip ingredient-chip" data-label="All-day wear" data-ingredients="Airless pump keeps the formula fresh; one small pump covers both underarms." data-why="I was the skeptic on pump deodorant. Now it's the one I reach for because it lasts — and the airless packaging means you're not oxidizing a jar of cream every time you open it.">All-day wear</button>
-              </div>
-            </div>
-          </div>
-
-          
-        <button type="button" class="carousel-btn next" aria-label="Next product">&#8250;</button>
-      <p class="carousel-chip-hint">Tap + on any chip for ingredients and why they matter</p>
-      <div class="carousel-footer">
-        <div class="carousel-dots" role="tablist" aria-label="Choose product I love"></div>
-        <span class="carousel-counter" aria-live="polite">1 / 2</span>
-      </div>
-    </div>
-  </div>
-</section>
 
 <!-- ============ MISSION ============ -->
 <section style="background:var(--linen);padding-bottom:2.5rem;">
@@ -1271,8 +1215,8 @@ html.is-inapp .site-nav{flex-wrap:nowrap;}
   <div class="container">
     <div class="reveal" style="text-align:center;">
       <p class="eyebrow">On My Radar</p>
-      <h2 class="section-title" style="margin-left:auto;margin-right:auto;max-width:20ch;">Still so much I'm excited to try.</h2>
-      <p class="lede" style="margin-left:auto;margin-right:auto;">Hydro serum and deodorant are the keepers I've already tried. These four are next — foot balm, repair shampoo, cerebro, and ADDS effect. Join the list and you'll hear the notes as I work through them.</p>
+      <h2 class="section-title" style="margin-left:auto;margin-right:auto;max-width:20ch;">More products on my radar.</h2>
+      <p class="lede" style="margin-left:auto;margin-right:auto;">Hydro serum and deodorant are already on my home page. These four are next: foot balm, repair shampoo, cerebro, and ADDS effect.</p>
     </div>
     <div class="radar-carousel product-carousel reveal" id="radarCarousel" aria-roledescription="carousel" aria-label="Products on my radar">
       <button type="button" class="carousel-btn prev" aria-label="Previous product">&#8249;</button>
@@ -1284,7 +1228,7 @@ html.is-inapp .site-nav{flex-wrap:nowrap;}
             </div>
             <div class="carousel-copy">
               <p class="radar-kicker">FRESH · Feet</p>
-              <p><strong>FRESH foot balm</strong> is on my list because a brand's standard should hold all the way to tired feet. Intensive moisture, made fresh, for the part of the body most routines forget.</p>
+              <p><strong>FRESH foot balm</strong> is next on my list. Fresh moisture for feet that actually get used.</p>
             </div>
           </div>
           <div class="carousel-slide" data-slide="1">
@@ -1293,7 +1237,7 @@ html.is-inapp .site-nav{flex-wrap:nowrap;}
             </div>
             <div class="carousel-copy">
               <p class="radar-kicker">FRESH · Hair</p>
-              <p><strong>FRESH repair shampoo</strong> is built for damaged, coloured, or dry hair — fermented rice water, mushroom extracts, and a gentle plant cleanse. A little goes a long way, and it's next for me.</p>
+              <p><strong>FRESH repair shampoo</strong> is for dry or damaged hair. Fermented rice water, mushroom extracts, and a gentle cleanse. I haven't tried it yet.</p>
             </div>
           </div>
           <div class="carousel-slide" data-slide="2">
@@ -1302,7 +1246,7 @@ html.is-inapp .site-nav{flex-wrap:nowrap;}
             </div>
             <div class="carousel-copy">
               <p class="radar-kicker">CAPS · Mental Strength</p>
-              <p><strong>CAPS cerebro</strong> is the supplement I'm most curious about — sage, citicoline, grape, blueberry, and rhodiola for concentration, attention, and memory on the long mom days.</p>
+              <p><strong>CAPS cerebro</strong> is the supplement I want for the long days. Sage, citicoline, grape, blueberry, and rhodiola.</p>
             </div>
           </div>
           <div class="carousel-slide" data-slide="3">
@@ -1311,18 +1255,17 @@ html.is-inapp .site-nav{flex-wrap:nowrap;}
             </div>
             <div class="carousel-copy">
               <p class="radar-kicker">FRESH add · Effect</p>
-              <p><strong>ADDS effect</strong> is a concentrated booster you mix into serum — one pump of add to two pumps of hydro serum — when skin wants extra firming support without rebuilding the whole routine.</p>
+              <p><strong>ADDS effect</strong> is a booster you mix into serum. One pump of this to two pumps of hydro serum.</p>
             </div>
           </div>
 
         <button type="button" class="carousel-btn next" aria-label="Next product">&#8250;</button>
-      <p class="carousel-chip-hint">Tap + on any chip for ingredients and why they matter</p>
       <div class="carousel-footer">
         <div class="carousel-dots" id="carouselDots" role="tablist" aria-label="Choose product"></div>
         <span class="carousel-counter" id="carouselCounter" aria-live="polite">1 / 4</span>
       </div>
     </div>
-    <p class="radar-foot reveal">As more early-access products land in my hands, the keepers join Products I Love — and this community hears it first.</p>
+    <p class="radar-foot reveal">When I actually try one of these, I'll say so. Until then, this is just the list.</p>
     <p class="reveal" style="text-align:center;margin-top:1.15rem;"><a href="#" class="btn btn-pine" data-open-connect>Join the Founding List</a></p>
   </div>
 </section>
@@ -1520,12 +1463,8 @@ function openIngredientPopup(chip){
   const rect=chip.getBoundingClientRect();
   const popW=ingredientPopup.offsetWidth||380;
   const popH=ingredientPopup.offsetHeight||280;
-  let top=rect.bottom+10;
-  let left=rect.left;
-  if(left+popW>window.innerWidth-12)left=window.innerWidth-popW-12;
-  if(left<12)left=12;
-  if(top+popH>window.innerHeight-12)top=rect.top-popH-10;
-  if(top<12)top=12;
+  let top=Math.max(12,(window.innerHeight-popH)/2);
+  let left=Math.max(12,(window.innerWidth-popW)/2);
   ingredientPopup.style.top=top+'px';
   ingredientPopup.style.left=left+'px';
 }
