@@ -540,8 +540,32 @@ html.is-inapp .site-nav{flex-wrap:nowrap;}
 .letter-submit{width:100%;margin-top:.35rem;cursor:pointer;}
 </style>
 <link rel="stylesheet" href="site-extra.css?v=8">
+<style>
+.about-page section{padding-top:2.4rem;padding-bottom:2.4rem;}
+.about-page .page-hero{padding-bottom:2.6rem;}
+.about-page .story-intro{grid-template-columns:1.05fr .95fr;gap:1.2rem 1.8rem;align-items:center;}
+.about-page .about-collage{min-height:0;max-width:none;}
+.about-page .shot-family{width:84%;aspect-ratio:4/5;}
+.about-page .about-collage .shot-portrait{width:48%;}
+.about-page .life-board{display:grid;grid-template-columns:1fr 1fr;gap:1.2rem 1.6rem;align-items:start;}
+.about-page .life-board .life-photo{aspect-ratio:4/5;max-height:none;margin:0;}
+.about-page .life-board .section-title{margin-bottom:.7rem;}
+.about-page .chapter{padding:1.15rem 0;gap:1.2rem;grid-template-columns:72px 1fr;}
+.about-page .journey{display:grid;grid-template-columns:minmax(200px,280px) 1fr;gap:1.6rem 2.2rem;align-items:start;}
+.about-page .journey-photo{position:sticky;top:6.5rem;border-radius:2px;overflow:hidden;aspect-ratio:3/4;max-height:520px;box-shadow:0 14px 36px rgba(68,90,72,.12);}
+.about-page .journey-photo img{width:100%;height:100%;object-fit:cover;object-position:50% 20%;display:block;}
+.about-page .why-build .why-taylor{margin-top:.4rem;}
+.about-page .fit-grid{margin-top:1.2rem;gap:1.6rem 2rem;}
+.about-page .pull{margin:1.1rem 0;}
+@media (max-width:880px){
+  .about-page section{padding-top:2rem;padding-bottom:2rem;}
+  .about-page .journey{grid-template-columns:1fr;}
+  .about-page .journey-photo{position:static;max-height:360px;max-width:280px;}
+  .about-page .life-board{grid-template-columns:1fr;}
+}
+</style>
 </head>
-<body>
+<body class="about-page">
 
 <!-- CLIENT:START site-header -->
 <header class="site-header" id="siteHeader">
@@ -589,27 +613,14 @@ html.is-inapp .site-nav{flex-wrap:nowrap;}
   </div>
 </section>
 
-<section class="origin">
+<section class="origin" style="background:var(--linen-warm);">
   <div class="container">
-    <div class="life-split">
+    <div class="life-board">
       <div class="life-copy">
         <p class="eyebrow">Where I Started</p>
         <h2 class="section-title">My body kept fighting me.</h2>
         <p>Infertility, thyroid issues, mold exposure, exhaustion. I started looking because the usual answers weren't helping.</p>
         <p>Food, cleaning, what goes on our skin, how we keep the house. It stopped being one swap and became the way we live.</p>
-      </div>
-      <div class="life-photo">
-        <img src="morgan-chair.webp" alt="Morgan with her baby in a wicker chair" loading="lazy" decoding="async" width="682" height="1024">
-      </div>
-    </div>
-  </div>
-</section>
-
-<section class="origin" style="background:var(--linen-warm);">
-  <div class="container">
-    <div class="life-split">
-      <div class="life-photo">
-        <img src="morgan-couple.webp" alt="Morgan and her husband" loading="lazy" decoding="async" width="1024" height="682">
       </div>
       <div class="life-copy">
         <p class="eyebrow">What I Share</p>
@@ -617,12 +628,23 @@ html.is-inapp .site-nav{flex-wrap:nowrap;}
         <p>I help moms build this at home. Not a perfect version. A more informed one. Real food, lower-tox living, homeopathy, clean beauty, safer homes, healthier kids.</p>
         <p>Stay crunchy. That's the whole sign-off.</p>
       </div>
+      <div class="life-photo">
+        <img src="morgan-chair.webp" alt="Morgan with her baby in a wicker chair" loading="lazy" decoding="async" width="682" height="1024">
+      </div>
+      <div class="life-photo">
+        <img src="morgan-couple.webp" alt="Morgan and her husband" loading="lazy" decoding="async" width="1024" height="682">
+      </div>
     </div>
   </div>
 </section>
 
 <section class="chapters">
-  <div class="container reveal">
+  <div class="container">
+    <div class="journey">
+      <div class="journey-photo">
+        <img src="morgan-bw.webp" alt="Morgan and her husband" loading="lazy" decoding="async" width="682" height="1024">
+      </div>
+      <div>
     <p class="eyebrow">The Journey</p>
     <h2 class="section-title">How I got here.</h2>
     <div class="chapter">
@@ -667,16 +689,7 @@ html.is-inapp .site-nav{flex-wrap:nowrap;}
         <p>I've already tried the hydro serum and the deodorant — and loved both. I'm gathering a founding community before the U.S. launch so we can learn the rest together.</p>
       </div>
     </div>
-  </div>
-</section>
-
-<section class="why-build">
-  <div class="container reveal">
-    <p class="eyebrow">Why Walk With Me</p>
-    <div class="why-taylor">
-      <h3>Why me?</h3>
-      <p>I'm a mom who had to learn this for my own body and my own kids. That's the only reason I'm sharing it.</p>
-      <p>If you join the list, you get my notes and a real person writing back.</p>
+      </div>
     </div>
   </div>
 </section>
@@ -688,6 +701,7 @@ html.is-inapp .site-nav{flex-wrap:nowrap;}
     <div class="fit-grid">
       <blockquote class="fit-callout">I'd rather help a few moms who actually want this than chase a crowd that doesn't.</blockquote>
       <div class="fit-list">
+        <p>I'm a mom who had to learn this for my own body and my own kids. That's the only reason I'm sharing it. If you join the list, you get my notes and a real person writing back.</p>
         <p>I'm not here to pressure anyone. I'll share what I've found, and you can decide if it fits your family.</p>
         <p>If you care about real food, lower-tox living, and products you'd use on your kids, say hi. If you want a get-rich-quick plan, I'm not your person.</p>
       </div>
