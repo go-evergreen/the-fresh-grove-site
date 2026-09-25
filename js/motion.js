@@ -30,7 +30,7 @@
 
   function setHeroCountdown() {
     countUp(document.getElementById("heroPre"), daysUntil(2026, 9, 1));
-    countUp(document.getElementById("heroLaunch"), daysUntil(2026, 10, 1));
+    countUp(document.getElementById("heroLaunch"), daysUntil(2026, 10, 2));
   }
 
   function paintHeroPlant() {

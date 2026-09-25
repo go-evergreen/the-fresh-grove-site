@@ -22,13 +22,16 @@
     }
     /* Lead copies that hit the homepage. Business-info ?with= stays here
        so the team form can lock to that partner’s slug. */
+    if (withSlug || /\/with\/[a-z0-9]/i.test(location.pathname || "")) {
+      document.documentElement.classList.add("is-partner");
+    }
     if (leadSlug && !withSlug) {
       location.replace("/lead.html" + String(location.search || "") + String(location.hash || ""));
     }
   } catch (e) {}
 })();
 </script>
-<title>The Fresh Grove — a founding Ringana team</title>
+<title>The business — The Fresh Grove</title>
 <meta name="description" content="The Fresh Grove is a founding U.S. Ringana team. Frequent zooms, real support, and a private hub — your runway to launch. Come into the grove before October 1.">
 <meta property="og:type" content="website">
 <meta property="og:title" content="The Fresh Grove — a founding Ringana team">
@@ -46,112 +49,60 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Caveat:wght@500;600&family=DM+Sans:ital,wght@0,400;0,500;0,600;0,700;1,400&family=Fraunces:ital,opsz,wght@0,9..144,300;0,9..144,400;0,9..144,500;0,9..144,600;1,9..144,400&family=Work+Sans:wght@300;400;500;600&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="css/grove.css?v=fresh90">
+<link rel="stylesheet" href="css/grove.css?v=fresh109">
 </head>
-<body>
+<body class="products-page">
 
 <header class="site-header" id="siteHeader">
   <div class="site-header-inner">
-    <a href="#top" class="site-brand">
+    <a href="home.html" class="site-brand">
       <img class="site-logo" src="assets/grove-logo.jpg" alt="" width="44" height="44">
-      <span class="site-brand-text">The Fresh <span>Grove</span></span>
+      <span class="site-brand-text" id="brandTitle">The Fresh <span>Grove</span></span>
     </a>
     <p class="with-lock-chip" id="withLockChip" hidden></p>
     <nav class="site-nav" aria-label="Primary">
-      <a href="#ringana">Why Ringana</a>
-      <a href="#hub">The hub</a>
-      <a href="#why">The team</a>
-      <a href="#faq">FAQ</a>
+      <a href="home.html" class="nav-page">Home</a>
+      <a href="products.html" class="nav-page">The Products</a>
+      <a href="index.html" class="nav-page nav-current" aria-current="page">The Business</a>
+      <a href="https://app.thefreshgrove.team/?signin=1&amp;door=team" class="nav-cta nav-team-signin">Sign in</a>
       <a href="#connect" class="nav-cta" data-open-connect>Join Us</a>
     </nav>
   </div>
 </header>
+<script>
+(function () {
+  var brand = document.getElementById("brandTitle");
+  var link = document.querySelector(".site-brand");
+  if (!brand || !link) return;
+  var slug = "";
+  try { slug = (new URLSearchParams(location.search).get("with") || "").trim().toLowerCase(); } catch (e) {}
+  if (!slug) {
+    var m = String(location.pathname || "").match(/\/with\/([a-z0-9][a-z0-9-]{1,38})\/?/i);
+    if (m) slug = m[1].toLowerCase();
+  }
+  if (!slug) return;
+  var who = slug.replace(/-/g, " ").replace(/\b[a-z]/g, function (c) { return c.toUpperCase(); }).split(/\s+/)[0];
+  if (!who) return;
+  link.classList.add("is-partner");
+  brand.innerHTML = "Ringana <em>with</em> " + who.replace(/&/g, "&amp;").replace(/</g, "&lt;");
+  var cta = document.querySelector(".nav-cta[data-open-connect]");
+  if (cta) cta.textContent = "Join " + who;
+})();
+</script>
 
-<header class="hero" id="top">
-  <div class="hero-mesh" aria-hidden="true"></div>
-  <div class="hero-orb hero-orb-1" data-drift aria-hidden="true"></div>
-  <div class="hero-orb hero-orb-2" data-drift aria-hidden="true"></div>
-  <div class="hero-orb hero-orb-3" data-drift aria-hidden="true"></div>
-  <div class="hero-ring hero-ring-1" aria-hidden="true"></div>
-  <div class="hero-ring hero-ring-2" aria-hidden="true"></div>
-  <div class="hero-sparkle" aria-hidden="true"></div>
-  <div class="hero-leaves" aria-hidden="true">
-    <i class="leaf l1"></i><i class="leaf l2"></i><i class="leaf l3"></i>
-    <i class="leaf l4"></i><i class="leaf l5"></i><i class="leaf l6"></i>
+<header class="prod-intro biz-hero" id="top">
+  <div class="container">
+    <p class="eyebrow">The business</p>
+    <h1 class="section-title">Walked through it, <em>from day one.</em></h1>
+    <p class="lede">A founding U.S. team, a private hub, and a person who knows your name. The support is already built. Partner pre-registration opens October 1.</p>
   </div>
-  <div class="hero-inner">
-    <div class="hero-copy">
-      <div class="hero-eyebrow">A founding Ringana team · U.S. 2026</div>
-      <h1>
-        <span class="line">You’re not joining a company.</span>
-        <span class="line accent">You’re joining <em>a grove.</em></span>
-      </h1>
-      <p class="hero-sub">Ringana is coming to America this fall, and we’ve been counting down. The Fresh Grove is a U.S. founding team with the support already built — so you’re walked through this from day one, every step of the way.</p>
-      <div class="hero-cta">
-        <a href="#hub" class="hero-explore">
-          <span class="hero-sprout">
-            <span class="hero-sprout-glow"></span>
-            <span class="hero-plant" id="heroPlant"></span>
-          </span>
-          <span class="hero-sprout-copy">
-            <span class="hero-sprout-label">Explore the hub</span>
-            <span class="hero-sprout-hint">Your runway to launch — then come join us.</span>
-          </span>
-        </a>
-        <a href="#connect" class="hero-explore" data-open-connect>
-          <span class="hero-sprout">
-            <span class="hero-sprout-glow"></span>
-            <span class="hero-join-icon" aria-hidden="true">
-              <svg viewBox="0 0 80 80" fill="none">
-                <ellipse cx="40" cy="69.5" rx="17" ry="2.2" fill="#0c1812" opacity=".55"/>
-                <g fill="#8fa37a">
-                  <circle cx="16.9" cy="43.2" r="6.6"/>
-                  <circle cx="27.6" cy="42.8" r="6.9"/>
-                  <circle cx="22.3" cy="36.6" r="7.1"/>
-                  <circle cx="22.4" cy="47.4" r="5.6"/>
-                </g>
-                <path d="M22.3 49.5v16.2" stroke="#c4b07a" stroke-width="2.35" stroke-linecap="round"/>
-                <path d="M40 15.5 47 30.2h-3.4L51.2 44.6h-3.6L54.6 59H25.4l7-14.4h-3.6L36.4 30.2H33Z" fill="#c5d0b4"/>
-                <path d="M40 55.5v11" stroke="#c4b07a" stroke-width="2.35" stroke-linecap="round"/>
-                <circle cx="40" cy="15.2" r="2.35" fill="#e8c86a"/>
-                <path d="M57.2 31.2c6.4.4 10.4 6.2 10.8 14.2.3 6.2-1.6 12.2-3.4 16.8-1.7-4.2-2.4-9.6-2.7-13.4L58.4 65h-2.1l.7-16.2c-.6 3.8-1.7 9.2-3.5 13.4-1.7-4.6-3.4-10.6-3-16.8.5-8 3.6-13.8 9.7-14.2Z" fill="#7d9570"/>
-                <path d="M57.2 48.5v17.2" stroke="#c4b07a" stroke-width="2.2" stroke-linecap="round"/>
-              </svg>
-            </span>
-          </span>
-          <span class="hero-sprout-copy">
-            <span class="hero-sprout-label">Join the Fresh Grove</span>
-            <span class="hero-sprout-hint">Tell us where you are — we’ll meet you there.</span>
-          </span>
-        </a>
-      </div>
-      <div class="hero-stats" id="heroStats">
-        <a href="#hub" class="hero-stat">
-          <b id="heroPre">—</b>
-          <span>Days to pre-reg</span>
-        </a>
-        <a href="#hub" class="hero-stat">
-          <b id="heroLaunch">—</b>
-          <span>Days to products</span>
-        </a>
-        <div class="hero-stat">
-          <b>Oct 1</b>
-          <span>Founding door</span>
-        </div>
-      </div>
-    </div>
-  </div>
-  <a href="#hub" class="hero-scroll" aria-label="Scroll to the hub">
-    <span></span> Peek the hub
-  </a>
   <div class="marquee" aria-hidden="true">
     <div class="marquee-track">
-      <span>Oct 1 · Partner pre-reg</span><span>Nov 1 · Products launch</span><span>Frequent zooms</span><span>Support &amp; strategy</span><span>Your kind of business</span><span>Live community</span><span>First Seeds hub</span><span>Mentorship on purpose</span>
-      <span>Oct 1 · Partner pre-reg</span><span>Nov 1 · Products launch</span><span>Frequent zooms</span><span>Support &amp; strategy</span><span>Your kind of business</span><span>Live community</span><span>First Seeds hub</span><span>Mentorship on purpose</span>
+      <span>Oct 1 · Partner pre-reg</span><span>Nov 2 · Products for customers</span><span>Frequent zooms</span><span>Support &amp; strategy</span><span>Your kind of business</span><span>Live community</span><span>First Seeds hub</span><span>Mentorship on purpose</span>
+      <span>Oct 1 · Partner pre-reg</span><span>Nov 2 · Products for customers</span><span>Frequent zooms</span><span>Support &amp; strategy</span><span>Your kind of business</span><span>Live community</span><span>First Seeds hub</span><span>Mentorship on purpose</span>
     </div>
   </div>
 </header>
-
 <section class="company" id="ringana">
   <div class="container">
     <div class="company-head reveal">
@@ -159,12 +110,6 @@
       <h2 class="section-title">Fresh. On purpose.</h2>
       <p class="lede">A family company — no outside investors — has made skincare and supplements this way for thirty years. Toxin free. Made to order. Honest about every ingredient.</p>
     </div>
-    <ul class="company-stats reveal">
-      <li><b>$300M+</b><span>in annual sales</span></li>
-      <li><b>~2× / week</b><span>made fresh, like food</span></li>
-      <li><b>Family owned</b><span>no outside investors</span></li>
-      <li><b>Glass comes back</b><span>no inventory loading</span></li>
-    </ul>
     <div class="factory-stage reveal" id="factoryFlip" data-carousel>
       <div class="carousel-viewport factory-viewport">
         <div class="carousel-track">
@@ -240,17 +185,39 @@
     <div class="hub-copy reveal">
       <p class="eyebrow">The hub</p>
       <h2 class="section-title">Where this team actually lives.</h2>
-      <p>First Seeds is this team’s exclusive, custom-built hub — the runway to October, plus the library, calendar, inbox, and client desk that stay after. The phone is a walkthrough — tap around, or tap Next.</p>
-      <p class="hub-hold">You’re led, guided, and supported from day one. A person who knows your name, zooms you can actually get to, and a live team that stays. You’re not guessing — and you’re not doing this alone.</p>
-      <ul class="hub-points">
-        <li><strong>A runway, not a scramble.</strong> Your story, first products, your page, then who you’d tell — in that order, so you always know the next quiet step. Peek ahead anytime. When you’re ready, Post Studio, the calendar, and growing a team are already here.</li>
-        <li><strong>Look it up in one place.</strong> Company, products, ingredients, and launch facts — all searchable, so you can find what you need.</li>
-        <li><strong>Dates, drafts, pictures, and videos.</strong> Grove Gatherings and October. A vault of posts. Pictures and videos you can save. Add your own follow-ups.</li>
-        <li><strong>Your page, your inbox.</strong> A lead page that’s yours. Curious names land with you. Leaders check in and send cheers — without a group chat swallowing it.</li>
-        <li><strong>Connect directly with your clients.</strong> Their side is The Fresh Shelf. Yours is the Clients tab — names, notes, and a line back to you.</li>
-      </ul>
-      <p class="hub-more">The Fresh Shelf is already live for clients and potentials. This still isn’t everything in the hub.</p>
-      <a href="#connect" class="btn btn-brass" data-open-connect>Join the Fresh Grove</a>
+      <div class="app-pair" id="appPair">
+        <button type="button" class="app-pick" data-app="seeds" aria-expanded="false" aria-controls="blurbSeeds">
+          <img src="assets/apps/first-seeds.png" alt="" width="84" height="84">
+          <span><b>First Seeds</b><small>The team hub</small></span>
+        </button>
+        <button type="button" class="app-pick" data-app="shelf" aria-expanded="false" aria-controls="blurbShelf">
+          <img src="assets/apps/fresh-shelf.png" alt="" width="84" height="84">
+          <span><b>The Fresh Shelf</b><small>The client app</small></span>
+        </button>
+      </div>
+      <div class="app-blurb" id="blurbSeeds" hidden>
+        <p>First Seeds is this team’s exclusive, custom-built hub — the runway to October, plus the library, calendar, inbox, and client desk that stay after. The phone is a walkthrough — tap around, or tap Next.</p>
+        <p class="hub-hold">You’re led, guided, and supported from day one. A person who knows your name, zooms you can actually get to, and a live team that stays. You’re not guessing — and you’re not doing this alone.</p>
+        <ul class="hub-points">
+          <li><strong>A runway, not a scramble.</strong> Your story, first products, your page, then who you’d tell — in that order, so you always know the next quiet step. Peek ahead anytime. When you’re ready, Post Studio, the calendar, and growing a team are already here.</li>
+          <li><strong>Look it up in one place.</strong> Company, products, ingredients, and launch facts — all searchable, so you can find what you need.</li>
+          <li><strong>Dates, drafts, pictures, and videos.</strong> Grove Gatherings and October. A vault of posts. Pictures and videos you can save. Add your own follow-ups.</li>
+          <li><strong>Your page, your inbox.</strong> A lead page that’s yours. Curious names land with you. Leaders check in and send cheers — without a group chat swallowing it.</li>
+          <li><strong>Connect directly with your clients.</strong> Their side is The Fresh Shelf. Yours is the Clients tab — names, notes, and a line back to you.</li>
+        </ul>
+        <a href="#connect" class="btn btn-brass" data-open-connect>Join the Fresh Grove</a>
+      </div>
+      <div class="app-blurb" id="blurbShelf" hidden>
+        <p>The Fresh Shelf is the other side of this same grove — the app for the people you share with. It’s already live. Each partner has their own link.</p>
+        <p class="hub-hold">They can look, match, and ask. You stay the person they come back to.</p>
+        <ul class="hub-points">
+          <li><strong>A quiz, not a guess.</strong> It matches them to skincare, body care, and supplements — then they can look the line up themselves.</li>
+          <li><strong>Look it up, then ask you.</strong> The facts live in the app. The real question comes back to the partner who shared it.</li>
+          <li><strong>A line, not a group chat.</strong> Questions go to that person. Nobody else is in the thread.</li>
+          <li><strong>Their link, their shelf.</strong> Their person, on a link that’s theirs. The rest of the grove stays with the team.</li>
+        </ul>
+        <a href="#connect" class="btn btn-brass" data-open-connect>Join the Fresh Grove</a>
+      </div>
     </div>
 
     <div class="phone-dock" id="phoneDock" aria-label="First Seeds hub">
@@ -834,36 +801,6 @@
   </div>
 </div>
 
-<section class="shelf" id="shelf">
-  <div class="container">
-    <div class="shelf-head reveal">
-      <p class="eyebrow">The client app</p>
-      <h2 class="section-title">The Fresh Shelf.</h2>
-      <p class="lede">An exclusive app for our clients and potential clients — ready now. Each partner has their own link to share.</p>
-    </div>
-    <ul class="shelf-points reveal">
-      <li>
-        <em>Learn</em>
-        <b>the products</b>
-        <p>They can look things up themselves — then come back to you with a real question.</p>
-      </li>
-      <li>
-        <em>Connect</em>
-        <b>with their partner</b>
-        <p>A line to the person who shared it. Not another group chat.</p>
-      </li>
-      <li>
-        <em>And more</em>
-        <b>on their own link</b>
-        <p>Their shelf, their person. The rest stays inside the grove.</p>
-      </li>
-    </ul>
-    <p class="section-cta reveal">
-      <a href="#connect" class="btn btn-brass" data-open-connect>Join the Fresh Grove</a>
-    </p>
-  </div>
-</section>
-
 <section class="why" id="why">
   <div class="container">
     <div class="why-head reveal">
@@ -998,7 +935,7 @@
         <div class="faq-group" data-faq-group="start" hidden>
           <details name="faq-start">
             <summary>When does the U.S. launch?</summary>
-            <p>Partner pre-reg October 1, 2026. Products for customers November 1. People who write us hear the exact ordering details from their person on the team.</p>
+            <p>Partner pre-reg October 1, 2026. Products for customers November 2. People who write us hear the exact ordering details from their person on the team.</p>
           </details>
           <details name="faq-start">
             <summary>What does it cost to start?</summary>
@@ -1128,6 +1065,9 @@
         <circle cx="17.15" cy="6.85" r="1.05" fill="currentColor"/>
       </svg>
     </a>
+    <a class="foot-icon" href="mailto:partners@thefreshgrove.team" aria-label="Email partners@thefreshgrove.team">
+      <svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><rect x="3.2" y="5.2" width="17.6" height="13.6" rx="2" stroke="currentColor" stroke-width="1.7"/><path d="M4 7.2 12 13l8-5.8" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"/></svg>
+    </a>
     <a class="foot-icon" href="#hub" aria-label="Explore the hub">
       <svg viewBox="0 0 24 24" fill="none" aria-hidden="true">
         <rect x="6.4" y="2.4" width="11.2" height="19.2" rx="2.4" stroke="currentColor" stroke-width="1.7"/>
@@ -1136,6 +1076,7 @@
       </svg>
     </a>
   </div>
+  <p class="foot-signin"><a href="https://app.thefreshgrove.team/?signin=1&amp;door=team">Already on the team? Sign in</a></p>
   <p class="foot-legal">Independent partner page — not an official Ringana corporate website.</p>
   <p class="foot-copy">&copy; 2026 The Fresh Grove. All rights reserved. No copying, scraping, cloning, or redistribution of this site, interface, artwork, or plant.</p>
 </footer>
@@ -1156,11 +1097,52 @@ if (window.caches) {
   });
 }
 </script>
+<script>
+(function () {
+  var hub = document.getElementById("hub");
+  var pair = document.getElementById("appPair");
+  var seeds = document.getElementById("blurbSeeds");
+  var shelf = document.getElementById("blurbShelf");
+  var phone = document.getElementById("phoneDock");
+  if (!hub || !pair || !seeds || !shelf) return;
+  var open = "";
+  function show(which) {
+    open = which;
+    seeds.hidden = which !== "seeds";
+    shelf.hidden = which !== "shelf";
+    seeds.classList.toggle("is-on", which === "seeds");
+    shelf.classList.toggle("is-on", which === "shelf");
+    hub.classList.toggle("is-shelf", which === "shelf");
+    if (phone) phone.hidden = which === "shelf";
+    pair.querySelectorAll(".app-pick").forEach(function (btn) {
+      var on = btn.getAttribute("data-app") === which;
+      btn.classList.toggle("is-on", on);
+      btn.setAttribute("aria-expanded", on ? "true" : "false");
+    });
+  }
+  pair.addEventListener("click", function (e) {
+    var btn = e.target.closest(".app-pick");
+    if (!btn) return;
+    var which = btn.getAttribute("data-app");
+    show(open === which ? "" : which);
+  });
+  if ("IntersectionObserver" in window) {
+    var seen = false;
+    var io = new IntersectionObserver(function (entries) {
+      if (seen || !entries.some(function (en) { return en.isIntersecting; })) return;
+      seen = true;
+      if (!open) show("seeds");
+      io.disconnect();
+    }, { threshold: 0.45 });
+    io.observe(pair);
+  }
+})();
+</script>
 <script src="js/vendor/supabase.js?v=2116"></script>
 <script src="js/config.js?v=fresh86"></script>
 <script src="js/plant.js?v=fresh86"></script>
-<script src="js/grove.js?v=fresh93"></script>
+<script src="js/grove.js?v=fresh108"></script>
 <script src="js/motion.js?v=fresh95"></script>
-<script src="js/demo.js?v=fresh95"></script>
+<script src="js/demo.js?v=fresh103"></script>
 </body>
 </html>

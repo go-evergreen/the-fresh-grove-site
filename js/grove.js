@@ -146,7 +146,7 @@
 
   function paintWithChip() {
     var chip = $("withLockChip");
-    var cta = qs(".nav-cta");
+    var cta = qs(".nav-cta[data-open-connect]");
     var lockedTo = urlLocked && selected && !selected.unknown;
     if (chip) {
       if (lockedTo) {
@@ -158,6 +158,39 @@
       }
     }
     if (cta) cta.textContent = lockedTo ? ("Join " + firstName(selected.name)) : "Join Us";
+    document.body.classList.toggle("is-partner", !!lockedTo);
+    paintPartnerBrand(lockedTo ? firstName(selected.name) : "");
+    if (lockedTo) keepPartnerLinks(selected.slug);
+  }
+
+  function paintPartnerBrand(who) {
+    var brand = $("brandTitle");
+    var link = qs(".site-brand");
+    if (!brand || !link) return;
+    if (!who) {
+      link.classList.remove("is-partner");
+      brand.innerHTML = "The Fresh <span>Grove</span>";
+      return;
+    }
+    link.classList.add("is-partner");
+    brand.innerHTML = "Ringana <em>with</em> " + String(who).replace(/&/g, "&amp;").replace(/</g, "&lt;");
+  }
+
+  function keepPartnerLinks(slug) {
+    slug = String(slug || "").trim().toLowerCase();
+    if (!slug) return;
+    qsa("a[href]").forEach(function (a) {
+      var href = a.getAttribute("href") || "";
+      if (!/^(home|products|index|privacy|terms)\.html/.test(href)) return;
+      if (/[?&]with=/.test(href)) return;
+      var hash = "";
+      var cut = href.indexOf("#");
+      if (cut >= 0) {
+        hash = href.slice(cut);
+        href = href.slice(0, cut);
+      }
+      a.setAttribute("href", href + (href.indexOf("?") >= 0 ? "&" : "?") + "with=" + encodeURIComponent(slug) + hash);
+    });
   }
 
   function showUnmatchedWithLink() {
@@ -172,7 +205,7 @@
       assigned.hidden = false;
       assigned.textContent = "That teammate link isn’t live yet — pick who sent you, or choose “I landed here on my own.”";
     }
-    var cta = qs(".nav-cta");
+    var cta = qs(".nav-cta[data-open-connect]");
     if (cta) cta.textContent = "Join Us";
   }
 
@@ -198,8 +231,8 @@
       } catch (e) {}
     }
     if (!person) {
-      showUnmatchedWithLink();
-      return;
+      var label = String(slug || "").replace(/-/g, " ").replace(/\b[a-z]/g, function (c) { return c.toUpperCase(); });
+      person = { slug: slug, name: label || "Your partner", ig: "", note: "" };
     }
     setSelected(person, true);
     lockWho(true);
@@ -241,6 +274,8 @@
       if (pm) fromUrl = decodeURIComponent(pm[1] || "").trim().toLowerCase();
     }
     if (fromUrl) {
+      document.body.classList.add("is-partner");
+      keepPartnerLinks(fromUrl);
       await lockFromSlug(fromUrl);
       return;
     }

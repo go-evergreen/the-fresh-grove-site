@@ -1,0 +1,340 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>The products — The Fresh Grove</title>
+<meta name="description" content="Ringana skincare and supplements, made fresh in Austria with an expiration date like food. A short look before you decide anything.">
+<meta name="theme-color" content="#142519">
+<script>
+try {
+  var w = new URLSearchParams(location.search).get("with") || "";
+  if (!w && /\/with\/[a-z0-9]/i.test(location.pathname || "")) w = "1";
+  if (w) document.documentElement.classList.add("is-partner");
+} catch (e) {}
+</script>
+<link rel="icon" href="assets/favicon.svg" type="image/svg+xml">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Caveat:wght@500;600&family=Fraunces:ital,opsz,wght@0,9..144,300;0,9..144,400;1,9..144,300&family=Work+Sans:wght@300;400;500&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="css/grove.css?v=fresh109">
+</head>
+<body class="products-page">
+
+<header class="site-header" id="siteHeader">
+  <div class="site-header-inner">
+    <a href="home.html" class="site-brand">
+      <img class="site-logo" src="assets/grove-logo.jpg" alt="" width="44" height="44">
+      <span class="site-brand-text" id="brandTitle">The Fresh <span>Grove</span></span>
+    </a>
+    <nav class="site-nav" aria-label="Primary">
+      <a href="home.html" class="nav-page">Home</a>
+      <a href="products.html" class="nav-page nav-current" aria-current="page">The Products</a>
+      <a href="index.html" class="nav-page">The Business</a>
+      <a href="https://app.thefreshgrove.team/?signin=1&amp;door=team" class="nav-cta nav-team-signin">Sign in</a>
+      <a href="index.html#connect" class="nav-cta">Join Us</a>
+    </nav>
+  </div>
+</header>
+
+<main class="products">
+  <section class="prod-intro">
+    <div class="container">
+      <p class="eyebrow">The products</p>
+      <h1 class="section-title">Fresh, then it <em>expires.</em></h1>
+      <p class="lede">Skincare and supplements made the way food is made — in small runs, with an expiration date. An Austrian family company has done it this way for thirty years. America gets it this fall.</p>
+    </div>
+    <div class="marquee" aria-hidden="true">
+      <div class="marquee-track">
+        <span>Fresh, then it expires</span><span>Made about twice a week</span><span>No synthetic preservatives</span><span>Glass comes back</span><span>Austria now</span><span>Virginia next</span><span>Customer orders November 2</span>
+        <span>Fresh, then it expires</span><span>Made about twice a week</span><span>No synthetic preservatives</span><span>Glass comes back</span><span>Austria now</span><span>Virginia next</span><span>Customer orders November 2</span>
+      </div>
+    </div>
+  </section>
+
+  <section class="prod-made">
+    <div class="container">
+      <h2 class="section-title">How they’re made</h2>
+      <ul class="product-facts">
+        <li>
+          <b>About twice a week</b>
+          <span>Made fresh, like food. Not a vat that sits until it sells.</span>
+        </li>
+        <li>
+          <b>An expiration date</b>
+          <span>The same idea as food. If it can sit for years, it isn’t this.</span>
+        </li>
+        <li>
+          <b>Toxin free</b>
+          <span>No synthetic preservatives, no microplastics, no nanoparticles, no mineral oils. The fresh range is vegan. They don’t test on animals.</span>
+        </li>
+        <li>
+          <b>Glass comes back</b>
+          <span>Packaging is part of the product. You aren’t asked to fill a garage.</span>
+        </li>
+        <li>
+          <b>Austria now, Virginia next</b>
+          <span>Made at the Fresh Factory in St. Johann. A U.S. factory in Roanoke is underway.</span>
+        </li>
+      </ul>
+    </div>
+  </section>
+
+  <section class="prod-best">
+    <div class="container">
+      <h2 class="section-title">Bestsellers</h2>
+      <div class="best-carousel" data-best>
+        <div class="best-viewport">
+          <div class="best-track">
+            <article class="best-slide">
+              <img src="assets/products/fresh-hydro-serum.webp" alt="FRESH hydro serum" width="480" height="480">
+              <div>
+                <h3>Hydro serum</h3>
+                <p>Ringana’s thirst quencher. Six types of hyaluronic acid drive moisture into every layer of skin, and Job’s tears ferment strengthens the barrier. Light, rose-scented, and gone before you notice it.</p>
+                <p class="chip-hint">Tap + on a chip for what’s inside and why it matters.</p>
+                <div class="chip-row">
+                  <button type="button" class="chip ingredient-chip" data-label="6 types of HA" data-ingredients="Hydration complex with 6 different types of hyaluronic acid." data-why="Supplies every layer of skin with intensive moisture and renews cells — strengthening the effect of the peptides in the formula.">6 types of HA</button>
+                  <button type="button" class="chip ingredient-chip" data-label="Job's tears ferment" data-ingredients="Job's tears seed ferment filtrate." data-why="Soothes the skin, helps reduce the look of redness, and strengthens the skin barrier.">Job's tears ferment</button>
+                  <button type="button" class="chip ingredient-chip" data-label="Peptide mix" data-ingredients="Peptide mix with 3 ingredients, plus beetroot extract." data-why="Supports hyaluronic acid and collagen, revitalises skin, and helps the top layer hold moisture.">Peptide mix</button>
+                </div>
+              </div>
+            </article>
+            <article class="best-slide">
+              <img src="assets/products/ringanadea.webp" alt="Ringanadea" width="480" height="480">
+              <div>
+                <h3>dea</h3>
+                <p>A fruity drink you mix with water. Mate, green coffee, and the metabolaid® complex, plus vitamin C, zinc, chromium, and prebiotic fibre — everyday balance without the artificial-sweetener aisle.</p>
+                <div class="chip-row">
+                  <button type="button" class="chip ingredient-chip" data-label="Metabolism support" data-ingredients="Mate extract, green coffee extract, metabolaid® lemon verbena and hibiscus, vitamin C, zinc, chromium, and prebiotic fibre." data-why="Mate and green coffee support energy metabolism. Vitamin C helps reduce tiredness. Zinc supports normal macronutrient metabolism. Chromium helps maintain normal blood sugar levels.">Metabolism support</button>
+                  <button type="button" class="chip ingredient-chip" data-label="Vitamin C" data-ingredients="Vitamin C from the drink formula." data-why="Supports a stable energy level and helps reduce tiredness and fatigue.">Vitamin C</button>
+                  <button type="button" class="chip ingredient-chip" data-label="Prebiotic fibre" data-ingredients="Fructooligosaccharides and fermented guar bean fibre." data-why="Water-soluble fibre with a mild sweetness — the part that makes the drink more than flavored water.">Prebiotic fibre</button>
+                </div>
+              </div>
+            </article>
+            <article class="best-slide">
+              <img src="assets/products/fresh-deodorant.webp" alt="FRESH deodorant" width="480" height="480">
+              <div>
+                <h3>Deodorant</h3>
+                <p>A cream, not a stick. Frankincense, rice bran water, and a zinc complex stand in for aluminum salts — odor care that also puts plant oils on the skin.</p>
+                <div class="chip-row">
+                  <button type="button" class="chip ingredient-chip" data-label="No aluminum salts" data-ingredients="A water-in-oil cream with no aluminum salts." data-why="Odor control without the aluminum-salt sticks most people are trying to leave behind.">No aluminum salts</button>
+                  <button type="button" class="chip ingredient-chip" data-label="Frankincense" data-ingredients="Boswellia serrata gum, with orange fruit water and rice bran water." data-why="Part of the deodorizing plant story — a cream that cares for underarm skin instead of only covering it.">Frankincense</button>
+                  <button type="button" class="chip ingredient-chip" data-label="Zinc complex" data-ingredients="A plant-based zinc complex, plus shea butter and seed oils." data-why="Helps neutralize odor and support the skin’s own balance, with lipids so the skin isn’t left dry.">Zinc complex</button>
+                </div>
+              </div>
+            </article>
+            <article class="best-slide">
+              <img src="assets/products/fresh-repair-shampoo.webp" alt="FRESH repair shampoo" width="480" height="480">
+              <div>
+                <h3>Repair shampoo</h3>
+                <p>Built for hair that’s been colored, heated, or just tired. Five mushroom extracts, including reishi and chaga, plus fermented rice water and vegan proteins, to repair from within.</p>
+                <div class="chip-row">
+                  <button type="button" class="chip ingredient-chip" data-label="Mushroom extracts" data-ingredients="Reishi, shiitake, chaga, umbrella polypore, and turkey tail." data-why="A repair complex for stressed strands — strength, softness, and care after color or heat.">Mushroom extracts</button>
+                  <button type="button" class="chip ingredient-chip" data-label="Fermented rice water" data-ingredients="Fermented rice water, rich in amino acids." data-why="Fermentation makes the nutrients easier for the hair to use. Shine and suppleness, with less breakage.">Fermented rice water</button>
+                  <button type="button" class="chip ingredient-chip" data-label="Vegan proteins" data-ingredients="Vegan proteins and high-dose arginine." data-why="Strengthen the hair from within and help it stay soft after washing.">Vegan proteins</button>
+                </div>
+              </div>
+            </article>
+          </div>
+        </div>
+        <div class="best-controls">
+          <button type="button" data-best-prev aria-label="Previous bestseller">←</button>
+          <div class="best-dots" role="tablist" aria-label="Bestsellers"></div>
+          <button type="button" data-best-next aria-label="Next bestseller">→</button>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="prod-start">
+    <div class="container">
+      <h2 class="section-title">Product categories</h2>
+      <ol class="product-families">
+        <li><b>Skincare</b><span>Face care in the fresh range.</span></li>
+        <li><b>Body</b><span>Body care, made the same way.</span></li>
+        <li><b>Hair</b><span>Hair, held to the same fresh standard.</span></li>
+        <li><b>Baby</b><span>The baby line, still made fresh.</span></li>
+        <li><b>Supplements</b><span>Capsules, tins, and fresh packs.</span></li>
+      </ol>
+      <div class="catalog-note">
+        <p>The catalog is the full line. Partner pre-registration is October 1. Customer orders open November 2.</p>
+        <a class="btn btn-brass" href="thefreshcatalog">Open the full catalog</a>
+      </div>
+    </div>
+  </section>
+</main>
+
+<footer class="prod-foot">
+  <p class="foot-brand">The Fresh <span>Grove</span></p>
+  <div class="foot-icons">
+    <a class="foot-icon" href="https://instagram.com/the.fresh.grove" target="_blank" rel="noopener" aria-label="The Fresh Grove on Instagram, @the.fresh.grove">
+      <svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><rect x="3.4" y="3.4" width="17.2" height="17.2" rx="5.2" stroke="currentColor" stroke-width="1.7"/><circle cx="12" cy="12" r="4.15" stroke="currentColor" stroke-width="1.7"/><circle cx="17.15" cy="6.85" r="1.05" fill="currentColor"/></svg>
+    </a>
+    <a class="foot-icon" href="mailto:partners@thefreshgrove.team" aria-label="Email partners@thefreshgrove.team">
+      <svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><rect x="3.2" y="5.2" width="17.6" height="13.6" rx="2" stroke="currentColor" stroke-width="1.7"/><path d="M4 7.2 12 13l8-5.8" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"/></svg>
+    </a>
+  </div>
+  <p class="foot-legal">The Fresh Grove is a team of independent Ringana Fresh Partners (pending U.S. launch). This is a team page and is not an official Ringana corporate website. Product details reflect Ringana’s current international lineup. Official U.S. products, prices, compensation, and enrollment terms will be confirmed by Ringana at launch. These statements have not been evaluated by the Food and Drug Administration. Products are not intended to diagnose, treat, cure, or prevent any disease. No income is guaranteed.</p>
+  <p class="foot-copy">&copy; 2026 The Fresh Grove. All rights reserved. · <a href="privacy.html">Privacy Policy</a> · <a href="terms.html">Terms of Use</a></p>
+</footer>
+
+<div class="ingredient-popup" id="ingredientPopup" role="dialog" aria-labelledby="ingredientPopupLabel" aria-hidden="true">
+  <button class="ingredient-popup-close" type="button" aria-label="Close">&times;</button>
+  <p class="ingredient-popup-label" id="ingredientPopupLabel"></p>
+  <h4 id="ingredientPopupIngredientsHeading">What's inside</h4>
+  <div id="ingredientPopupIngredients"></div>
+  <div id="ingredientPopupWhyBlock">
+    <h4>Why it matters</h4>
+    <p id="ingredientPopupWhy"></p>
+  </div>
+</div>
+
+<script src="js/vendor/supabase.js?v=2116"></script>
+<script src="js/config.js?v=fresh86"></script>
+<script>
+(function () {
+  var brand = document.getElementById("brandTitle");
+  var link = document.querySelector(".site-brand");
+  if (!brand || !link) return;
+  function slugFromUrl() {
+    try {
+      var q = new URLSearchParams(location.search).get("with") || "";
+      if (q) return q.trim().toLowerCase();
+    } catch (e) {}
+    var m = String(location.pathname || "").match(/\/with\/([a-z0-9][a-z0-9-]{1,38})\/?/i);
+    return m ? m[1].toLowerCase() : "";
+  }
+  function first(name) {
+    return String(name || "").trim().split(/\s+/)[0] || "";
+  }
+  function paint(name) {
+    var who = first(name);
+    if (!who) return;
+    link.classList.add("is-partner");
+    brand.innerHTML = "Ringana <em>with</em> " + who.replace(/&/g, "&amp;").replace(/</g, "&lt;");
+    document.title = "Ringana with " + who;
+    var cta = document.querySelector(".nav-cta:not(.nav-team-signin)");
+    if (cta) cta.textContent = "Join " + who;
+  }
+  function labelFromSlug(s) {
+    return String(s || "").replace(/-/g, " ").replace(/\b[a-z]/g, function (c) { return c.toUpperCase(); });
+  }
+  var slug = slugFromUrl();
+  if (slug) {
+    document.body.classList.add("is-partner");
+    paint(labelFromSlug(slug));
+    document.querySelectorAll("a[href]").forEach(function (a) {
+      var href = a.getAttribute("href") || "";
+      if (!/^(home|products|index|privacy|terms)\.html/.test(href)) return;
+      if (/[?&]with=/.test(href)) return;
+      var hash = "";
+      var cut = href.indexOf("#");
+      if (cut >= 0) { hash = href.slice(cut); href = href.slice(0, cut); }
+      a.setAttribute("href", href + (href.indexOf("?") >= 0 ? "&" : "?") + "with=" + encodeURIComponent(slug) + hash);
+    });
+  }
+  if (!slug) return;
+  var roster = (window.GROVE && window.GROVE.ROSTER) || [];
+  for (var i = 0; i < roster.length; i++) {
+    if (String(roster[i].slug || "").toLowerCase() === slug) {
+      paint(roster[i].name);
+      return;
+    }
+  }
+  var cfg = (window.GROVE && window.GROVE.SUPABASE) || {};
+  if (!cfg.url || !cfg.anonKey || !window.supabase) return;
+  var client = window.supabase.createClient(cfg.url, cfg.anonKey);
+  client.rpc("get_lead_page", { p_slug: slug }).then(function (res) {
+    var data = res && res.data;
+    if (typeof data === "string") {
+      try { data = JSON.parse(data); } catch (e) { data = null; }
+    }
+    if (data && (data.display_name || data.name)) paint(data.display_name || data.name);
+  }).catch(function () {});
+})();
+</script>
+<script>
+(function () {
+  var root = document.querySelector("[data-best]");
+  if (!root) return;
+  var track = root.querySelector(".best-track");
+  var slides = root.querySelectorAll(".best-slide");
+  var dotsWrap = root.querySelector(".best-dots");
+  var n = slides.length;
+  var i = 0;
+  function go(to) {
+    i = (to + n) % n;
+    track.style.transform = "translateX(" + (-i * 100) + "%)";
+    var dots = dotsWrap.querySelectorAll("button");
+    for (var d = 0; d < dots.length; d++) dots[d].classList.toggle("on", d === i);
+  }
+  for (var d = 0; d < n; d++) {
+    var dot = document.createElement("button");
+    dot.type = "button";
+    dot.className = d === 0 ? "on" : "";
+    dot.setAttribute("aria-label", "Bestseller " + (d + 1));
+    dot.addEventListener("click", function () { go(Number(this.getAttribute("data-i"))); });
+    dot.setAttribute("data-i", String(d));
+    dotsWrap.appendChild(dot);
+  }
+  root.querySelector("[data-best-prev]").addEventListener("click", function () { go(i - 1); });
+  root.querySelector("[data-best-next]").addEventListener("click", function () { go(i + 1); });
+})();
+(function () {
+  var popup = document.getElementById("ingredientPopup");
+  if (!popup) return;
+  var label = document.getElementById("ingredientPopupLabel");
+  var list = document.getElementById("ingredientPopupIngredients");
+  var whyBlock = document.getElementById("ingredientPopupWhyBlock");
+  var why = document.getElementById("ingredientPopupWhy");
+  var active = null;
+  function closePopup() {
+    popup.classList.remove("open");
+    popup.setAttribute("aria-hidden", "true");
+    if (active) active.classList.remove("is-active");
+    active = null;
+  }
+  function openPopup(chip) {
+    if (active) active.classList.remove("is-active");
+    active = chip;
+    chip.classList.add("is-active");
+    label.textContent = chip.getAttribute("data-label") || chip.textContent;
+    list.innerHTML = "";
+    var p = document.createElement("p");
+    p.textContent = chip.getAttribute("data-ingredients") || "";
+    list.appendChild(p);
+    var whyText = chip.getAttribute("data-why") || "";
+    why.textContent = whyText;
+    whyBlock.hidden = !whyText;
+    popup.classList.add("open");
+    popup.setAttribute("aria-hidden", "false");
+    var rect = chip.getBoundingClientRect();
+    var popW = popup.offsetWidth || 380;
+    var popH = popup.offsetHeight || 240;
+    var top = rect.bottom + 10;
+    var left = rect.left;
+    if (left + popW > window.innerWidth - 12) left = window.innerWidth - popW - 12;
+    if (left < 12) left = 12;
+    if (top + popH > window.innerHeight - 12) top = rect.top - popH - 10;
+    if (top < 12) top = 12;
+    popup.style.top = top + "px";
+    popup.style.left = left + "px";
+  }
+  document.querySelectorAll(".ingredient-chip").forEach(function (chip) {
+    chip.addEventListener("click", function (e) {
+      e.stopPropagation();
+      if (chip === active) closePopup();
+      else openPopup(chip);
+    });
+  });
+  popup.querySelector(".ingredient-popup-close").addEventListener("click", closePopup);
+  document.addEventListener("click", function (e) {
+    if (!popup.classList.contains("open")) return;
+    if (e.target.closest(".ingredient-chip") || e.target.closest(".ingredient-popup")) return;
+    closePopup();
+  });
+})();
+</script>
+
+</body>
+</html>

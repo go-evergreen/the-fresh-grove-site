@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Terms of Use — The Fresh Grove</title>
+<meta name="description" content="Terms of Use for The Fresh Grove, an independent Ringana partner team page.">
+<link rel="icon" href="assets/favicon.svg" type="image/svg+xml">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,300;9..144,400&family=Work+Sans:wght@300;400&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="css/grove.css?v=fresh109">
+<script>
+try {
+  var w = new URLSearchParams(location.search).get("with") || "";
+  if (!w && /\/with\/[a-z0-9]/i.test(location.pathname || "")) w = "1";
+  if (w) document.documentElement.classList.add("is-partner");
+} catch (e) {}
+</script>
+</head>
+<body class="products-page">
+<header class="site-header">
+  <div class="site-header-inner">
+    <a href="home.html" class="site-brand">
+      <img class="site-logo" src="assets/grove-logo.jpg" alt="" width="44" height="44">
+      <span class="site-brand-text" id="brandTitle">The Fresh <span>Grove</span></span>
+    </a>
+    <nav class="site-nav" aria-label="Primary">
+      <a href="home.html" class="nav-page">Home</a>
+      <a href="products.html" class="nav-page">The Products</a>
+      <a href="index.html" class="nav-page">The Business</a>
+      <a href="https://app.thefreshgrove.team/?signin=1&amp;door=team" class="nav-cta nav-team-signin">Sign in</a>
+      <a href="index.html#connect" class="nav-cta">Join Us</a>
+    </nav>
+  </div>
+</header>
+<main class="legal-page">
+  <h1>Terms of Use</h1>
+  <p class="legal-kicker">Last updated September 24, 2026</p>
+  <p>The Fresh Grove is a team of independent Ringana Fresh Partners (pending U.S. launch). This is a team page. It is not an official Ringana corporate website, and Ringana has not reviewed every statement here.</p>
+  <h2>What this site is</h2>
+  <p>These pages share information about Ringana products and a possible partner opportunity as the brand prepares to enter the United States. Product details reflect Ringana’s current international lineup. Official U.S. products, prices, compensation, and enrollment terms will be confirmed by Ringana at launch. You cannot buy Ringana products or enroll as a partner on this site today.</p>
+  <h2>Health and product statements</h2>
+  <p>Nothing on this site is medical, nutritional, or professional advice. Talk with your own licensed clinician before changing any health routine.</p>
+  <p>These statements have not been evaluated by the Food and Drug Administration. Products are not intended to diagnose, treat, cure, or prevent any disease.</p>
+  <h2>Income and results</h2>
+  <p>This site explains an opportunity. It does not promise a paycheck. Any figures or stories about earnings describe Ringana’s current international model. They are not typical results and they are not a prediction of what you will earn. What someone makes depends on their own effort. No income is guaranteed.</p>
+  <h2>Your use of the site</h2>
+  <p>Use this site lawfully. Do not attempt to disrupt it, scrape it in a way that burdens the host, or submit false information through a form.</p>
+  <h2>Third-party links and trademarks</h2>
+  <p>Links to Instagram, the team app, the catalog, or other sites are not endorsements, and those sites have their own terms. RINGANA and related marks belong to their owners. Use of those marks here is only to identify the products and opportunity this team is independently sharing.</p>
+  <h2>No warranty</h2>
+  <p>This site is provided as-is. The Fresh Grove does not warrant that it is error-free, always available, or that information will stay current as Ringana’s U.S. launch details change.</p>
+  <h2>Limitation of liability</h2>
+  <p>To the fullest extent allowed by law, The Fresh Grove and its partners are not liable for indirect, incidental, or consequential damages arising from your use of this site. Some states do not allow certain limitations; in those states, liability is limited to the maximum extent permitted.</p>
+  <h2>Governing law</h2>
+  <p>These terms are governed by the laws of the United States, without regard to conflict-of-law rules.</p>
+  <h2>Contact</h2>
+  <p>Questions: Instagram <a href="https://instagram.com/the.fresh.grove" target="_blank" rel="noopener">@the.fresh.grove</a>, or the note form on the team page.</p>
+</main>
+<footer class="prod-foot">
+  <p class="foot-brand">The Fresh <span>Grove</span></p>
+  <div class="foot-icons">
+    <a class="foot-icon" href="https://instagram.com/the.fresh.grove" target="_blank" rel="noopener" aria-label="The Fresh Grove on Instagram, @the.fresh.grove">
+      <svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><rect x="3.4" y="3.4" width="17.2" height="17.2" rx="5.2" stroke="currentColor" stroke-width="1.7"/><circle cx="12" cy="12" r="4.15" stroke="currentColor" stroke-width="1.7"/><circle cx="17.15" cy="6.85" r="1.05" fill="currentColor"/></svg>
+    </a>
+    <a class="foot-icon" href="mailto:partners@thefreshgrove.team" aria-label="Email partners@thefreshgrove.team">
+      <svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><rect x="3.2" y="5.2" width="17.6" height="13.6" rx="2" stroke="currentColor" stroke-width="1.7"/><path d="M4 7.2 12 13l8-5.8" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"/></svg>
+    </a>
+  </div>
+  <p class="foot-legal">The Fresh Grove is a team of independent Ringana Fresh Partners (pending U.S. launch). This is a team page and is not an official Ringana corporate website. These statements have not been evaluated by the Food and Drug Administration. Products are not intended to diagnose, treat, cure, or prevent any disease. No income is guaranteed.</p>
+  <p class="foot-copy">&copy; 2026 The Fresh Grove. All rights reserved. · <a href="privacy.html">Privacy Policy</a> · <a href="terms.html">Terms of Use</a></p>
+</footer>
+<script>
+(function () {
+  var brand = document.getElementById("brandTitle");
+  var link = document.querySelector(".site-brand");
+  function slugFromUrl() {
+    try {
+      var q = new URLSearchParams(location.search).get("with") || "";
+      if (q) return q.trim().toLowerCase();
+    } catch (e) {}
+    var m = String(location.pathname || "").match(/\/with\/([a-z0-9][a-z0-9-]{1,38})\/?/i);
+    return m ? m[1].toLowerCase() : "";
+  }
+  var slug = slugFromUrl();
+  if (!slug) return;
+  document.body.classList.add("is-partner");
+  var who = slug.replace(/-/g, " ").replace(/\b[a-z]/g, function (c) { return c.toUpperCase(); }).split(/\s+/)[0];
+  if (brand && link && who) {
+    link.classList.add("is-partner");
+    brand.innerHTML = "Ringana <em>with</em> " + who.replace(/&/g, "&amp;").replace(/</g, "&lt;");
+  }
+  var cta = document.querySelector(".nav-cta:not(.nav-team-signin)");
+  if (cta && who) cta.textContent = "Join " + who;
+  document.querySelectorAll("a[href]").forEach(function (a) {
+    var href = a.getAttribute("href") || "";
+    if (!/^(home|products|index|privacy|terms)\.html/.test(href)) return;
+    if (/[?&]with=/.test(href)) return;
+    var hash = "";
+    var cut = href.indexOf("#");
+    if (cut >= 0) { hash = href.slice(cut); href = href.slice(0, cut); }
+    a.setAttribute("href", href + (href.indexOf("?") >= 0 ? "&" : "?") + "with=" + encodeURIComponent(slug) + hash);
+  });
+})();
+</script>
+</body>
+</html>
