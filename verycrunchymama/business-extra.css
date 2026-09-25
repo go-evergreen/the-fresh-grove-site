@@ -325,6 +325,25 @@
 .faq-group details p{padding-top:.75rem;font-size:.97rem;max-width:64ch}
 
 .hub-copy .btn{margin-top:.4rem}
+.app-pair{display:flex;flex-wrap:wrap;gap:1.1rem 1.6rem;margin:1.1rem 0 .4rem}
+.app-pick{
+  margin:0;padding:0;border:0;background:none;color:inherit;cursor:pointer;
+  display:flex;align-items:center;gap:.75rem;text-align:left;font:inherit
+}
+.app-pick img{
+  width:72px;height:72px;border-radius:22%;
+  box-shadow:0 10px 22px rgba(12,24,18,.18);
+  outline:2px solid transparent;outline-offset:3px;
+  transition:outline-color .2s ease,transform .2s ease
+}
+.app-pick.is-on img{outline-color:var(--brass-light);transform:translateY(-2px)}
+.app-pick span{display:flex;flex-direction:column;gap:.15rem}
+.app-pick b{font-family:"Fraunces",serif;font-weight:400;font-size:1.15rem;line-height:1.1}
+.app-pick small{font-size:.72rem;letter-spacing:.08em;text-transform:uppercase;opacity:.62}
+.app-blurb{margin-top:.9rem}
+.app-blurb.is-on{animation:appPop .38s ease}
+.hub.is-shelf .phone-dock{display:none}
+@keyframes appPop{from{opacity:0;transform:translateY(10px)}to{opacity:1;transform:none}}
 
 .opportunity-grid{align-items:start}
 .opportunity-card:nth-child(2){transform:translateY(.45rem)}

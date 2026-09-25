@@ -783,7 +783,7 @@ html.is-inapp .site-nav{flex-wrap:nowrap;}
 .letter-submit{width:100%;margin-top:.35rem;cursor:pointer;}
 </style>
 <link rel="stylesheet" href="site-extra.css?v=8">
-<link rel="stylesheet" href="business-extra.css?v=7">
+<link rel="stylesheet" href="business-extra.css?v=8">
 <link rel="stylesheet" href="grove-demo.css?v=4">
 </head>
 <body>
@@ -892,19 +892,41 @@ html.is-inapp .site-nav{flex-wrap:nowrap;}
 <section class="hub" id="hub">
   <div class="hub-stage">
     <div class="hub-copy reveal">
-      <p class="eyebrow">The app</p>
+      <p class="eyebrow">The hub</p>
       <h2 class="section-title">Where this team actually lives.</h2>
-      <p>This team lives in First Seeds. The phone is the walkthrough — tap around, or tap Next.</p>
-      <p class="hub-hold">You’re walked from day one. A person who knows your name, zooms you can actually get to, and a live team that stays.</p>
-      <ul class="hub-points">
-        <li><strong>A runway, not a scramble.</strong> Your story, first products, your page, then who you’d tell — in that order, so you always know the next quiet step. Peek ahead anytime. When you’re ready, Post Studio, the calendar, and growing a team are already here.</li>
-        <li><strong>Look it up in one place.</strong> Company, products, ingredients, and launch facts — all searchable, so you can find what you need.</li>
-        <li><strong>Dates, drafts, pictures, and videos.</strong> Grove Gatherings and October on the calendar. A vault of ready posts, plus pictures and videos you can save. Add your own events and follow-ups, so the week has a home.</li>
-        <li><strong>Your page, your inbox.</strong> A lead page that’s yours. Curious names land with you. Leaders check in and send cheers — without a group chat swallowing it.</li>
-        <li><strong>Connect directly with your clients.</strong> Their side is The Fresh Shelf. Yours is the Clients tab — names, notes, and a line back to you.</li>
-      </ul>
-      <p class="hub-more">The Fresh Shelf is already live for clients and potentials. This still isn’t everything in the hub.</p>
-      <a href="#" class="btn btn-brass" data-open-connect>Join the Founding List</a>
+      <div class="app-pair" id="appPair">
+        <button type="button" class="app-pick" data-app="seeds" aria-expanded="false" aria-controls="blurbSeeds">
+          <img src="first-seeds.png" alt="" width="84" height="84">
+          <span><b>First Seeds</b><small>The team hub</small></span>
+        </button>
+        <button type="button" class="app-pick" data-app="shelf" aria-expanded="false" aria-controls="blurbShelf">
+          <img src="fresh-shelf.png" alt="" width="84" height="84">
+          <span><b>The Fresh Shelf</b><small>The client app</small></span>
+        </button>
+      </div>
+      <div class="app-blurb" id="blurbSeeds" hidden>
+        <p>First Seeds is this team’s exclusive, custom-built hub — the runway to October, plus the library, calendar, inbox, and client desk that stay after. The phone is a walkthrough — tap around, or tap Next.</p>
+        <p class="hub-hold">You’re led, guided, and supported from day one. A person who knows your name, zooms you can actually get to, and a live team that stays. You’re not guessing — and you’re not doing this alone.</p>
+        <ul class="hub-points">
+          <li><strong>A runway, not a scramble.</strong> Your story, first products, your page, then who you’d tell — in that order, so you always know the next quiet step. Peek ahead anytime. When you’re ready, Post Studio, the calendar, and growing a team are already here.</li>
+          <li><strong>Look it up in one place.</strong> Company, products, ingredients, and launch facts — all searchable, so you can find what you need.</li>
+          <li><strong>Dates, drafts, pictures, and videos.</strong> Grove Gatherings and October. A vault of posts. Pictures and videos you can save. Add your own follow-ups.</li>
+          <li><strong>Your page, your inbox.</strong> A lead page that’s yours. Curious names land with you. Leaders check in and send cheers — without a group chat swallowing it.</li>
+          <li><strong>Connect directly with your clients.</strong> Their side is The Fresh Shelf. Yours is the Clients tab — names, notes, and a line back to you.</li>
+        </ul>
+        <a href="#" class="btn btn-brass" data-open-connect>Join the Founding List</a>
+      </div>
+      <div class="app-blurb" id="blurbShelf" hidden>
+        <p>The Fresh Shelf is the other side of this same grove — the app for the people you share with. It’s already live. Each partner has their own link.</p>
+        <p class="hub-hold">They can look, match, and ask. You stay the person they come back to.</p>
+        <ul class="hub-points">
+          <li><strong>A quiz, not a guess.</strong> It matches them to skincare, body care, and supplements — then they can look the line up themselves.</li>
+          <li><strong>Look it up, then ask you.</strong> The facts live in the app. The real question comes back to the partner who shared it.</li>
+          <li><strong>A line, not a group chat.</strong> Questions go to that person. Nobody else is in the thread.</li>
+          <li><strong>Their link, their shelf.</strong> Their person, on a link that’s theirs. The rest of the grove stays with the team.</li>
+        </ul>
+        <a href="#" class="btn btn-brass" data-open-connect>Join the Founding List</a>
+      </div>
     </div>
 <div class="phone-dock" id="phoneDock" aria-label="First Seeds hub">
       <div class="phone-wrap">
@@ -2030,6 +2052,47 @@ window.FS_SITE_LEAD={slug:"verycrunchymama",root:"#site-signup"};
 </script>
 <script src="grove-plant.js"></script>
 <script src="grove-demo.js?v=3"></script>
+<script>
+(function () {
+  var hub = document.getElementById("hub");
+  var pair = document.getElementById("appPair");
+  var seeds = document.getElementById("blurbSeeds");
+  var shelf = document.getElementById("blurbShelf");
+  var phone = document.getElementById("phoneDock");
+  if (!hub || !pair || !seeds || !shelf) return;
+  var open = "";
+  function show(which) {
+    open = which;
+    seeds.hidden = which !== "seeds";
+    shelf.hidden = which !== "shelf";
+    seeds.classList.toggle("is-on", which === "seeds");
+    shelf.classList.toggle("is-on", which === "shelf");
+    hub.classList.toggle("is-shelf", which === "shelf");
+    if (phone) phone.hidden = which === "shelf";
+    pair.querySelectorAll(".app-pick").forEach(function (btn) {
+      var on = btn.getAttribute("data-app") === which;
+      btn.classList.toggle("is-on", on);
+      btn.setAttribute("aria-expanded", on ? "true" : "false");
+    });
+  }
+  pair.addEventListener("click", function (e) {
+    var btn = e.target.closest(".app-pick");
+    if (!btn) return;
+    var which = btn.getAttribute("data-app");
+    show(open === which ? "" : which);
+  });
+  if ("IntersectionObserver" in window) {
+    var seen = false;
+    var io = new IntersectionObserver(function (entries) {
+      if (seen || !entries.some(function (en) { return en.isIntersecting; })) return;
+      seen = true;
+      if (!open) show("seeds");
+      io.disconnect();
+    }, { threshold: 0.45 });
+    io.observe(pair);
+  }
+})();
+</script>
 <script src="grove-page.js"></script>
 </body>
 </html>
