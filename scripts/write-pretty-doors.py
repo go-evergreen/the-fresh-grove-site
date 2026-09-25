@@ -28,7 +28,7 @@ SLUGS = [
     "robert", "robin", "roselyne", "sammy", "sandra", "sara", "sarah",
     "sarah-2", "sarah-cook", "shannon", "susan-kobik", "tania", "tanya", "tara",
     "taylor", "taylor-shelf", "tessa", "tori", "traci", "tracy", "tracy-2",
-    "tyler", "vanessa", "ynes",
+    "tyler", "vanessa", "verycrunchymama", "ynes",
     "amanda-givens", "aubrie", "holistically-balanced-grace-co",
 ]
 
