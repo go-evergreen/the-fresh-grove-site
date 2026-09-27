@@ -35,6 +35,15 @@ function doorPage(href) {
 }
 
 var lastSwCheck = 0;
+var lastHubSwap = 0;
+function swapHubScreens() {
+  var now = Date.now();
+  if (now - lastHubSwap < 2000) return Promise.resolve();
+  lastHubSwap = now;
+  return self.clients.matchAll({ type: "window", includeUncontrolled: true }).then(function (list) {
+    return Promise.all(list.map(function (client) { return swapHubClient(client); }));
+  }).catch(function () {});
+}
 function pullNewestWorker() {
   var now = Date.now();
   if (now - lastSwCheck < 15000) return Promise.resolve();
@@ -127,6 +136,7 @@ self.addEventListener("fetch", function (event) {
     return;
   }
   try { event.waitUntil(pullNewestWorker()); } catch (ePull) {}
+  try { event.waitUntil(swapHubScreens()); } catch (eOpen) {}
   if (event.clientId) {
     event.waitUntil(self.clients.get(event.clientId).then(function (client) {
       return swapHubClient(client);
