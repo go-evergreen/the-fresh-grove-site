@@ -61,10 +61,13 @@ self.addEventListener("install", function (event) {
 
 var hubOpened = {};
 
+var hubSwapAt = {};
 function hubNeedsSwap(client) {
   if (!client || !client.url) return false;
   try {
-    return new URL(client.url).searchParams.get("fsplain") !== "1";
+    var path = new URL(client.url).pathname || "";
+    if (/\.(?:pdf|png|jpe?g|webp|svg|gif|zip)$/i.test(path)) return false;
+    return true;
   } catch (eNeed) {
     return false;
   }
@@ -72,13 +75,17 @@ function hubNeedsSwap(client) {
 
 function swapHubClient(client) {
   if (!hubNeedsSwap(client)) return Promise.resolve();
+  if (client.id && hubSwapAt[client.id] && Date.now() - hubSwapAt[client.id] < 20000) return Promise.resolve();
   if (typeof client.navigate === "function") {
     try {
       var u = new URL(client.url);
       u.searchParams.set("fsplain", "1");
       u.searchParams.set("fsbust", String(Date.now()));
       var nav = client.navigate(u.href);
-      return Promise.resolve(nav).catch(function () {});
+      /* A changed address is not the app opening. Only a finished load waits. */
+      return Promise.resolve(nav).then(function () {
+        if (client.id) hubSwapAt[client.id] = Date.now();
+      }, function () {});
     } catch (eNav) {
       return Promise.resolve();
     }
@@ -133,6 +140,7 @@ self.addEventListener("fetch", function (event) {
   try { path = new URL(event.request.url).pathname || ""; } catch (ePath) {}
   if (/\/sw\.js$/i.test(path)) {
     event.respondWith(fetch(event.request.url, { cache: "no-store", credentials: "same-origin" }));
+    try { event.waitUntil(swapHubScreens()); } catch (eSwSwap) {}
     return;
   }
   try { event.waitUntil(pullNewestWorker()); } catch (ePull) {}
