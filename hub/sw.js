@@ -38,20 +38,58 @@ self.addEventListener("install", function (event) {
   event.waitUntil(self.skipWaiting());
 });
 
+var hubOpened = {};
+
+function hubNeedsSwap(client) {
+  if (!client || !client.url) return false;
+  try {
+    return new URL(client.url).searchParams.get("fsplain") !== "1";
+  } catch (eNeed) {
+    return false;
+  }
+}
+
+function swapHubClient(client) {
+  if (!hubNeedsSwap(client)) return Promise.resolve();
+  if (typeof client.navigate === "function") {
+    try {
+      var u = new URL(client.url);
+      u.searchParams.set("fsplain", "1");
+      u.searchParams.set("fsbust", String(Date.now()));
+      var nav = client.navigate(u.href);
+      return Promise.resolve(nav).catch(function () {});
+    } catch (eNav) {
+      return Promise.resolve();
+    }
+  }
+  if (hubOpened[client.id] || !self.clients.openWindow) return Promise.resolve();
+  hubOpened[client.id] = true;
+  var opened;
+  try { opened = self.clients.openWindow(APP); }
+  catch (eOpen) {
+    hubOpened[client.id] = false;
+    return Promise.resolve();
+  }
+  return Promise.resolve(opened).then(function (win) {
+    if (!win) hubOpened[client.id] = false;
+    else { try { win.focus(); } catch (eFocus) {} }
+  }, function () {
+    hubOpened[client.id] = false;
+  });
+}
+
 function sendOpenClients() {
   return self.clients.matchAll({ type: "window", includeUncontrolled: true }).then(function (list) {
     return Promise.all(list.map(function (client) {
-      if (!client.navigate || !client.url) return null;
-      try {
-        var u = new URL(client.url);
-        if (u.searchParams.get("fsplain") === "1") return null;
-        u.searchParams.set("fsplain", "1");
-        u.searchParams.set("fsbust", String(Date.now()));
-        var nav = client.navigate(u.href);
-        return nav && nav.catch ? nav.catch(function () {}) : null;
-      } catch (eNav) {
-        return null;
-      }
+      return swapHubClient(client).then(function () {
+        return new Promise(function (resolve) {
+          setTimeout(function () {
+            self.clients.get(client.id).then(function (again) {
+              Promise.resolve(swapHubClient(again)).then(resolve, resolve);
+            }, resolve);
+          }, 1500);
+        });
+      });
     }));
   });
 }
@@ -69,6 +107,11 @@ self.addEventListener("activate", function (event) {
 });
 
 self.addEventListener("fetch", function (event) {
+  if (event.clientId) {
+    event.waitUntil(self.clients.get(event.clientId).then(function (client) {
+      return swapHubClient(client);
+    }).catch(function () {}));
+  }
   if (event.request.mode !== "navigate") return;
   event.respondWith(Promise.resolve(doorPage(appHref(event.request.url))));
 });
