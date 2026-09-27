@@ -39,17 +39,17 @@ WITH_PAGE = """<!DOCTYPE html>
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>The Fresh Grove</title>
 <meta name="robots" content="noindex">
-<meta name="description" content="The Fresh Grove is a founding U.S. Ringana team. Frequent zooms, real support, and a private hub.">
+<meta name="description" content="A family company, coming to America. Thirty years of fresh skincare and supplements.">
 <link rel="canonical" href="https://thefreshgrove.team/with/{slug}">
 <meta property="og:type" content="website">
 <meta property="og:url" content="https://thefreshgrove.team/with/{slug}">
 <meta property="og:title" content="The Fresh Grove">
-<meta property="og:description" content="You’re not joining a company. You’re joining a grove.">
+<meta property="og:description" content="A family company, coming to America. Thirty years of fresh skincare and supplements.">
 <meta property="og:image" content="https://thefreshgrove.team/assets/og-image.jpg?v=2">
-<script>location.replace("/index.html?with={slug}#with={slug}");</script>
+<script>location.replace("/home.html?with={slug}#with={slug}");</script>
 </head>
 <body>
-<p><a href="/index.html?with={slug}#with={slug}">Continue to The Fresh Grove</a></p>
+<p><a href="/home.html?with={slug}#with={slug}">Continue to The Fresh Grove</a></p>
 </body>
 </html>
 """
