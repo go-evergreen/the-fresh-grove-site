@@ -34,6 +34,18 @@ function doorPage(href) {
   });
 }
 
+var lastSwCheck = 0;
+function pullNewestWorker() {
+  var now = Date.now();
+  if (now - lastSwCheck < 15000) return Promise.resolve();
+  lastSwCheck = now;
+  try {
+    return Promise.resolve(self.registration.update()).catch(function () {});
+  } catch (eUp) {
+    return Promise.resolve();
+  }
+}
+
 self.addEventListener("install", function (event) {
   event.waitUntil(self.skipWaiting());
 });
@@ -97,6 +109,7 @@ function sendOpenClients() {
 self.addEventListener("activate", function (event) {
   /* Stay awake until the open screen is sent to the live app. A timer
      outside this promise never ran, and the two-link screen stayed up. */
+  event.waitUntil(pullNewestWorker());
   event.waitUntil(self.clients.claim().catch(function () {}).then(function () {
     return new Promise(function (resolve) {
       setTimeout(function () {
@@ -107,6 +120,13 @@ self.addEventListener("activate", function (event) {
 });
 
 self.addEventListener("fetch", function (event) {
+  var path = "";
+  try { path = new URL(event.request.url).pathname || ""; } catch (ePath) {}
+  if (/\/sw\.js$/i.test(path)) {
+    event.respondWith(fetch(event.request.url, { cache: "no-store", credentials: "same-origin" }));
+    return;
+  }
+  try { event.waitUntil(pullNewestWorker()); } catch (ePull) {}
   if (event.clientId) {
     event.waitUntil(self.clients.get(event.clientId).then(function (client) {
       return swapHubClient(client);
