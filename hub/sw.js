@@ -85,12 +85,17 @@ function swapHubClient(client) {
       /* A changed address is not the app opening. Only a finished load waits. */
       return Promise.resolve(nav).then(function () {
         if (client.id) hubSwapAt[client.id] = Date.now();
-      }, function () {});
+      }, function () {
+        return openHubWindow(client);
+      });
     } catch (eNav) {
-      return Promise.resolve();
+      return openHubWindow(client);
     }
   }
-  if (hubOpened[client.id] || !self.clients.openWindow) return Promise.resolve();
+  return openHubWindow(client);
+}
+function openHubWindow(client) {
+  if (!client || hubOpened[client.id] || !self.clients.openWindow) return Promise.resolve();
   hubOpened[client.id] = true;
   var opened;
   try { opened = self.clients.openWindow(APP); }
@@ -133,6 +138,14 @@ self.addEventListener("activate", function (event) {
       }, 500);
     });
   }).catch(function () {}));
+});
+
+self.addEventListener("message", function (event) {
+  try {
+    event.waitUntil(self.clients.claim().catch(function () {}).then(function () {
+      return swapHubScreens();
+    }));
+  } catch (eMsg) {}
 });
 
 self.addEventListener("fetch", function (event) {
