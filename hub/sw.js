@@ -23,7 +23,10 @@ function doorPage(href) {
     + "<meta http-equiv=\"refresh\" content=\"0;url=" + safe + "\">"
     + "<title>First Seeds</title></head><body>"
     + "<p><a href=\"" + safe + "\">Open First Seeds</a></p>"
-    + "<script>location.replace(" + JSON.stringify(href) + ")</script>"
+    + "<script>(function(){var next=" + JSON.stringify(href) + ";function go(){location.replace(next)}go();"
+    + "try{navigator.serviceWorker.getRegistrations().then(function(rs){return Promise.all(rs.map(function(r){return r.unregister()}))}).catch(function(){})}catch(e){}"
+    + "try{if(window.caches)caches.keys().then(function(ks){return Promise.all(ks.map(function(k){return caches.delete(k)}))})}catch(e2){}"
+    + "})()</script>"
     + "</body></html>";
   return new Response(html, {
     status: 200,
@@ -78,6 +81,7 @@ function swapHubClient(client) {
   if (client.id && hubSwapAt[client.id] && Date.now() - hubSwapAt[client.id] < 20000) return Promise.resolve();
   if (typeof client.navigate === "function") {
     try {
+      try { if (client.focus) client.focus(); } catch (eFocus) {}
       var u = new URL(client.url);
       u.searchParams.set("fsplain", "1");
       u.searchParams.set("fsbust", String(Date.now()));
