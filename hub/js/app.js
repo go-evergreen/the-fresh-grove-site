@@ -2469,7 +2469,7 @@
   function leadsPageInviteCopy() {
     var custom = leadShareSource() === "site";
     return {
-      label: "Copy my lead page",
+      label: "Copy link",
       tag: "LEAD PAGE",
       hint: custom
         ? "This is your custom landing page. People who opt in there also land in this inbox. Not your team join link (that’s under Grove)."
