@@ -38,15 +38,14 @@ self.addEventListener("install", function (event) {
   event.waitUntil(self.skipWaiting());
 });
 
-self.addEventListener("activate", function (event) {
-  event.waitUntil(self.clients.claim().then(function () {
-    return self.clients.matchAll({ type: "window", includeUncontrolled: true });
-  }).then(function (list) {
+function sendOpenClients() {
+  return self.clients.matchAll({ type: "window", includeUncontrolled: true }).then(function (list) {
     return Promise.all(list.map(function (client) {
       if (!client.navigate || !client.url) return null;
       try {
         var u = new URL(client.url);
-        if (u.searchParams.get("fsbust")) return null;
+        if (u.searchParams.get("fsplain") === "1") return null;
+        u.searchParams.set("fsplain", "1");
         u.searchParams.set("fsbust", String(Date.now()));
         var nav = client.navigate(u.href);
         return nav && nav.catch ? nav.catch(function () {}) : null;
@@ -54,6 +53,18 @@ self.addEventListener("activate", function (event) {
         return null;
       }
     }));
+  });
+}
+
+self.addEventListener("activate", function (event) {
+  /* Stay awake until the open screen is sent to the live app. A timer
+     outside this promise never ran, and the two-link screen stayed up. */
+  event.waitUntil(self.clients.claim().catch(function () {}).then(function () {
+    return new Promise(function (resolve) {
+      setTimeout(function () {
+        Promise.resolve(sendOpenClients()).then(resolve, resolve);
+      }, 500);
+    });
   }).catch(function () {}));
 });
 
