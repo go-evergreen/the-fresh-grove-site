@@ -214,7 +214,7 @@ try {
     brand.innerHTML = "Ringana <em>with</em> " + who.replace(/&/g, "&amp;").replace(/</g, "&lt;");
     document.title = "Ringana with " + who;
     var cta = document.querySelector(".nav-cta:not(.nav-team-signin)");
-    if (cta) cta.textContent = "Join " + who;
+    if (cta) cta.textContent = "Get first access";
   }
   function labelFromSlug(s) {
     return String(s || "").replace(/-/g, " ").replace(/\b[a-z]/g, function (c) { return c.toUpperCase(); });

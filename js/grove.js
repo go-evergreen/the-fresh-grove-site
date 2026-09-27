@@ -157,7 +157,7 @@
         chip.textContent = "";
       }
     }
-    if (cta) cta.textContent = lockedTo ? ("Join " + firstName(selected.name)) : "Join Us";
+    if (cta) cta.textContent = lockedTo ? "Get first access" : "Join Us";
     document.body.classList.toggle("is-partner", !!lockedTo);
     paintPartnerBrand(lockedTo ? firstName(selected.name) : "");
     if (lockedTo) keepPartnerLinks(selected.slug);

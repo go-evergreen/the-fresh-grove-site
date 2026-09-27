@@ -96,7 +96,7 @@ try {
     brand.innerHTML = "Ringana <em>with</em> " + who.replace(/&/g, "&amp;").replace(/</g, "&lt;");
   }
   var cta = document.querySelector(".nav-cta:not(.nav-team-signin)");
-  if (cta && who) cta.textContent = "Join " + who;
+  if (cta && who) cta.textContent = "Get first access";
   document.querySelectorAll("a[href]").forEach(function (a) {
     var href = a.getAttribute("href") || "";
     if (!/^(home|products|index|privacy|terms)\.html/.test(href)) return;
