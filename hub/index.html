@@ -8,6 +8,15 @@
 <meta name="theme-color" content="#abb09a">
 <meta name="referrer" content="strict-origin-when-cross-origin">
 <script>
+try {
+  var next = new URL("https://app.thefreshgrove.team/index.html");
+  var cur = new URL(location.href);
+  cur.searchParams.forEach(function (v, k) { next.searchParams.append(k, v); });
+  if (cur.hash) next.hash = cur.hash;
+  location.replace(next.href);
+} catch (eHub) {}
+</script>
+<script>
 try { if (window.top !== window.self) window.top.location.replace(window.location.href); } catch (e) {}
 try {
   var warmAt = Number(localStorage.getItem("fsWarm") || sessionStorage.getItem("fsWarm") || 0);
