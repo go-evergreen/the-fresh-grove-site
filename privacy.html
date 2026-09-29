@@ -28,9 +28,9 @@ try {
     <nav class="site-nav" aria-label="Primary">
       <a href="home.html" class="nav-page">Home</a>
       <a href="products.html" class="nav-page">The Products</a>
-      <a href="index.html" class="nav-page">The Business</a>
+      <a href="business.html" class="nav-page">The Business</a>
       <a href="https://app.thefreshgrove.team/?signin=1&amp;door=team" class="nav-cta nav-team-signin">Sign in</a>
-      <a href="index.html#connect" class="nav-cta">Join Us</a>
+      <a href="business.html#connect" class="nav-cta">Join Us</a>
     </nav>
   </div>
 </header>
@@ -99,7 +99,7 @@ try {
   if (cta && who) cta.textContent = "Get first access";
   document.querySelectorAll("a[href]").forEach(function (a) {
     var href = a.getAttribute("href") || "";
-    if (!/^(home|products|index|privacy|terms)\.html/.test(href)) return;
+    if (!/^(home|products|index|business|privacy|terms)\.html/.test(href)) return;
     if (/[?&]with=/.test(href)) return;
     var hash = "";
     var cut = href.indexOf("#");

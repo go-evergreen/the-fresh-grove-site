@@ -181,7 +181,7 @@
     if (!slug) return;
     qsa("a[href]").forEach(function (a) {
       var href = a.getAttribute("href") || "";
-      if (!/^(home|products|index|privacy|terms)\.html/.test(href)) return;
+      if (!/^(home|products|index|business|privacy|terms)\.html/.test(href)) return;
       if (/[?&]with=/.test(href)) return;
       var hash = "";
       var cut = href.indexOf("#");

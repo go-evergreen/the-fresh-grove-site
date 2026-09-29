@@ -5,6 +5,16 @@
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <title>The Fresh Grove — a founding Ringana team</title>
 <meta name="description" content="Ringana is a family company coming to America. Thirty years of fresh skincare and supplements. The Fresh Grove is a founding U.S. team.">
+<meta property="og:type" content="website">
+<meta property="og:title" content="The Fresh Grove — a founding Ringana team">
+<meta property="og:description" content="Ringana is a family company coming to America. Thirty years of fresh skincare and supplements. The Fresh Grove is a founding U.S. team.">
+<meta property="og:image" content="https://thefreshgrove.team/assets/og-image.jpg?v=2">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="The Fresh Grove — a founding Ringana team">
+<meta name="twitter:description" content="Ringana is a family company coming to America. Thirty years of fresh skincare and supplements. The Fresh Grove is a founding U.S. team.">
+<meta name="twitter:image" content="https://thefreshgrove.team/assets/og-image.jpg?v=2">
 <meta name="theme-color" content="#1c3227">
 <script>
 try {
@@ -30,9 +40,9 @@ try {
     <nav class="site-nav" aria-label="Primary">
       <a href="home.html" class="nav-page nav-current" aria-current="page">Home</a>
       <a href="products.html" class="nav-page">The Products</a>
-      <a href="index.html" class="nav-page">The Business</a>
+      <a href="business.html" class="nav-page">The Business</a>
       <a href="https://app.thefreshgrove.team/?signin=1&amp;door=team" class="nav-cta nav-team-signin">Sign in</a>
-      <a href="index.html#connect" class="nav-cta">Join Us</a>
+      <a href="business.html#connect" class="nav-cta">Join Us</a>
     </nav>
   </div>
 </header>
@@ -68,7 +78,7 @@ try {
             <span class="hero-sprout-hint">Fresh, then it expires.</span>
           </span>
         </a>
-        <a href="index.html" class="hero-explore">
+        <a href="business.html" class="hero-explore">
           <span class="hero-sprout">
             <span class="hero-sprout-glow"></span>
             <span class="hero-join-icon" aria-hidden="true">
@@ -96,7 +106,7 @@ try {
         </a>
       </div>
       <div class="hero-stats" id="heroStats">
-        <a href="index.html" class="hero-stat">
+        <a href="business.html" class="hero-stat">
           <b id="heroPre">—</b>
           <span>Days to pre-reg</span>
         </a>
@@ -143,7 +153,7 @@ try {
           <span>Fresh, then it expires. A short look at how they’re made, and the ones people ask about first.</span>
           <em>See the products</em>
         </a>
-        <a class="home-door" href="index.html">
+        <a class="home-door" href="business.html">
           <b>The business</b>
           <span>A founding U.S. team, a private hub, and support from day one. Partner pre-registration opens October 1.</span>
           <em>See the business</em>
@@ -205,7 +215,7 @@ try {
     paint(labelFromSlug(slug));
     document.querySelectorAll("a[href]").forEach(function (a) {
       var href = a.getAttribute("href") || "";
-      if (!/^(home|products|index|privacy|terms)\.html/.test(href)) return;
+      if (!/^(home|products|index|business|privacy|terms)\.html/.test(href)) return;
       if (/[?&]with=/.test(href)) return;
       var hash = "";
       var cut = href.indexOf("#");
