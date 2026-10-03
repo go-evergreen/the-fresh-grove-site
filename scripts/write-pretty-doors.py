@@ -26,7 +26,7 @@ SLUGS = [
     "monica", "morgan", "morgan-2", "nichole", "nicole", "nicole-2", "nikki",
     "patti", "rachel", "rachel-2", "rachel-johnson", "rachel-wolfe", "rainier",
     "robert", "robin", "roselyne", "sammy", "sandra", "sara", "sarah",
-    "sarah-2", "sarah-cook", "shannon", "susan-kobik", "tania", "tanya", "tara",
+    "sarah-2", "sarah-angelini", "sarah-cook", "shannon", "susan-kobik", "tania", "tanya", "tara",
     "taylor", "taylor-shelf", "tessa", "tori", "traci", "tracy", "tracy-2",
     "tyler", "vanessa", "verycrunchymama", "ynes",
     "amanda-givens", "aubrie", "holistically-balanced-grace-co",
