@@ -73,7 +73,18 @@
   var leadPretty = String(path || "").match(/^\/lead\/([a-z0-9][a-z0-9-]{1,38})\/?$/i);
   if (leadPretty) {
     var leadSlug = decodeURIComponent(leadPretty[1] || "").trim().toLowerCase();
-    location.replace("/lead.html?p=" + encodeURIComponent(leadSlug) + "#p=" + encodeURIComponent(leadSlug));
+    /* Stay on /lead/slug. Instagram drops ?p= on the hop and the page
+       then says it isn't live. */
+    fetch("/lead.html", { credentials: "same-origin", cache: "no-store" }).then(function (res) {
+      if (!res.ok) throw new Error("missing");
+      return res.text();
+    }).then(function (html) {
+      document.open();
+      document.write(html);
+      document.close();
+    }).catch(function () {
+      location.replace("/lead.html?p=" + encodeURIComponent(leadSlug) + "#p=" + encodeURIComponent(leadSlug));
+    });
     return;
   }
   var hasLead = /[?&]p=/.test(search) || /[#&?]p=/.test(hash);

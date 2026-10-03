@@ -68,7 +68,23 @@ LEAD_PAGE = """<!DOCTYPE html>
 <meta property="og:title" content="The Fresh Grove">
 <meta property="og:description" content="Leave your info to hear first.">
 <meta property="og:image" content="https://thefreshgrove.team/assets/og-image.jpg?v=2">
-<script>location.replace("/lead.html?p={slug}#p={slug}");</script>
+<script>
+/* Stay on /lead/slug. A hop to ?p= gets stripped by Instagram and
+   lands on the empty "isn't live yet" page. */
+(function () {{
+  var fallback = "/lead.html?p={slug}#p={slug}";
+  fetch("/lead.html", {{ credentials: "same-origin", cache: "no-store" }}).then(function (res) {{
+    if (!res.ok) throw new Error("missing");
+    return res.text();
+  }}).then(function (html) {{
+    document.open();
+    document.write(html);
+    document.close();
+  }}).catch(function () {{
+    location.replace(fallback);
+  }});
+}})();
+</script>
 </head>
 <body>
 <p><a href="/lead.html?p={slug}#p={slug}">Continue to the lead page</a></p>

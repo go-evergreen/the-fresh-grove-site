@@ -12,7 +12,23 @@
 <meta property="og:title" content="The Fresh Grove">
 <meta property="og:description" content="Leave your info to hear first.">
 <meta property="og:image" content="https://thefreshgrove.team/assets/og-image.jpg?v=2">
-<script>location.replace("/lead.html?p=robin#p=robin");</script>
+<script>
+/* Stay on /lead/slug. A hop to ?p= gets stripped by Instagram and
+   lands on the empty "isn't live yet" page. */
+(function () {
+  var fallback = "/lead.html?p=robin#p=robin";
+  fetch("/lead.html", { credentials: "same-origin", cache: "no-store" }).then(function (res) {
+    if (!res.ok) throw new Error("missing");
+    return res.text();
+  }).then(function (html) {
+    document.open();
+    document.write(html);
+    document.close();
+  }).catch(function () {
+    location.replace(fallback);
+  });
+})();
+</script>
 </head>
 <body>
 <p><a href="/lead.html?p=robin#p=robin">Continue to the lead page</a></p>
