@@ -1,0 +1,226 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>The products — The Fresh Grove</title>
+<meta name="robots" content="noindex">
+<link rel="icon" href="../assets/favicon.svg" type="image/svg+xml">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300;0,9..144,400;0,9..144,500;1,9..144,400&family=Work+Sans:wght@300;400;500;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="../css/grove.css?v=fresh110">
+<link rel="stylesheet" href="library.css?v=life13">
+</head>
+<body class="products-page">
+
+<header class="site-header is-scrolled" id="siteHeader">
+  <div class="site-header-inner">
+    <a href="index.html" class="site-brand">
+      <img class="site-logo" src="../assets/grove-logo.jpg" alt="" width="44" height="44">
+      <span class="site-brand-text">The Fresh <span>Grove</span></span>
+    </a>
+    <nav class="site-nav" aria-label="Library">
+      <a href="catalog.html" class="nav-page nav-current" aria-current="page">Products</a>
+      <a href="paid.html" class="nav-page">The plan</a>
+      <a href="october.html" class="nav-page">October</a>
+    </nav>
+  </div>
+</header>
+
+<header class="prod-intro lib-hero">
+  <div class="container">
+    <p class="eyebrow">The products</p>
+    <h1 class="section-title">What’s opening November 2.</h1>
+    <p class="lede">Face, body, hair, and the caps, matched to the U.S. shop. Open a row for what’s in it. Founder sets are at the top.</p>
+  </div>
+</header>
+
+<main class="lib-main">
+  <div class="container">
+    <section class="sets-fold" id="founderSets">
+      <button type="button" class="sets-toggle" id="setsToggle" aria-expanded="false" aria-controls="setGrid">
+        <span>
+          <b>Founder sets</b>
+          <i>30% off retail. Available to purchase now.</i>
+        </span>
+        <em>Open</em>
+      </button>
+      <div class="pack-list" id="setGrid" hidden></div>
+    </section>
+    <input class="prod-search" id="prodQ" type="search" placeholder="Search a name or ingredient" aria-label="Search products">
+    <div class="prod-tools" id="prodTools" role="group" aria-label="Filter">
+      <button type="button" class="on" data-cat="All">All</button>
+      <button type="button" data-cat="Face">Face</button>
+      <button type="button" data-cat="Body">Body</button>
+      <button type="button" data-cat="Hair">Hair</button>
+      <button type="button" data-cat="Supplements">Supplements</button>
+      <button type="button" data-cat="Soon">Coming soon</button>
+    </div>
+    <p id="prodN" class="lib-kicker"></p>
+    <div id="prodList"></div>
+
+    <p class="lib-disclaimer">Prices can change before the U.S. shop opens. These statements have not been evaluated by the Food and Drug Administration. Products are not intended to diagnose, treat, cure, or prevent any disease.</p>
+  </div>
+</main>
+
+<footer class="prod-foot">
+  <p class="foot-brand">The Fresh <span>Grove</span></p>
+  <p class="foot-legal">The Fresh Grove is a team of independent Ringana partners. This is not an official Ringana document.</p>
+</footer>
+<script src="library.js"></script>
+<script src="catalog.js?v=masks"></script>
+<script>
+(function () {
+  var items = (window.LIB_LEARN && window.LIB_LEARN.items) || [];
+  var list = document.getElementById("prodList");
+  var q = document.getElementById("prodQ");
+  var sets = document.getElementById("founderSets");
+  var cat = "All";
+  var SETS = [
+    { name: "Supplements", who: "Six best-selling caps", now: "$280.56", was: "$408.90", pics: [
+      ["cutouts/caps-d-gest.png", "d-gest"], ["cutouts/caps-moodoo.png", "moodoo"], ["cutouts/caps-move.png", "move"],
+      ["cutouts/caps-immu.png", "immu"], ["cutouts/caps-cerebro.png", "cerebro"], ["cutouts/beyond-omega.png", "omega"]
+    ]},
+    { name: "Light", who: "Oily and combination skin", now: "$351.61", was: "$502.30", pics: [
+      ["cutouts/fresh-hydro-serum.png", "Hydro serum"], ["cutouts/fresh-cream-light.png", "Cream light"],
+      ["cutouts/fresh-overnight-face-treatment.png", "Overnight"], ["cutouts/fresh-eye-serum.png", "Eye serum"],
+      ["cutouts/fresh-toner-pure.png", "Toner pure"], ["cutouts/fresh-scrub-face-body.png", "Scrub"],
+      ["cutouts/fresh-cleanser.png", "Cleanser"], ["cutouts/adds-glow.png", "Glow booster"]
+    ]},
+    { name: "Medium", who: "Normal and combination skin", now: "$356.16", was: "$508.90", pics: [
+      ["cutouts/fresh-hydro-serum.png", "Hydro serum"], ["cutouts/fresh-cream-medium.png", "Cream medium"],
+      ["cutouts/fresh-overnight-face-treatment.png", "Overnight"], ["cutouts/fresh-eye-serum.png", "Eye serum"],
+      ["cutouts/fresh-toner-pure.png", "Toner pure"], ["cutouts/fresh-scrub-face-body.png", "Scrub"],
+      ["cutouts/fresh-cleanser.png", "Cleanser"], ["cutouts/adds-glow.png", "Glow booster"]
+    ]},
+    { name: "Rich", who: "Richest texture, dry skin", now: "$393.26", was: "$561.90", pics: [
+      ["cutouts/fresh-anti-wrinkle-serum.png", "Anti wrinkle serum"], ["cutouts/fresh-cream-rich.png", "Cream rich"],
+      ["cutouts/fresh-overnight-face-treatment.png", "Overnight"], ["cutouts/fresh-eye-serum.png", "Eye serum"],
+      ["cutouts/fresh-toner-calm.png", "Toner calm"], ["cutouts/fresh-scrub-face-body.png", "Scrub"],
+      ["cutouts/fresh-cleanser.png", "Cleanser"], ["cutouts/adds-effect.png", "Lifting booster"]
+    ]}
+  ];
+
+  function esc(s) {
+    return String(s || "").replace(/[&<>"]/g, function (c) {
+      return { "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;" }[c];
+    });
+  }
+  function hay(p) {
+    return [p.name, p.line, p.summary, p.how, p.inci].concat((p.heroes || []).map(function (h) { return h.name + " " + h.blurb; })).join(" ").toLowerCase();
+  }
+  function row(p) {
+    var shot = p.img ? '<img src="' + esc(p.img) + '" alt="">' : '<span class="slot"></span>';
+    var peek = (p.heroes || []).filter(function (h) { return h.name.length <= 26; }).slice(0, 3).map(function (h) {
+      return '<span class="chip">' + esc(h.name) + '</span>';
+    }).join("");
+    var heroes = (p.heroes || []).map(function (h) {
+      return '<li class="ing"><b>' + esc(h.name) + '</b><span>' + esc(h.blurb) + '</span></li>';
+    }).join("");
+    return '<article class="prow"><button type="button" class="pline" aria-expanded="false">' +
+      shot +
+      '<span class="pname"><b>' + esc(p.name) + '</b>' +
+      (peek ? '<span class="peek">' + peek + '</span>' : '') + '</span>' +
+      '<span class="act">' +
+      (p.price ? '<span class="pr">' + esc(p.price) + '</span>' : '') +
+      '<span class="chev" aria-hidden="true"></span></span></button>' +
+      '<div class="popen"><div class="pcopy">' +
+      (p.summary ? '<p class="psum">' + esc(p.summary) + '</p>' : '') +
+      (heroes ? '<p class="pk">In the formula</p><ul class="ings">' + heroes + '</ul>' : '') +
+      (p.how ? '<div class="how"><span>How to use</span><p>' + esc(p.how) + '</p></div>' : '') +
+      (p.inci ? '<details><summary>Full ingredient list</summary><p>' + esc(p.inci) + '</p></details>' : '') +
+      '</div></div></article>';
+  }
+  function section(title, rows) {
+    if (!rows.length) return "";
+    return '<h2 class="plist-h"><span>' + esc(title) + '</span><i>' + rows.length + '</i></h2><div class="plist">' + rows.map(row).join("") + '</div>';
+  }
+  function soonBucket(p) {
+    if (/^fresh-baby/.test(p.id)) return "Baby";
+    if (/^sport-/.test(p.id)) return "Sport";
+    if (/^ringana/.test(p.id)) return "Drinks";
+    if (/pack/.test(p.id)) return "Packs";
+    if (/^(caps-|beyond-)/.test(p.id)) return "Caps";
+    return p.cat;
+  }
+  function soonFold(title, rows, open) {
+    if (!rows.length) return "";
+    return '<section class="soon-fold' + (open ? " open" : "") + '"><button type="button" class="soon-toggle" aria-expanded="' + (open ? "true" : "false") + '"><span><b>' + esc(title) + '</b><i>' + rows.length + '</i></span><em>' + (open ? "Close" : "Open") + '</em></button><div class="plist"' + (open ? "" : " hidden") + '>' + rows.map(row).join("") + '</div></section>';
+  }
+  function soonSections(rows, label, open) {
+    return ["Face", "Hair", "Body", "Caps", "Drinks", "Sport", "Baby", "Packs"].map(function (g) {
+      return soonFold(label ? label + " · " + g : g, rows.filter(function (p) { return soonBucket(p) === g; }), open);
+    }).join("");
+  }
+  function render() {
+    var needle = (q.value || "").toLowerCase().trim();
+    var shown = items.filter(function (p) {
+      if (cat === "Soon" && !p.soon) return false;
+      if (cat !== "All" && cat !== "Soon" && (p.soon ? soonBucket(p) : p.cat) !== cat) return false;
+      return !needle || hay(p).indexOf(needle) !== -1;
+    });
+    var html = "";
+    var searching = !!needle;
+    if (cat === "Soon") html = soonSections(shown, "", searching);
+    else {
+      ["Face", "Body", "Hair", "Supplements"].forEach(function (c) {
+        if (cat !== "All" && cat !== c) return;
+        html += section(c, shown.filter(function (p) { return !p.soon && p.cat === c; }));
+      });
+      if (cat === "All") html += soonSections(shown.filter(function (p) { return p.soon; }), "Coming soon", searching);
+      else html += soonFold("Coming soon", shown.filter(function (p) { return p.soon; }), searching);
+    }
+    list.innerHTML = html || "<p>Nothing matches that search.</p>";
+    document.getElementById("prodN").textContent = shown.length + (shown.length === 1 ? " product" : " products");
+    sets.hidden = !(cat === "All" && !needle);
+    list.querySelectorAll(".soon-toggle").forEach(function (btn) {
+      btn.addEventListener("click", function () {
+        var fold = btn.parentElement;
+        var panel = fold.querySelector(".plist");
+        var open = panel.hidden;
+        panel.hidden = !open;
+        fold.classList.toggle("open", open);
+        btn.setAttribute("aria-expanded", open ? "true" : "false");
+        btn.querySelector("em").textContent = open ? "Close" : "Open";
+      });
+    });
+    list.querySelectorAll(".pline").forEach(function (btn) {
+      btn.addEventListener("click", function () {
+        var article = btn.parentElement;
+        var open = article.classList.toggle("open");
+        btn.setAttribute("aria-expanded", open ? "true" : "false");
+      });
+    });
+  }
+  var setGrid = document.getElementById("setGrid");
+  setGrid.innerHTML = SETS.map(function (s) {
+    var pics = s.pics.map(function (pic) {
+      return '<figure><img src="' + esc(pic[0]) + '" alt=""><figcaption>' + esc(pic[1]) + '</figcaption></figure>';
+    }).join("");
+    var cols = s.pics.length === 6 ? "six" : "eight";
+    return '<article class="pack"><header class="pack-head"><div><h3>' + esc(s.name) +
+      '</h3><p class="who">' + esc(s.who) + '</p></div><p class="pack-price"><span class="now">' +
+      esc(s.now) + '</span><span class="was">' + esc(s.was) + '</span></p></header><div class="pics ' +
+      cols + '">' + pics + '</div></article>';
+  }).join("");
+  document.getElementById("prodTools").addEventListener("click", function (e) {
+    var b = e.target.closest("button");
+    if (!b) return;
+    cat = b.getAttribute("data-cat");
+    document.querySelectorAll("#prodTools button").forEach(function (x) { x.classList.toggle("on", x === b); });
+    render();
+  });
+  document.getElementById("setsToggle").addEventListener("click", function () {
+    var open = setGrid.hidden;
+    setGrid.hidden = !open;
+    this.setAttribute("aria-expanded", open ? "true" : "false");
+    this.querySelector("em").textContent = open ? "Close" : "Open";
+    this.parentElement.classList.toggle("open", open);
+  });
+  q.addEventListener("input", render);
+  render();
+})();
+</script>
+</body>
+</html>

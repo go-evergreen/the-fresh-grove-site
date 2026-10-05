@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>High performance bonuses — The Fresh Grove</title>
+<meta name="robots" content="noindex">
+<link rel="icon" href="../assets/favicon.svg" type="image/svg+xml">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300;0,9..144,400;0,9..144,500;1,9..144,400&family=Work+Sans:wght@300;400;500;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="../css/grove.css?v=fresh110">
+<link rel="stylesheet" href="library.css?v=life13">
+</head>
+<body class="products-page">
+
+<header class="site-header is-scrolled" id="siteHeader">
+  <div class="site-header-inner">
+    <a href="index.html" class="site-brand">
+      <img class="site-logo" src="../assets/grove-logo.jpg" alt="" width="44" height="44">
+      <span class="site-brand-text">The Fresh <span>Grove</span></span>
+    </a>
+    <nav class="site-nav" aria-label="Library">
+      <a href="catalog.html" class="nav-page">Products</a>
+      <a href="paid.html" class="nav-page">The plan</a>
+      <a href="october.html" class="nav-page">October</a>
+    </nav>
+  </div>
+</header>
+
+<header class="prod-intro lib-hero">
+  <div class="container">
+    <p class="eyebrow">For the team</p>
+    <h1 class="section-title">High performance bonuses.</h1>
+    <p class="lede">Ask your partner for the password.</p>
+  </div>
+</header>
+
+<main class="lib-main">
+  <div class="container lib-narrow">
+    <form class="lib-gate" id="hpGate">
+      <label for="hpPass">Password</label>
+      <input id="hpPass" name="password" type="password" autocomplete="current-password" required>
+      <button type="submit">Open</button>
+      <p class="err" id="hpErr" hidden>That password doesn’t open it.</p>
+    </form>
+    <div id="hpSheet" hidden></div>
+  </div>
+</main>
+
+<footer class="prod-foot">
+  <p class="foot-brand">The Fresh <span>Grove</span></p>
+  <p class="foot-legal">Not for public sharing. The Fresh Grove is a team of independent Ringana partners. These amounts are not a projection of earnings and not a promise of income.</p>
+</footer>
+<script src="library.js"></script>
+</body>
+</html>
