@@ -102,7 +102,7 @@
         var input = document.getElementById("hpPass");
         var err = document.getElementById("hpErr");
         var val = (input && input.value || "").trim().toLowerCase();
-        if (val === "grove") {
+        if (val === "groveleader") {
           try { sessionStorage.setItem("grove-lib-hp", "1"); } catch (errSet) {}
           openSheet();
         } else if (err) {
