@@ -14,10 +14,13 @@
     ["Target 10", "8 partners", "10th month", "$33,000", "$66,000"]
   ];
 
-  function table() {
-    return rows.map(function (r) {
-      return "<tr><th>" + r[0] + "</th><td>" + r[1] + "</td><td>" + r[2] + "</td><td class=\"num\">" + r[3] + "</td><td class=\"num\">" + r[4] + "</td></tr>";
+  function board() {
+    var head = "<div class=\"hp-head\"><span></span><span>Standard</span><span>October</span></div>";
+    var body = rows.map(function (r, i) {
+      var peak = i === rows.length - 1 ? " peak" : "";
+      return "<div class=\"hp-row" + peak + "\"><div class=\"who\"><b>" + r[0] + "</b><span class=\"qual\">" + r[1] + " · " + r[2] + "</span></div><em>" + r[3] + "</em><em class=\"oct\">" + r[4] + "</em></div>";
     }).join("");
+    return "<div class=\"hp-board\">" + head + body + "<p class=\"hp-foot\">Join in October and grab a founder set to be eligible for the double bonuses.</p></div>";
   }
 
   gate.hidden = false;
@@ -42,11 +45,8 @@
       "<p class=\"lib-kicker\">High performance bonus</p>" +
       "<h2 class=\"section-title\">October enrollment doubles every level.</h2>" +
       "<p class=\"lede\">These cannot be shared publicly, but they will be offered privately if you qualify. The Start Bonus through Target 4 stays on the public pages. This is the rest of the card.</p>" +
-      "<div class=\"lib-table-wrap\"><table class=\"lib-table\"><thead><tr>" +
-      "<th>Level</th><th>Active partners</th><th>Time</th><th>Standard</th><th>October start</th>" +
-      "</tr></thead><tbody>" + table() + "</tbody></table></div>" +
-      "<div class=\"lib-note\"><p>Join in October and grab a founder set to be eligible for the double bonuses.</p></div>" +
-      "<p>If you hit Target 10 in your 4th month, you earn the double bonus that month and every month you maintain the rank after that, until the bonus window ends.</p>" +
+      board() +
+      "<p class=\"hp-after\">If you hit Target 10 in your 4th month, you earn the double bonus that month and every month you maintain the rank after that, until the bonus window ends.</p>" +
       "<p class=\"lib-disclaimer\">These cannot be shared publicly, but they will be offered privately if you qualify. They are what the program pays at each level, not a projection of earnings. Reaching a level requires the sales and active partners shown. Not company material, and not a promise of income.</p>";
   });
 })();

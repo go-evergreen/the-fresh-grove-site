@@ -73,6 +73,47 @@
 .lib-note p{margin:0}
 .lib-disclaimer{font-size:.82rem;opacity:.7;max-width:68ch;margin-top:1.4rem}
 
+.hp-board{
+  width:min(100%,42rem);
+  background:#fff;border:1px solid var(--pine);
+  box-shadow:8px 8px 0 rgba(179,137,60,.28);
+  margin:1.35rem 0 1.15rem
+}
+.hp-head,.hp-row{
+  display:grid;grid-template-columns:minmax(0,1fr) 7.5rem 8.6rem;
+  column-gap:1.4rem;align-items:center;padding:.9rem 1.35rem
+}
+.hp-head{padding-top:1rem;padding-bottom:.15rem}
+.hp-head span{
+  font-size:.68rem;letter-spacing:.14em;text-transform:uppercase;
+  color:var(--brass);font-weight:600;text-align:right
+}
+.hp-row{border-top:1px solid rgba(28,50,39,.1)}
+.hp-row b{
+  display:block;font-family:"Fraunces",serif;font-weight:400;
+  font-size:clamp(1.35rem,2vw,1.7rem);line-height:1.05;color:var(--pine)
+}
+.hp-row .qual{display:block;margin-top:.22rem;color:#5c665a;font-size:.9rem}
+.hp-row em{
+  font-style:normal;font-family:"Fraunces",serif;font-weight:300;
+  font-size:clamp(1.35rem,2vw,1.7rem);text-align:right;line-height:1;
+  font-variant-numeric:lining-nums;color:var(--pine)
+}
+.hp-row em.oct{color:#9a7530}
+.hp-row.peak{background:var(--pine)}
+.hp-row.peak b{color:var(--linen)}
+.hp-row.peak .qual{color:rgba(246,242,234,.72)}
+.hp-row.peak em{color:var(--linen)}
+.hp-row.peak em.oct{color:var(--brass-light)}
+.hp-foot{
+  border-top:1px solid rgba(28,50,39,.1);
+  padding:.95rem 1.35rem 1.05rem;color:#314033
+}
+#hpSheet .section-title{margin-bottom:.45rem}
+#hpSheet .lede{margin-bottom:0;max-width:46rem}
+#hpSheet .hp-after{max-width:62ch;margin:0 0 .85rem}
+#hpSheet .lib-disclaimer{margin-top:0}
+
 .lib-lanes{margin:1.2rem 0}
 .lib-lane{margin:0 0 1.1rem}
 .lib-lane h3{font-family:"Fraunces",serif;font-weight:500;font-size:1.35rem;margin-bottom:.55rem}
@@ -808,6 +849,22 @@
   .rate-line div+div{padding-left:.55rem}
   .gen-list li{grid-template-columns:1fr}
   .target-list li{grid-template-columns:2.2rem 1fr auto}
+  .hp-head{display:none}
+  .hp-row{
+    grid-template-columns:1fr 1fr;grid-template-areas:"who who" "std oct";
+    row-gap:.7rem;align-items:end;padding:1rem 1.05rem
+  }
+  .hp-row .who{grid-area:who}
+  .hp-row em{font-size:1.45rem}
+  .hp-row em::before{
+    content:"Standard";display:block;font-family:"Work Sans",system-ui,sans-serif;
+    font-size:.68rem;letter-spacing:.14em;text-transform:uppercase;
+    color:var(--brass);font-weight:600;margin-bottom:.28rem
+  }
+  .hp-row em.oct::before{content:"October"}
+  .hp-row em:not(.oct){grid-area:std;text-align:left}
+  .hp-row em.oct{grid-area:oct}
+  .hp-row.peak em::before{color:var(--brass-light)}
   .lib-split.reverse .lib-photo{order:0}
   .lib-picks{grid-template-columns:repeat(2,1fr)}
   .slide{height:auto;min-height:calc(100svh - var(--header));display:none}
