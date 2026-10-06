@@ -625,7 +625,38 @@
   font-size:.95rem;font-weight:600;letter-spacing:.12em;opacity:1;color:var(--linen)
 }
 .products-page .site-nav a:hover,
-.products-page .site-nav a.nav-current{color:var(--brass-light);opacity:1}
+.products-page .site-nav a.nav-current,
+.products-page .site-nav .nav-plan:hover,
+.products-page .site-nav .nav-plan.nav-current{color:var(--brass-light);opacity:1}
+.products-page .site-nav{position:relative}
+.nav-drop{position:relative}
+.products-page .site-nav .nav-plan{
+  font-family:inherit;font-size:.95rem;font-weight:600;letter-spacing:.12em;
+  text-transform:uppercase;color:var(--linen);background:none;border:0;
+  padding:0;cursor:pointer;opacity:1
+}
+.products-page .site-nav .nav-plan::after{
+  content:"";display:inline-block;margin-left:.42rem;
+  border:4px solid transparent;border-top-color:currentColor;transform:translateY(1px)
+}
+.nav-menu{
+  display:none;position:absolute;top:calc(100% + .55rem);right:0;z-index:30;
+  min-width:16.5rem;background:#fff;color:var(--pine);
+  border:1px solid var(--pine);box-shadow:6px 6px 0 rgba(179,137,60,.28);
+  padding:.35rem 0
+}
+.nav-drop.is-open .nav-menu{display:block}
+.products-page .site-nav .nav-menu a{
+  display:block;color:var(--pine);font-size:.95rem;font-weight:500;
+  letter-spacing:0;text-transform:none;opacity:1;
+  padding:.62rem 1rem;white-space:nowrap
+}
+.products-page .site-nav .nav-menu a:hover,
+.products-page .site-nav .nav-menu a.nav-current{color:#9a7530;background:rgba(179,137,60,.08)}
+@media (hover:hover) and (pointer:fine){
+  .nav-drop:hover .nav-menu,
+  .nav-drop:focus-within .nav-menu{display:block}
+}
 .products-page .lib-hero{text-align:left;padding:calc(var(--header) + 2.1rem) 2rem 2.4rem}
 .products-page .lib-hero .container{
   max-width:76rem;
@@ -954,7 +985,9 @@
   .catalog-still{display:none}
   .products-page .site-header-inner{flex-direction:column;align-items:center}
   .products-page .site-nav{justify-content:center}
-  .products-page .site-nav a.nav-page{font-size:.78rem;font-weight:600;letter-spacing:.08em;opacity:1}
+  .products-page .site-nav a.nav-page,
+  .products-page .site-nav .nav-plan{font-size:.78rem;font-weight:600;letter-spacing:.08em;opacity:1}
+  .nav-menu{right:0;min-width:14.5rem}
   .products-page .lib-hero .container{grid-template-columns:1fr;row-gap:.8rem}
   .products-page .lib-hero .lede{grid-column:1;grid-row:auto;border-bottom:0;padding-bottom:0}
   .products-page .lib-hero .section-title{font-size:clamp(2.4rem,10vw,3.2rem)}

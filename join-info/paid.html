@@ -10,7 +10,7 @@
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300;0,9..144,400;0,9..144,500;1,9..144,400&family=Work+Sans:wght@300;400;500;600&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="../css/grove.css?v=fresh110">
-<link rel="stylesheet" href="library.css?v=life21">
+<link rel="stylesheet" href="library.css?v=life33">
 </head>
 <body class="products-page">
 
@@ -20,11 +20,19 @@
       <img class="site-logo" src="../assets/grove-logo.jpg" alt="" width="44" height="44">
       <span class="site-brand-text">The Fresh <span>Grove</span></span>
     </a>
-    <nav class="site-nav" aria-label="Library">
+        <nav class="site-nav" aria-label="Library">
       <a href="index.html" class="nav-page">Home</a>
       <a href="catalog.html" class="nav-page">Products</a>
-      <a href="paid.html" class="nav-page nav-current" aria-current="page">The plan</a>
-      <a href="october.html" class="nav-page">October</a>
+      <div class="nav-drop">
+        <button type="button" class="nav-plan nav-current" aria-current="page" aria-expanded="false" aria-haspopup="true">Plan</button>
+        <div class="nav-menu">
+          <a href="paid.html" class="nav-page nav-current" aria-current="page">How you get paid</a>
+          <a href="paid.html#targets" class="nav-page">Reaching each Target</a>
+          <a href="october.html" class="nav-page">The October start</a>
+          <a href="high-performance.html" class="nav-page">High performance bonuses</a>
+          <a href="fresh.html" class="nav-page">Why it’s hard to copy</a>
+        </div>
+      </div>
     </nav>
   </div>
 </header>
@@ -111,7 +119,8 @@
 <footer class="prod-foot">
   <p class="foot-brand">The Fresh <span>Grove</span></p>
   <p class="foot-legal">The Fresh Grove is a team of independent Ringana partners. This is not an official Ringana document. No income is guaranteed.</p>
+  <p class="foot-copy">© 2026 The Fresh Grove</p>
 </footer>
-<script src="library.js?v=pw3"></script>
+<script src="library.js?v=pw4"></script>
 </body>
 </html>
