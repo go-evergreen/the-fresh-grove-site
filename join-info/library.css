@@ -629,10 +629,26 @@
 .lib-picks li,.more-row figure{background:none;box-shadow:none;border-radius:0}
 .lib-picks img,.more-row img{background:transparent;padding:.15rem;mix-blend-mode:multiply}
 .lib-picks b,.more-row figcaption{font-weight:400}
-.lib-main .booster{border-radius:0;padding:2rem 1.8rem 1.8rem;align-items:start}
-.booster .pill{background:transparent;color:var(--brass-light);border-radius:0;padding:0;letter-spacing:.16em}
-.quad{gap:0}
-.quad div{background:transparent;min-height:0;padding:.9rem 1rem .9rem 0;border-top:1px solid rgba(246,242,234,.28)}
+.lib-main .booster{
+  grid-template-columns:minmax(12rem,17rem) minmax(0,1fr);
+  gap:0 1.8rem;align-items:center;
+  background:#fff;color:var(--pine);
+  border:1px solid var(--pine);border-radius:0;
+  box-shadow:8px 8px 0 rgba(179,137,60,.28);
+  padding:1.05rem 1.25rem 1.1rem 1.35rem
+}
+.booster .pill{background:transparent;color:var(--brass);border-radius:0;padding:0;letter-spacing:.16em;font-size:.7rem}
+.booster .price-free{font-size:clamp(2.15rem,3vw,2.7rem);font-weight:300;margin:.1rem 0 .3rem;color:var(--pine)}
+.booster .price-was{font-size:1rem;color:var(--brass)}
+.booster-lead p:last-child{margin:0;max-width:24ch;color:#314033;font-size:.92rem}
+.booster-bits{list-style:none;margin:0;padding:0;display:grid;grid-template-columns:1fr 1fr}
+.booster-bits li{margin:0;padding:.55rem 0 .55rem 1rem;border-top:1px solid rgba(28,50,39,.12)}
+.booster-bits li:nth-child(odd){padding-left:0;padding-right:1rem}
+.booster-bits li:nth-child(even){border-left:1px solid rgba(28,50,39,.12)}
+.booster-bits li:nth-child(-n+2){border-top:0;padding-top:0}
+.booster-bits li:nth-last-child(-n+2){padding-bottom:0}
+.booster-bits b{display:block;font-family:"Fraunces",serif;font-weight:400;font-size:1.12rem;line-height:1.15}
+.booster-bits span{display:block;margin-top:.15rem;color:#5c665a;font-size:.86rem}
 .october-page .bonus-row{
   grid-template-columns:1fr;
   gap:.7rem;align-items:stretch;
@@ -776,6 +792,11 @@
   .october-page .bonus.peak .double{font-size:2.85rem}
   .october-page .bonus.peak{box-shadow:10px 10px 0 #b3893c}
   .lib-split,.lib-split.reverse,.plan-split,.lib-picks,.lib-facts,.lib-facts.ways,.slide,.rate-grid,.vol-grid,.vol-line,.use-row,.set-grid,.bonus-row,.booster,.more-row,.month-row,.quad{grid-template-columns:1fr}
+  .lib-main .booster{grid-template-columns:1fr;gap:.9rem}
+  .booster-bits{grid-template-columns:1fr}
+  .booster-bits li{padding:.6rem 0;border-left:0;border-top:1px solid rgba(28,50,39,.12)}
+  .booster-bits li:first-child{border-top:0;padding-top:0}
+  .booster-bits li:last-child{padding-bottom:0}
   .vol-line,.use-row{grid-template-columns:1fr 1fr}
   .rate-line,.growth-line{grid-template-columns:repeat(3,1fr)}
   .growth-line{grid-template-columns:repeat(5,minmax(0,1fr))}
