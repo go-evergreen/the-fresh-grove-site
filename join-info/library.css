@@ -69,6 +69,7 @@
   background:var(--white);border-left:3px solid var(--brass);
   padding:1rem 1.15rem;margin:1rem 0 1.4rem;max-width:62ch
 }
+.lib-narrow > .lib-note{max-width:none}
 .lib-note p{margin:0}
 .lib-disclaimer{font-size:.82rem;opacity:.7;max-width:68ch;margin-top:1.4rem}
 

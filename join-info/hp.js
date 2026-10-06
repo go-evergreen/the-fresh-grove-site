@@ -41,12 +41,12 @@
     sheet.innerHTML =
       "<p class=\"lib-kicker\">High performance bonus</p>" +
       "<h2 class=\"section-title\">October enrollment doubles every level.</h2>" +
-      "<p class=\"lede\">These rows are not on the public pages. The Start Bonus through Target 4 is. This is the rest of the card.</p>" +
+      "<p class=\"lede\">These cannot be shared publicly, but they will be offered privately if you qualify. The Start Bonus through Target 4 stays on the public pages. This is the rest of the card.</p>" +
       "<div class=\"lib-table-wrap\"><table class=\"lib-table\"><thead><tr>" +
       "<th>Level</th><th>Active partners</th><th>Time</th><th>Standard</th><th>October start</th>" +
       "</tr></thead><tbody>" + table() + "</tbody></table></div>" +
       "<div class=\"lib-note\"><p>Join in October and grab a founder set to be eligible for the double bonuses.</p></div>" +
       "<p>If you hit Target 10 in your 4th month, you earn the double bonus that month and every month you maintain the rank after that, until the bonus window ends.</p>" +
-      "<p class=\"lib-disclaimer\">These are the amounts the program pays at each level, not a projection of earnings. Reaching a level requires the sales and active partners shown. Not company material, and not a promise of income.</p>";
+      "<p class=\"lib-disclaimer\">These cannot be shared publicly, but they will be offered privately if you qualify. They are what the program pays at each level, not a projection of earnings. Reaching a level requires the sales and active partners shown. Not company material, and not a promise of income.</p>";
   });
 })();
