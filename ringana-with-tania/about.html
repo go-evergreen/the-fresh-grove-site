@@ -613,7 +613,7 @@ document.querySelectorAll('.reveal').forEach(el=>io.observe(el));
 /* CORE:END js */
 /* CLIENT:START js-optin */
 window.FS_SITE_LEAD={slug:"tania",form:"#fs-sms-join"};
-(function(){function go(){try{window.FSSiteLead&&window.FSSiteLead.bindSmsJoin(window.FS_SITE_LEAD)}catch(e){}}if(window.FSSiteLead){go();return;}var s=document.createElement('script');s.src='site-lead-bridge.js';s.async=true;s.onload=go;s.onerror=function(){};document.head.appendChild(s);})();
+(function(){function go(){try{window.FSSiteLead&&window.FSSiteLead.bindSmsJoin(window.FS_SITE_LEAD)}catch(e){}}if(window.FSSiteLead){go();return;}var s=document.createElement('script');s.src='site-lead-bridge.js?v=4';s.async=true;s.onload=go;s.onerror=function(){};document.head.appendChild(s);})();
 /* CLIENT:END js-optin */
 
 </script>

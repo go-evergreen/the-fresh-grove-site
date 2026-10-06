@@ -126,7 +126,42 @@
       else if (!name && looksName(n, t, v, el)) name = v;
     }
     if (last && name && name.toLowerCase() !== last.toLowerCase()) name = name + " " + last;
-    return { name: name, email: email, phone: phone };
+    return { name: name, email: email, phone: phone, handle: readSocial(scope).handle };
+  }
+
+  function readSocial(scope) {
+    var box = scope || document;
+    var platformEl = box.querySelector("[name=social_platform], #fs-lead-social-platform");
+    var handleEl = box.querySelector("#fs-lead-social, [name=social_handle], [data-fs-lead-social] input");
+    var handle = handleEl ? trim(handleEl.value) : "";
+    if (!handle) {
+      var nodes = box.querySelectorAll("input, textarea");
+      for (var i = 0; i < nodes.length; i++) {
+        var el = nodes[i];
+        if (el === handleEl) continue;
+        if (el.closest && el.closest("[data-fs-interest], [data-fs-lead-name], [data-fs-lead-social]")) continue;
+        if (el.disabled || el.type === "password" || el.getAttribute("aria-hidden") === "true") continue;
+        if (!fieldVisible(el)) continue;
+        var t = String(el.type || "text").toLowerCase();
+        if (t === "hidden" || t === "submit" || t === "checkbox" || t === "radio") continue;
+        var n = fieldHint(el);
+        var v = trim(el.value);
+        if (!v || !looksHandleField(n)) continue;
+        if (looksEmail(n, t, v) || looksPhone(n, t, v)) continue;
+        handle = v;
+        break;
+      }
+    }
+    handle = handle.replace(/^@+/, "").replace(/^https?:\/\/(www\.)?instagram\.com\//i, "").replace(/[/?#].*$/, "").trim();
+    if (handle.length > 80) handle = handle.slice(0, 80);
+    return { handle: handle, platform: platformEl ? trim(platformEl.value).toLowerCase() : "" };
+  }
+
+  function peelSocialFromName(name) {
+    var raw = trim(name);
+    var m = raw.match(/^(.{2,}?)\s*\(@([^)/\s]+)\s*(?:\/\s*[a-zA-Z]+)?\s*\)?\s*$/);
+    if (!m) return { name: raw, handle: "" };
+    return { name: trim(m[1]), handle: trim(m[2]).replace(/^@+/, "") };
   }
 
   function visibleNameFieldExists(scope) {
@@ -244,6 +279,37 @@
     parent.insertBefore(picker, host || null);
   }
 
+  function vendorFieldWrap(el) {
+    return el.closest && el.closest('[class*="__field"]:not([class*="__fields"]):not([class*="__footer"])');
+  }
+
+  /* Flodesk and Kit hide decoy fields. Filling those makes the list drop the
+     signup, so the welcome email never sends. Fields we hide ourselves are
+     tagged and still receive the real name. */
+  function isSpamTrap(el) {
+    if (!el || (el.dataset && el.dataset.fsOwnHide === "1")) return false;
+    var wrap = vendorFieldWrap(el);
+    if (wrap && wrap.dataset && wrap.dataset.fsOwnHide === "1") return false;
+    var node = wrap || el;
+    var style = node.getAttribute ? (node.getAttribute("style") || "") : "";
+    if (/left\s*:\s*-|right\s*:\s*-/i.test(style)) return true;
+    try {
+      if (getComputedStyle(node).display === "none") return true;
+    } catch (err) {}
+    return false;
+  }
+
+  function clearSpamTraps(box) {
+    var nodes = (box || document).querySelectorAll("input, textarea");
+    for (var i = 0; i < nodes.length; i++) {
+      var el = nodes[i];
+      var t = String(el.type || "text").toLowerCase();
+      if (t === "hidden" || t === "submit" || t === "button") continue;
+      if (!isSpamTrap(el)) continue;
+      if (el.value) el.value = "";
+    }
+  }
+
   function hideVendorNameFields(box) {
     if (!ourNameInput(box)) return;
     var nodes = box.querySelectorAll("input, textarea");
@@ -253,9 +319,15 @@
       var t = String(el.type || "text").toLowerCase();
       if (t === "hidden" || t === "email" || t === "submit" || t === "button") continue;
       if (!looksName(fieldHint(el), t, trim(el.value), el)) continue;
-      var wrap = el.closest && el.closest('[class*="__field"]:not([class*="__fields"]):not([class*="__footer"])');
-      if (wrap && /__field(\s|$)/.test(wrap.className || "")) wrap.style.display = "none";
-      else if (!wrap) el.style.display = "none";
+      if (isSpamTrap(el)) continue;
+      var wrap = vendorFieldWrap(el);
+      if (wrap && /__field(\s|$)/.test(wrap.className || "")) {
+        wrap.dataset.fsOwnHide = "1";
+        wrap.style.display = "none";
+      } else if (!wrap) {
+        el.dataset.fsOwnHide = "1";
+        el.style.display = "none";
+      }
     }
   }
 
@@ -283,6 +355,7 @@
   }
 
   function syncNameIntoForm(box) {
+    clearSpamTraps(box);
     var ours = readOwnName(box);
     if (!ours) return;
     var nodes = box.querySelectorAll("input, textarea");
@@ -292,6 +365,7 @@
       if (el.disabled || el.type === "password") continue;
       var t = String(el.type || "text").toLowerCase();
       if (t === "hidden") continue;
+      if (isSpamTrap(el)) continue;
       if (looksName(fieldHint(el), t, trim(el.value), el)) el.value = ours;
     }
   }
@@ -340,14 +414,18 @@
     if (!fields.email && !fields.phone) return;
     var picked = trim(interest || "").toLowerCase();
     if (INTERESTS.indexOf(picked) < 0) picked = "both";
+    var peeled = peelSocialFromName(fields.name);
+    var named = fallbackName({ name: peeled.name, email: fields.email });
+    var handle = trim(fields.handle || peeled.handle).replace(/^@+/, "").slice(0, 80);
     var payload = {
       p_slug: String(opts.slug).toLowerCase(),
-      p_name: fallbackName(fields),
+      p_name: named,
       p_email: trim(fields.email).slice(0, 120),
       p_phone: trim(fields.phone).slice(0, 40),
       p_interest: picked,
       p_hp: "",
-      p_source: "site"
+      p_source: "site",
+      p_ig: handle
     };
     try {
       fetch(SUPABASE_URL + "/rest/v1/rpc/submit_lead", {

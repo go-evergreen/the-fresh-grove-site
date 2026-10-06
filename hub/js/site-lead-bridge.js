@@ -318,7 +318,8 @@
       p_phone: trim(fields.phone).slice(0, 40),
       p_interest: picked,
       p_hp: "",
-      p_source: "site"
+      p_source: "site",
+      p_ig: trim(fields.handle || "").replace(/^@+/, "").slice(0, 80)
     };
     try {
       fetch(SUPABASE_URL + "/rest/v1/rpc/submit_lead", {

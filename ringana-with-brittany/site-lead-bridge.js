@@ -126,7 +126,42 @@
       else if (!name && looksName(n, t, v, el)) name = v;
     }
     if (last && name && name.toLowerCase() !== last.toLowerCase()) name = name + " " + last;
-    return { name: name, email: email, phone: phone };
+    return { name: name, email: email, phone: phone, handle: readSocial(scope).handle };
+  }
+
+  function readSocial(scope) {
+    var box = scope || document;
+    var platformEl = box.querySelector("[name=social_platform], #fs-lead-social-platform");
+    var handleEl = box.querySelector("#fs-lead-social, [name=social_handle], [data-fs-lead-social] input");
+    var handle = handleEl ? trim(handleEl.value) : "";
+    if (!handle) {
+      var nodes = box.querySelectorAll("input, textarea");
+      for (var i = 0; i < nodes.length; i++) {
+        var el = nodes[i];
+        if (el === handleEl) continue;
+        if (el.closest && el.closest("[data-fs-interest], [data-fs-lead-name], [data-fs-lead-social]")) continue;
+        if (el.disabled || el.type === "password" || el.getAttribute("aria-hidden") === "true") continue;
+        if (!fieldVisible(el)) continue;
+        var t = String(el.type || "text").toLowerCase();
+        if (t === "hidden" || t === "submit" || t === "checkbox" || t === "radio") continue;
+        var n = fieldHint(el);
+        var v = trim(el.value);
+        if (!v || !looksHandleField(n)) continue;
+        if (looksEmail(n, t, v) || looksPhone(n, t, v)) continue;
+        handle = v;
+        break;
+      }
+    }
+    handle = handle.replace(/^@+/, "").replace(/^https?:\/\/(www\.)?instagram\.com\//i, "").replace(/[/?#].*$/, "").trim();
+    if (handle.length > 80) handle = handle.slice(0, 80);
+    return { handle: handle, platform: platformEl ? trim(platformEl.value).toLowerCase() : "" };
+  }
+
+  function peelSocialFromName(name) {
+    var raw = trim(name);
+    var m = raw.match(/^(.{2,}?)\s*\(@([^)/\s]+)\s*(?:\/\s*[a-zA-Z]+)?\s*\)?\s*$/);
+    if (!m) return { name: raw, handle: "" };
+    return { name: trim(m[1]), handle: trim(m[2]).replace(/^@+/, "") };
   }
 
   function visibleNameFieldExists(scope) {
@@ -379,14 +414,18 @@
     if (!fields.email && !fields.phone) return;
     var picked = trim(interest || "").toLowerCase();
     if (INTERESTS.indexOf(picked) < 0) picked = "both";
+    var peeled = peelSocialFromName(fields.name);
+    var named = fallbackName({ name: peeled.name, email: fields.email });
+    var handle = trim(fields.handle || peeled.handle).replace(/^@+/, "").slice(0, 80);
     var payload = {
       p_slug: String(opts.slug).toLowerCase(),
-      p_name: fallbackName(fields),
+      p_name: named,
       p_email: trim(fields.email).slice(0, 120),
       p_phone: trim(fields.phone).slice(0, 40),
       p_interest: picked,
       p_hp: "",
-      p_source: "site"
+      p_source: "site",
+      p_ig: handle
     };
     try {
       fetch(SUPABASE_URL + "/rest/v1/rpc/submit_lead", {
