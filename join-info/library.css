@@ -793,6 +793,78 @@
 .slide .shot{border-radius:0;box-shadow:none;outline:1px solid rgba(207,169,94,.35);outline-offset:8px}
 .month-row article{background:transparent;border-top:1px solid rgba(207,169,94,.45);padding:.85rem .4rem .2rem 0}
 
+.home-lib .lib-hero{padding-bottom:2.5rem}
+.home-lib .lib-hero .lede{border-bottom:0;padding-bottom:0}
+.home-lib .lib-hero .company-stats{
+  grid-column:1 / -1;grid-row:3;
+  display:grid;grid-template-columns:repeat(4,minmax(0,1fr));
+  gap:0;margin:2.5rem 0 0;padding:1.4rem 0 0;
+  border-top:1px solid rgba(207,169,94,.4);
+  list-style:none;justify-content:stretch;max-width:none;width:100%
+}
+.home-lib .lib-hero .company-stats li{
+  background:none;border:0;border-radius:0;box-shadow:none;
+  display:block;margin:0;padding:0 1.3rem 0 0
+}
+.home-lib .lib-hero .company-stats li+li{
+  padding-left:1.3rem;border-left:1px solid rgba(207,169,94,.35)
+}
+.home-lib .lib-hero .company-stats b{
+  display:block;font-family:"Fraunces",serif;font-weight:300;
+  font-size:clamp(2.15rem,3.3vw,3.2rem);line-height:.95;
+  letter-spacing:-.03em;color:var(--linen)
+}
+.home-lib .lib-hero .company-stats span{
+  display:block;margin-top:.45rem;color:rgba(246,242,234,.72);
+  font-size:.86rem;letter-spacing:0;text-transform:none;opacity:1;line-height:1.35
+}
+.home-lib .lib-main{padding-top:2.2rem;padding-bottom:3.2rem}
+.home-lib .ref-list{
+  display:grid;grid-template-columns:1fr 1fr;gap:1.15rem;margin:0
+}
+.home-lib .ref-list a{
+  display:flex;flex-direction:column;align-items:flex-start;gap:0;
+  height:100%;background:#fff;color:var(--pine);
+  border:1px solid var(--pine);border-radius:0;
+  box-shadow:8px 8px 0 rgba(179,137,60,.28);
+  padding:1.2rem 1.25rem 1.2rem;text-decoration:none
+}
+.home-lib .ref-list a:hover{
+  box-shadow:4px 4px 0 #b3893c;transform:translate(4px,4px)
+}
+.home-lib .ref-list a:hover b{color:var(--pine)}
+.home-lib .ref-num{
+  font-family:"Fraunces",serif;font-weight:300;font-size:1.05rem;
+  letter-spacing:.16em;color:var(--brass)
+}
+.home-lib .ref-list a > span{display:block;margin-top:.75rem;margin-bottom:1.2rem;color:inherit}
+.home-lib .ref-list b{
+  display:block;font-family:"Fraunces",serif;font-weight:300;
+  font-size:clamp(1.75rem,2.3vw,2.35rem);line-height:1.02;
+  letter-spacing:-.03em;color:var(--pine)
+}
+.home-lib .ref-list a > span span{
+  display:block;margin-top:.55rem;max-width:38ch;
+  color:#314033;font-size:.98rem;line-height:1.45
+}
+.home-lib .ref-go{
+  display:inline-block;margin-top:auto;padding:.6rem .85rem;
+  background:var(--pine);color:var(--linen);
+  font-style:normal;font-size:.68rem;font-weight:600;
+  letter-spacing:.14em;text-transform:uppercase;
+  align-self:flex-start
+}
+.home-lib .ref-now a{
+  background:var(--pine);color:var(--linen);
+  box-shadow:10px 10px 0 #b3893c
+}
+.home-lib .ref-now a:hover{box-shadow:4px 4px 0 #b3893c}
+.home-lib .ref-now a:hover b{color:var(--linen)}
+.home-lib .ref-now .ref-num{color:var(--brass-light)}
+.home-lib .ref-now b{color:var(--linen)}
+.home-lib .ref-now a > span span{color:rgba(246,242,234,.74)}
+.home-lib .ref-now .ref-go{background:var(--linen);color:var(--pine)}
+
 @media (max-width:800px){
 .with-still{grid-template-columns:minmax(0,1fr) 6.4rem;gap:.8rem;align-items:start}
 .still{height:150px;min-height:0}
@@ -893,6 +965,16 @@
   .slide.frame .rail div+div{border-left:0;padding-left:0;border-top:1px solid rgba(28,50,39,.1)}
   .lib-ask{grid-template-columns:1fr;grid-template-areas:"kicker" "title" "note" "chip";row-gap:.15rem;padding:1.15rem 1rem 1.1rem}
   .lib-ask em{justify-self:start;margin-top:.85rem}
+  .home-lib .lib-hero .section-title{grid-row:2}
+  .home-lib .lib-hero .lede{grid-column:1;grid-row:3}
+  .home-lib .lib-hero .company-stats{grid-template-columns:1fr 1fr;row-gap:1.15rem;grid-row:4}
+  .home-lib .lib-hero .company-stats li,
+  .home-lib .lib-hero .company-stats li+li{border-left:0;padding-left:0}
+  .home-lib .lib-hero .company-stats li:nth-child(n+3){
+    border-top:1px solid rgba(207,169,94,.35);padding-top:1.05rem
+  }
+  .home-lib .ref-list{grid-template-columns:1fr;gap:.9rem}
+  .home-lib .ref-go{display:inline-block}
 }
 
 @media print{
