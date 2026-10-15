@@ -65,8 +65,8 @@
     var groveDoor = host === "thefreshgrove.team" || host === "www.thefreshgrove.team" || host === "app.thefreshgrove.team";
     if (/\/thefreshcatalog(?:\.html)?\/?$/i.test(path)) {
       location.replace(groveDoor
-        ? "https://thefreshgrove.team/hub/assets/company/fresh-catalog.pdf"
-        : "https://app.evergreenco.team/assets/company/fresh-catalog.pdf");
+        ? "https://thefreshgrove.team/hub/assets/company/fresh-catalog.pdf?v=6"
+        : "https://app.evergreenco.team/assets/company/fresh-catalog.pdf?v=6");
       return;
     }
     var query = "";

@@ -6878,7 +6878,7 @@
       title: "The Fresh Catalog",
       blurb: "The current fresh book — skincare, body, baby, supplements, the whole range in one flip-through.",
       cta: "Open catalog →",
-      url: "https://thefreshgrove.team/hub/assets/company/fresh-catalog.pdf?v=4"
+      url: "https://thefreshgrove.team/hub/assets/company/fresh-catalog.pdf?v=6"
     };
   }
 
