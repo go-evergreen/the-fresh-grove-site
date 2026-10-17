@@ -101,4 +101,56 @@
     });
     show(0);
   }
+
+  var track = document.getElementById("filmTrack");
+  var filmPrev = document.getElementById("filmPrev");
+  if (track && filmPrev) {
+    var frames = Array.prototype.slice.call(track.children);
+    var filmCount = document.getElementById("filmCount");
+    var filmNext = document.getElementById("filmNext");
+    var reduce = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+    function filmIndex() {
+      var origin = frames[0].offsetLeft;
+      var x = track.scrollLeft + origin;
+      var best = 0;
+      var bestDist = Infinity;
+      frames.forEach(function (frame, i) {
+        var dist = Math.abs(frame.offsetLeft - x);
+        if (dist < bestDist) { bestDist = dist; best = i; }
+      });
+      return best;
+    }
+    function paintFilm() {
+      var n = filmIndex();
+      if (filmCount) filmCount.textContent = (n + 1) + " / " + frames.length;
+      if (filmPrev) filmPrev.disabled = n === 0;
+      if (filmNext) filmNext.disabled = n === frames.length - 1;
+    }
+    function goFilm(n) {
+      n = Math.max(0, Math.min(frames.length - 1, n));
+      track.scrollTo({
+        left: frames[n].offsetLeft - frames[0].offsetLeft,
+        behavior: reduce ? "auto" : "smooth"
+      });
+    }
+    if (filmPrev) filmPrev.addEventListener("click", function () { goFilm(filmIndex() - 1); });
+    if (filmNext) filmNext.addEventListener("click", function () { goFilm(filmIndex() + 1); });
+    track.addEventListener("scroll", paintFilm, { passive: true });
+    track.addEventListener("keydown", function (e) {
+      if (e.key === "ArrowRight") { e.preventDefault(); goFilm(filmIndex() + 1); }
+      if (e.key === "ArrowLeft") { e.preventDefault(); goFilm(filmIndex() - 1); }
+    });
+    paintFilm();
+  }
+
+  document.querySelectorAll(".flip").forEach(function (card) {
+    var face = card.querySelector(".flip-face");
+    var back = card.querySelector(".flip-back");
+    card.addEventListener("click", function () {
+      var on = card.classList.toggle("is-flipped");
+      card.setAttribute("aria-pressed", on ? "true" : "false");
+      if (face) face.setAttribute("aria-hidden", on ? "true" : "false");
+      if (back) back.setAttribute("aria-hidden", on ? "false" : "true");
+    });
+  });
 })();
