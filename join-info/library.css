@@ -1289,8 +1289,8 @@
   position:absolute;inset:0;width:100%;height:100%;object-fit:cover;
   transition:transform .7s var(--ease)
 }
-.door:nth-child(2) img{object-position:center 68%}
-.door:nth-child(4) img{object-position:center 22%}
+.door:nth-child(2) img{object-position:center 58%}
+.door:nth-child(4) img{object-position:center 42%}
 .door:nth-child(5) img{object-position:center 42%}
 .door:hover img,.door:focus-visible img{transform:scale(1.045)}
 .door-copy{
