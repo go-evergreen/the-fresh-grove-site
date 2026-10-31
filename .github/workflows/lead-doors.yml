@@ -1,0 +1,32 @@
+# A new Fresh Grove partner gets their link when they enter First Seeds.
+# This publishes the real page at /with/their-name and /lead/their-name
+# so Instagram gets a 200, and the preview can say their name.
+name: Publish partner links
+
+on:
+  schedule:
+    - cron: "*/5 * * * *"
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+concurrency:
+  group: lead-doors
+  cancel-in-progress: false
+
+jobs:
+  doors:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Write a page for every partner
+        run: python3 scripts/write-pretty-doors.py
+      - name: Commit new partner links
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add with lead
+          git diff --cached --quiet && exit 0
+          git commit -m "Add partner links for anyone new in First Seeds."
+          git push

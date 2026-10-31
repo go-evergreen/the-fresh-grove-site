@@ -3,34 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
-<script>
-(function () {
-  try {
-    var q = new URLSearchParams(location.search);
-    var leadSlug = String(q.get("p") || "").trim();
-    var withSlug = String(q.get("with") || "").trim();
-    if (!leadSlug && !withSlug && location.hash) {
-      var hm = String(location.hash).match(/(?:^|[?#&])(p|with)=([^&]+)/i);
-      if (hm) {
-        if (String(hm[1]).toLowerCase() === "p") leadSlug = decodeURIComponent(hm[2] || "").trim();
-        else withSlug = decodeURIComponent(hm[2] || "").trim();
-      }
-    }
-    if (!leadSlug && !withSlug) {
-      var pm = String(location.pathname || "").match(/\/with\/([a-z0-9][a-z0-9-]{1,38})\/?$/i);
-      if (pm) withSlug = decodeURIComponent(pm[1] || "").trim();
-    }
-    /* Lead copies that hit the homepage. Business-info ?with= stays here
-       so the team form can lock to that partner’s slug. */
-    if (withSlug || /\/with\/[a-z0-9]/i.test(location.pathname || "")) {
-      document.documentElement.classList.add("is-partner");
-    }
-    if (leadSlug && !withSlug) {
-      location.replace("/lead.html" + String(location.search || "") + String(location.hash || ""));
-    }
-  } catch (e) {}
-})();
-</script>
+<script src="/js/partner-link.js"></script>
 <title>The business — The Fresh Grove</title>
 <meta name="description" content="The Fresh Grove is a founding U.S. Ringana team. Frequent zooms, real support, and a private hub — your runway to launch. Come into the grove through October.">
 <meta property="og:type" content="website">
@@ -98,8 +71,8 @@
   </div>
   <div class="marquee" aria-hidden="true">
     <div class="marquee-track">
-      <span>Through October · Partner pre-reg</span><span>Nov 2 · Products for customers</span><span>Frequent zooms</span><span>Support &amp; strategy</span><span>Your kind of business</span><span>Live community</span><span>First Seeds hub</span><span>Mentorship on purpose</span>
-      <span>Through October · Partner pre-reg</span><span>Nov 2 · Products for customers</span><span>Frequent zooms</span><span>Support &amp; strategy</span><span>Your kind of business</span><span>Live community</span><span>First Seeds hub</span><span>Mentorship on purpose</span>
+      <span>Through October · Partner pre-reg</span><span>Oct 20 · Shop opens</span><span>Frequent zooms</span><span>Support &amp; strategy</span><span>Your kind of business</span><span>Live community</span><span>First Seeds hub</span><span>Mentorship on purpose</span>
+      <span>Through October · Partner pre-reg</span><span>Oct 20 · Shop opens</span><span>Frequent zooms</span><span>Support &amp; strategy</span><span>Your kind of business</span><span>Live community</span><span>First Seeds hub</span><span>Mentorship on purpose</span>
     </div>
   </div>
 </header>
@@ -927,7 +900,7 @@
         <div class="faq-group" data-faq-group="start" hidden>
           <details name="faq-start">
             <summary>When does the U.S. launch?</summary>
-            <p>Partner pre-registration is open through October 31, 2026. Products for customers November 2. People who write us hear the exact ordering details from their person on the team.</p>
+            <p>Partner pre-registration is open through October 31, 2026. The shop opens October 20, for partners and customers. People who write us hear the exact ordering details from their person on the team.</p>
           </details>
           <details name="faq-start">
             <summary>What does it cost to start?</summary>
@@ -1134,7 +1107,7 @@ if (window.caches) {
 <script src="js/config.js?v=fresh86"></script>
 <script src="js/plant.js?v=fresh86"></script>
 <script src="js/grove.js?v=fresh109"></script>
-<script src="js/motion.js?v=fresh111"></script>
+<script src="js/motion.js?v=fresh114"></script>
 <script src="js/demo.js?v=fresh111"></script>
 </body>
 </html>

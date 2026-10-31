@@ -39,7 +39,7 @@
   }
   var slug = slugFromHere();
   if (slug) {
-    location.replace("/business.html?with=" + encodeURIComponent(slug) + "#with=" + encodeURIComponent(slug));
+    location.replace("/with/" + encodeURIComponent(slug));
     return;
   }
   location.replace("/business.html?door=open");

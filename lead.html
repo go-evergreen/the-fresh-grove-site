@@ -2,16 +2,42 @@
 <html lang="en">
 <head>
 <meta charset="UTF-8">
+<base href="/">
 <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
-<title>Stay in the loop — The Fresh Grove</title>
-<meta name="description" content="Fresh-made, toxin-free wellness from Austria is coming to America. Leave your info to hear first.">
-<meta name="theme-color" content="#1a2f26">
+<title>Ringana</title>
+<meta name="description" content="Fresh, toxin-free skincare and supplements from Austria, shared by an independent Ringana partner.">
+<meta name="theme-color" content="#445a48">
 <meta name="referrer" content="strict-origin-when-cross-origin">
 <meta name="robots" content="noindex">
-<meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate">
 <script>
 try { if (window.top !== window.self) window.top.location.replace(window.location.href); } catch (e) {}
 (function () {
+  try {
+    var host = String(location.hostname || "").toLowerCase();
+    var path = String(location.pathname || "");
+    if ((host === "thefreshgrove.team" || host === "www.thefreshgrove.team") && /\/hub\//i.test(path)) {
+      var hop = new URLSearchParams(location.search);
+      var hopWith = String(hop.get("with") || "").trim().toLowerCase();
+      var hopLead = String(hop.get("p") || "").trim().toLowerCase();
+      if (!hopWith && !hopLead && location.hash) {
+        var hopHash = String(location.hash).match(/(?:^|[?#&])(p|with)=([^&]+)/i);
+        if (hopHash) {
+          if (String(hopHash[1]).toLowerCase() === "with") hopWith = decodeURIComponent(hopHash[2] || "").trim().toLowerCase();
+          else hopLead = decodeURIComponent(hopHash[2] || "").trim().toLowerCase();
+        }
+      }
+      if (/^[a-z0-9][a-z0-9-]{1,38}$/.test(hopWith)) {
+        location.replace("/with/" + encodeURIComponent(hopWith));
+        return;
+      }
+      if (/^[a-z0-9][a-z0-9-]{1,38}$/.test(hopLead)) {
+        location.replace("/lead/" + encodeURIComponent(hopLead));
+        return;
+      }
+      location.replace("/lead.html" + String(location.search || "") + String(location.hash || ""));
+      return;
+    }
+  } catch (eHop) {}
   try {
     var p = new URLSearchParams(location.search);
     var slug = (p.get("p") || p.get("with") || "").trim().toLowerCase();
@@ -20,6 +46,21 @@ try { if (window.top !== window.self) window.top.location.replace(window.locatio
       if (hm) slug = decodeURIComponent(hm[1] || "").trim().toLowerCase();
     }
     if (!slug) return;
+    var pageName = (p.get("page") || "").trim().toLowerCase();
+    var section = String(location.hash || "").match(/^#([a-z][a-z0-9-]*)$/);
+    if (section && (section[1] === "products" || section[1] === "shop" || section[1] === "horizon" || section[1] === "lines")) pageName = "products";
+    if (pageName === "products" || pageName === "team" || pageName === "pay") {
+      document.documentElement.setAttribute("data-page", pageName);
+    }
+    var named = section && ["products", "shop", "horizon", "connect", "top", "about", "lines", "partnership", "favorites", "team", "pay"].indexOf(section[1]) >= 0;
+    if (named) {
+      if (!p.get("p") && !p.get("with")) {
+        var keep = new URL(location.href);
+        keep.searchParams.set("p", slug);
+        history.replaceState(null, "", keep.pathname + keep.search + keep.hash);
+      }
+      return;
+    }
     var needQ = !p.get("p") && !p.get("with");
     var needH = !/#(?:p|with)=/i.test(String(location.hash || ""));
     if (!needQ && !needH) return;
@@ -30,147 +71,1046 @@ try { if (window.top !== window.self) window.top.location.replace(window.locatio
   } catch (eLead) {}
 })();
 </script>
-<link rel="icon" href="/hub/icons/favicon.svg" type="image/svg+xml">
-<link rel="icon" href="/hub/icons/favicon-32.png" sizes="32x32" type="image/png">
-<link rel="apple-touch-icon" href="/hub/icons/apple-touch-icon.png">
-<link rel="stylesheet" href="/hub/css/lead.css?v=327">
+<link rel="icon" href="icons/favicon.svg" type="image/svg+xml">
+<link rel="icon" href="icons/favicon-32.png" sizes="32x32" type="image/png">
+<link rel="apple-touch-icon" href="icons/apple-touch-icon.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Caveat:wght@500;600&family=Fraunces:ital,opsz,wght@0,9..144,300;0,9..144,400;0,9..144,500;1,9..144,400&family=Libre+Baskerville:ital,wght@0,400;1,400&family=Manrope:wght@400;500;600&family=Source+Sans+3:wght@400;600&family=Work+Sans:wght@300;400;500;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="css/lead.css?v=029b492985">
 </head>
-<body class="lead-body">
-  <div class="lead-arcs" aria-hidden="true"></div>
-  <a class="lead-back" id="leadBack" href="https://app.thefreshgrove.team/index.html?go=leads" hidden>← Back to the app</a>
-
-  <main class="lead-shell" id="leadShell">
-    <div class="lead-loading" id="leadLoading">Loading…</div>
-
-    <div class="lead-missing" id="leadMissing" hidden>
-      <p class="lead-brand">The Fresh Grove</p>
+<body data-look="grove" data-fonts="fraunces" data-corners="sharp">
+  <div class="local-bar" id="localBar" hidden></div>
+  <a class="lead-back" id="leadBack" href="index.html?go=leads" hidden>← Back to the app</a>
+  <div class="loading" id="leadLoading">Loading…</div>
+  <div class="missing" id="leadMissing" hidden>
+    <div>
+      <p class="eyebrow">First Seeds</p>
       <h1>This page isn’t live yet</h1>
-      <p>The link may be mistyped, or your friend hasn’t finished setting it up. Ask them to open <strong>Leads</strong> in First Seeds and share their link again.</p>
+      <p>The link may be mistyped, or your friend hasn’t finished setting it up. Ask them to open Leads in First Seeds and share their link again.</p>
     </div>
-
-    <div class="lead-missing" id="leadLoadError" hidden>
-      <p class="lead-brand">The Fresh Grove</p>
+  </div>
+  <div class="missing" id="leadLoadError" hidden>
+    <div>
+      <p class="eyebrow">First Seeds</p>
       <h1>Couldn’t load this page</h1>
       <p>Check your connection and try again in a moment.</p>
-      <button type="button" class="lead-submit" id="leadRetry">Try again →</button>
+      <button type="button" class="btn btn-brass" id="leadRetry">Try again</button>
+    </div>
+  </div>
+  <div id="leadPage" hidden>
+    <header class="site-header" id="siteHeader">
+      <div class="site-header-inner">
+        <a class="site-brand" href="#top">Ringana <span class="brand-dot">·</span> with <span id="leadBrandName">a friend</span></a>
+        <nav class="site-nav" aria-label="Primary">
+          <a href="lead.html" data-lead-page="home">Home</a>
+          <a href="lead.html?page=products" data-lead-page="products">Products</a>
+          <div class="nav-drop" id="navGrove">
+            <button type="button" class="nav-plan" aria-expanded="false" aria-haspopup="true">The Grove</button>
+            <div class="nav-menu">
+              <a href="lead.html?page=team" data-lead-page="team">The team</a>
+              <a href="lead.html?page=pay" data-lead-page="pay">How you get paid</a>
+            </div>
+          </div>
+          <a class="nav-cta nav-shop" id="leadShopNav" hidden target="_blank" rel="noopener noreferrer">Shop now</a>
+          <a href="#connect" class="nav-cta nav-cta-scroll" data-open-connect>Get more info</a>
+        </nav>
+      </div>
+    </header>
+
+    <div data-view="home">
+    <header class="hero" id="top">
+      <div class="hero-ring hero-ring-1" aria-hidden="true"></div>
+      <div class="hero-ring hero-ring-2" aria-hidden="true"></div>
+      <div class="hero-inner">
+        <p class="hero-eyebrow">Ringana</p>
+        <h1>Wellness that was never meant to <em>compromise.</em></h1>
+        <p class="hero-sub">For thirty years, a family in Austria has made skincare and supplements the hard way — totally toxin free, made fresh, and honest about every ingredient. The same standard is what this page is here to share.</p>
+        <div class="hero-actions">
+          <div class="hero-pair">
+            <a class="btn btn-ghost" href="lead.html?page=products" data-lead-page="products">Learn the products</a>
+            <a class="btn btn-brass" id="leadShopHero" hidden target="_blank" rel="noopener noreferrer">Shop</a>
+          </div>
+          <a class="btn btn-ghost" href="lead.html?page=team" data-lead-page="team">How the business works</a>
+        </div>
+      </div>
+    </header>
+
+    <section class="film" aria-label="The products, in real life">
+      <div class="film-track"><div class="film-run" id="filmTrack"></div></div>
+    </section>
+
+    <div class="standards">
+      <div class="container">
+        <div class="standard-item"><span class="num">Fresh</span><span class="label">Made about twice a week</span></div>
+        <div class="standard-item"><span class="num">Toxin free</span><span class="label">Intentionally chosen ingredients</span></div>
+        <div class="standard-item"><span class="num">In-house</span><span class="label">Developed and produced in-house</span></div>
+        <div class="standard-item"><span class="num">Direct</span><span class="label">Shipped to your door</span></div>
+      </div>
     </div>
 
-    <div class="lead-page" id="leadPage" hidden>
-      <header class="lead-hero">
-        <p class="lead-brand">Ringana · with <span id="leadBrandName">a friend</span></p>
-        <p class="lead-kicker"><span class="lead-kicker-rule"></span> Coming to America · 2026</p>
-        <h1 class="lead-headline">Wellness that was never meant to <em>compromise.</em></h1>
-        <p class="lead-lede" id="leadLede">For thirty years, a family in Austria has made skincare and supplements the hard way — totally toxin free, made fresh, honest about every ingredient. Now Ringana is coming to America.</p>
-        <p class="lead-blurb" id="leadBlurb"></p>
+    <section class="story" id="story">
+      <div class="container">
+        <div class="story-grid">
+          <div class="story-text">
+            <p class="eyebrow">Why Ringana</p>
+            <h2 class="section-title">Made fresh, on purpose.</h2>
+            <p>Most products are built to sit on a shelf for years. These are made in small batches, with shorter shelf lives, so what’s in the bottle is still worth using when it reaches you.</p>
+            <p>Ringana became Austria’s first fresh cosmetics company on a simple conviction: <strong>what goes on your body and in your body should need no apology.</strong></p>
+            <div class="pull">Three decades later, the founding family still leads the company — and the standard has never bent.</div>
+            <p>Almost everything happens under one roof: formula, fill, and finish. Fewer handoffs. More eyes on quality. An expiration date like food, because nothing artificial is holding it together.</p>
+          </div>
+          <div class="timeline" aria-label="Ringana history">
+            <div class="tl-item"><span class="tl-year">1996</span><h3>The toothpaste moment</h3><p>Two parents in Austria refuse to accept questionable ingredients in everyday products — and found Ringana.</p></div>
+            <div class="tl-item"><span class="tl-year">2013</span><h3>The fresh factory</h3><p>Development and production come fully in-house.</p></div>
+            <div class="tl-item"><span class="tl-year">2021</span><h3>The campus</h3><p>A new headquarters in St. Johann in der Haide — geothermal, solar, and one roof for the work.</p></div>
+            <div class="tl-item"><span class="tl-year">Now</span><h3>The U.S. shop is open</h3><p>The same fresh-made standard, shared person to person, with a U.S. home underway in Virginia.</p></div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="products-teaser">
+      <div class="container">
+        <p class="eyebrow">The products</p>
+        <h2 class="section-title">One standard, for the whole routine.</h2>
+        <p class="lede">Skincare, supplements, and functional nutrition, held to the same bar: totally toxin free, and formulated with plant actives at full strength.</p>
+        <div class="product-grid">
+          <a class="product-card featured" href="lead.html?page=products" data-lead-page="products"><p class="product-kicker">Skincare · Body</p><h3>FRESH</h3><p>Cleansers, serums, creams, deodorant, and body care, built on concentrated plant actives that are made fresh instead of preserved for a years-long shelf.</p></a>
+          <a class="product-card" href="lead.html?page=products" data-lead-page="products"><p class="product-kicker">Supplements</p><h3>CAPS</h3><p>Targeted plant-powered capsules for immunity, focus, joints, digestion, and more. The line is a set, not a single capsule.</p></a>
+          <a class="product-card" href="lead.html?page=products" data-lead-page="products"><p class="product-kicker">Daily nutrition</p><h3>PACKS</h3><p>Portioned sachets for antioxidant support, acid–base balance, and everyday fibre.</p></a>
+          <a class="product-card" href="lead.html?page=products" data-lead-page="products"><p class="product-kicker">Drinks</p><h3>DRINKS</h3><p>Functional shots and mixes. Real plant support, without the artificial sweeteners and colors that fill the beverage aisle.</p></a>
+        </div>
+        <p class="products-cta"><a class="btn btn-pine" href="lead.html?page=products" data-lead-page="products">See what’s in the shop</a></p>
+      </div>
+    </section>
+
+    <section class="tried" id="favorites" hidden>
+      <div class="container">
+        <div class="tried-intro">
+          <p class="eyebrow">Favorites</p>
+          <h2 class="section-title">Products I’m already talking about.</h2>
+        </div>
+        <div class="radar-carousel">
+          <button type="button" class="carousel-btn prev" id="favPrev" aria-label="Previous favorite">‹</button>
+          <div class="carousel-viewport"><div class="carousel-track" id="favTrack"></div></div>
+          <button type="button" class="carousel-btn next" id="favNext" aria-label="Next favorite">›</button>
+          <div class="carousel-footer"><div class="carousel-dots" id="favDots"></div></div>
+        </div>
+      </div>
+    </section>
+
+    <section class="about" id="about">
+      <div class="container">
+        <div class="about-grid" id="aboutGrid">
+          <div class="about-photo-wrap" id="aboutPhoto" hidden>
+            <div class="about-photo">
+              <img id="aboutPhotoImg" alt="" width="900" height="1125">
+            </div>
+          </div>
+          <div class="about-copy">
+            <p class="eyebrow">Who’s behind this</p>
+            <h2 class="section-title" id="aboutTitle">Hi.</h2>
+            <div class="about-text" id="leadAbout"></div>
+            <div class="about-more-photos" id="aboutMore" hidden></div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="opportunity" id="partnership">
+      <div class="container">
+        <p class="eyebrow">The partnership</p>
+        <h2 class="section-title">A business shared person to person.</h2>
+        <p class="lede">Ringana is already established across Europe. The U.S. shop is open. People share it the way you’d tell a friend about something you actually use.</p>
+        <div class="opp-stack">
+          <div class="opp-pill"><span class="opp-pill-num">01</span><div><h3>What this is</h3><p>Most people just buy the products. Growing a team is a choice, not the price of being here.</p></div></div>
+          <div class="opp-pill"><span class="opp-pill-num">02</span><div><h3>No monthly order</h3><p>There is no monthly order requirement to stay active.</p></div></div>
+          <div class="opp-pill"><span class="opp-pill-num">03</span><div><h3>Checkout is on Ringana</h3><p>This is an independent partner page, not a corporate site. Orders go through Ringana, and this partner may earn from orders placed through their shop.</p></div></div>
+        </div>
+      </div>
+    </section>
+
+    <div class="section-divider" aria-hidden="true"></div>
+    <section class="connect" id="connect">
+      <div class="container">
+        <p class="eyebrow">Stay in touch</p>
+        <h2 class="section-title">Tell me what you want to know.</h2>
+        <p class="lede" id="leadCardSub">The products are here. Leave your name and how to reach you, and I’ll follow up personally.</p>
+        <div class="btn-row">
+          <button type="button" class="btn btn-brass" data-open-connect>Get more info</button>
+          <a class="btn btn-pine" id="leadShop" hidden target="_blank" rel="noopener noreferrer">Shop now</a>
+        </div>
+      </div>
+    </section>
+    </div>
+
+    <div id="products" data-view="products">
+      <header class="page-hero">
+        <div class="container">
+          <p class="hero-eyebrow">The shop</p>
+          <h2 class="section-title">What’s here.</h2>
+        </div>
       </header>
-
-      <section class="lead-proof" aria-label="Why Ringana">
-        <div class="lead-proof-item">
-          <strong>Made fresh</strong>
-          <span>Small batches from their own campus — plant actives at full potency, with an expiration date like food.</span>
-        </div>
-        <div class="lead-proof-item">
-          <strong>Toxin free</strong>
-          <span>No synthetic preservatives or fillers. What goes on your body and in your body should need no apology.</span>
-        </div>
-        <div class="lead-proof-item">
-          <strong>Founding moment</strong>
-          <span>$85M U.S. home in Virginia. The community that shows up now helps write the American chapter.</span>
+      <section class="lines" id="lines">
+        <div class="container">
+          <p class="eyebrow">The system</p>
+          <h2 class="section-title">Four lines, one standard.</h2>
+          <div class="line-block">
+            <div class="line-photos" id="linePhotosFresh"></div>
+            <div><p class="kicker">Skincare · Body</p><p><strong>FRESH</strong> is the heart of the line. Cleansers, serums, creams, deodorant, and body care, built on concentrated plant actives that are made fresh instead of preserved for a years-long shelf.</p></div>
+          </div>
+          <div class="line-block">
+            <div class="line-photos" id="linePhotosCaps"></div>
+            <div><p class="kicker">Supplements</p><p><strong>CAPS</strong> are targeted plant-powered capsules for immunity, focus, joints, digestion, and more. The line is a set, not a single capsule.</p></div>
+          </div>
+          <div class="line-block">
+            <div class="line-photos" id="linePhotosPacks"></div>
+            <div><p class="kicker">Daily nutrition</p><p><strong>PACKS</strong> are portioned sachets for antioxidant support, acid–base balance, and everyday fibre.</p></div>
+          </div>
+          <div class="line-block">
+            <div class="line-photos" id="linePhotosDrinks"></div>
+            <div><p class="kicker">Drinks</p><p><strong>DRINKS</strong> are functional shots and mixes. Real plant support, without the artificial sweeteners and colors that fill the beverage aisle.</p></div>
+          </div>
         </div>
       </section>
-
-      <section class="lead-launch" id="leadLaunchNote" hidden>
-        <strong id="leadLaunchTitle">Just landing in America</strong>
-        <p id="leadLaunchBody"></p>
+      <section class="shop" id="shop">
+        <div class="container">
+          <div class="shop-head">
+            <div>
+              <p class="eyebrow">Now in the shop</p>
+              <h2 class="section-title">The catalog.</h2>
+              <p class="lede">Everything starts visible. Coming soon still opens on the shop link. Those just aren’t available to order yet.</p>
+            </div>
+            <p class="shop-code" id="shopCodeCard" hidden><span>My code</span><b id="shopCodeValue"></b></p>
+          </div>
+          <div class="shop-bar">
+            <div class="shop-filters" id="shopFilters" role="group" aria-label="Filter the shop"></div>
+            <p class="shop-count" id="shopCount"></p>
+          </div>
+          <div class="shop-grid" id="shopGrid"></div>
+        </div>
       </section>
+      <section class="horizon" id="horizon">
+        <div class="container">
+          <div class="horizon-head">
+            <p class="eyebrow">On the horizon</p>
+            <h2 class="section-title">Next up.</h2>
+            <p class="lede">These aren’t launched yet, so they aren’t linked.</p>
+          </div>
+          <div class="horizon-run" id="horizonRun"></div>
+        </div>
+      </section>
+    </div>
 
-      <section class="lead-card" id="leadFormCard">
-        <h2 class="lead-card-title">Be first when it arrives</h2>
-        <p class="lead-card-sub" id="leadCardSub">Leave your name and how to reach you. You’ll get launch timing, honest product notes, and a real seat if you want to build alongside — no spam list.</p>
+    <div data-view="team">
+      <header class="page-hero">
+        <div class="container">
+          <p class="hero-eyebrow">The Grove</p>
+          <h2 class="section-title">The door is open.</h2>
+          <p class="lede">Ringana spent thirty years becoming a trusted name across Europe. The U.S. shop is open, and people share it the way you’d tell a friend.</p>
+        </div>
+      </header>
+<section class="hub is-locked" id="hub">
+  <div class="hub-stage">
+    <div class="hub-copy reveal">
+      <p class="eyebrow">The hub</p>
+      <h2 class="section-title">Where this team actually lives.</h2>
+      <form class="hub-gate" id="hubGate">
+        <p>Enter a password to take a peek into our exclusive team resources.</p>
+        <label for="hubPass">Password</label>
+        <input id="hubPass" type="password" autocomplete="current-password" required>
+        <button type="submit">Open</button>
+        <p class="err" id="hubErr" hidden>That password doesn’t open it.</p>
+      </form>
+      <div class="hub-private" id="hubPrivate">
+      <div class="app-pair" id="appPair">
+        <button type="button" class="app-pick" data-app="seeds" aria-expanded="false" aria-controls="blurbSeeds">
+          <img src="assets/lead/first-seeds.png" alt="" width="84" height="84">
+          <span><b>First Seeds</b><small>The team hub</small></span>
+        </button>
+        <button type="button" class="app-pick" data-app="shelf" aria-expanded="false" aria-controls="blurbShelf">
+          <img src="assets/lead/fresh-shelf.png" alt="" width="84" height="84">
+          <span><b>The Fresh Shelf</b><small>The client app</small></span>
+        </button>
+      </div>
+      <div class="app-blurb" id="blurbSeeds" hidden>
+        <p>I built First Seeds for this team. The phone is the walkthrough — tap around, or tap Next.</p>
+        <p class="hub-hold">You’re led, guided, and supported from day one. A person who knows your name, zooms you can actually get to, and a live team that stays. You’re not guessing — and you’re not doing this alone.</p>
+        <ul class="hub-points">
+          <li><strong>A runway, not a scramble.</strong> Your story, first products, your page, then who you’d tell — in that order, so you always know the next quiet step. Peek ahead anytime. When you’re ready, Post Studio, the calendar, and growing a team are already here.</li>
+          <li><strong>Look it up in one place.</strong> Company, products, ingredients, and launch facts — all searchable, so you can find what you need.</li>
+          <li><strong>Dates, drafts, pictures, and videos.</strong> Grove Gatherings. A vault of posts. Pictures and videos you can save. Add your own follow-ups.</li>
+          <li><strong>Your page, your inbox.</strong> A lead page that’s yours. Curious names land with you. Leaders check in and send cheers — without a group chat swallowing it.</li>
+          <li><strong>Connect directly with your clients.</strong> Their side is The Fresh Shelf. Yours is the Clients tab — names, notes, and a line back to you.</li>
+        </ul>
+        <a href="#" class="btn btn-brass" data-open-connect>Get more info</a>
+      </div>
+      <div class="app-blurb" id="blurbShelf" hidden>
+        <p>The Fresh Shelf is the other side of this same grove — the app for the people you share with. It’s already live. Each partner has their own link.</p>
+        <p class="hub-hold">They can look, match, and ask. You stay the person they come back to.</p>
+        <ul class="hub-points">
+          <li><strong>A quiz, not a guess.</strong> It matches them to skincare, body care, and supplements — then they can look the line up themselves.</li>
+          <li><strong>Look it up, then ask you.</strong> The facts live in the app. The real question comes back to the partner who shared it.</li>
+          <li><strong>A line, not a group chat.</strong> Questions go to that person. Nobody else is in the thread.</li>
+          <li><strong>Their link, their shelf.</strong> Their person, on a link that’s theirs. The rest of the grove stays with the team.</li>
+        </ul>
+        <a href="#" class="btn btn-brass" data-open-connect>Get more info</a>
+      </div>
+      </div>
+    </div>
+<div class="phone-dock" id="phoneDock" aria-label="First Seeds hub">
+      <div class="phone-wrap">
+        <div class="phone-glow" aria-hidden="true"></div>
+        <p class="phone-hint">Tap around — or tap Next</p>
+        <div class="phone" id="demoPhone">
+          <div class="phone-island" aria-hidden="true"></div>
+          <div class="phone-status" aria-hidden="true">
+            <span>9:41</span>
+            <span class="phone-status-end"><i class="sig"></i><i class="wifi"></i><i class="bat"></i></span>
+          </div>
+          <div class="phone-home" aria-hidden="true"></div>
+          <div class="demo-app" id="demoApp">
+            <div class="demo-toast" id="demoToast">Sent — demo only</div>
+            <header class="demo-rail">
+              <div class="demo-rail-top">
+                <div>
+                  <div class="demo-brand-eye">THE FRESH GROVE</div>
+                  <div class="demo-brand-title">First Seeds</div>
+                </div>
+                <div class="demo-rail-actions">
+                  <button type="button" class="demo-gear" id="demoGroveTree" aria-label="Grow Your Grove" aria-pressed="false" title="Grow Your Grove">🌳</button>
+                  <button type="button" class="demo-gear" id="demoMessagesBtn" aria-label="Messages" aria-pressed="false" title="Messages">💬</button>
+                  <button type="button" class="demo-gear" data-locked aria-label="Settings">⚙️</button>
+                </div>
+              </div>
+              <p class="demo-brand-sub">Fresh products. Clear facts.</p>
+            </header>
 
-        <form class="lead-form" id="leadForm" novalidate>
-          <div class="lead-field">
+            <div class="demo-stage">
+              <div class="demo-tab on" data-tab="sprout">
+                <p class="demo-eye">Your sprout</p>
+                <h2 class="demo-h1">Watch it grow.</h2>
+                <p class="demo-p">Quiet prep now — your story, a few people you’d actually want beside you, clear facts — makes the first weeks feel a lot less overwhelming.</p>
+                <div class="fs-plant-zone">
+                  <button type="button" class="fs-plantbox" id="demoPlant" data-locked aria-label="Sprout preview"></button>
+                  <div class="fs-plant-meta">
+                    <div class="fs-stats">
+                      <span class="fs-stat" id="demoStatRoots"><em>Roots</em> 0/3</span>
+                      <span class="fs-stat" id="demoStatChecks"><em>Checks</em> 0/3</span>
+                    </div>
+                    <p class="fs-caption" id="demoPlantCaption">Seed on the dirt.</p>
+                    <div class="fs-progress-meta"><span id="demoGrowthLabel">Growth 0%</span></div>
+                    <div class="fs-track"><div class="fs-fill" id="demoFill"></div></div>
+                  </div>
+                </div>
+                <div class="fs-today" id="demoToday">
+                  <div class="demo-live-tag">What’s next</div>
+                  <strong id="demoTodayTitle">Plant your roots</strong>
+                  <p class="demo-blur" id="demoTodayBody">Three quiet story answers. That’s what grows the roots underground.</p>
+                  <button type="button" class="fs-go" data-locked id="demoTodayGo">Let’s go →</button>
+                </div>
+                <div class="fs-runway">
+                  <div class="demo-live-tag">Your path · step by step</div>
+                  <button type="button" class="fs-step next" data-step="story" data-locked>
+                    <span class="fs-num">1</span>
+                    <span class="fs-step-main"><b>Plant Your Roots</b><span class="fs-sub demo-blur">your story</span><em class="fs-status">Up next</em></span>
+                  </button>
+                  <button type="button" class="fs-step" data-step="products" data-locked>
+                    <span class="fs-num">2</span>
+                    <span class="fs-step-main"><b>Pick Your First Few</b><span class="fs-sub demo-blur">products · your voice</span><em class="fs-status">In the hub</em></span>
+                  </button>
+                  <button type="button" class="fs-step" data-step="ground" data-locked>
+                    <span class="fs-num">3</span>
+                    <span class="fs-step-main"><b>Your Patch of Ground</b><span class="fs-sub demo-blur">your page</span><em class="fs-status">In the hub</em></span>
+                  </button>
+                  <button type="button" class="fs-step" data-step="map" data-locked>
+                    <span class="fs-num">4</span>
+                    <span class="fs-step-main"><b>Map Your Grove</b><span class="fs-sub demo-blur">customers · partners optional</span><em class="fs-status">In the hub</em></span>
+                  </button>
+                  <button type="button" class="fs-step locked" data-locked>
+                    <span class="fs-num">5</span>
+                    <span class="fs-step-main"><b>Grow Your Tree</b><span class="fs-sub demo-blur">your future team</span><em class="fs-status">All in</em></span>
+                  </button>
+                  <button type="button" class="fs-step locked" data-locked>
+                    <span class="fs-num">6</span>
+                    <span class="fs-step-main"><b>Post Studio</b><span class="fs-sub demo-blur">your first drafts</span><em class="fs-status">All in</em></span>
+                  </button>
+                  <button type="button" class="fs-step locked" data-locked>
+                    <span class="fs-num">7</span>
+                    <span class="fs-step-main"><b>Calendar</b><span class="fs-sub demo-blur">runway habit · mark 3 done</span><em class="fs-status">All in</em></span>
+                  </button>
+                </div>
+              </div>
+
+              <div class="demo-tab" data-tab="calendar">
+                <p class="demo-eye">Plan · post yourself</p>
+                <h2 class="demo-h1">Calendar</h2>
+                <p class="demo-sub demo-blur">Dates, posts, pictures, videos.</p>
+                <div class="fs-cal-board">
+                  <div class="fs-cal-head">
+                    <span class="fs-cal-title">Your month <i class="fs-cal-chev" aria-hidden="true"></i></span>
+                    <span class="fs-cal-meta">
+                      <span class="fs-cal-dated">2 dated</span>
+                      <span class="fs-cal-views"><b>Week</b><b class="on">Month</b></span>
+                    </span>
+                  </div>
+                  <div class="fs-cal-grid" aria-hidden="true">
+                    <span>S</span><span>M</span><span>T</span><span>W</span><span>T</span><span>F</span><span>S</span>
+                    <i></i><i></i><i></i><i></i><i></i><i></i><i>1</i>
+                    <i>2</i><i>3</i><i>4</i><i>5</i><i>6</i><i class="cell" data-locked>7</i><i class="cell" data-locked>8</i>
+                    <i class="cell" data-locked>9</i><i class="cell" data-locked>10</i><i class="cell" data-locked>11</i><i class="cell" data-locked>12</i><i class="cell" data-locked>13</i><i class="cell" data-locked>14</i><i class="cell gold" data-locked>15</i>
+                    <i class="cell" data-locked>16</i><i class="cell" data-locked>17</i><i class="cell" data-locked>18</i><i class="cell" data-locked>19</i><i class="cell" data-locked>20</i><i class="cell" data-locked>21</i><i class="cell" data-locked>22</i>
+                    <i class="cell" data-locked>23</i><i class="cell" data-locked>24</i><i class="cell" data-locked>25</i><i class="cell" data-locked>26</i><i class="cell gold" data-locked>27</i><i class="cell" data-locked>28</i><i class="cell" data-locked>29</i>
+                    <i class="cell">30</i><i class="cell">31</i>
+                  </div>
+                </div>
+                <div class="demo-cal-tabs">
+                  <button type="button" class="demo-cal-tab" data-locked>
+                    <span class="demo-cal-tab-label">Your<br>story</span>
+                    <span class="demo-fold-chev" aria-hidden="true"></span>
+                  </button>
+                  <button type="button" class="demo-cal-tab" data-locked>
+                    <span class="demo-cal-tab-label">Favorite<br>products</span>
+                    <span class="demo-fold-chev" aria-hidden="true"></span>
+                  </button>
+                  <button type="button" class="demo-cal-tab" data-locked>
+                    <span class="demo-cal-tab-label">Favorite<br>facts</span>
+                    <span class="demo-fold-chev" aria-hidden="true"></span>
+                  </button>
+                </div>
+                <button type="button" class="fs-cta" data-locked>
+                  <span class="fs-cta-eye">This week</span>
+                  <span class="fs-cta-title">This week’s plan</span>
+                  <span class="fs-cta-sub demo-blur">A calm rotation — drop it onto your calendar, then tap a day to post.</span>
+                  <span class="fs-cta-go">See this week →</span>
+                </button>
+                <button type="button" class="fs-cta" data-locked>
+                  <span class="fs-cta-eye">Content library</span>
+                  <span class="fs-cta-title">Post vault</span>
+                  <span class="fs-cta-sub demo-blur">Browse by type, copy a caption, add it to a day. Steal the structure — rewrite until it sounds like you.</span>
+                  <span class="fs-cta-go">Open vault →</span>
+                </button>
+                <button type="button" class="fs-cta" data-locked>
+                  <span class="fs-cta-eye">Library</span>
+                  <span class="fs-cta-title">Pictures & videos</span>
+                  <span class="fs-cta-sub demo-blur">Search or browse — tap to open, press and hold to save.</span>
+                  <span class="fs-cta-go">Open library →</span>
+                </button>
+                <button type="button" class="fs-cta" data-locked>
+                  <span class="fs-cta-eye">From the grove</span>
+                  <span class="fs-cta-title">Posts from the team</span>
+                  <span class="fs-cta-sub demo-blur">A growing library of posts people on team created. Steal the structure, rewrite it in your voice — and add yours when something worked.</span>
+                  <span class="fs-cta-go">Browse posts →</span>
+                </button>
+              </div>
+
+              <div class="demo-tab" data-tab="leads">
+                <p class="demo-eye">For people who are curious</p>
+                <h2 class="demo-h1">Leads</h2>
+                <p class="demo-sub demo-blur">They leave their name and how to reach them. Everything lands only in your inbox.</p>
+                <div class="fs-share">
+                  <div class="fs-share-row">
+                    <button type="button" class="fs-bloom" data-locked aria-label="Copy my lead page">
+                      <span class="fs-bloom-ico" aria-hidden="true">
+                        <svg viewBox="0 0 48 48" width="40" height="40" overflow="visible">
+                          <defs><radialGradient id="demoBloomLeads" cx="50%" cy="42%" r="62%">
+                            <stop offset="0%" stop-color="#fff4c8"/>
+                            <stop offset="45%" stop-color="#f0d06a"/>
+                            <stop offset="100%" stop-color="#c9922e"/>
+                          </radialGradient></defs>
+                          <ellipse cx="24" cy="24" rx="5.2" ry="17" fill="url(#demoBloomLeads)" transform="rotate(0 24 24)" opacity=".96"/>
+                          <ellipse cx="24" cy="24" rx="5.2" ry="17" fill="url(#demoBloomLeads)" transform="rotate(72 24 24)" opacity=".96"/>
+                          <ellipse cx="24" cy="24" rx="5.2" ry="17" fill="url(#demoBloomLeads)" transform="rotate(144 24 24)" opacity=".96"/>
+                          <ellipse cx="24" cy="24" rx="5.2" ry="17" fill="url(#demoBloomLeads)" transform="rotate(216 24 24)" opacity=".96"/>
+                          <ellipse cx="24" cy="24" rx="5.2" ry="17" fill="url(#demoBloomLeads)" transform="rotate(288 24 24)" opacity=".96"/>
+                          <circle cx="24" cy="24" r="4.4" fill="#5a4a37"/>
+                          <circle cx="24" cy="24" r="2.5" fill="#e8c45a" opacity=".92"/>
+                          <circle cx="24" cy="24" r="3.1" fill="#fff4c8" opacity=".5"/>
+                        </svg>
+                      </span>
+                      <span class="fs-bloom-label">Copy my lead page</span>
+                    </button>
+                  </div>
+                  <div class="fs-share-row">
+                    <button type="button" class="fs-bloom" data-locked aria-label="Copy my business-info link">
+                      <span class="fs-bloom-ico" aria-hidden="true">
+                        <svg viewBox="0 0 48 48" width="40" height="40" overflow="visible">
+                          <defs><radialGradient id="demoBloomGrovePage" cx="50%" cy="42%" r="62%">
+                            <stop offset="0%" stop-color="#fff4c8"/>
+                            <stop offset="45%" stop-color="#f0d06a"/>
+                            <stop offset="100%" stop-color="#c9922e"/>
+                          </radialGradient></defs>
+                          <ellipse cx="24" cy="24" rx="5.2" ry="17" fill="url(#demoBloomGrovePage)" transform="rotate(0 24 24)" opacity=".96"/>
+                          <ellipse cx="24" cy="24" rx="5.2" ry="17" fill="url(#demoBloomGrovePage)" transform="rotate(72 24 24)" opacity=".96"/>
+                          <ellipse cx="24" cy="24" rx="5.2" ry="17" fill="url(#demoBloomGrovePage)" transform="rotate(144 24 24)" opacity=".96"/>
+                          <ellipse cx="24" cy="24" rx="5.2" ry="17" fill="url(#demoBloomGrovePage)" transform="rotate(216 24 24)" opacity=".96"/>
+                          <ellipse cx="24" cy="24" rx="5.2" ry="17" fill="url(#demoBloomGrovePage)" transform="rotate(288 24 24)" opacity=".96"/>
+                          <circle cx="24" cy="24" r="4.4" fill="#5a4a37"/>
+                          <circle cx="24" cy="24" r="2.5" fill="#e8c45a" opacity=".92"/>
+                          <circle cx="24" cy="24" r="3.1" fill="#fff4c8" opacity=".5"/>
+                        </svg>
+                      </span>
+                      <span class="fs-bloom-label">Copy my business-info link</span>
+                    </button>
+                  </div>
+                </div>
+                <button type="button" class="demo-fold" data-locked>
+                  <span class="demo-live-tag">Your ideal lead list</span>
+                  <span class="demo-fold-chev" aria-hidden="true"></span>
+                </button>
+                <div class="demo-live-tag">Inbox</div>
+                <button type="button" class="demo-fold" data-locked>
+                  <span class="demo-live-tag">Filters</span>
+                  <span class="demo-fold-chev" aria-hidden="true"></span>
+                </button>
+                <button type="button" class="demo-search" data-locked>Search by name, email, phone, notes…</button>
+                <article class="demo-lead-card is-new" data-locked data-lead-filters="all new products">
+                  <div class="demo-lead-head">
+                    <div class="demo-lead-head-main">
+                      <div class="demo-lead-name-row">
+                        <span class="demo-lead-hot" aria-hidden="true">🔥</span>
+                        <strong class="demo-lead-name demo-blur">Jordan M.</strong>
+                      </div>
+                      <div class="demo-lead-tags">
+                        <div class="demo-lead-dd">
+                          <button type="button" class="demo-lead-tab is-interest" data-demo-dd>Products</button>
+                          <div class="demo-lead-menu" role="listbox">
+                            <button type="button" class="demo-lead-opt on" data-demo-opt>Products</button>
+                            <button type="button" class="demo-lead-opt" data-demo-opt>Business</button>
+                            <button type="button" class="demo-lead-opt" data-demo-opt>Both</button>
+                          </div>
+                        </div>
+                        <div class="demo-lead-dd">
+                          <button type="button" class="demo-lead-tab" data-demo-dd>New</button>
+                          <div class="demo-lead-menu" role="listbox">
+                            <button type="button" class="demo-lead-opt on" data-demo-opt>New</button>
+                            <button type="button" class="demo-lead-opt" data-demo-opt>Reached out</button>
+                            <button type="button" class="demo-lead-opt" data-demo-opt>Talking</button>
+                          </div>
+                        </div>
+                        <div class="demo-lead-dd">
+                          <button type="button" class="demo-lead-tab is-quiz" data-demo-dd>Quiz</button>
+                          <div class="demo-lead-menu" role="listbox">
+                            <button type="button" class="demo-lead-opt on" data-demo-opt>Quiz</button>
+                            <button type="button" class="demo-lead-opt" data-demo-opt>Took quiz</button>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                    <button type="button" class="demo-lead-more" data-demo-lead-more aria-expanded="false" aria-label="Show details">
+                      <span class="demo-lead-expand" aria-hidden="true"></span>
+                    </button>
+                  </div>
+                  <div class="demo-lead-rest" hidden>
+                    <p class="demo-lead-meta demo-blur">jordan@example.com</p>
+                    <p class="demo-lock">Contact stays hidden here. In the hub you’d text, email, or copy an opener.</p>
+                  </div>
+                </article>
+                <article class="demo-lead-card" data-locked data-lead-filters="all grove reached both hot quiz">
+                  <div class="demo-lead-head">
+                    <div class="demo-lead-head-main">
+                      <div class="demo-lead-name-row">
+                        <span class="demo-lead-hot on" aria-hidden="true">🔥</span>
+                        <strong class="demo-lead-name demo-blur">Sam R.</strong>
+                      </div>
+                      <div class="demo-lead-tags">
+                        <div class="demo-lead-dd">
+                          <button type="button" class="demo-lead-tab is-interest" data-demo-dd>Both</button>
+                          <div class="demo-lead-menu" role="listbox">
+                            <button type="button" class="demo-lead-opt" data-demo-opt>Products</button>
+                            <button type="button" class="demo-lead-opt" data-demo-opt>Business</button>
+                            <button type="button" class="demo-lead-opt on" data-demo-opt>Both</button>
+                          </div>
+                        </div>
+                        <span class="demo-lead-pill grove">Fresh Grove</span>
+                        <div class="demo-lead-dd">
+                          <button type="button" class="demo-lead-tab" data-demo-dd>Reached out</button>
+                          <div class="demo-lead-menu" role="listbox">
+                            <button type="button" class="demo-lead-opt" data-demo-opt>New</button>
+                            <button type="button" class="demo-lead-opt on" data-demo-opt>Reached out</button>
+                            <button type="button" class="demo-lead-opt" data-demo-opt>Talking</button>
+                          </div>
+                        </div>
+                        <div class="demo-lead-dd">
+                          <button type="button" class="demo-lead-tab is-quiz" data-demo-dd>Took quiz</button>
+                          <div class="demo-lead-menu" role="listbox">
+                            <button type="button" class="demo-lead-opt" data-demo-opt>Quiz</button>
+                            <button type="button" class="demo-lead-opt on" data-demo-opt>Took quiz</button>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                    <button type="button" class="demo-lead-more" data-demo-lead-more aria-expanded="false" aria-label="Show details">
+                      <span class="demo-lead-expand" aria-hidden="true"></span>
+                    </button>
+                  </div>
+                  <div class="demo-lead-rest" hidden>
+                    <p class="demo-lead-meta">Found you on The Fresh Grove</p>
+                    <p class="demo-lock">Dummy lead — not a real person on this page.</p>
+                  </div>
+                </article>
+                <p class="demo-leads-empty" id="demoLeadsEmpty" hidden>Nobody in this filter — demo names only.</p>
+              </div>
+
+              <div class="demo-tab" data-tab="learn">
+                <p class="demo-eye">Clarity · not hype</p>
+                <h2 class="demo-h1">Learn</h2>
+                <p class="demo-p demo-blur">Are we excited? Absolutely. Excitement doesn’t replace due diligence. We want everyone here equipped to decide with clarity — not pressure.</p>
+                <div class="demo-callout" data-locked>
+                  <div class="demo-live-tag">Please remember</div>
+                  <p class="demo-blur">We’re building something new in the U.S. Some details may shift as we get closer to launch. What’s below is current guidance — not a guarantee.</p>
+                </div>
+                <button type="button" class="demo-search" data-locked>Search Learn — products, facts, FAQs, quiz…</button>
+                <button type="button" class="demo-leader-btn" data-locked>
+                  <span class="demo-leader-ico" aria-hidden="true">✨</span>
+                  <span class="demo-leader-text">Exclusively for Grove Leaders</span>
+                  <span class="demo-leader-go">Open →</span>
+                </button>
+                <button type="button" class="demo-acc" data-locked>
+                  <span class="demo-acc-main">
+                    <span class="demo-acc-ico" aria-hidden="true">❓</span>
+                    FAQs
+                  </span>
+                  <span class="demo-acc-plus" aria-hidden="true"></span>
+                </button>
+                <button type="button" class="fs-cta" data-locked>
+                  <span class="fs-cta-eye">The company</span>
+                  <span class="fs-cta-title">Why Ringana</span>
+                  <span class="fs-cta-sub demo-blur">What makes the products and the business different — how they treat the planet, and the three words they actually live by.</span>
+                  <span class="fs-cta-go">Open →</span>
+                </button>
+                <button type="button" class="fs-cta" data-locked>
+                  <span class="fs-cta-eye">Product library</span>
+                  <span class="fs-cta-title">Learn the products</span>
+                  <span class="fs-cta-sub demo-blur">Skincare, body, hair, baby, and supplements — plus an ingredient guide for label literacy and “what’s in it” lookups.</span>
+                  <span class="fs-cta-go">Open library →</span>
+                </button>
+                <button type="button" class="fs-cta" data-locked>
+                  <span class="fs-cta-eye">Conversation guide</span>
+                  <span class="fs-cta-title">Talking fresh</span>
+                  <span class="fs-cta-sub demo-blur">What to say when someone comments, objects, goes quiet, or asks about the business — structure you can steal, not a script to recite.</span>
+                  <span class="fs-cta-go">Open guide →</span>
+                </button>
+                <button type="button" class="fs-cta" data-locked>
+                  <span class="fs-cta-eye">Shareable tool</span>
+                  <span class="fs-cta-title">The Fresh Match</span>
+                  <span class="fs-cta-sub demo-blur">A short quiz for people who already know you. They get a match, then they come back to you.</span>
+                  <span class="fs-cta-go">Open guide →</span>
+                </button>
+                <div class="demo-callout demo-callout-voice" data-locked>
+                  <div class="demo-live-tag">Our promise</div>
+                  <p class="demo-blur">Not through hype. Not through exaggerated claims. Through education, transparency, and honest conversation.</p>
+                </div>
+              </div>
+
+              <div class="demo-tab" data-tab="clients">
+                <p class="demo-eye">Your clients</p>
+                <h2 class="demo-h1">Clients</h2>
+                <p class="demo-sub demo-blur">Who they are, and a way to write them.</p>
+                <div class="fs-share">
+                  <div class="fs-share-row">
+                    <button type="button" class="fs-bloom" data-locked aria-label="Copy my shelf link">
+                      <span class="fs-bloom-ico" aria-hidden="true">
+                        <svg viewBox="0 0 48 48" width="40" height="40" overflow="visible">
+                          <defs><radialGradient id="demoBloomShelf" cx="50%" cy="42%" r="62%">
+                            <stop offset="0%" stop-color="#fff4c8"/>
+                            <stop offset="45%" stop-color="#f0d06a"/>
+                            <stop offset="100%" stop-color="#c9922e"/>
+                          </radialGradient></defs>
+                          <ellipse cx="24" cy="24" rx="5.2" ry="17" fill="url(#demoBloomShelf)" transform="rotate(0 24 24)" opacity=".96"/>
+                          <ellipse cx="24" cy="24" rx="5.2" ry="17" fill="url(#demoBloomShelf)" transform="rotate(72 24 24)" opacity=".96"/>
+                          <ellipse cx="24" cy="24" rx="5.2" ry="17" fill="url(#demoBloomShelf)" transform="rotate(144 24 24)" opacity=".96"/>
+                          <ellipse cx="24" cy="24" rx="5.2" ry="17" fill="url(#demoBloomShelf)" transform="rotate(216 24 24)" opacity=".96"/>
+                          <ellipse cx="24" cy="24" rx="5.2" ry="17" fill="url(#demoBloomShelf)" transform="rotate(288 24 24)" opacity=".96"/>
+                          <circle cx="24" cy="24" r="4.4" fill="#5a4a37"/>
+                          <circle cx="24" cy="24" r="2.5" fill="#e8c45a" opacity=".92"/>
+                          <circle cx="24" cy="24" r="3.1" fill="#fff4c8" opacity=".5"/>
+                        </svg>
+                      </span>
+                      <span class="fs-bloom-label">Copy my shelf link</span>
+                    </button>
+                  </div>
+                </div>
+                <div class="demo-live-tag">Today</div>
+                <article class="demo-lead-card is-new" data-locked>
+                  <div class="demo-lead-head">
+                    <div class="demo-lead-head-main">
+                      <div class="demo-lead-name-row">
+                        <strong class="demo-lead-name demo-blur">Casey L.</strong>
+                      </div>
+                      <p class="demo-lead-meta demo-blur">New on The Fresh Shelf</p>
+                    </div>
+                  </div>
+                </article>
+                <div class="demo-live-tag">With you</div>
+                <article class="demo-lead-card" data-locked>
+                  <div class="demo-lead-head">
+                    <div class="demo-lead-head-main">
+                      <div class="demo-lead-name-row">
+                        <strong class="demo-lead-name demo-blur">Riley P.</strong>
+                      </div>
+                      <p class="demo-lead-meta demo-blur">Left a note</p>
+                    </div>
+                  </div>
+                </article>
+                <p class="demo-lock">Dummy names — not a real client on this page.</p>
+              </div>
+
+              <div class="demo-tab" data-tab="grove">
+                <p class="demo-eye">The Fresh Grove</p>
+                <div class="fs-team-head">
+                  <h2 class="demo-h1">Grow Your Grove</h2>
+                  <button type="button" class="fs-bloom" data-locked aria-label="Copy my link to join">
+                    <span class="fs-bloom-ico" aria-hidden="true">
+                      <svg viewBox="0 0 48 48" width="40" height="40" overflow="visible">
+                        <defs><radialGradient id="demoBloomGrove" cx="50%" cy="42%" r="62%">
+                          <stop offset="0%" stop-color="#fff4c8"/>
+                          <stop offset="45%" stop-color="#f0d06a"/>
+                          <stop offset="100%" stop-color="#c9922e"/>
+                        </radialGradient></defs>
+                        <ellipse cx="24" cy="24" rx="5.2" ry="17" fill="url(#demoBloomGrove)" transform="rotate(0 24 24)" opacity=".96"/>
+                        <ellipse cx="24" cy="24" rx="5.2" ry="17" fill="url(#demoBloomGrove)" transform="rotate(72 24 24)" opacity=".96"/>
+                        <ellipse cx="24" cy="24" rx="5.2" ry="17" fill="url(#demoBloomGrove)" transform="rotate(144 24 24)" opacity=".96"/>
+                        <ellipse cx="24" cy="24" rx="5.2" ry="17" fill="url(#demoBloomGrove)" transform="rotate(216 24 24)" opacity=".96"/>
+                        <ellipse cx="24" cy="24" rx="5.2" ry="17" fill="url(#demoBloomGrove)" transform="rotate(288 24 24)" opacity=".96"/>
+                        <circle cx="24" cy="24" r="4.4" fill="#5a4a37"/>
+                        <circle cx="24" cy="24" r="2.5" fill="#e8c45a" opacity=".92"/>
+                        <circle cx="24" cy="24" r="3.1" fill="#fff4c8" opacity=".5"/>
+                      </svg>
+                    </span>
+                    <span class="fs-bloom-label">Copy my link to join</span>
+                  </button>
+                </div>
+                <p class="demo-sub demo-blur">The people building alongside you — check in, cheer them on, watch the family grow.</p>
+                <div class="demo-live-team">
+                  <div class="demo-live-stats">
+                    <div class="demo-live-stat"><strong>3</strong><span>Level 1</span></div>
+                    <div class="demo-live-stat"><strong>7</strong><span>on tree</span></div>
+                    <div class="demo-live-stat"><strong>2</strong><span>deep</span></div>
+                  </div>
+                  <div class="demo-live-you"><span aria-hidden="true">🌿</span> You</div>
+                  <div class="demo-live-list">
+                    <div class="demo-live-l1 has-kids is-open">
+                      <div class="demo-live-sum">
+                        <span class="demo-live-rank">1</span>
+                        <span class="demo-live-main">
+                          <button type="button" class="demo-live-name demo-blur" data-locked>Maya</button>
+                          <span class="demo-live-meta demo-blur">2/7 sections · 3d ago</span>
+                        </span>
+                        <button type="button" class="demo-live-expand" data-locked aria-expanded="true" aria-label="Hide 2 under"></button>
+                      </div>
+                      <ul class="demo-live-kids">
+                        <li class="demo-live-node">
+                          <span class="demo-live-sprout" aria-hidden="true">🌱</span>
+                          <button type="button" class="demo-live-kid demo-blur" data-locked>Sam</button>
+                        </li>
+                        <li class="demo-live-node">
+                          <span class="demo-live-sprout" aria-hidden="true">🌱</span>
+                          <button type="button" class="demo-live-kid demo-blur" data-locked>Alex</button>
+                        </li>
+                      </ul>
+                    </div>
+                    <div class="demo-live-l1">
+                      <div class="demo-live-sum is-static">
+                        <span class="demo-live-rank">2</span>
+                        <span class="demo-live-main">
+                          <button type="button" class="demo-live-name demo-blur" data-locked>Jordan</button>
+                          <span class="demo-live-meta demo-blur">active today</span>
+                        </span>
+                      </div>
+                    </div>
+                    <div class="demo-live-l1 has-kids">
+                      <div class="demo-live-sum">
+                        <span class="demo-live-rank">3</span>
+                        <span class="demo-live-main">
+                          <button type="button" class="demo-live-name demo-blur" data-locked>Priya</button>
+                          <span class="demo-live-meta demo-blur">4/7 sections · 1d ago</span>
+                        </span>
+                        <button type="button" class="demo-live-expand" data-locked aria-expanded="false" aria-label="Show 2 under"></button>
+                      </div>
+                      <ul class="demo-live-kids">
+                        <li class="demo-live-node">
+                          <span class="demo-live-sprout" aria-hidden="true">🌱</span>
+                          <button type="button" class="demo-live-kid demo-blur" data-locked>Riley</button>
+                        </li>
+                        <li class="demo-live-node">
+                          <span class="demo-live-sprout" aria-hidden="true">🌱</span>
+                          <button type="button" class="demo-live-kid demo-blur" data-locked>Tess</button>
+                        </li>
+                      </ul>
+                    </div>
+                  </div>
+                </div>
+                <div class="fs-mentor">
+                  <button type="button" class="fs-mentor-col nudge" data-locked>
+                    <span>Needs a nudge <b>1</b></span>
+                    <strong class="demo-blur">Maya</strong>
+                  </button>
+                  <button type="button" class="fs-mentor-col motion" data-locked>
+                    <span>In motion <b>1</b></span>
+                    <strong class="demo-blur">Jordan</strong>
+                  </button>
+                  <button type="button" class="fs-mentor-col ready" data-locked>
+                    <span>Ready / blooming <b>1</b></span>
+                    <strong class="demo-blur">Priya</strong>
+                  </button>
+                </div>
+                <button type="button" class="demo-fold" data-locked>
+                  <span class="demo-live-tag">Dream tree</span>
+                  <span class="demo-fold-chev" aria-hidden="true"></span>
+                </button>
+                <p class="demo-lock">Dummy names — not a real team on this page.</p>
+              </div>
+
+              <div class="demo-tab" data-tab="messages">
+                <p class="demo-eye">The Fresh Grove</p>
+                <h2 class="demo-h1">What’s new</h2>
+                <p class="demo-sub">Notes from the team, and a line back to you — from the header, not another group chat.</p>
+                <div class="demo-live-tag">From the grove</div>
+                <article class="demo-lead-card is-new" data-locked>
+                  <div class="demo-lead-head">
+                    <div class="demo-lead-head-main">
+                      <div class="demo-lead-name-row">
+                        <strong class="demo-lead-name">Grove Gathering</strong>
+                      </div>
+                      <p class="demo-lead-meta">This week’s zoom is on the calendar. Come if you can — replay lives here after.</p>
+                    </div>
+                  </div>
+                </article>
+                <div class="demo-live-tag">For you</div>
+                <article class="demo-lead-card" data-locked>
+                  <div class="demo-lead-head">
+                    <div class="demo-lead-head-main">
+                      <div class="demo-lead-name-row">
+                        <strong class="demo-lead-name demo-blur">A note from your person</strong>
+                      </div>
+                      <p class="demo-lead-meta demo-blur">Proud of the quiet work this week.</p>
+                    </div>
+                  </div>
+                </article>
+                <p class="demo-lock">Demo notes — your real messages stay in the hub.</p>
+              </div>
+
+              <div class="demo-sheet" id="demoSheet" hidden>
+                <button type="button" class="demo-back" id="demoBack">← Back</button>
+                <div id="demoSheetBody"></div>
+              </div>
+            </div>
+
+            <button type="button" class="demo-guide" id="demoGuide">
+              <span>
+                <i id="demoGuideKicker">🌱 Sprout</i>
+                <b id="demoGuideTitle">The path is already built.</b>
+                <small id="demoGuideLine">Story, a few products, your page, then who you’d tell. Post Studio and Calendar are waiting when you want them.</small>
+              </span>
+              <em><span id="tourPos">1 / 7</span> · Next →</em>
+            </button>
+            <nav class="demo-nav" aria-label="Demo hub">
+              <button type="button" class="on" data-tab="sprout"><span class="demo-nav-ico">🌱</span>Sprout</button>
+              <button type="button" data-tab="calendar"><span class="demo-nav-ico">📅</span>Calendar</button>
+              <button type="button" data-tab="leads"><span class="demo-nav-ico" aria-hidden="true">&#x1F4E7;</span>Leads</button>
+              <button type="button" data-tab="learn"><span class="demo-nav-ico">💡</span>Learn</button>
+              <button type="button" data-tab="clients"><span class="demo-nav-ico">🧴</span>Clients</button>
+            </nav>
+          </div>
+        </div>
+        <p class="hub-legal">© 2026 The Fresh Grove. First Seeds shown here as a walkthrough of the private hub. All rights reserved. No copying, scraping, cloning, or redistribution of this interface, artwork, or plant. Not an official Ringana corporate website or product.</p>
+      </div>
+    </div>
+  </div>
+</section>
+      <section class="story">
+        <div class="container">
+          <p class="eyebrow">The partner side</p>
+          <h2 class="section-title">How this business actually works.</h2>
+          <p class="lede">Real product movement. No monthly quota, and no garage full of inventory.</p>
+          <div class="rule-grid">
+            <article><h3>Never monthly</h3><p>A purchase is never required each month. Not to stay active. Not to earn.</p></article>
+            <article><h3>Once a year</h3><p>One order every 12 months keeps a partner active — from a customer, or from the partner.</p></article>
+            <article><h3>No monthly fee</h3><p>There is no monthly bill to keep the partnership.</p></article>
+            <article><h3>A team is a choice</h3><p>Most people just buy the products. Growing a team is optional.</p></article>
+          </div>
+        </div>
+      </section>
+      <section>
+        <div class="container">
+          <p class="eyebrow">Who does what</p>
+          <h2 class="section-title">Your side of the table is small on purpose.</h2>
+          <div class="split-grid">
+            <div>
+              <h3>You focus on</h3>
+              <ul>
+                <li>Using the products</li>
+                <li>Sharing honestly with people you know</li>
+                <li>Caring for customers</li>
+                <li>Mentoring a team, if you choose one</li>
+              </ul>
+            </div>
+            <div>
+              <h3>Ringana handles</h3>
+              <ul>
+                <li>Fresh production</li>
+                <li>Packaging and shipping to the customer</li>
+                <li>Invoicing and payment</li>
+                <li>The partner shop and online office</li>
+              </ul>
+            </div>
+          </div>
+        </div>
+      </section>
+      <section class="story">
+        <div class="container">
+          <p class="eyebrow">An honest read</p>
+          <h2 class="section-title">This is for some people.</h2>
+          <div class="split-grid">
+            <div>
+              <h3>A strong fit if you…</h3>
+              <ul>
+                <li>Care what goes on your skin and in your body</li>
+                <li>Would rather recommend something you use than perform a pitch</li>
+                <li>Want the pace to fit a family, a job, or both</li>
+              </ul>
+            </div>
+            <div>
+              <h3>Probably not if you…</h3>
+              <ul>
+                <li>Want fast or guaranteed money</li>
+                <li>Don’t care about the ingredient list</li>
+                <li>Want someone else to build it for you</li>
+              </ul>
+            </div>
+          </div>
+          <p class="lede" style="margin-top:2rem">The Fresh Grove is the team behind these pages. Training and a weekly zoom are there for partners who want them. No income is guaranteed.</p>
+          <button type="button" class="btn btn-brass" data-open-connect>Get more info</button>
+        </div>
+      </section>
+    </div>
+
+    <div data-view="pay">
+      <header class="page-hero">
+        <div class="container">
+          <p class="hero-eyebrow">The plan</p>
+          <h2 class="section-title">How you <em>get paid.</em></h2>
+          <p class="lede">Your rank sets the percentage paid on volume. These are the published U.S. rates, and they can change.</p>
+        </div>
+      </header>
+      <section>
+        <div class="container">
+          <p class="eyebrow">The plan</p>
+          <h2 class="section-title">Four kinds of volume.</h2>
+          <div class="rule-grid">
+            <article><h3>Personal</h3><p>What you buy.</p></article>
+            <article><h3>Customer</h3><p>What your customers buy. Your own orders are not in this.</p></article>
+            <article><h3>Direct</h3><p>Personal plus customer. Your own rate applies here.</p></article>
+            <article><h3>Team</h3><p>Your direct volume, plus everyone below you.</p></article>
+          </div>
+          <h2 class="section-title" style="margin-top:2.4rem">Your own rate.</h2>
+          <p class="lede">The percentage is the Target you’ve reached. It pays on direct volume, and it resets every month. A point pays $1.60.</p>
+          <div class="rate-line">
+            <div><b>19%</b><span>Target 1</span></div>
+            <div><b>29%</b><span>Target 2</span></div>
+            <div><b>39%</b><span>Target 3 and up</span></div>
+          </div>
+          <h2 class="section-title" id="targets" style="margin-top:2.4rem">What each Target takes.</h2>
+          <p class="lede">Set fresh every month. A Target can be reached on volume alone. Partner counts belong to the Start Bonus, not to rank.</p>
+          <div class="target-stage">
+            <p class="target-kicker">Target <b id="targetNum">1</b></p>
+            <p class="target-rate" id="targetRate">19%</p>
+            <p class="target-need" id="targetNeed">110 direct volume</p>
+            <label class="target-slider">Drag across the ten targets
+              <input type="range" id="targetRange" min="1" max="10" value="1" aria-valuemin="1" aria-valuemax="10" aria-valuenow="1" aria-label="Target level">
+            </label>
+          </div>
+          <p class="why-fine">TT-1 is team volume with the strongest team removed, for qualification only. TT-2 removes two. TT-3 removes three. Removed for qualification is not the same as unpaid.</p>
+          <h2 class="section-title" style="margin-top:2.4rem">Growth bonus, from Target 6.</h2>
+          <p class="lede">A second percentage on new-partner volume, across the first three generations. The bar is 3,500 points, tested every month.</p>
+          <div class="growth-carousel" id="growthCarousel">
+            <button type="button" class="growth-prev" aria-label="Previous growth rate">‹</button>
+            <p class="growth-card"><b id="growthPct">2%</b><span id="growthAt">Target 6</span></p>
+            <button type="button" class="growth-next" aria-label="Next growth rate">›</button>
+          </div>
+          <h2 class="section-title" style="margin-top:2.4rem">Four ways this pays.</h2>
+          <div class="rule-grid">
+            <article><h3>Your own sales</h3><p>What you buy, and what your customers buy. That is the 19, 29, or 39 percent. You can reach every Target this way.</p></article>
+            <article><h3>People you enroll</h3><p>Their customers pay you too. That first line is 8 percent, and 9 percent from Target 4.</p></article>
+            <article><h3>The line under them</h3><p>When their people have customers, that next line pays 14 percent. More lines open as the Target rises. Nine of them pay from Target 6.</p></article>
+            <article><h3>A wider front line</h3><p>More people you enroll yourself. When they rank up, it does not reduce what you earn.</p></article>
+          </div>
+          <p class="why-fine">These are the rates the plan pays, from Ringana’s U.S. materials, and they can change. They are not a projection of earnings. Only a small percentage of partners reach the highest Targets. No income is guaranteed.</p>
+          <button type="button" class="btn btn-brass" data-open-connect>Get more info</button>
+        </div>
+      </section>
+    </div>
+
+    <footer>
+      <p class="foot-brand">Ringana <span>·</span> with <span id="footName">a friend</span></p>
+      <p class="foot-legal">Independent partner page — not an official Ringana corporate site. Checkout is on Ringana, and this partner may earn from orders placed through their shop. These statements have not been evaluated by the FDA. Products are not intended to diagnose, treat, cure, or prevent any disease.</p>
+    </footer>
+  </div>
+
+  <div class="connect-modal" id="connectModal" aria-hidden="true" role="dialog" aria-label="Get more info">
+    <div class="connect-modal-backdrop" data-close-connect></div>
+    <div class="connect-modal-panel letter-panel">
+      <button class="connect-modal-close" type="button" aria-label="Close" data-close-connect>&times;</button>
+      <div class="letter-paper">
+        <p class="letter-salutation">Hi,</p>
+        <div class="letter-body-copy"><p>Tell me what you want to know. I’ll write you back myself.</p></div>
+        <form class="letter-form" id="leadForm" novalidate>
+          <fieldset id="leadInterestField">
+            <p class="letter-interest-label">I’m curious about</p>
+            <div class="chips letter-interest-row" role="group" aria-label="Interest">
+              <button type="button" class="letter-interest-chip" data-interest="products" aria-pressed="false">The products</button>
+              <button type="button" class="letter-interest-chip" data-interest="business" aria-pressed="false">The business</button>
+              <button type="button" class="letter-interest-chip" data-interest="both" aria-pressed="false">Both</button>
+            </div>
+            <input type="hidden" id="leadInterest" name="interest" value="">
+          </fieldset>
+          <div class="letter-name">
             <label for="leadName">Your name</label>
             <input type="text" id="leadName" name="name" maxlength="80" autocomplete="name" required placeholder="First and last name">
           </div>
-
-          <div class="lead-contact-row">
-            <div class="lead-field">
+          <div class="letter-row">
+            <div class="letter-name">
               <label for="leadEmail">Email</label>
-              <input type="email" id="leadEmail" name="email" maxlength="120" autocomplete="email" placeholder="you@email.com" aria-describedby="leadContactHint">
+              <input type="email" id="leadEmail" name="email" maxlength="120" autocomplete="email" placeholder="you@email.com">
             </div>
-            <div class="lead-field">
+            <div class="letter-name">
               <label for="leadPhone">Phone</label>
-              <input type="tel" id="leadPhone" name="phone" maxlength="40" autocomplete="tel" placeholder="Or phone" aria-describedby="leadContactHint">
+              <input type="tel" id="leadPhone" name="phone" maxlength="40" autocomplete="tel" placeholder="Or phone">
             </div>
           </div>
-          <p class="lead-hint" id="leadContactHint">Email <em>or</em> phone — whichever you prefer.</p>
-
-          <div class="lead-field">
-            <label for="leadSocial">Instagram or Facebook <span class="lead-opt">(optional)</span></label>
+          <p class="letter-hint">Email or phone — whichever you prefer.</p>
+          <div class="letter-name">
+            <label for="leadSocial">Instagram or Facebook <span>(optional)</span></label>
             <input type="text" id="leadSocial" name="social" maxlength="80" autocomplete="off" placeholder="@handle or Facebook name">
           </div>
-
-          <div class="lead-hp" aria-hidden="true">
+          <div class="hp" aria-hidden="true">
             <label for="leadCompany">Company</label>
             <input type="text" id="leadCompany" name="company" tabindex="-1" autocomplete="off">
           </div>
-
-          <fieldset class="lead-interest" id="leadInterestField">
-            <legend>I’m curious about <span class="lead-req">(required)</span></legend>
-            <div class="lead-interest-row" role="group" aria-label="Interest" aria-required="true">
-              <button type="button" class="lead-chip" data-interest="products" aria-pressed="false">The products</button>
-              <button type="button" class="lead-chip" data-interest="business" aria-pressed="false">The business</button>
-              <button type="button" class="lead-chip" data-interest="both" aria-pressed="false">Both</button>
-            </div>
-            <input type="hidden" id="leadInterest" name="interest" value="" required>
-          </fieldset>
-
-          <button type="submit" class="lead-submit" id="leadSubmit">Get first access →</button>
-          <p class="lead-form-msg" id="leadFormMsg" role="status"></p>
+          <button type="submit" class="btn btn-brass" id="leadSubmit">Request more info</button>
+          <p class="form-msg" id="leadFormMsg" role="status"></p>
         </form>
-      </section>
-
-      <section class="lead-stories" aria-label="Go deeper">
-        <details class="lead-story" id="leadProductStory">
-          <summary class="lead-story-sum">
-            <span class="lead-story-sum-row">
-              <span class="lead-story-sum-text">
-                <span class="lead-story-kicker">The products</span>
-                <span class="lead-story-title">Worth talking about</span>
-              </span>
-              <span class="lead-story-chev" aria-hidden="true"></span>
-            </span>
-          </summary>
-          <div class="lead-story-body" id="leadProductBubbles"></div>
-        </details>
-        <details class="lead-story" id="leadBusinessStory">
-          <summary class="lead-story-sum">
-            <span class="lead-story-sum-row">
-              <span class="lead-story-sum-text">
-                <span class="lead-story-kicker">The partnership</span>
-                <span class="lead-story-title">Worth building now</span>
-              </span>
-              <span class="lead-story-chev" aria-hidden="true"></span>
-            </span>
-          </summary>
-          <div class="lead-story-body" id="leadBusinessBubbles"></div>
-        </details>
-      </section>
-
-      <p class="lead-foot">Independent partner page — not an official Ringana corporate site. Details reflect Ringana’s international offering ahead of U.S. launch.</p>
+        <div id="optinSuccess" class="optin-success" hidden>
+          <div class="optin-success-mark" aria-hidden="true">✓</div>
+          <p class="optin-success-eyebrow">You’re in</p>
+          <p class="optin-success-title">Got it.</p>
+          <p class="optin-success-copy" id="leadThanksBody">Thanks for adding your info! I’ll be in touch with some exciting Ringana details soon!</p>
+        </div>
+        <p class="letter-sign" id="letterSign"></p>
+        <p class="modal-fine">No spam. Just a personal follow-up.</p>
+      </div>
     </div>
+  </div>
 
-    <div class="lead-thanks" id="leadThanks" hidden>
-      <p class="lead-brand">You’re in</p>
+  <div class="thanks" id="leadThanks" hidden>
+    <div class="container">
+      <p class="eyebrow">You’re in</p>
       <h1>Got it.</h1>
-      <p id="leadThanksBody">Thanks for adding your info! I’ll be in touch with some exciting Ringana details soon!</p>
     </div>
-  </main>
-
-  <script src="/hub/js/vendor/supabase.js?v=2116"></script>
-  <script src="/hub/js/supabase-config.js?v=306"></script>
-  <script src="/hub/js/cloud.js?v=472"></script>
-  <script src="/hub/js/leads-public.js?v=340"></script>
+  </div>
+  <script src="js/vendor/supabase.js?v=2118"></script>
+<script src="js/lead.min.js?v=c59c1d8517"></script>
 </body>
 </html>

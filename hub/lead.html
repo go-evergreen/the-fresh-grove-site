@@ -15,6 +15,17 @@ try { if (window.top !== window.self) window.top.location.replace(window.locatio
     var host = String(location.hostname || "").toLowerCase();
     var path = String(location.pathname || "");
     if ((host === "thefreshgrove.team" || host === "www.thefreshgrove.team") && /\/hub\//i.test(path)) {
+      var hop = new URLSearchParams(location.search);
+      var hopWith = String(hop.get("with") || "").trim().toLowerCase();
+      var hopLead = String(hop.get("p") || "").trim().toLowerCase();
+      if (/^[a-z0-9][a-z0-9-]{1,38}$/.test(hopWith)) {
+        location.replace("/with/" + encodeURIComponent(hopWith));
+        return;
+      }
+      if (/^[a-z0-9][a-z0-9-]{1,38}$/.test(hopLead)) {
+        location.replace("/lead/" + encodeURIComponent(hopLead));
+        return;
+      }
       location.replace("/lead.html" + String(location.search || "") + String(location.hash || ""));
       return;
     }

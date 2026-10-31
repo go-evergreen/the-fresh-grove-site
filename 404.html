@@ -3,8 +3,11 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>The Fresh Grove</title>
+<title>Learn and shop Ringana</title>
+<meta name="description" content="Learn and shop Ringana">
 <meta name="robots" content="noindex">
+<link rel="icon" href="https://thefreshgrove.team/icons/favicon-32.png" type="image/png" sizes="32x32">
+<link rel="apple-touch-icon" href="https://thefreshgrove.team/icons/apple-touch-icon.png">
 </head>
 <body>
 <script>
@@ -59,7 +62,16 @@
   var withPretty = String(path || "").match(/^\/with\/([a-z0-9][a-z0-9-]{1,38})\/?$/i);
   if (withPretty) {
     var withSlug = decodeURIComponent(withPretty[1] || "").trim().toLowerCase();
-    location.replace("/with.html?with=" + encodeURIComponent(withSlug) + "#with=" + encodeURIComponent(withSlug));
+    fetch("/lead.html", { credentials: "same-origin", cache: "no-store" }).then(function (res) {
+      if (!res.ok) throw new Error("missing");
+      return res.text();
+    }).then(function (html) {
+      document.open();
+      document.write(html);
+      document.close();
+    }).catch(function () {
+      location.replace("/lead.html?p=" + encodeURIComponent(withSlug) + "#p=" + encodeURIComponent(withSlug));
+    });
     return;
   }
   if (/^\/with(\.html)?$/i.test(path) && (/[?&](?:p|with)=/.test(search) || /[#&?](?:p|with)=/.test(hash))) {

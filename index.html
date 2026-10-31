@@ -44,8 +44,16 @@
       var pm = path.match(/\/with\/([a-z0-9][a-z0-9-]{1,38})\/?$/i);
       if (pm) withSlug = decodeURIComponent(pm[1] || "").trim();
     }
-    if (leadSlug && !withSlug) dest = "/lead.html";
-    else if (withSlug || door || /\/with\/[a-z0-9]/i.test(path) || /^#(connect|hub|ringana|why|faq)(\b|$)/i.test(hash)) dest = "/business.html";
+    if (leadSlug && !withSlug && /^[a-z0-9][a-z0-9-]{1,38}$/i.test(leadSlug)) {
+      dest = "/lead/" + encodeURIComponent(leadSlug.trim().toLowerCase());
+      search = "";
+      hash = "";
+    } else if (withSlug && /^[a-z0-9][a-z0-9-]{1,38}$/i.test(withSlug)) {
+      dest = "/with/" + encodeURIComponent(withSlug.trim().toLowerCase());
+      search = "";
+      hash = "";
+    }
+    else if (door || /\/with\/[a-z0-9]/i.test(path) || /^#(connect|hub|ringana|why|faq)(\b|$)/i.test(hash)) dest = "/business.html";
     else hash = "";
   } catch (e) {}
   var url = dest + search + hash;
@@ -65,11 +73,15 @@
   if (!go) return;
   try {
     var q = new URLSearchParams(location.search);
-    if (q.get("with") || q.get("door") || /^#(connect|hub|ringana|why|faq)/i.test(location.hash || "")) {
+    if (q.get("with")) {
+      go.href = "/with/" + encodeURIComponent(String(q.get("with") || "").trim().toLowerCase());
+      go.textContent = "Continue";
+    } else if (q.get("door") || /^#(connect|hub|ringana|why|faq)/i.test(location.hash || "")) {
       go.href = "/business.html" + location.search + location.hash;
       go.textContent = "The business";
-    } else if (q.get("p")) {
-      go.href = "/lead.html" + location.search + location.hash;
+    } else if (q.get("p") && /^[a-z0-9][a-z0-9-]{1,38}$/i.test(q.get("p"))) {
+      go.href = "/lead/" + encodeURIComponent(String(q.get("p") || "").trim().toLowerCase());
+      go.textContent = "Continue";
     }
   } catch (e) {}
 })();

@@ -3,20 +3,24 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Stay in the loop — The Fresh Grove</title>
+<title>Learn and shop Ringana with Emily</title>
 <meta name="robots" content="noindex">
-<meta name="description" content="Fresh-made, toxin-free wellness from Austria is coming to America.">
+<meta name="description" content="Learn and shop Ringana with Emily">
 <link rel="canonical" href="https://thefreshgrove.team/lead/emily">
+<link rel="icon" href="https://thefreshgrove.team/icons/favicon-32.png" type="image/png" sizes="32x32">
+<link rel="apple-touch-icon" href="https://thefreshgrove.team/icons/apple-touch-icon.png">
 <meta property="og:type" content="website">
 <meta property="og:url" content="https://thefreshgrove.team/lead/emily">
-<meta property="og:title" content="The Fresh Grove">
-<meta property="og:description" content="Leave your info to hear first.">
-<meta property="og:image" content="https://thefreshgrove.team/assets/og-image.jpg?v=2">
+<meta property="og:site_name" content="The Fresh Grove">
+<meta property="og:title" content="Learn and shop Ringana with Emily">
+<meta property="og:description" content="Learn and shop Ringana with Emily">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Learn and shop Ringana with Emily">
+<meta name="twitter:description" content="Learn and shop Ringana with Emily">
 <script>
-/* Stay on /lead/slug. A hop to ?p= gets stripped by Instagram and
-   lands on the empty "isn't live yet" page. */
+/* Stay on /lead/slug. The page is painted here so the shared link
+   does not hop to an address Instagram can strip the person off of. */
 (function () {
-  var fallback = "/lead.html?p=emily#p=emily";
   fetch("/lead.html", { credentials: "same-origin", cache: "no-store" }).then(function (res) {
     if (!res.ok) throw new Error("missing");
     return res.text();
@@ -24,13 +28,11 @@
     document.open();
     document.write(html);
     document.close();
-  }).catch(function () {
-    location.replace(fallback);
-  });
+  }).catch(function () {});
 })();
 </script>
 </head>
 <body>
-<p><a href="/lead.html?p=emily#p=emily">Continue to the lead page</a></p>
+<p><a href="/lead/emily">Learn and shop Ringana with Emily</a></p>
 </body>
 </html>
