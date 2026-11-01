@@ -241,7 +241,7 @@ section { padding: 5.5rem 0; }
   padding: 0.36rem 0.62rem;
   margin: 0;
   border: 1px solid var(--brass-light);
-  border-radius: 2px;
+  border-radius: var(--radius);
   opacity: 1;
   overflow: visible;
   pointer-events: auto;
@@ -362,9 +362,9 @@ html[data-page="partners"] [data-view]:not([data-view="partners"]) { display: no
 .growth-card { flex: 1; margin: 0; text-align: center; }
 body[data-look="grove"] .nav-cta:hover,
 .nav-cta:hover { background: var(--brass-light); color: var(--pine-deep) !important; }
-body[data-look="grove"] .nav-cta-scroll:hover,
-.nav-cta-scroll:hover { background: transparent; color: #fff !important; }
-body[data-look="white"] .nav-cta:hover { color: #fff !important; }
+.nav-cta-scroll:hover { background: transparent; color: var(--header-ink) !important; }
+body[data-look="grove"] .nav-cta-scroll:hover { color: #fff !important; }
+body[data-look="white"] .nav-shop:hover { color: #fff !important; }
 
 .hero {
   min-height: 0;
@@ -446,7 +446,8 @@ body:not([data-look="grove"]) .film { background: var(--linen-warm); }
 .standard-item .num { display: block; font-family: var(--serif); font-size: clamp(1.5rem, 2.4vw, 1.9rem); color: var(--brass-light); margin-bottom: 0.35rem; line-height: 1.1; }
 .standard-item .label { font-size: 0.75rem; letter-spacing: 0.1em; text-transform: uppercase; opacity: 0.85; }
 body[data-look="white"] .standards { background: #111; color: #fff; }
-body[data-look="white"] .standard-item .num { color: #fff; }
+body[data-look="white"] .standard-item .num,
+body[data-look="white"] .standard-icon { color: #fff; }
 
 .story { background: var(--linen); }
 .story-grid { display: grid; grid-template-columns: 1.05fr 0.95fr; gap: 3.5rem; align-items: start; }
@@ -846,6 +847,7 @@ footer { background: var(--pine-deep); color: var(--linen); padding: 2.6rem 1.4r
   .offer-copy b { font-size: 0.54rem; }
   .offer-copy .offer-free { font-size: 0.66rem; }
   :root { --header-h: 11.2rem; }
+  html.is-customer { --header-h: 8.8rem; }
 }
 @media (prefers-reduced-motion: reduce) {
   .film-run, .carousel-track, .offer-track { animation: none; transition: none; }
