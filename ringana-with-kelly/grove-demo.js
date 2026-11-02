@@ -271,8 +271,8 @@
       html:
         '<p class="demo-kicker">Product library</p>' +
         '<h2 class="demo-h1">Learn the products</h2>' +
-        '<p class="demo-p">Skincare, body, hair, baby, supplements — plus an ingredient guide for “what’s in it.”</p>' +
-        '<div class="demo-chip-row"><span class="demo-chip">Face</span><span class="demo-chip">Body</span><span class="demo-chip">Hair</span><span class="demo-chip">Baby</span><span class="demo-chip">CAPS</span></div>' +
+        '<p class="demo-p">Skincare, body, hair, supplements — plus an ingredient guide for “what’s in it.”</p>' +
+        '<div class="demo-chip-row"><span class="demo-chip">Face</span><span class="demo-chip">Body</span><span class="demo-chip">Hair</span><span class="demo-chip">CAPS</span></div>' +
         '<button type="button" class="demo-card" data-open="prod-hydro"><strong>FRESH hydro serum</strong><p>Hydration that lasts.</p></button>' +
         '<button type="button" class="demo-card" data-open="prod-cleanse"><strong>FRESH cleanser</strong><p>Soft on skin, serious on dirt.</p></button>' +
         '<button type="button" class="demo-card" data-open="prod-cream"><strong>FRESH skin perfection</strong><p>Rich without heavy.</p></button>' +

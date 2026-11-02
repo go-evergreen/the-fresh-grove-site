@@ -123,7 +123,7 @@ window.FS.CONFIG = {
     },
     {
       term: "Learn the products",
-      def: "A searchable product library inside Learn — skincare, body, hair, baby, and supplements."
+      def: "A searchable product library inside Learn — skincare, body, hair, and supplements."
     },
     {
       term: "Post vault",
@@ -706,7 +706,7 @@ window.FS.CONFIG = {
   freshCatalog: {
     eyebrow: "From Ringana",
     title: "The Fresh Catalog",
-    blurb: "The current fresh book — skincare, body, baby, supplements, the whole range in one flip-through.",
+    blurb: "The current fresh book — skincare, body, and supplements, the whole range in one flip-through.",
     cta: "Open catalog →",
     url: "https://thefreshgrove.team/hub/assets/company/fresh-catalog.pdf?v=6"
   },

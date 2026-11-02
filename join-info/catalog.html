@@ -160,7 +160,6 @@
     return '<h2 class="plist-h"><span>' + esc(title) + '</span><i>' + rows.length + '</i></h2><div class="plist">' + rows.map(row).join("") + '</div>';
   }
   function soonBucket(p) {
-    if (/^fresh-baby/.test(p.id)) return "Baby";
     if (/^sport-/.test(p.id)) return "Sport";
     if (/^ringana/.test(p.id)) return "Drinks";
     if (/pack/.test(p.id)) return "Packs";

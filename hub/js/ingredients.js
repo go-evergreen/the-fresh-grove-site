@@ -295,7 +295,7 @@ window.FS.INGREDIENT_GUIDE = {
         {
           "name": "Sodium lauryl sulfate (SLS)",
           "examples": "Sodium lauryl sulfate, Sodium coco sulfate",
-          "why": "A strong detergent cleanser, common in foaming washes. Face and baby care don’t need this strength. Ringana uses milder sugar tensides (glucosides)."
+          "why": "A strong detergent cleanser, common in foaming washes. Face care doesn’t need this strength. Ringana uses milder sugar tensides (glucosides)."
         },
         {
           "name": "Sodium laureth sulfate (SLES)",
@@ -553,7 +553,7 @@ window.FS.INGREDIENT_GUIDE = {
         {
           "name": "Silicones",
           "examples": "Dimethicone, Cyclopentasiloxane, Cyclomethicone, Dimethicone copolyol",
-          "why": "A synthetic slip layer, common in creams and hair care. Ringana uses plant oils and lipids instead — baby sun care says no silicones out loud."
+          "why": "A synthetic slip layer, common in creams and hair care. Ringana uses plant oils and lipids instead."
         }
       ]
     },
@@ -1234,7 +1234,7 @@ window.FS.INGREDIENT_GUIDE = {
       ],
       "title": "UV filters & sun care",
       "blurb": "Mineral vs chemical sun filters — and particle size.",
-      "intro": "Ringana sun care uses mineral zinc oxide (and titanium dioxide in baby SPF) as non-nano filters. That’s a different conversation than conventional chemical UV filters.",
+      "intro": "Ringana sun care uses mineral zinc oxide as a non-nano filter. That’s a different conversation than conventional chemical UV filters.",
       "ringanaApproach": "Say non-nano mineral. Don’t say “chemical-free.” Zinc oxide is still a chemical. Precision builds trust.",
       "roleIds": [
         "uv"
@@ -1874,15 +1874,12 @@ window.FS.INGREDIENT_GUIDE = {
       "roles": [
         "waters"
       ],
-      "blurb": "Fresh aloe vera leaf juice — soothing, water-rich botanical base you’ll see high on many gentle cleansers, toners, and baby formulas.",
+      "blurb": "Fresh aloe vera leaf juice — soothing, water-rich botanical base you’ll see high on many gentle cleansers and toners.",
       "match": [
         "aloe barbadensis leaf juice",
         "aloe vera fresh plant juice"
       ],
       "productIds": [
-        "fresh-baby-body-hair-wash",
-        "fresh-baby-bum-cream",
-        "fresh-baby-sunscreen-spf-50",
         "fresh-body-milk-light",
         "fresh-body-wash",
         "fresh-cleansing-water",
@@ -1910,7 +1907,6 @@ window.FS.INGREDIENT_GUIDE = {
         "firmly bonded with the mineral sun protection, coating effect"
       ],
       "productIds": [
-        "fresh-baby-sunscreen-spf-50"
       ]
     },
     {
@@ -2077,11 +2073,6 @@ window.FS.INGREDIENT_GUIDE = {
         "fresh-after-sun-tan-booster",
         "fresh-after-sun-tan-booster-golden-glow",
         "fresh-anti-wrinkle-serum",
-        "fresh-baby-body-hair-wash",
-        "fresh-baby-bum-cream",
-        "fresh-baby-cream",
-        "fresh-baby-sunscreen-spf-50",
-        "fresh-baby-tooth-gel",
         "fresh-body-milk-light",
         "fresh-body-milk-rich",
         "fresh-body-wash",
@@ -2180,9 +2171,6 @@ window.FS.INGREDIENT_GUIDE = {
         "adds-repair",
         "fresh-after-sun-tan-booster-golden-glow",
         "fresh-anti-wrinkle-serum",
-        "fresh-baby-body-hair-wash",
-        "fresh-baby-cream",
-        "fresh-baby-sunscreen-spf-50",
         "fresh-body-milk-light",
         "fresh-body-milk-rich",
         "fresh-cleanser",
@@ -2318,7 +2306,6 @@ window.FS.INGREDIENT_GUIDE = {
         "compound of vitamin c and a plant fatty acid"
       ],
       "productIds": [
-        "fresh-baby-cream",
         "fresh-cream-rich",
         "fresh-illuminating-enzyme-mask"
       ]
@@ -2403,7 +2390,6 @@ window.FS.INGREDIENT_GUIDE = {
         "cell-protecting alga extract"
       ],
       "productIds": [
-        "fresh-baby-sunscreen-spf-50",
         "fresh-cream-rich",
         "fresh-repair-shampoo",
         "fresh-sunscreen-face",
@@ -2533,10 +2519,6 @@ window.FS.INGREDIENT_GUIDE = {
         "restructuring oat oil"
       ],
       "productIds": [
-        "fresh-baby-body-hair-wash",
-        "fresh-baby-cream",
-        "fresh-baby-oil",
-        "fresh-baby-sunscreen-spf-50",
         "fresh-body-milk-light",
         "fresh-deodorant",
         "fresh-deodorant-pocket",
@@ -3419,7 +3401,6 @@ window.FS.INGREDIENT_GUIDE = {
       "productIds": [
         "fresh-after-sun-tan-booster",
         "fresh-after-sun-tan-booster-golden-glow",
-        "fresh-baby-sunscreen-spf-50",
         "fresh-body-milk-light",
         "fresh-body-milk-rich",
         "fresh-cream-light",
@@ -4281,7 +4262,6 @@ window.FS.INGREDIENT_GUIDE = {
         "fresh-after-sun-tan-booster",
         "fresh-after-sun-tan-booster-golden-glow",
         "fresh-anti-wrinkle-serum",
-        "fresh-baby-body-hair-wash",
         "fresh-body-milk-light",
         "fresh-body-wash",
         "fresh-cleanser",
@@ -4491,7 +4471,6 @@ window.FS.INGREDIENT_GUIDE = {
         "gently cleansing tenside"
       ],
       "productIds": [
-        "fresh-baby-body-hair-wash",
         "fresh-body-wash"
       ]
     },
@@ -4512,8 +4491,6 @@ window.FS.INGREDIENT_GUIDE = {
         "coconut fatty-acid ester"
       ],
       "productIds": [
-        "fresh-baby-cream",
-        "fresh-baby-sunscreen-spf-50",
         "fresh-body-milk-rich",
         "fresh-eye-cream",
         "fresh-illuminating-enzyme-mask",
@@ -4541,7 +4518,6 @@ window.FS.INGREDIENT_GUIDE = {
       "productIds": [
         "fresh-after-sun-tan-booster",
         "fresh-after-sun-tan-booster-golden-glow",
-        "fresh-baby-sunscreen-spf-50",
         "fresh-eye-cream",
         "fresh-intensive-hand-cream",
         "fresh-lip-balm-nude-spf-15",
@@ -4604,7 +4580,6 @@ window.FS.INGREDIENT_GUIDE = {
         "plant-derived lipids"
       ],
       "productIds": [
-        "fresh-baby-sunscreen-spf-50",
         "fresh-eye-cream",
         "fresh-illuminating-enzyme-mask",
         "fresh-skin-perfection",
@@ -4643,7 +4618,6 @@ window.FS.INGREDIENT_GUIDE = {
         "coconut oil"
       ],
       "productIds": [
-        "fresh-baby-sunscreen-spf-50",
         "fresh-cream-rich",
         "fresh-foot-balm",
         "fresh-hair-treatment",
@@ -4737,8 +4711,6 @@ window.FS.INGREDIENT_GUIDE = {
         "carnauba wax for texturisation"
       ],
       "productIds": [
-        "fresh-baby-cream",
-        "fresh-baby-sunscreen-spf-50",
         "fresh-illuminating-enzyme-mask",
         "fresh-lip-balm-classic",
         "fresh-lip-balm-nude-spf-15",
@@ -5077,7 +5049,6 @@ window.FS.INGREDIENT_GUIDE = {
         "alkyl polyglucoside"
       ],
       "productIds": [
-        "fresh-baby-body-hair-wash",
         "fresh-body-wash",
         "fresh-cleansing-water",
         "fresh-cream-rich"
@@ -5116,7 +5087,6 @@ window.FS.INGREDIENT_GUIDE = {
       "productIds": [
         "fresh-after-sun-tan-booster",
         "fresh-after-sun-tan-booster-golden-glow",
-        "fresh-baby-cream",
         "fresh-body-milk-light",
         "fresh-body-milk-rich",
         "fresh-hand-balm",
@@ -5155,7 +5125,6 @@ window.FS.INGREDIENT_GUIDE = {
         "natural emulsifier"
       ],
       "productIds": [
-        "fresh-baby-sunscreen-spf-50",
         "fresh-sunscreen-spf-25"
       ]
     },
@@ -5336,7 +5305,6 @@ window.FS.INGREDIENT_GUIDE = {
       "productIds": [
         "fresh-after-sun-tan-booster",
         "fresh-after-sun-tan-booster-golden-glow",
-        "fresh-baby-body-hair-wash",
         "fresh-body-milk-rich",
         "fresh-cream-medium",
         "fresh-hand-balm",
@@ -6103,7 +6071,6 @@ window.FS.INGREDIENT_GUIDE = {
         "gentle pha moisturizer / exfoliant support"
       ],
       "productIds": [
-        "fresh-baby-cream",
         "fresh-foot-balm",
         "fresh-illuminating-enzyme-mask",
         "fresh-repair-shampoo",
@@ -6216,11 +6183,6 @@ window.FS.INGREDIENT_GUIDE = {
         "fresh-after-sun-tan-booster",
         "fresh-after-sun-tan-booster-golden-glow",
         "fresh-anti-wrinkle-serum",
-        "fresh-baby-body-hair-wash",
-        "fresh-baby-bum-cream",
-        "fresh-baby-cream",
-        "fresh-baby-sunscreen-spf-50",
-        "fresh-baby-tooth-gel",
         "fresh-body-milk-light",
         "fresh-body-milk-rich",
         "fresh-body-wash",
@@ -6296,9 +6258,6 @@ window.FS.INGREDIENT_GUIDE = {
         "glyceryl monocaprylate"
       ],
       "productIds": [
-        "fresh-baby-body-hair-wash",
-        "fresh-baby-cream",
-        "fresh-baby-sunscreen-spf-50",
         "fresh-body-milk-rich",
         "fresh-cream-light",
         "fresh-cream-medium",
@@ -6428,7 +6387,6 @@ window.FS.INGREDIENT_GUIDE = {
         "glyceryl oleate"
       ],
       "productIds": [
-        "fresh-baby-cream"
       ]
     },
     {
@@ -6605,11 +6563,6 @@ window.FS.INGREDIENT_GUIDE = {
         "soothing cotton cell extract"
       ],
       "productIds": [
-        "fresh-baby-body-hair-wash",
-        "fresh-baby-bum-cream",
-        "fresh-baby-cream",
-        "fresh-baby-oil",
-        "fresh-baby-sunscreen-spf-50"
       ]
     },
     {
@@ -6643,7 +6596,6 @@ window.FS.INGREDIENT_GUIDE = {
         "soothing cotton cell extract"
       ],
       "productIds": [
-        "fresh-baby-body-hair-wash"
       ]
     },
     {
@@ -6813,7 +6765,6 @@ window.FS.INGREDIENT_GUIDE = {
         "cell-protecting alga extract"
       ],
       "productIds": [
-        "fresh-baby-sunscreen-spf-50",
         "fresh-cream-rich",
         "fresh-repair-shampoo",
         "fresh-sunscreen-face",
@@ -6836,8 +6787,6 @@ window.FS.INGREDIENT_GUIDE = {
       ],
       "productIds": [
         "adds-effect",
-        "fresh-baby-body-hair-wash",
-        "fresh-baby-bum-cream",
         "fresh-body-wash",
         "fresh-cleansing-water",
         "fresh-light-legs",
@@ -6877,7 +6826,6 @@ window.FS.INGREDIENT_GUIDE = {
         "sunflower wax"
       ],
       "productIds": [
-        "fresh-baby-bum-cream",
         "fresh-body-milk-rich",
         "fresh-deodorant",
         "fresh-deodorant-pocket",
@@ -6903,11 +6851,6 @@ window.FS.INGREDIENT_GUIDE = {
         "adds-glow",
         "fresh-after-sun-tan-booster",
         "fresh-after-sun-tan-booster-golden-glow",
-        "fresh-baby-body-hair-wash",
-        "fresh-baby-bum-cream",
-        "fresh-baby-cream",
-        "fresh-baby-oil",
-        "fresh-baby-sunscreen-spf-50",
         "fresh-body-milk-light",
         "fresh-body-milk-rich",
         "fresh-body-wash",
@@ -7213,7 +7156,6 @@ window.FS.INGREDIENT_GUIDE = {
         "gentle cleansing grains"
       ],
       "productIds": [
-        "fresh-baby-tooth-gel"
       ]
     },
     {
@@ -7343,7 +7285,6 @@ window.FS.INGREDIENT_GUIDE = {
         "hydrogenated palm glycerides citrate"
       ],
       "productIds": [
-        "fresh-baby-cream"
       ]
     },
     {
@@ -7360,8 +7301,6 @@ window.FS.INGREDIENT_GUIDE = {
         "hydrogenated rapeseed oil"
       ],
       "productIds": [
-        "fresh-baby-bum-cream",
-        "fresh-baby-cream",
         "fresh-cream-medium",
         "fresh-foot-balm",
         "fresh-sunscreen-spf-25",
@@ -7645,7 +7584,6 @@ window.FS.INGREDIENT_GUIDE = {
         "blend of plant-derived fatty acids"
       ],
       "productIds": [
-        "fresh-baby-bum-cream",
         "fresh-cream-rich"
       ]
     },
@@ -7757,7 +7695,6 @@ window.FS.INGREDIENT_GUIDE = {
         "fresh-after-sun-tan-booster",
         "fresh-after-sun-tan-booster-golden-glow",
         "fresh-anti-wrinkle-serum",
-        "fresh-baby-cream",
         "fresh-cream-light",
         "fresh-hair-treatment",
         "fresh-hydro-serum",
@@ -7818,7 +7755,6 @@ window.FS.INGREDIENT_GUIDE = {
         "plant-derived dispersing agent"
       ],
       "productIds": [
-        "fresh-baby-sunscreen-spf-50",
         "fresh-lip-balm-nude-spf-15",
         "fresh-sunscreen-spf-25",
         "fresh-tinted-moisturiser-spf-30-n1",
@@ -7997,8 +7933,6 @@ window.FS.INGREDIENT_GUIDE = {
       ],
       "productIds": [
         "fresh-anti-wrinkle-serum",
-        "fresh-baby-cream",
-        "fresh-baby-sunscreen-spf-50",
         "fresh-body-milk-rich",
         "fresh-cream-light",
         "fresh-cream-medium",
@@ -8094,7 +8028,6 @@ window.FS.INGREDIENT_GUIDE = {
       "productIds": [
         "adds-effect",
         "adds-repair",
-        "fresh-baby-cream",
         "fresh-body-milk-light",
         "fresh-body-wash",
         "fresh-cleansing-water",
@@ -8221,8 +8154,6 @@ window.FS.INGREDIENT_GUIDE = {
         "natural emulsifier / lipid"
       ],
       "productIds": [
-        "fresh-baby-cream",
-        "fresh-baby-sunscreen-spf-50",
         "fresh-illuminating-enzyme-mask",
         "fresh-lip-balm-nude-spf-15",
         "fresh-tinted-moisturiser-spf-30-n1",
@@ -8786,9 +8717,6 @@ window.FS.INGREDIENT_GUIDE = {
         "emulsion stabilizer)polyhydroxystearic acid (plant-derived dispersing agent"
       ],
       "productIds": [
-        "fresh-baby-bum-cream",
-        "fresh-baby-cream",
-        "fresh-baby-sunscreen-spf-50",
         "fresh-cream-rich",
         "fresh-foot-balm",
         "fresh-sunscreen-spf-25",
@@ -8815,9 +8743,6 @@ window.FS.INGREDIENT_GUIDE = {
       "productIds": [
         "fresh-after-sun-tan-booster",
         "fresh-after-sun-tan-booster-golden-glow",
-        "fresh-baby-bum-cream",
-        "fresh-baby-cream",
-        "fresh-baby-sunscreen-spf-50",
         "fresh-body-milk-rich",
         "fresh-cream-light",
         "fresh-cream-medium",
@@ -9196,7 +9121,6 @@ window.FS.INGREDIENT_GUIDE = {
         "curled mint oil"
       ],
       "productIds": [
-        "fresh-baby-tooth-gel"
       ]
     },
     {
@@ -9703,11 +9627,6 @@ window.FS.INGREDIENT_GUIDE = {
         "skin-regenerating oil of evening primrose"
       ],
       "productIds": [
-        "fresh-baby-body-hair-wash",
-        "fresh-baby-bum-cream",
-        "fresh-baby-cream",
-        "fresh-baby-oil",
-        "fresh-baby-sunscreen-spf-50",
         "fresh-cream-rich",
         "fresh-eye-cream",
         "fresh-intensive-hand-cream",
@@ -9768,7 +9687,6 @@ window.FS.INGREDIENT_GUIDE = {
         "skin-grooming substance from olives"
       ],
       "productIds": [
-        "fresh-baby-bum-cream",
         "fresh-deodorant",
         "fresh-deodorant-pocket",
         "fresh-foot-balm"
@@ -10202,8 +10120,6 @@ window.FS.INGREDIENT_GUIDE = {
         "fresh-after-sun-tan-booster",
         "fresh-after-sun-tan-booster-golden-glow",
         "fresh-anti-wrinkle-serum",
-        "fresh-baby-body-hair-wash",
-        "fresh-baby-bum-cream",
         "fresh-body-milk-light",
         "fresh-body-milk-rich",
         "fresh-body-wash",
@@ -10576,7 +10492,6 @@ window.FS.INGREDIENT_GUIDE = {
         "polyglyceryl-2 caprate"
       ],
       "productIds": [
-        "fresh-baby-sunscreen-spf-50"
       ]
     },
     {
@@ -10593,7 +10508,6 @@ window.FS.INGREDIENT_GUIDE = {
         "stearic acid-glycerin emulsifier"
       ],
       "productIds": [
-        "fresh-baby-cream"
       ]
     },
     {
@@ -10609,7 +10523,6 @@ window.FS.INGREDIENT_GUIDE = {
         "polyglyceryl-3 betainate acetate"
       ],
       "productIds": [
-        "fresh-baby-body-hair-wash",
         "fresh-volume-shampoo"
       ]
     },
@@ -10662,7 +10575,6 @@ window.FS.INGREDIENT_GUIDE = {
         "natural emulsifier"
       ],
       "productIds": [
-        "fresh-baby-sunscreen-spf-50"
       ]
     },
     {
@@ -10697,7 +10609,6 @@ window.FS.INGREDIENT_GUIDE = {
         "natural emulsifier derived from ricin oil"
       ],
       "productIds": [
-        "fresh-baby-sunscreen-spf-50",
         "fresh-lip-balm-nude-spf-15",
         "fresh-sunscreen-spf-25",
         "fresh-tinted-moisturiser-spf-30-n1",
@@ -10721,7 +10632,6 @@ window.FS.INGREDIENT_GUIDE = {
         "natural emulsifier derived from linseed oil"
       ],
       "productIds": [
-        "fresh-baby-bum-cream",
         "fresh-cream-rich",
         "fresh-deodorant",
         "fresh-deodorant-pocket"
@@ -10758,7 +10668,6 @@ window.FS.INGREDIENT_GUIDE = {
         "natural emulsifier"
       ],
       "productIds": [
-        "fresh-baby-sunscreen-spf-50"
       ]
     },
     {
@@ -10881,7 +10790,6 @@ window.FS.INGREDIENT_GUIDE = {
         "plant-derived dispersing agent"
       ],
       "productIds": [
-        "fresh-baby-sunscreen-spf-50",
         "fresh-lip-balm-nude-spf-15",
         "fresh-sunscreen-face",
         "fresh-sunscreen-spf-25",
@@ -11102,9 +11010,6 @@ window.FS.INGREDIENT_GUIDE = {
         "fresh-after-sun-tan-booster",
         "fresh-after-sun-tan-booster-golden-glow",
         "fresh-anti-wrinkle-serum",
-        "fresh-baby-cream",
-        "fresh-baby-sunscreen-spf-50",
-        "fresh-baby-tooth-gel",
         "fresh-body-milk-light",
         "fresh-body-milk-rich",
         "fresh-body-wash",
@@ -11151,11 +11056,6 @@ window.FS.INGREDIENT_GUIDE = {
         "sweet almond oil"
       ],
       "productIds": [
-        "fresh-baby-body-hair-wash",
-        "fresh-baby-bum-cream",
-        "fresh-baby-cream",
-        "fresh-baby-oil",
-        "fresh-baby-sunscreen-spf-50",
         "fresh-cleanser",
         "fresh-cream-medium",
         "fresh-hand-balm",
@@ -11443,9 +11343,6 @@ window.FS.INGREDIENT_GUIDE = {
       "productIds": [
         "fresh-after-sun-tan-booster",
         "fresh-after-sun-tan-booster-golden-glow",
-        "fresh-baby-body-hair-wash",
-        "fresh-baby-cream",
-        "fresh-baby-sunscreen-spf-50",
         "fresh-body-milk-rich",
         "fresh-cleansing-water",
         "fresh-eye-cream",
@@ -11574,7 +11471,6 @@ window.FS.INGREDIENT_GUIDE = {
         "berry wax / sumac wax"
       ],
       "productIds": [
-        "fresh-baby-bum-cream",
         "fresh-deodorant",
         "fresh-deodorant-pocket",
         "fresh-foot-balm"
@@ -11936,7 +11832,6 @@ window.FS.INGREDIENT_GUIDE = {
       "productIds": [
         "fresh-after-sun-tan-booster",
         "fresh-after-sun-tan-booster-golden-glow",
-        "fresh-baby-body-hair-wash",
         "fresh-body-milk-light",
         "fresh-body-wash",
         "fresh-cream-light",
@@ -12103,7 +11998,6 @@ window.FS.INGREDIENT_GUIDE = {
         "antioxidant elderberry extract"
       ],
       "productIds": [
-        "fresh-baby-cream",
         "fresh-cream-rich",
         "fresh-moisturiser-for-men"
       ]
@@ -12178,7 +12072,6 @@ window.FS.INGREDIENT_GUIDE = {
         "natural gelling agent"
       ],
       "productIds": [
-        "fresh-baby-body-hair-wash",
         "fresh-body-wash",
         "fresh-cream-rich"
       ]
@@ -12331,11 +12224,6 @@ window.FS.INGREDIENT_GUIDE = {
         "sesame oil"
       ],
       "productIds": [
-        "fresh-baby-body-hair-wash",
-        "fresh-baby-bum-cream",
-        "fresh-baby-cream",
-        "fresh-baby-oil",
-        "fresh-baby-sunscreen-spf-50",
         "fresh-cleanser",
         "fresh-deodorant",
         "fresh-deodorant-pocket",
@@ -12397,7 +12285,6 @@ window.FS.INGREDIENT_GUIDE = {
         "sala tree resin"
       ],
       "productIds": [
-        "fresh-baby-bum-cream",
         "fresh-deodorant",
         "fresh-deodorant-pocket",
         "fresh-foot-balm"
@@ -12420,7 +12307,6 @@ window.FS.INGREDIENT_GUIDE = {
         "adds-glow",
         "fresh-after-sun-tan-booster",
         "fresh-after-sun-tan-booster-golden-glow",
-        "fresh-baby-sunscreen-spf-50",
         "fresh-illuminating-enzyme-mask",
         "fresh-lip-balm-nude-spf-15",
         "fresh-sunscreen-face",
@@ -12482,10 +12368,6 @@ window.FS.INGREDIENT_GUIDE = {
         "jojoba oil"
       ],
       "productIds": [
-        "fresh-baby-bum-cream",
-        "fresh-baby-cream",
-        "fresh-baby-oil",
-        "fresh-baby-sunscreen-spf-50",
         "fresh-cream-rich",
         "fresh-repair-shampoo",
         "fresh-sunscreen-face",
@@ -12563,7 +12445,6 @@ window.FS.INGREDIENT_GUIDE = {
         "adds-repair",
         "fresh-after-sun-tan-booster",
         "fresh-after-sun-tan-booster-golden-glow",
-        "fresh-baby-body-hair-wash",
         "fresh-body-milk-light",
         "fresh-body-wash",
         "fresh-cream-light",
@@ -12629,7 +12510,6 @@ window.FS.INGREDIENT_GUIDE = {
         "remineralising sodium fluoride"
       ],
       "productIds": [
-        "fresh-baby-tooth-gel"
       ]
     },
     {
@@ -12653,7 +12533,6 @@ window.FS.INGREDIENT_GUIDE = {
         "fresh-after-sun-tan-booster",
         "fresh-after-sun-tan-booster-golden-glow",
         "fresh-anti-wrinkle-serum",
-        "fresh-baby-tooth-gel",
         "fresh-body-milk-light",
         "fresh-body-wash",
         "fresh-cleansing-water",
@@ -12685,7 +12564,6 @@ window.FS.INGREDIENT_GUIDE = {
         "sodium hydroxide"
       ],
       "productIds": [
-        "fresh-baby-body-hair-wash",
         "fresh-body-wash",
         "fresh-repair-shampoo",
         "fresh-volume-shampoo"
@@ -13046,7 +12924,6 @@ window.FS.INGREDIENT_GUIDE = {
         "olive squalane"
       ],
       "productIds": [
-        "fresh-baby-sunscreen-spf-50",
         "fresh-cleanser",
         "fresh-cream-medium",
         "fresh-cream-rich",
@@ -13102,7 +12979,6 @@ window.FS.INGREDIENT_GUIDE = {
         "plant-derived dispersing agent"
       ],
       "productIds": [
-        "fresh-baby-sunscreen-spf-50"
       ]
     },
     {
@@ -13136,7 +13012,6 @@ window.FS.INGREDIENT_GUIDE = {
         "natural thickener"
       ],
       "productIds": [
-        "fresh-baby-body-hair-wash",
         "fresh-body-wash",
         "fresh-overnight-face-treatment",
         "fresh-scrub-face-body"
@@ -13158,7 +13033,6 @@ window.FS.INGREDIENT_GUIDE = {
       "productIds": [
         "fresh-after-sun-tan-booster",
         "fresh-after-sun-tan-booster-golden-glow",
-        "fresh-baby-sunscreen-spf-50",
         "fresh-eye-serum",
         "fresh-tinted-moisturiser",
         "fresh-tinted-moisturiser-tan"
@@ -13211,7 +13085,6 @@ window.FS.INGREDIENT_GUIDE = {
         "moisture-absorbing tapioca starch"
       ],
       "productIds": [
-        "fresh-baby-bum-cream",
         "fresh-deodorant",
         "fresh-deodorant-pocket",
         "fresh-illuminating-enzyme-mask"
@@ -13359,7 +13232,6 @@ window.FS.INGREDIENT_GUIDE = {
         "mineral sun protection"
       ],
       "productIds": [
-        "fresh-baby-sunscreen-spf-50"
       ]
     },
     {
@@ -13380,11 +13252,6 @@ window.FS.INGREDIENT_GUIDE = {
         "fresh-after-sun-tan-booster",
         "fresh-after-sun-tan-booster-golden-glow",
         "fresh-anti-wrinkle-serum",
-        "fresh-baby-body-hair-wash",
-        "fresh-baby-bum-cream",
-        "fresh-baby-cream",
-        "fresh-baby-oil",
-        "fresh-baby-sunscreen-spf-50",
         "fresh-body-milk-light",
         "fresh-body-milk-rich",
         "fresh-cleanser",
@@ -13676,10 +13543,6 @@ window.FS.INGREDIENT_GUIDE = {
         "antioxidant vanilla extract"
       ],
       "productIds": [
-        "fresh-baby-body-hair-wash",
-        "fresh-baby-cream",
-        "fresh-baby-oil",
-        "fresh-baby-sunscreen-spf-50",
         "fresh-stay-fresh"
       ]
     },
@@ -14251,8 +14114,6 @@ window.FS.INGREDIENT_GUIDE = {
         "fresh-after-sun-tan-booster",
         "fresh-after-sun-tan-booster-golden-glow",
         "fresh-anti-wrinkle-serum",
-        "fresh-baby-body-hair-wash",
-        "fresh-baby-tooth-gel",
         "fresh-body-milk-light",
         "fresh-body-milk-rich",
         "fresh-body-wash",
@@ -14295,7 +14156,6 @@ window.FS.INGREDIENT_GUIDE = {
         "birch sugar (moisturizing)"
       ],
       "productIds": [
-        "fresh-baby-tooth-gel",
         "fresh-cleanser",
         "fresh-cream-light",
         "fresh-hair-treatment",
@@ -14458,8 +14318,6 @@ window.FS.INGREDIENT_GUIDE = {
         "mineral sun protection"
       ],
       "productIds": [
-        "fresh-baby-bum-cream",
-        "fresh-baby-sunscreen-spf-50",
         "fresh-deodorant",
         "fresh-deodorant-pocket",
         "fresh-lip-balm-nude-spf-15",
@@ -14486,7 +14344,6 @@ window.FS.INGREDIENT_GUIDE = {
       ],
       "productIds": [
         "adds-repair",
-        "fresh-baby-cream",
         "fresh-moisturiser-for-men",
         "fresh-toner-pure"
       ]
@@ -14505,8 +14362,6 @@ window.FS.INGREDIENT_GUIDE = {
         "zinc-fatty acid compound"
       ],
       "productIds": [
-        "fresh-baby-cream",
-        "fresh-baby-sunscreen-spf-50",
         "fresh-foot-balm",
         "fresh-lip-balm-classic",
         "fresh-lip-balm-nude-spf-15",

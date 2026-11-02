@@ -5508,7 +5508,9 @@
     if (isPocketSizeProduct(p)) return true;
     /* Tooth gel stays out. Tooth oil can show if it lands in the library. */
     var toothBlob = ((p.id || "") + " " + (p.name || "") + " " + (p.subcategory || "")).toLowerCase();
-    if (p.id === "fresh-baby-tooth-gel") return true;
+    /* Baby and kids line is discontinued and is not coming to the US. */
+    if ((p.category || "") === "baby" || /^fresh-baby/.test(p.id || "")) return true;
+    if (/\b(baby|kids?)\b/i.test(p.name || "")) return true;
     if ((p.subcategory || "").toLowerCase() === "tooth" && !/tooth[\s-]*oil/.test(toothBlob)) return true;
     /* Golden glow shares packaging art with regular after sun — one card + note. */
     if (p.id === "fresh-after-sun-tan-booster-golden-glow") return true;
@@ -5608,10 +5610,6 @@
     {
       keys: ["hair", "scalp"],
       terms: ["hair", "scalp", "beauty & hair"]
-    },
-    {
-      keys: ["baby", "diaper", "bum"],
-      terms: ["baby", "diaper", "bum", "little ones"]
     },
     {
       keys: ["vitamin c", "vit c", "ascorbic"],
@@ -5793,6 +5791,14 @@
     hay = hay.replace(/standardized concentration/g, " ");
     hay = hay.replace(/concentration of/g, " ");
     hay = hay.replace(/gluten-free/g, " ");
+    hay = hay.replace(/\bbabies\b/g, " ");
+    hay = hay.replace(/\bbaby\b/g, " ");
+    hay = hay.replace(/\bchildren\b/g, " ");
+    hay = hay.replace(/\bchild\b/g, " ");
+    hay = hay.replace(/\bkids\b/g, " ");
+    hay = hay.replace(/\bkid\b/g, " ");
+    hay = hay.replace(/\bnappy\b/g, " ");
+    hay = hay.replace(/\bdiapers?\b/g, " ");
     productHaystackCache[p.id] = hay;
     return hay;
   }
@@ -6077,8 +6083,6 @@
       [/hands needing.*/i, "Hands"],
       [/feet or legs.*/i, "Feet & legs"],
       [/body skin needing.*/i, "Body moisture"],
-      [/fresh baby line.*/i, "Baby care"],
-      [/developed with baby.*/i, "For little ones"],
       [/fresh hair care.*/i, "Hair care"],
       [/damaged, dyed, or dry hair/i, "Damaged / dry hair"],
       [/fine hair looking for volume/i, "Fine hair · volume"],
@@ -6094,7 +6098,6 @@
       [/all skin types/i, "All skin types"],
       [/men.?s face care/i, "Men’s face care"],
       [/daily underarm care/i, "Daily deodorant"],
-      [/diaper-area care/i, "Diaper area"],
       [/sun\s*\/\s*environmental.*/i, "Environmental support"],
       [/beauty &\s*hair from within/i, "Beauty & hair within"],
       [/\s+interest$/i, ""]
@@ -6158,7 +6161,6 @@
         skincare: "Face care",
         body: "Body care",
         hair: "Hair care",
-        baby: "Baby care",
         supplements: "Supplements"
       };
       if (catLabel[p.category]) add(catLabel[p.category]);
@@ -6876,7 +6878,7 @@
     return (CFG && CFG.freshCatalog) || {
       eyebrow: "From Ringana",
       title: "The Fresh Catalog",
-      blurb: "The current fresh book — skincare, body, baby, supplements, the whole range in one flip-through.",
+      blurb: "The current fresh book — skincare, body, and supplements, the whole range in one flip-through.",
       cta: "Open catalog →",
       url: "https://thefreshgrove.team/hub/assets/company/fresh-catalog.pdf?v=6"
     };

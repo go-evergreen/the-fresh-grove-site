@@ -368,7 +368,7 @@ window.FS.EVERGREEN = {
       {
         eyebrow: "From Ringana",
         title: "The Fresh Catalog",
-        blurb: "The current fresh book — skincare, body, baby, supplements, the whole range in one flip-through.",
+        blurb: "The current fresh book — skincare, body, and supplements, the whole range in one flip-through.",
         url: "https://thefreshgrove.team/hub/assets/company/fresh-catalog.pdf?v=6",
         cta: "Open catalog →"
       },

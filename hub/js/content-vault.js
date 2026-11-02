@@ -1802,14 +1802,14 @@ window.FS.CONTENT_VAULT = {
         "FRAME 1: gifts that don't feel like a homework assignment [tap through]",
         "FRAME 2: FRESH lip balm classic — small, gone in a month, nobody fakes liking it [product tap]",
         "FRAME 3: FRESH deodorant — surprisingly personal, surprisingly the one they text you about [product tap]",
-        "FRAME 4: FRESH baby oil — tiny human, or just dry winter hands. both count. [product tap]",
+        "FRAME 4: FRESH hand balm — small, used up, easy to hand someone [product tap]",
         "FRAME 5: [question sticker: who are you actually shopping for?]"
       ],
       "frames": [
         "gifts that don't feel like a homework assignment [tap through]",
         "FRESH lip balm classic — small, gone in a month, nobody fakes liking it [product tap]",
         "FRESH deodorant — surprisingly personal, surprisingly the one they text you about [product tap]",
-        "FRESH baby oil — tiny human, or just dry winter hands. both count. [product tap]",
+        "FRESH hand balm — small, used up, easy to hand someone [product tap]",
         "[question sticker: who are you actually shopping for?]"
       ],
       "caption": "",
@@ -1818,14 +1818,14 @@ window.FS.CONTENT_VAULT = {
         "holiday",
         "lip balm",
         "deodorant",
-        "baby oil"
+        "hand balm"
       ],
       "verify": [],
       "promoting": "seasonal",
       "contentType": "engagement",
       "kind": "feed",
       "preview": "clean gifts people actually use up — not a basket they re-gift in March.",
-      "body": "FRAME 1: gifts that don't feel like a homework assignment [tap through]\nFRAME 2: FRESH lip balm classic — small, gone in a month, nobody fakes liking it [product tap]\nFRAME 3: FRESH deodorant — surprisingly personal, surprisingly the one they text you about [product tap]\nFRAME 4: FRESH baby oil — tiny human, or just dry winter hands. both count. [product tap]\nFRAME 5: [question sticker: who are you actually shopping for?]"
+      "body": "FRAME 1: gifts that don't feel like a homework assignment [tap through]\nFRAME 2: FRESH lip balm classic — small, gone in a month, nobody fakes liking it [product tap]\nFRAME 3: FRESH deodorant — surprisingly personal, surprisingly the one they text you about [product tap]\nFRAME 4: FRESH hand balm — small, used up, easy to hand someone [product tap]\nFRAME 5: [question sticker: who are you actually shopping for?]"
     },
     {
       "id": "IZ01",
@@ -2078,38 +2078,7 @@ window.FS.CONTENT_VAULT = {
       "preview": "My face gets a routine. My body was getting whatever was on sale. — my face gets a routine. my body was getting whatever was on sale. FRESH body milk light is t",
       "body": "my face gets a routine. my body was getting whatever was on sale.\nFRESH body milk light is the \"absorbs in seconds\" one — 5 types of hyaluronic acid, 3% saccharide-isomerate. after first use, 100% felt soft and well moisturized. 15 minutes in, avg 43.9% more hydration.\nif lotion just sits on you, start here. very dry? light, then rich on the spots that ask.\ncomment BODY 💚"
     },
-    {
-      "id": "P23",
-      "lane": "product",
-      "format": "facebook",
-      "title": "The labels I started reading weren't even mine",
-      "hook": "the labels I started reading weren't even mine.",
-      "altHooks": [
-        "I got picky because someone else couldn't tell me what they didn't like yet."
-      ],
-      "slides": [],
-      "onScreen": [],
-      "frames": [],
-      "caption": "the labels I started reading weren't even mine.\nsomeone who can't tell you what they don't like yet still has to live with whatever you put on them.\nFRESH baby body & hair wash: from 0 months, no perfume, no synthetic preservatives, pH oriented to tear fluid so it's less likely to sting eyes. not a medical claim — just the bar I use.\nwhat's the product you got picky about once kids (or nieces, or the baby in your life) showed up? 👇",
-      "keywords": [
-        "baby",
-        "baby wash",
-        "fragrance free",
-        "kids"
-      ],
-      "verify": [
-        {
-          "claim": "From 0 months. Vegan, free of perfumes, colours, mineral oils, silicone, alcohol and synthetic preservatives. pH-value oriented to tear fluid so it causes as little irritation to the eyes as possible. Still avoid getting it in baby's eyes.",
-          "status": "verified",
-          "sourceNote": "FRESH baby body & hair wash · ringana.com / products library"
-        }
-      ],
-      "promoting": "product",
-      "contentType": "personal",
-      "kind": "feed",
-      "preview": "the labels I started reading weren't even mine. — the labels I started reading weren't even mine. someone who can't tell you what they don't l",
-      "body": "the labels I started reading weren't even mine.\nsomeone who can't tell you what they don't like yet still has to live with whatever you put on them.\nFRESH baby body & hair wash: from 0 months, no perfume, no synthetic preservatives, pH oriented to tear fluid so it's less likely to sting eyes. not a medical claim — just the bar I use.\nwhat's the product you got picky about once kids (or nieces, or the baby in your life) showed up? 👇"
-    },
+    
     {
       "id": "P24",
       "lane": "product",

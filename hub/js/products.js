@@ -9,7 +9,7 @@ window.FS = window.FS || {};
 window.FS.PRODUCT_LIB = {
   "version": 5,
   "disclaimer": "Partner education only — not medical advice.",
-  "sourceNote": "Skincare, body, hair, baby, and supplements — searchable and ready to learn.",
+  "sourceNote": "Skincare, body, hair, and supplements — searchable and ready to learn.",
   "categories": [
     {
       "id": "skincare",
@@ -112,29 +112,7 @@ window.FS.PRODUCT_LIB = {
         }
       ]
     },
-    {
-      "id": "baby",
-      "label": "Baby",
-      "blurb": "Full FRESH baby library — wash, bum care, cream, and oil.",
-      "subs": [
-        {
-          "id": "wash",
-          "label": "Wash"
-        },
-        {
-          "id": "bum-care",
-          "label": "Bum care"
-        },
-        {
-          "id": "cream",
-          "label": "Cream"
-        },
-        {
-          "id": "oil",
-          "label": "Oil"
-        }
-      ]
-    },
+    
     {
       "id": "supplements",
       "label": "Supplements",
@@ -2245,227 +2223,12 @@ window.FS.PRODUCT_LIB = {
         "hair-care"
       ]
     },
-    {
-      "id": "fresh-baby-body-hair-wash",
-      "name": "FRESH baby body & hair wash",
-      "matchcode": "RBW",
-      "category": "baby",
-      "subcategory": "wash",
-      "step": "Wash",
-      "tagline": "FRESH baby body & hair wash cleans your darling‘s delicate baby skin and fine hair ultra gently.",
-      "summary": "FRESH baby body & hair wash cleans your darling‘s delicate baby skin and fine hair ultra gently. The pH-friendly formulation is especially kind, and won’t make their eyes sting. Skin-soothing extracts of oat, cotton and witch hazel prevent irritation. Ectoin, as a stress protection molecule, supports the skin barrier. Almond and sesame oil have a grooming, lipid-restoring effect, and help to untangle hair. Sensitive baby skin is supplied with moisture, protecting it from drying out.\n\nIn keeping with our philosophy, our fresh skin care for babies is vegan, and free of perfumes, colors, mineral oils, silicone, alcohol and synthetic preservatives. Our fresh formulations are optimally designed for sensitive baby skin, dermatologically tested a",
-      "heroIngredients": "Witch hazel extract\nsoothes irritated and sensitive skin\n\nCotton cell extract\nrelieves redness and irritation\n\nOat extract\nreduces irritation and grooms the skin\n\nEctoin\nstrengthens the skin barrier\n\nOil of evening primrose\nhas a regenerating effect\n\nMild sugar tensides\nclean gently\n\nAloe vera\nprovides moisture",
-      "ingredientsNote": "INGREDIENTS: \nAloe barbadensis leaf juice (aloe vera fresh plant juice), Aqua (water), Decyl glucoside, Coco glucoside (gently cleansing tenside), Pentylene glycol (plant-derived moisturizing agent), Sesamum indicum seed oil (sesame oil), Prunus amygdalus dulcis oil* (almond kernel oil), Glyceryl caprylate (natural emulsifier), Polyglyceryl-3 betainate acetate, Sclerotium gum, Raspberry ketone (hair conditioning, grooming, antioxidant), Glycerin (plant-derived moisturizing agent), Succinoglycan (natural thickener), Xanthan gum, Ectoin (skin-soothing stress protection molecule), Gossypium herbaceum leaf cell extract (soothing cotton cell extract), Saccharide isomerate (carbohydrate complex for improved moisture retention), Avena sativa kernel oil* (oat oil), Sodium hydroxide, Citric acid (citric acid), Tocopherol (vitamin E), Vanilla planifolia fruit extract* (antioxidant vanilla extract), Helianthus annuus seed oil (sunflower oil), Hamamelis virginiana leaf extract* (witch hazel extract), Sodium citrate (salt of citric acid), Arginine (moisturizing amino acid), Oenothera biennis oil (evening primrose oil), Gossypium arboreum leaf cell extract\n\n* Ingredients from organic farming | Δ pharmaceutical quality | 100 % natural origin of total | 50.5 % of the total ingredients are from organic farming | COSMOS ORGANIC certified by Ecocert Greenlife in accordance with the COSMOS Standard, standard available at http://COSMOS.ecocert.com\n\nCBV 1.6\n\nA product’s ingredients may change over the course of time. If you want to know for sure what a product contains, the respective product packaging provides a list of ingredients.",
-      "application": "From 0 months. \n\nApply FRESH baby body & hair wash to damp skin and/or wet scalp and gently work it into a lather. Then rinse off with water. FRESH baby body & hair wash can be used from head to toe. \n\nThe pH-value of the product is oriented to the pH-value of tear fluid, so that it causes as little irritation to the eyes as possible. Nonetheless, do try to ensure that the wash gel doesn’t get into baby’s eyes.",
-      "claims": [],
-      "forWho": [
-        "FRESH baby line — gentle care for little ones (see ringana.com for age guidance)",
-        "Developed with baby / little ones in mind (per product copy)"
-      ],
-      "notFor": [
-        "Check age guidance, full INCI, and seals on the ringana.com product page before use.",
-        "If your child has known allergies or skin conditions, confirm suitability with a qualified professional and the live product page."
-      ],
-      "badges": [
-        "COSMOS Organic",
-        "Beat the Microbead",
-        "cosmeticsanalysis.com - FRESH baby  body & hair wash",
-        "pH-friendly",
-        "vegan",
-        "dermatologically tested",
-        "COSMOS ORGANIC"
-      ],
-      "sourceUrl": "https://www.ringana.com/produkt/fresh-baby-body-hair-wash/?lang=en",
-      "sourcedFrom": "ringana.com",
-      "phase": 2,
-      "categoryHints": [
-        "fresh-baby"
-      ]
-    },
-    {
-      "id": "fresh-baby-bum-cream",
-      "name": "FRESH baby bum cream",
-      "matchcode": "RBDC",
-      "category": "baby",
-      "subcategory": "bum-care",
-      "step": "Bum care",
-      "tagline": "A chafed baby bum?",
-      "summary": "A chafed baby bum? Not with FRESH baby bum cream! Baby’s delicate skin in the moist nappy area needs extra care. FRESH baby bum cream intensively cares for and grooms baby’s delicate bottom. The soothing formulation reliably relieves irritation in the nappy area. The nappy cream strengthens the skin barrier and forms a breathable protective film of natural plant oils on the skin. FRESH baby bum cream can be used after every nappy change to prevent nappy rash.\n\nThe formulation is designed to meet the special needs of baby skin. It’s dermatologically tested and very well-tolerated by the skin. The purest pharmaceutical-grade organic oils are used. In keeping with Ringana’s philosophy, fresh skin care for babies is vegan, and free of perfume, ",
-      "heroIngredients": "Witch hazel extract\nrelieves redness and inflammatory skin reactions\n\nCotton cell extract\nstrengthens the skin’s own ability to protect itself, and supplies it with moisture\n\nZinc oxide\nprevents itchiness and irritation\n\nTapioca starch\nimproves skin feel thanks to its moisture-absorbing properties\n\nAlmond oil, sesame oil and jojoba oil\nfrom controlled organic cultivation gently groom the skin and boost the skin’s regeneration",
-      "ingredientsNote": "INGREDIENTS: \nAloe barbadensis leaf juice (aloe vera fresh plant juice), Sesamum indicum seed oil*Δ (sesame oil), Zinc oxide (skin-soothing), Polyglyceryl-3 sorbityl linseedate (natural emulsifier derived from linseed oil), Glycerin**, Pentylene glycol (plant-derived moisturizing agent), Hydroxystearic/Linolenic/Linoleic polyglycerides (protect the skin), Tapioca starch* (moisture-binding tapioca starch), Simmondsia chinensis seed oil*∆ (jojoba oil), Prunus amygdalus dulcis oil* ∆ (almond kernel oil), Magnesium sulfate (emulsion stabilizer), Hydrogenated rapeseed oil (thickener), Hamamelis virginiana leaf extract* (skin-soothing witch hazel extract), Oenothera biennis oilΔ (evening primrose oil), Gossypium arboreum leaf cell extract (cotton extract), Helianthus annuus seed oil (sunflower oil), Magnolia officinalis bark extract (antioxidant magnolia bark extract), Olea europaea oil unsaponifiables (skin-grooming substance from olives), Rhus verniciflua peel cera, Shorea robusta resin, Helianthus annuus seed cera (plant-based wax mix), Aqua (water), Tocopherol (vitamin E)\n\n* Ingredients from organic farming | ** Made using organic ingredients | ∆ pharmaceutical quality | 100 % natural origin of total | 64.3 % of the total ingredients are from organic farming | COSMOS ORGANIC certified by Ecocert Greenlife in accordance with the COSMOS Standard, standard available at http://COSMOS.ecocert.com\n\nCBV 2.4\n\nA product’s ingredients may change over the course of time. If you want to know for sure what a product contains, the respective product packaging provides a list of ingredients.",
-      "application": "From 0 months. \n\nApply to baby’s dry, clean bottom once or twice daily after changing the nappy.",
-      "claims": [],
-      "forWho": [
-        "FRESH baby line — gentle care for little ones (see ringana.com for age guidance)",
-        "Developed with baby / little ones in mind (per product copy)",
-        "Diaper-area care (per product story)"
-      ],
-      "notFor": [
-        "Check age guidance, full INCI, and seals on the ringana.com product page before use.",
-        "If your child has known allergies or skin conditions, confirm suitability with a qualified professional and the live product page."
-      ],
-      "badges": [
-        "COSMOS Organic",
-        "Beat the Microbead",
-        "cosmeticsanalysis.com - FRESH baby bum cream",
-        "dermatologically tested",
-        "vegan",
-        "COSMOS ORGANIC"
-      ],
-      "sourceUrl": "https://www.ringana.com/produkt/fresh-baby-bum-cream/?lang=en",
-      "sourcedFrom": "ringana.com",
-      "phase": 2,
-      "categoryHints": [
-        "fresh-baby"
-      ]
-    },
-    {
-      "id": "fresh-baby-cream",
-      "name": "FRESH baby cream",
-      "matchcode": "RBC",
-      "category": "baby",
-      "subcategory": "cream",
-      "step": "Cream",
-      "tagline": "FRESH baby cream is a special water-in-oil emulsion that is absorbed exceptionally well by the skin, without leaving a sticky feel.",
-      "summary": "FRESH baby cream is a special water-in-oil emulsion that is absorbed exceptionally well by the skin, without leaving a sticky feel. It combines carefully selected oils from controlled organic cultivation and of pharmaceutical quality. Sesame oil, jojoba oil and oil of evening primrose are known for their positive and soothing effect on dry or irritated skin. Cotton cell extract, vanilla extract and aloe vera soothe the skin and deliver long-lasting moisturization.\n\nIn keeping with our philosophy, this unique care cream for babies and children contains no perfumes, colors, mineral oils, silicones or preservatives. The first-class formulation of selected organic, pharmaceutical-quality oils is what makes FRESH baby cream so special. Skin tol",
-      "heroIngredients": "Oat extract\nstrengthens the skin barrier\n\nCotton cell extract\nsoothes irritated and sensitive skin, while relieving redness and irritation\n\nVanilla extract\nsoothes the skin and has an antioxidant effect\n\nSesame oil, jojoba oil, almond oil and oil of evening primrose\ngently groom the skin and boost its regeneration",
-      "ingredientsNote": "INGREDIENTS: \nAqua (water), Coco-caprylate (natural lipid), Glycerin** (plant-derived moisturizing agent), Dicaprylyl ether, Isoamyl laurate (light ester oils), Lactobacillus ferment (skin-nurturing substance from lactic acid bacteria), Sambucus nigra fruit extract (antioxidant elderberry extract), Hydrogenated rapeseed oil (thickener), polyglyceryl-2 dipolyhydroxystearate (stearic acid-glycerin emulsifier), Zinc stearate (thickener), Magnesium sulfate (emulsion stabilizer), zinc PCA (natural moisture retention factor), Propanediol (natural moisturizing agent), Copernicia cerifera cera* (carnauba wax), Simmondsia chinensis seed oil*∆ (jojoba oil), Arginine (moisturizing amino acid), Prunus amygdalus dulcis oil*∆ (almond kernel oil), Avena sativa kernel oil* (oat extract), Oenothera biennis oil∆ (evening primrose oil), Gossypium arboreum leaf cell extract (soothing cotton cell extract), Sesamum indicum seed oil*∆ (sesame oil), Magnolia officinalis bark extract (antioxidant magnolia bark extract), Helianthus annuus seed oil (sunflower oil), Vanilla planifolia fruit extract* (antioxidant vanilla extract), Glyceryl oleate, lecithin, Hydrogenated palm glycerides citrate, Glyceryl caprylate (natural emulsifiers), Raspberry ketone, Gluconolactone (skin-nurturing), Ascorbyl palmitate (compound of Vitamin C and a plant fatty acid), Lactic acid (Lactic acid), Tocopherol (vitamin E)\n\n* Ingredients from organic farming | ** Made using organic ingredients | Δ pharmaceutical quality oils | 100 % natural origin of total | COSMOS NATURAL certified by Ecocert Greenlife according\nto COSMOS Standard available at http://COSMOS.ecocert.com\n\nCV 3.0\n\nA product’s ingredients may change over the course of time. If you want to know for sure what a product contains, the respective product packaging provides a list of ingredients.",
-      "application": "Gently apply to baby and toddler skin as needed, and smooth in well. \n\nSuitable for face and body. Avoid eye area.",
-      "claims": [],
-      "forWho": [
-        "FRESH baby line — gentle care for little ones (see ringana.com for age guidance)",
-        "Developed with baby / little ones in mind (per product copy)"
-      ],
-      "notFor": [
-        "Check age guidance, full INCI, and seals on the ringana.com product page before use.",
-        "If your child has known allergies or skin conditions, confirm suitability with a qualified professional and the live product page."
-      ],
-      "badges": [
-        "Beat the Microbead",
-        "cosmeticsanalysis.com - FRESH baby cream",
-        "COSMOS Natural",
-        "dermatologically tested"
-      ],
-      "sourceUrl": "https://www.ringana.com/produkt/fresh-baby-cream/?lang=en",
-      "sourcedFrom": "ringana.com",
-      "phase": 2,
-      "categoryHints": [
-        "fresh-baby"
-      ]
-    },
-    {
-      "id": "fresh-baby-oil",
-      "name": "FRESH baby oil",
-      "matchcode": "RBO",
-      "category": "baby",
-      "subcategory": "oil",
-      "step": "Oil",
-      "tagline": "FRESH baby oil was developed to meet the special needs of baby skin which can easily dry out and tends to suffer from a lack of moisture.",
-      "summary": "FRESH baby oil was developed to meet the special needs of baby skin which can easily dry out and tends to suffer from a lack of moisture. FRESH baby oil restores lipids and grooms. It strengthens the skin barrier and ensures velvety-soft skin. Mild FRESH baby oil can be used for daily skin care, relaxing baby massages, and as a gentle cleaner. FRESH baby oil is suitable for use from baby’s first day, as well as for adult skin care.\n\nIn keeping with our philosophy, this unique care and massage oil for babies contains no perfume, colors, mineral oils, silicone or preservatives. The precious formulation of selected pharmaceutical-grade organic oils is what makes FRESH baby oil so special. Skin tolerability has been dermatologically tested and",
-      "heroIngredients": "Jojoba oil\nhelps to prevent the loss of moisture from the skin\n\nOil of evening primrose\ngrooms the skin and supports the skin’s regeneration\n\nAlmond oil\nhas an antioxidant effect and supports the skin’s regeneration\n\nSesame oil\ncontains antioxidants and has skin-soothing properties\n\nVanilla extract\nhas a skin-soothing, antioxidant effect\n\nOat extract\nrelieves irritation and grooms the skin\n\nCotton cell extract\nsoothes irritated skin and reduces irritation",
-      "ingredientsNote": "INGREDIENTS: \nSesamum indicum seed oil*∆ (sesame oil), Simmondsia chinensis seed oil*∆ (jojoba oil), Prunus amygdalus dulcis oil*∆ (almond oil), Avena sativa kernel oil* (oat extract), Oenothera biennis oil ∆ (evening primrose oil), Gossypium arboreum leaf cell extract (soothing cotton cell extract), Helianthus annuus seed oil (sunflower oil), Vanilla planifolia fruit extract* (antioxidant vanilla extract), Tocopherol (vitamin E)\n\n* Ingredients from organic farming | ∆ pharmaceutical quality | 100 % natural origin of total | 99,2 % of the total ingredients are from organic farming | COSMOS ORGANIC certified by Ecocert Greenlife in accordance with the COSMOS Standard, standard available at http://COSMOS.ecocert.com\n\nCBV 1.4\n\nA product’s ingredients may change over the course of time. If you want to know for sure what a product contains, the respective product packaging provides a list of ingredients.",
-      "application": "From 0 months. \n\nFor massage and skin care, put a few drops into your palms and gently massage in. \n\nAlso suitable for gently cleaning the skin and as a bath additive. For external use only.",
-      "claims": [],
-      "forWho": [
-        "FRESH baby line — gentle care for little ones (see ringana.com for age guidance)",
-        "Developed with baby / little ones in mind (per product copy)"
-      ],
-      "notFor": [
-        "Check age guidance, full INCI, and seals on the ringana.com product page before use.",
-        "If your child has known allergies or skin conditions, confirm suitability with a qualified professional and the live product page."
-      ],
-      "badges": [
-        "COSMOS Organic",
-        "Beat the Microbead",
-        "cosmeticsanalysis.com - FRESH  baby oil",
-        "dermatologically tested",
-        "COSMOS ORGANIC"
-      ],
-      "sourceUrl": "https://www.ringana.com/produkt/fresh-baby-oil/?lang=en",
-      "sourcedFrom": "ringana.com",
-      "phase": 2,
-      "categoryHints": [
-        "fresh-baby"
-      ]
-    },
-    {
-      "id": "fresh-baby-sunscreen-spf-50",
-      "name": "FRESH baby sunscreen SPF 50",
-      "matchcode": "RBSS",
-      "category": "baby",
-      "subcategory": "sun",
-      "step": "Sun care",
-      "tagline": "Specially developed for the sensitive skin of babies and children, this sun cream uses the power of natural minerals.",
-      "summary": "Specially developed for the sensitive skin of babies and children, this sun cream uses the power of natural minerals. Zinc oxide and titanium dioxide act as a shield of microscopically tiny mirrors. They reflect the harmful UVA and UVB rays and protect the skin. The formulation also combines three plant oils from controlled organic cultivation: almond, sesame and evening primrose oil. Each of these oils is known for its soothing and nourishing properties. Cotton cell extract, vanilla extract and aloe vera soothe the skin and deliver plenty of hydration.\n\nOur sun protection cream for our littlest ones is as pure as nature itself. It contains no perfumes or coloring agents, no mineral oils, silicones or preservatives. Simply authentic RINGAN",
-      "heroIngredients": "Zinc oxide and titanium dioxide\nare mineral filters that protect the skin from harmful UVA and UVB rays.\n\nCotton cell extract\nsoothes irritated skin and reduces redness and irritation.\n\nAstaxanthin\ncan counteract UV-induced oxidative stress.\n\nVanilla extract\nhas a skin-soothing, antioxidant effect.\n\n12 % aloe vera gel\nsupplies the skin with instant and long-lasting moisturization.\n\nOil of evening primrose\ngrooms the skin and encourages its regeneration.\n\nOat extract\nreduces irritation and grooms the skin.\n\nAlmond oil\nhas an antioxidant effect and supports skin regeneration.\n\nSesame oil\ncontains antioxidants and has skin-soothing properties.",
-      "ingredientsNote": "INGREDIENTS: \nZinc oxide (mineral sun protection), Aloe barbadensis leaf juice* (aloe vera fresh plant juice), Aqua (water), Caprylic/capric triglyceride, Coco-caprylate, Cocoglycerides, Coco-caprylate/caprate (natural lipids), Propanediol, Glycerin** (plant-derived moisturizer), Cocos nucifera oil* (coconut oil), Polyglyceryl-4 diisostearate / polyhydroxystearate / sebacate (natural emulsifier), Polyhydroxystearic acid (plant-derived dispersing agent), Titanium dioxide (mineral sun protection), zinc stearate (zinc-fatty acid compound), magnesium sulfate (Epsom salt), Polyglyceryl-3 oleate (natural emulsifier), Prunus amygdalus dulcis oil*∆ (almond kernel oil), silica (silicic acid), Astaxanthin, Haematococcus pluvialis extract (protecting alga extract), Polyglyceryl-3 polyricinoleate, Polyglyceryl-2 caprate, Diisostearoyl polyglyceryl-3 dimer dilinoleate, Lecithin (natural emulsifier), Sesamum indicum seed oil*∆ (sesame oil), Copernicia cerifera cera* (carnauba wax), Isostearic acid (plant-derived dispersing agent), Magnolia officinalis bark extract (antioxidant magnolia bark extract), Lactic Acid (Lactic acid), Simmondsia chinensis seed oil (jojoba oil), Gossypium arboreum leaf cell extract (cotton extract), Raspberry ketone (grooming), Arginine (moisturizing amino acid), Oenothera biennis oil∆ (evening primrose oil), Helianthus annuus seed oil (sunflower oil), squalanes (olive squalane), Alumina (firmly bonded with the mineral sun protection, coating effect), Stearic acid (plant-derived dispersing agent), sucrose stearate (natural sugar emulsifier), Vanilla planifolia fruit extract* (antioxidant vanilla extract), glyceryl caprylate (natural emulsifier), Avena sativa kernel oil* (oat extract), Tocopherol (vitamin E)\n\n* Ingredients from organic farming | ** Made using organic ingredients | Δ Pharmaceutical quality oils | 100 % natural origin of total | COSMOS NATURAL certified by Ecocert Greenlife according to COSMOS Standard available at http://COSMOS.ecocert.com\n\nCV 1.2\n\nA product’s ingredients may change over the course of time. If you want to know for sure what a product contains, the respective product packaging provides a list of ingredients.",
-      "application": "Apply evenly and generously to the face and body before sun exposure, avoiding contact with the eyes. Small amounts applied will significantly reduce the level of protection. Reapply several times, especially after swimming, sweating, or towel drying. Even sunscreens with a high sun protection factor do not offer complete protection against UV rays. Do not stay in the sun too long, even when using sunscreen. Excessive sun exposure poses a considerable health risk. Discontinue use if signs of irritation or rash appear. Avoid intense midday sun. Any sunburn causes lasting damage to the skin and should be avoided. Protect babies/toddlers from direct sunlight, use protective clothing and sunscreen with a high sun protection factor (SPF greater than 25).\n\nSuitable for babies from 0 months. And naturally for children and adults too.",
-      "claims": [],
-      "forWho": [
-        "FRESH baby line — gentle care for little ones (see ringana.com for age guidance)",
-        "Developed with baby / little ones in mind (per product copy)",
-        "Sun protection for little ones (per product story)"
-      ],
-      "notFor": [
-        "Check age guidance, full INCI, and seals on the ringana.com product page before use.",
-        "If your child has known allergies or skin conditions, confirm suitability with a qualified professional and the live product page."
-      ],
-      "badges": [
-        "UVB-protection",
-        "UVA-protection",
-        "COSMOS Natural",
-        "Beat the Microbead",
-        "cosmeticsanalysis.com - FRESH baby sunscreen SPF 50",
-        "SPF 50",
-        "dermatologically tested"
-      ],
-      "sourceUrl": "https://www.ringana.com/produkt/fresh-baby-sunscreen-spf-50/?lang=en",
-      "sourcedFrom": "ringana.com",
-      "phase": 2,
-      "categoryHints": [
-        "fresh-baby"
-      ]
-    },
-    {
-      "id": "fresh-baby-tooth-gel",
-      "name": "FRESH baby tooth gel",
-      "matchcode": "RBTG",
-      "category": "baby",
-      "subcategory": "tooth",
-      "step": "Tooth care",
-      "tagline": "FRESH baby tooth gel is a homage to natural care for children’s teeth.",
-      "summary": "FRESH baby tooth gel is a homage to natural care for children’s teeth. Our gel formulation contains finely ground silica as mineral cleansing grains that gently clean the teeth without harming the enamel. Xylitol and sodium fluoride work hand in hand to prevent tooth decay and strengthen tooth enamel. This combination protects the teeth, while promoting healthy tooth development. Because it contains no coloring agents, perfumes, glitter or tensides, our tooth gel is entirely harmless even if swallowed accidentally.\n\nBecause we know how important taste and texture are to children, we’ve given our tooth gel a mild, sweetly refreshing flavor. That makes the teeth-brushing routine into a pleasant experience. Thanks to its ultra smooth consist",
-      "heroIngredients": "Silica cleansing grains \nclean the teeth gently yet thoroughly, without attacking tooth enamel.\n\nXylitol \nprevents tooth decay because this natural sweetener stops harmful bacteria from feeding and multiplying.\n\nSodium fluoride \nis a tried-and-trusted ingredient of toothpastes. It strengthens tooth enamel, prevents tooth decay, and contributes to healthy tooth development.\n\nCurled mint oil \ngives fresh breath. Its mild, sweetish flavor is particularly popular with children.\n\nHyaluronic acid \nhydrates.",
-      "ingredientsNote": "INGREDIENTS: \nGlycerin** (plant-derived moisturizing agent), Aqua (water), Hydrated silica (gentle cleansing grains), Propanediol (natural moisturizing agent), sodium hyaluronate (hyaluronic acid), xylitol (birch sugar), Xanthan gum (natural thickening agent), Mentha spicata herb oil* (curled mint oil), Sodium fluoride (remineralising sodium fluoride)\n\n* Ingredients from organic farming | ** Made using organic ingredients | 100 % natural origin of total | 53.1 % of the total ingredients are from organic farming | COSMOS ORGANIC certified by Ecocert Greenlife in accordance with the COSMOS Standard, standard available at http://COSMOS.ecocert.com\n\nCBV 1.2\n\nA product’s ingredients may change over the course of time. If you want to know for sure what a product contains, the respective product packaging provides a list of ingredients.",
-      "application": "Suitable for use from baby’s first tooth. \n\nWarning: Contains sodium fluoride (500 ppm fluoride). For children of 6 years and younger: use a pea-sized amount for supervised brushing to minimize swallowing. In case of intake of fluoride from other sources consult a dentist or doctor.",
-      "claims": [
-        "100% of participants confirmed good tolerability.",
-        "86% recommended its ease of use for the parents.",
-        "82% said that their children’s teeth were cleaned adequately.",
-        "77% were satisfied or very satisfied with the product’s results."
-      ],
-      "forWho": [
-        "FRESH baby line — gentle care for little ones (see ringana.com for age guidance)",
-        "Developed with baby / little ones in mind (per product copy)",
-        "Emerging teeth / first tooth care (per product story)"
-      ],
-      "notFor": [
-        "Check age guidance, full INCI, and seals on the ringana.com product page before use.",
-        "If your child has known allergies or skin conditions, confirm suitability with a qualified professional and the live product page."
-      ],
-      "badges": [
-        "COSMOS Organic",
-        "Beat the Microbead",
-        "cosmeticsanalysis.com - FRESH baby tooth gel",
-        "COSMOS ORGANIC"
-      ],
-      "sourceUrl": "https://www.ringana.com/produkt/fresh-baby-tooth-gel/?lang=en",
-      "sourcedFrom": "ringana.com",
-      "phase": 2,
-      "categoryHints": [
-        "fresh-baby"
-      ]
-    },
+    
+    
+    
+    
+    
+    
     {
       "id": "beyond-biotic",
       "name": "BEYOND biotic",

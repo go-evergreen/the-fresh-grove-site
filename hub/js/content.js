@@ -137,8 +137,8 @@ window.FS.CONTENT = {
       title: "Sun on the table",
       alt: "White bottles and tubes scattered in sunlight on a wooden table",
       category: "lineups",
-      tags: ["haul", "sunlight", "table", "baby", "body", "tubes"],
-      pairsWith: "Everyday products · baby · body care",
+      tags: ["haul", "sunlight", "table", "body", "tubes"],
+      pairsWith: "Everyday products · body care",
       body: "Lived-in light. Good for a midweek noticing post."
     },
     {
@@ -1126,12 +1126,6 @@ window.FS.CONTENT = {
       icon: "💧",
       title: "When was this made?",
       body: "Honest question for anyone into serums or supplements: do you ever check when something was made — not just when it expires?\n\nI've started asking that, and it's changing how I look at everything on my shelf."
-    },
-    {
-      id: "kids_bath",
-      icon: "🛁",
-      title: "Kid bath products",
-      body: "Parents — how picky are you about what goes in the bath?\n\nI've been looking at a baby/kids line made fresh without the usual preservative shortcuts… curious what your non-negotiables are."
     },
     {
       id: "supplement_smell",
