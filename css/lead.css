@@ -87,6 +87,9 @@ body[data-look="blush"] {
 }
 body[data-fonts="libre"] { --serif: "Libre Baskerville", Georgia, serif; --sans: "Source Sans 3", sans-serif; }
 body[data-fonts="manrope"] { --serif: "Manrope", sans-serif; --sans: "Manrope", sans-serif; }
+body[data-fonts="newsreader"] { --serif: "Newsreader", Georgia, serif; --sans: "Nunito Sans", sans-serif; }
+body[data-fonts="cormorant"] { --serif: "Cormorant Garamond", Georgia, serif; --sans: "Work Sans", sans-serif; }
+body[data-fonts="nunito"] { --serif: "Nunito", sans-serif; --sans: "Nunito", sans-serif; }
 body[data-corners="soft"] { --radius: 16px; }
 
 * { box-sizing: border-box; }
@@ -399,6 +402,7 @@ body[data-look="grove"] .hero {
   line-height: 1.12;
   margin: 0 0 1.4rem;
 }
+.hero h1.is-custom { max-width: 18ch; }
 .hero h1 em { font-style: italic; color: var(--brass-light); }
 .hero-sub { max-width: 46ch; font-size: clamp(1.05rem, 1.6vw, 1.22rem); color: var(--hero-muted); margin: 0 0 2.2rem; }
 .hero-actions, .hero-pair, .btn-row { display: flex; flex-wrap: wrap; gap: 0.8rem; align-items: center; }
