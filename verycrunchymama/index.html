@@ -5,13 +5,13 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <script>!function(){var u=navigator.userAgent||"";if(/Instagram|FBAN|FBAV|FB_IAB|FBOS|Facebook|Line\/|TikTok/i.test(u))document.documentElement.classList.add("is-inapp");if(/iPhone|iPad|iPod/i.test(u)||(navigator.platform==="MacIntel"&&navigator.maxTouchPoints>1))document.documentElement.classList.add("is-ios")}();</script>
-<title>Ringana Coming to America | Holistic Living with Morgan</title>
-<meta name="description" content="Morgan of Very Crunchy Mama is gathering moms for Ringana's U.S. arrival — fresh, toxin free skincare and supplements from Austria. Be first to know.">
+<title>Ringana US | Shop &amp; Join Morgan's Team</title>
+<meta name="description" content="Ringana in the US, with Morgan — an independent partner. Shop fresh, toxin free skincare, or join her Ringana team.">
 <link rel="canonical" href="https://thefreshgrove.team/verycrunchymama/">
 <meta property="og:type" content="website">
 <meta property="og:site_name" content="Ringana with Morgan">
-<meta property="og:title" content="Ringana Coming to America | Toxin Free Wellness with Morgan">
-<meta property="og:description" content="Fresh, toxin free skincare and supplements from Austria — three decades in the making. Be first to know when Ringana arrives in America.">
+<meta property="og:title" content="Ringana US | Shop &amp; Join Morgan's Team">
+<meta property="og:description" content="Ringana in the US, with Morgan — an independent partner. Shop fresh, toxin free skincare, or join her Ringana team.">
 <meta property="og:url" content="https://thefreshgrove.team/verycrunchymama/">
 <meta property="og:image" content="https://thefreshgrove.team/verycrunchymama/og-image.jpg?v=20260824">
 <meta property="og:image:secure_url" content="https://thefreshgrove.team/verycrunchymama/og-image.jpg?v=20260824">
@@ -21,8 +21,8 @@
 <meta property="og:image:alt" content="Ringana with Morgan — toxin free wellness coming to America">
 <meta property="og:locale" content="en_US">
 <meta name="twitter:card" content="summary_large_image">
-<meta name="twitter:title" content="Ringana Coming to America | Toxin Free Wellness with Morgan">
-<meta name="twitter:description" content="Fresh, toxin free skincare and supplements from Austria — three decades in the making. Be first to know when Ringana arrives in America.">
+<meta name="twitter:title" content="Ringana US | Shop &amp; Join Morgan's Team">
+<meta name="twitter:description" content="Ringana in the US, with Morgan — an independent partner. Shop fresh, toxin free skincare, or join her Ringana team.">
 <meta name="twitter:image" content="https://thefreshgrove.team/verycrunchymama/og-image.jpg?v=20260824">
 <meta name="twitter:image:alt" content="Ringana with Morgan — toxin free wellness coming to America">
 <meta name="theme-color" content="#445a48">
@@ -40,7 +40,7 @@
       "url": "https://thefreshgrove.team/verycrunchymama/",
       "name": "Ringana with Morgan",
       "alternateName": ["Very Crunchy Mama", "verycrunchymama"],
-      "description": "Fresh, toxin free skincare and supplements from Austria — Ringana is coming to America in 2026.",
+      "description": "Ringana in the US, with Morgan — an independent partner. Shop fresh, toxin free skincare, or join her Ringana team.",
       "inLanguage": "en-US",
       "publisher": {"@id": "https://thefreshgrove.team/verycrunchymama/#person"}
     },
@@ -62,8 +62,8 @@
       "@type": "WebPage",
       "@id": "https://thefreshgrove.team/verycrunchymama/#webpage",
       "url": "https://thefreshgrove.team/verycrunchymama/",
-      "name": "Ringana Coming to America | Toxin Free Wellness with Morgan",
-      "description": "Ringana arrives in the U.S. in 2026 — fresh, toxin free skincare and supplements from Austria, with a new campus in Roanoke.",
+      "name": "Ringana US | Shop & Join Morgan's Team",
+      "description": "Ringana in the US, with Morgan — an independent partner. Shop fresh, toxin free skincare, or join her Ringana team.",
       "isPartOf": {"@id": "https://thefreshgrove.team/verycrunchymama/#website"},
       "about": {"@id": "https://thefreshgrove.team/verycrunchymama/#person"},
       "primaryImageOfPage": "https://thefreshgrove.team/verycrunchymama/og-image.jpg"
@@ -222,8 +222,7 @@ a:focus-visible,button:focus-visible,summary:focus-visible{outline:2px solid var
   justify-content:center;
   padding:calc(var(--header-expanded) + 2.5rem) 2rem 5rem;
   position:relative;
-  overflow-x:hidden;
-  overflow-y:visible;
+  overflow:clip;
 }
 .hero-ring{
   position:absolute;
@@ -339,12 +338,14 @@ section{padding:6rem 2rem;}
 }
 .standards .container{
   display:grid;
-  grid-template-columns:repeat(4,1fr);
-  gap:2rem;
+  grid-template-columns:repeat(12,1fr);
+  gap:2.4rem 0;
   text-align:center;
 }
-.standard-item{border-left:1px solid rgba(207,169,94,.3);padding:0 1rem;}
-.standard-item:first-child{border-left:none;}
+.standard-item{grid-column:span 3;border-left:1px solid rgba(207,169,94,.3);padding:0 1rem;}
+.standard-item:nth-child(n+5){grid-column:span 4;}
+.standard-item:first-child,
+.standard-item:nth-child(5){border-left:none;}
 .standard-icon{
   display:block;
   width:2rem;height:2rem;
@@ -548,7 +549,7 @@ section{padding:6rem 2rem;}
 .tried .lede{margin-left:auto;margin-right:auto;text-align:center;}
 .radar-carousel{
   position:relative;
-  margin-top:2.2rem;
+  margin-top:.85rem;
   padding:0 2.8rem;
 }
 .carousel-viewport{
@@ -583,6 +584,13 @@ section{padding:6rem 2rem;}
   width:200px;
   height:200px;
   flex-shrink:0;
+}
+.carousel-shot a{
+  display:flex;
+  width:100%;
+  height:100%;
+  align-items:center;
+  justify-content:center;
 }
 .carousel-shot img{
   width:100%;
@@ -877,8 +885,6 @@ section{padding:6rem 2rem;}
   color:var(--ink);
 }
 .letter-form{margin-top:.4rem;}
-.letter-submit{width:100%;margin-top:.35rem;cursor:pointer;}
-#fs-email-join.is-submitted{display:none;}
 .letter-signup{display:flex;flex-direction:column;gap:0;}
 .letter-interest{width:100%;margin:0 0 .75rem;}
 .letter-interest-label{
@@ -1075,6 +1081,7 @@ footer .foot-ig-label{
   max-width:780px;
   margin:0 auto;
 }
+.foot-ig-grid behold-widget{display:block;width:100%;}
 
 
 /* ------- FOOTER ------- */
@@ -1171,14 +1178,18 @@ footer p{font-size:.8rem;opacity:.6;max-width:70ch;margin:0 auto .5rem;padding:0
   .standards{padding:2rem 1rem;overflow:hidden;}
   .standards .container{grid-template-columns:1fr 1fr;gap:1.1rem .75rem;width:100%;max-width:100%;margin:0;padding:0;}
   .standard-item,
+  .standard-item:nth-child(n+5),
   .standard-item:first-child,
-  .standard-item:nth-child(3){
+  .standard-item:nth-child(3),
+  .standard-item:nth-child(5){
+    grid-column:auto;
     border-left:none !important;
     border-top:1px solid rgba(207,169,94,.22);
     padding:.55rem .25rem 0;
   }
   .standard-item:nth-child(1),
   .standard-item:nth-child(2){border-top:none;padding-top:0;}
+  .standard-item:last-child:nth-child(odd){grid-column:1 / -1;}
   .standard-item .label{font-size:.6rem;letter-spacing:.03em;line-height:1.35;white-space:normal;}
 }
 @media (max-width:640px){
@@ -1207,20 +1218,31 @@ html.is-inapp .hero h1,html.is-inapp .page-hero h1,html.is-inapp h1{padding-top:
 html.is-inapp .site-nav{flex-wrap:nowrap;}
 /* CORE:END css */
 </style>
-<link rel="stylesheet" href="site-extra.css?v=8">
+<link rel="stylesheet" href="site-extra.css?v=36">
+<script src="grove-nav.js?v=2" defer></script>
 </head>
 <body>
 
 <!-- CLIENT:START site-header -->
 <header class="site-header" id="siteHeader">
+  <a class="offer-bar" aria-label="Join as a partner, grab a Founder’s product pack, and get a free FRESH Date Set worth $201.30." href="october.html"><span class="offer-track"><span class="offer-group"><span class="offer-copy"><span class="for-wide">Join as a partner, grab a Founder’s product pack, and get a </span><span class="for-narrow">Join as a partner · grab a Founder’s pack</span><span class="offer-hook"><b class="offer-free">free</b> <b class="offer-set">FRESH Date Set worth $201.30.</b></span></span><span class="offer-copy"><span class="for-wide">Join as a partner, grab a Founder’s product pack, and get a </span><span class="for-narrow">Join as a partner · grab a Founder’s pack</span><span class="offer-hook"><b class="offer-free">free</b> <b class="offer-set">FRESH Date Set worth $201.30.</b></span></span><span class="offer-copy"><span class="for-wide">Join as a partner, grab a Founder’s product pack, and get a </span><span class="for-narrow">Join as a partner · grab a Founder’s pack</span><span class="offer-hook"><b class="offer-free">free</b> <b class="offer-set">FRESH Date Set worth $201.30.</b></span></span><span class="offer-copy"><span class="for-wide">Join as a partner, grab a Founder’s product pack, and get a </span><span class="for-narrow">Join as a partner · grab a Founder’s pack</span><span class="offer-hook"><b class="offer-free">free</b> <b class="offer-set">FRESH Date Set worth $201.30.</b></span></span></span><span class="offer-group" aria-hidden="true"><span class="offer-copy"><span class="for-wide">Join as a partner, grab a Founder’s product pack, and get a </span><span class="for-narrow">Join as a partner · grab a Founder’s pack</span><span class="offer-hook"><b class="offer-free">free</b> <b class="offer-set">FRESH Date Set worth $201.30.</b></span></span><span class="offer-copy"><span class="for-wide">Join as a partner, grab a Founder’s product pack, and get a </span><span class="for-narrow">Join as a partner · grab a Founder’s pack</span><span class="offer-hook"><b class="offer-free">free</b> <b class="offer-set">FRESH Date Set worth $201.30.</b></span></span><span class="offer-copy"><span class="for-wide">Join as a partner, grab a Founder’s product pack, and get a </span><span class="for-narrow">Join as a partner · grab a Founder’s pack</span><span class="offer-hook"><b class="offer-free">free</b> <b class="offer-set">FRESH Date Set worth $201.30.</b></span></span><span class="offer-copy"><span class="for-wide">Join as a partner, grab a Founder’s product pack, and get a </span><span class="for-narrow">Join as a partner · grab a Founder’s pack</span><span class="offer-hook"><b class="offer-free">free</b> <b class="offer-set">FRESH Date Set worth $201.30.</b></span></span></span></span></a>
   <div class="site-header-inner">
     <a href="index.html" class="site-brand">Ringana <span>·</span> with Morgan</a>
     <nav class="site-nav" id="navLinks" aria-label="Primary">
       <a href="index.html" class="active">Home</a>
-      <a href="products.html">The Products</a>
-      <a href="business.html">The Business</a>
-      <a href="about.html" class="nav-about">About Me</a>
-      <a href="#" class="nav-cta nav-cta-scroll" data-open-connect>Get First Access</a>
+      <a href="products.html">Products</a>
+      <div class="nav-drop">
+        <button type="button" class="nav-plan" aria-expanded="false" aria-haspopup="true">The Grove</button>
+        <div class="nav-menu">
+          <a href="business.html">The team</a>
+          <a href="why-now.html">How you get paid</a>
+          <a href="october.html">New partners</a>
+        </div>
+      </div>
+      <span class="nav-end">
+        <a href="https://5037638.ringana.us/?lang=en" class="nav-cta nav-shop" target="_blank" rel="noopener">Shop Now</a>
+        <a href="#" class="nav-cta nav-cta-scroll" data-open-connect>Get more info</a>
+      </span>
     </nav>
   </div>
 </header>
@@ -1234,14 +1256,50 @@ html.is-inapp .site-nav{flex-wrap:nowrap;}
   <div class="hero-inner">
     <div class="hero-eyebrow">Ringana · America · 2026</div>
     <h1>Wellness that was never meant to <em>compromise.</em></h1>
-    <p class="hero-sub">For thirty years, a family in Austria has been making skincare and supplements the hard way — totally toxin free, made fresh, and honest about every ingredient. Now Ringana is coming to America, and I'm gathering moms who want a more holistic way to care for their families to experience it first.</p>
+    <p class="hero-sub">For thirty years, a family in Austria has been making skincare and supplements the hard way — totally toxin free, made fresh, and transparent. Now Ringana is coming to America, so you can try the products for yourself and share them with your friends.</p>
     <div class="hero-actions">
-      <a href="#" class="btn btn-brass" data-open-connect>Get First Access</a>
-      <a href="#story" class="btn btn-ghost">Read the Story</a>
+      <div class="hero-pair">
+        <a href="products.html" class="btn btn-ghost">Learn the products</a>
+        <a href="https://5037638.ringana.us/?lang=en" class="btn btn-brass" target="_blank" rel="noopener">Shop</a>
+      </div>
+      <a href="business.html" class="btn btn-ghost">How the business works</a>
     </div>
   </div>
 </header>
 <!-- CLIENT:END hero -->
+
+
+
+<section class="film" aria-label="The products, in real life">
+  <div class="film-track">
+    <div class="film-run">
+      <figure><img class="focus-bath" src="film/fresh-bathroom-lineup.webp" alt="Fresh bottles on a pale bathroom counter, with a linen cloth"></figure>
+      <figure><img src="film/hydro-serum-bowl.webp" alt="A pouch of Fresh hydro serum resting in a ceramic bowl"></figure>
+      <figure><img class="focus-pour" src="film/fresh-pour.webp" alt="A hand pouring a fresh shot into a glass of ice"></figure>
+      <figure><img src="film/cotton-towels.webp" alt="Bottles wrapped in organic cotton on marble"></figure>
+      <figure><img src="film/ls-9980.webp" alt="An open tin of capsules on a wood floor"></figure>
+      <figure><img src="film/ringana-towel-tag.webp" alt="A Ringana towel tag beside a cream bottle"></figure>
+      <figure><img src="film/ls-9999.webp" alt="Two small bottles and a glass on a sunlit stone surface"></figure>
+      <figure><img src="film/cotton-wraps-close.webp" alt="Cotton-wrapped bottles, close"></figure>
+      <figure><img src="film/travel-bag-spill.webp" alt="Travel pouches spilling from a mesh bag"></figure>
+      <figure><img src="film/cotton-wraps-haul.webp" alt="A pile of cotton-wrapped bottles and jars"></figure>
+      <figure><img src="film/sunny-table-haul.webp" alt="A sunlit table set with the fresh line"></figure>
+      <figure><img src="film/fresh-sample-pouches.webp" alt="Sample pouches of the fresh line"></figure>
+      <figure aria-hidden="true"><img class="focus-bath" src="film/fresh-bathroom-lineup.webp" alt=""></figure>
+      <figure aria-hidden="true"><img src="film/hydro-serum-bowl.webp" alt=""></figure>
+      <figure aria-hidden="true"><img class="focus-pour" src="film/fresh-pour.webp" alt=""></figure>
+      <figure aria-hidden="true"><img src="film/cotton-towels.webp" alt=""></figure>
+      <figure aria-hidden="true"><img src="film/ls-9980.webp" alt=""></figure>
+      <figure aria-hidden="true"><img src="film/ringana-towel-tag.webp" alt=""></figure>
+      <figure aria-hidden="true"><img src="film/ls-9999.webp" alt=""></figure>
+      <figure aria-hidden="true"><img src="film/cotton-wraps-close.webp" alt=""></figure>
+      <figure aria-hidden="true"><img src="film/travel-bag-spill.webp" alt=""></figure>
+      <figure aria-hidden="true"><img src="film/cotton-wraps-haul.webp" alt=""></figure>
+      <figure aria-hidden="true"><img src="film/sunny-table-haul.webp" alt=""></figure>
+      <figure aria-hidden="true"><img src="film/fresh-sample-pouches.webp" alt=""></figure>
+    </div>
+  </div>
+</section>
 
 <!-- ================= STANDARDS BAND ================= -->
 <div class="standards">
@@ -1252,15 +1310,27 @@ html.is-inapp .site-nav{flex-wrap:nowrap;}
     </div>
     <div class="standard-item reveal">
       <svg class="standard-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M3 12h18M12 3a14 14 0 0 1 0 18M12 3a14 14 0 0 0 0 18"/></svg>
-      <span class="num" data-count="37">0</span><span class="label">Countries served</span>
+      <span class="num" data-count="38">0</span><span class="label">Countries served</span>
     </div>
     <div class="standard-item reveal">
       <svg class="standard-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true"><circle cx="9" cy="8" r="3"/><circle cx="17" cy="9" r="2.5"/><path d="M3 19c0-3 3-5 6-5s6 2 6 5"/></svg>
-      <span class="num" data-count="100" data-suffix="K+">0</span><span class="label">Partners worldwide</span>
+      <span class="num" data-count="130" data-suffix="K+">0</span><span class="label">Partners worldwide</span>
     </div>
     <div class="standard-item reveal">
       <svg class="standard-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true"><path d="M4 20V8l8-4 8 4v12"/><path d="M9 20v-6h6v6"/></svg>
       <span class="num" data-count="85" data-prefix="$" data-suffix="M">0</span><span class="label">U.S. campus investment</span>
+    </div>
+    <div class="standard-item reveal">
+      <svg class="standard-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true"><circle cx="9" cy="8" r="3"/><path d="M3.5 19c.3-3.2 2.6-5 5.5-5s5.2 1.8 5.5 5"/><circle cx="16.5" cy="9" r="2.2"/><path d="M16 14.2c1.5-.5 3.1-.2 4 .9.7 1 1 2.2 1.1 3.9"/></svg>
+      <span class="num" data-count="2.7" data-suffix="M">0</span><span class="label">Customers</span>
+    </div>
+    <div class="standard-item reveal">
+      <svg class="standard-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true"><path d="M20 12a8 8 0 1 1-2.2-5.5"/><path d="M20 4.5V9h-4.5"/></svg>
+      <span class="num" data-count="70" data-suffix="%">0</span><span class="label">Customer retention</span>
+    </div>
+    <div class="standard-item reveal">
+      <svg class="standard-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true"><path d="M10 3h4M11 3v2.5L8.5 8.5V19a1.5 1.5 0 0 0 1.5 1.5h4a1.5 1.5 0 0 0 1.5-1.5V8.5L13 5.5V3"/><path d="M9.2 12h5.6"/></svg>
+      <span class="num">REuse</span><span class="label">Bottle return program</span>
     </div>
   </div>
 </div>
@@ -1314,31 +1384,64 @@ html.is-inapp .site-nav{flex-wrap:nowrap;}
 <!-- ================= CAMPUS ================= -->
 <!-- CORE:START campus -->
 <section class="campus-editorial" aria-label="Ringana campus">
-  <div class="campus-hero-full reveal">
-    <div class="campus-bg" aria-hidden="true">
-      <img
-        src="campus-interior-1200w.webp"
-        srcset="campus-interior-800w.webp 800w, campus-interior-1200w.webp 1200w, campus-interior-1600w.webp 1600w"
-        sizes="100vw"
-        alt="Ringana fresh cosmetics campus interior in St. Johann, Austria"
-        loading="lazy"
-        decoding="async"
-        width="1200"
-        height="801">
-    </div>
-    <div class="campus-overlay">
-      <div class="campus-overlay-box">
-        <p class="eyebrow">Where It's Made</p>
-        <h2 class="section-title">Fresh from the campus — not a third-party factory.</h2>
-      </div>
-    </div>
-  </div>
   <div class="container campus-copy reveal">
-    <div class="campus-copy-box">
-      <p>Every Ringana product is developed, produced, and shipped from the company's own campus in St. Johann in der Haide, Austria — one of Europe's most ambitious sustainable builds, powered by geothermal and solar energy.</p>
-    </div>
-    <div class="campus-copy-box">
-      <p>In 2026, Ringana is investing $85 million in its first U.S. headquarters and production facility in Roanoke, Virginia — so American customers get the same fresh-made standard, closer to home.</p>
+    <div class="factory-stage reveal" id="factoryFlip" data-carousel>
+      <div class="carousel-viewport factory-viewport">
+        <div class="carousel-track">
+          <article class="carousel-slide factory-card factory-from is-active">
+            <div class="factory-body">
+              <span class="factory-mark" aria-hidden="true">Austria</span>
+              <div class="factory-head">
+                <figure class="factory-shot">
+                  <img src="campus-interior-800w.webp" alt="Ringana fresh cosmetics campus in St. Johann, Austria" width="800" height="500">
+                </figure>
+                <div class="factory-title">
+                  <p class="bubble-kicker">For now</p>
+                  <h2>Fresh from the campus — not a third-party factory.</h2>
+                </div>
+              </div>
+              <div class="factory-rest">
+                <p>Formulated, made, and packed in St. Johann. Nearly everything under one roof.</p>
+                <ul class="factory-facts">
+                  <li>Geothermal and solar</li>
+                  <li>Glass gallery</li>
+                  <li>100% green electricity</li>
+                </ul>
+                <button type="button" class="factory-go" data-carousel-next>
+                  <span>→</span>
+                  Coming to America
+                </button>
+              </div>
+            </div>
+          </article>
+          <article class="carousel-slide factory-card factory-to">
+            <div class="factory-body">
+              <span class="factory-mark" aria-hidden="true">Virginia</span>
+              <div class="factory-head">
+                <figure class="factory-shot">
+                  <img src="roanoke.jpg" alt="Roanoke, Virginia — Ringana’s new U.S. home" width="800" height="500">
+                </figure>
+                <div class="factory-title">
+                  <p class="bubble-kicker">What’s coming</p>
+                  <h2><span class="factory-figure">$85M</span> in Virginia.</h2>
+                </div>
+              </div>
+              <div class="factory-rest">
+                <p>A U.S. headquarters and production facility in Roanoke, so the same fresh-made standard can live closer to home.</p>
+                <ul class="factory-facts">
+                  <li>Blue Ridge Commerce Park</li>
+                  <li>435 jobs</li>
+                  <li>Production in March</li>
+                </ul>
+                <button type="button" class="factory-back" data-carousel-prev>
+                  <span>←</span>
+                  Made in Austria
+                </button>
+              </div>
+            </div>
+          </article>
+        </div>
+      </div>
     </div>
   </div>
 </section>
@@ -1377,37 +1480,81 @@ html.is-inapp .site-nav{flex-wrap:nowrap;}
 
 <!-- ================= PRODUCTS I'VE TRIED ================= -->
 <!-- CLIENT:START tried-teaser -->
-<section class="tried" id="tried" aria-label="Products I've tried">
+<section class="tried" id="tried" aria-label="Products I love">
   <div class="container">
     <div class="reveal" style="text-align:center;">
-      <p class="eyebrow">I've Tried These</p>
+      <p class="eyebrow">My favorites</p>
       <h2 class="section-title">Products I love.</h2>
-      <p class="lede tried-note">I tried a sample of the hydro serum and the deodorant. Both were a yes.</p>
+      <p class="lede tried-note">Hydro serum, toner pure, cleanser, eye serum, glow booster, and cream medium.</p>
     </div>
-    <div class="radar-carousel product-carousel reveal" id="triedCarousel" aria-roledescription="carousel" aria-label="Products I've tried">
+    <div class="radar-carousel product-carousel reveal" id="triedCarousel" aria-roledescription="carousel" aria-label="Products I love">
       <button type="button" class="carousel-btn prev" aria-label="Previous product">&#8249;</button>
       <div class="carousel-viewport">
         <div class="carousel-track">
 
           <div class="carousel-slide" data-slide="0">
             <div class="carousel-shot">
-              <img src="fresh-hydro-serum-tried.webp" alt="Ringana FRESH hydro serum — toxin free hydrating face serum" loading="lazy" decoding="async" width="286" height="900">
+              <a href="https://5037638.ringana.us/produkt/fresh-hydro-serum/?lang=en" target="_blank" rel="noopener"><img src="fresh-hydro-serum-tried.webp" alt="Ringana FRESH hydro serum — toxin free hydrating face serum" loading="lazy" decoding="async" width="286" height="900"></a>
             </div>
             <div class="carousel-copy">
               <p class="radar-kicker">FRESH · Hydration</p>
               <p class="loved-verdict">I tried a sample and loved it — my skin still felt soft hours later.</p>
-              <p><strong>FRESH hydro serum</strong> sinks in beautifully. Hours later my skin is still plump and comfortable instead of begging for another layer.</p>
+              <p><a href="https://5037638.ringana.us/produkt/fresh-hydro-serum/?lang=en" target="_blank" rel="noopener"><strong>FRESH hydro serum</strong></a> sinks in beautifully. Hours later my skin is still plump and comfortable instead of begging for another layer.</p>
             </div>
           </div>
 
           <div class="carousel-slide" data-slide="1">
             <div class="carousel-shot">
-              <img src="fresh-deodorant.webp" alt="Ringana FRESH deodorant — toxin free daily deodorant" loading="lazy" decoding="async" width="320" height="900">
+              <a href="https://5037638.ringana.us/produkt/fresh-toner-pure/?lang=en" target="_blank" rel="noopener"><img src="packs/fresh-toner-pure.png?v=5" alt="Ringana FRESH toner pure" loading="lazy" decoding="async" width="400" height="400"></a>
             </div>
             <div class="carousel-copy">
-              <p class="radar-kicker">FRESH · Body</p>
-              <p class="loved-verdict">Tried it. Loved it. It rubbed in, stayed put, and worked.</p>
-              <p><strong>FRESH deodorant</strong> comes out creamy-white from a pump, disappears into skin, and holds up through a real day. No aluminum salts. Just plant care that actually performs.</p>
+              <p class="radar-kicker">FRESH · Face</p>
+              <p class="loved-verdict">Clarify your skin.</p>
+              <p><a href="https://5037638.ringana.us/produkt/fresh-toner-pure/?lang=en" target="_blank" rel="noopener"><strong>FRESH toner pure</strong></a></p>
+            </div>
+          </div>
+
+          <div class="carousel-slide" data-slide="2">
+            <div class="carousel-shot">
+              <a href="https://5037638.ringana.us/produkt/fresh-cleanser/?lang=en" target="_blank" rel="noopener"><img src="fresh-cleanser.webp" alt="Ringana FRESH cleanser — toxin free daily face wash" loading="lazy" decoding="async" width="321" height="900"></a>
+            </div>
+            <div class="carousel-copy">
+              <p class="radar-kicker">FRESH · Face</p>
+              <p class="loved-verdict">Milk on. Everyday off.</p>
+              <p><a href="https://5037638.ringana.us/produkt/fresh-cleanser/?lang=en" target="_blank" rel="noopener"><strong>FRESH cleanser</strong></a></p>
+            </div>
+          </div>
+
+          <div class="carousel-slide" data-slide="3">
+            <div class="carousel-shot">
+              <a href="https://5037638.ringana.us/produkt/fresh-eye-serum/?lang=en" target="_blank" rel="noopener"><img src="packs/fresh-eye-serum.png?v=5" alt="Ringana FRESH eye serum" loading="lazy" decoding="async" width="400" height="400"></a>
+            </div>
+            <div class="carousel-copy">
+              <p class="radar-kicker">FRESH · Eyes</p>
+              <p class="loved-verdict">For the look of rested eyes.</p>
+              <p><a href="https://5037638.ringana.us/produkt/fresh-eye-serum/?lang=en" target="_blank" rel="noopener"><strong>FRESH eye serum</strong></a></p>
+            </div>
+          </div>
+
+          <div class="carousel-slide" data-slide="4">
+            <div class="carousel-shot">
+              <a href="https://5037638.ringana.us/produkt/fresh-glow-booster/?lang=en" target="_blank" rel="noopener"><img src="packs/fresh-glow-booster.png?v=1" alt="Ringana FRESH glow booster" loading="lazy" decoding="async" width="400" height="400"></a>
+            </div>
+            <div class="carousel-copy">
+              <p class="radar-kicker">FRESH · Face</p>
+              <p class="loved-verdict">Glow with the flow.</p>
+              <p><a href="https://5037638.ringana.us/produkt/fresh-glow-booster/?lang=en" target="_blank" rel="noopener"><strong>FRESH glow booster</strong></a></p>
+            </div>
+          </div>
+
+          <div class="carousel-slide" data-slide="5">
+            <div class="carousel-shot">
+              <a href="https://5037638.ringana.us/produkt/fresh-cream-medium/?lang=en" target="_blank" rel="noopener"><img src="packs/fresh-cream-medium.png?v=5" alt="Ringana FRESH cream medium" loading="lazy" decoding="async" width="400" height="400"></a>
+            </div>
+            <div class="carousel-copy">
+              <p class="radar-kicker">FRESH · Moisture</p>
+              <p class="loved-verdict">Zen mode for your skin.</p>
+              <p><a href="https://5037638.ringana.us/produkt/fresh-cream-medium/?lang=en" target="_blank" rel="noopener"><strong>FRESH cream medium</strong></a></p>
             </div>
           </div>
 
@@ -1415,12 +1562,12 @@ html.is-inapp .site-nav{flex-wrap:nowrap;}
       </div>
       <button type="button" class="carousel-btn next" aria-label="Next product">&#8250;</button>
       <div class="carousel-footer">
-        <div class="carousel-dots" role="tablist" aria-label="Choose a product I've tried"></div>
-        <span class="carousel-counter" aria-live="polite">1 / 2</span>
+        <div class="carousel-dots" role="tablist" aria-label="Choose a favorite"></div>
+        <span class="carousel-counter" aria-live="polite">1 / 6</span>
       </div>
     </div>
     <div class="tried-cta reveal">
-      <a href="products.html#radar" class="btn btn-brass">More products on my radar</a>
+      <a href="products.html#shop" class="btn btn-brass">See the products</a>
     </div>
   </div>
 </section>
@@ -1469,7 +1616,7 @@ html.is-inapp .site-nav{flex-wrap:nowrap;}
       <p class="opp-pull">Timing like this doesn't come around often — and I'm gathering my founding community before launch day.</p>
       <div class="opp-cta">
         <div class="btn-row">
-          <a href="#" class="btn btn-brass" data-open-connect>I Want In</a>
+          <a href="#" class="btn btn-brass" data-open-connect>Get more info</a>
           <a href="business.html" class="btn btn-ghost">How the Business Works</a>
         </div>
       </div>
@@ -1510,10 +1657,11 @@ html.is-inapp .site-nav{flex-wrap:nowrap;}
   <div class="container">
     <div class="reveal">
       <p class="eyebrow">Stay Connected</p>
-      <h2 class="section-title">Be first when Ringana arrives.</h2>
-      <p class="lede">Join this founding community for the launch date before anyone else, notes on products I've already tried (and more as they land), and a real seat at the table if you want to build alongside me.</p>
+      <h2 class="section-title">Tell me what you want to know.</h2>
+      <p class="lede">The products are here and the business is open. Pick what you're curious about and I'll write you back myself.</p>
       <div class="btn-row" style="margin-top:2.2rem;">
-        <a href="#" class="btn btn-brass" data-open-connect>Get First Access</a>
+        <a href="#" class="btn btn-brass" data-open-connect>Get more info</a>
+        <a href="products.html" class="btn btn-pine">See the products</a>
       </div>
     </div>
   </div>
@@ -1521,17 +1669,11 @@ html.is-inapp .site-nav{flex-wrap:nowrap;}
 <!-- CLIENT:END connect -->
 
 <!-- CLIENT:START connect-modal -->
-<div class="connect-modal" id="connectModal" aria-hidden="true" role="dialog" aria-labelledby="connectModalTitle">
+<div class="connect-modal" id="connectModal" aria-hidden="true" role="dialog" aria-label="Get more info">
   <div class="connect-modal-backdrop" data-close-connect></div>
   <div class="connect-modal-panel letter-panel">
     <button class="connect-modal-close" type="button" aria-label="Close" data-close-connect>&times;</button>
     <div class="letter-paper">
-      <header class="letter-head">
-        <h2 id="connectModalTitle" class="letter-salutation">friend,</h2>
-      </header>
-      <div class="letter-body-copy">
-        <p>I'll personally email you when Ringana arrives in America — launch updates, my honest product notes, and first access if you want to build alongside me.</p>
-      </div>
       <div class="letter-signup" id="site-signup">
         <div class="letter-interest" data-fs-interest>
           <p class="letter-interest-label">What are you most interested in?</p>
@@ -1567,14 +1709,14 @@ html.is-inapp .site-nav{flex-wrap:nowrap;}
             <label class="letter-float-label" for="fs-lead-email">Your email</label>
             <p class="letter-interest-error" id="fs-email-error" hidden>Add an email so I can reach you.</p>
           </div>
-          <button type="submit" class="btn btn-brass letter-submit">Get first access</button>
+          <button type="submit" class="btn btn-brass letter-submit">Get more info</button>
         </form>
       </div>
       <div id="optin-success" class="optin-success" hidden aria-live="polite">
         <div class="optin-success-mark" aria-hidden="true">&#10003;</div>
         <p class="optin-success-eyebrow">You're in</p>
         <p class="optin-success-title">So glad you're here.</p>
-        <p class="optin-success-copy">I'm genuinely excited to share more fresh with you — launch updates, honest product notes, and everything I'm learning as Ringana arrives in America.</p>
+        <p class="optin-success-copy">I'll send what you asked for — product notes, how the business works, or both.</p>
       </div>
       <p class="letter-sign">stay crunchy, Morgan</p>
       <p class="modal-fine">No spam, ever. Just the good stuff, and only until you say otherwise.</p>
@@ -1589,8 +1731,8 @@ html.is-inapp .site-nav{flex-wrap:nowrap;}
 <!-- CLIENT:START footer -->
 <footer>
   <p class="foot-brand">Ringana <span>·</span> with Morgan</p>
-  <p class="foot-cta">Questions before launch? <a href="https://www.instagram.com/verycrunchymama/" target="_blank" rel="noopener">DM me on Instagram</a> — I read every message.</p>
-  <p class="foot-legal">Morgan is an independent Ringana Fresh Partner (pending U.S. launch). This is a personal page and is not an official Ringana corporate website. Product details reflect Ringana's current international lineup; the U.S. offering will be confirmed at launch. These statements have not been evaluated by the FDA; products are not intended to diagnose, treat, cure, or prevent any disease.</p>
+  <p class="foot-cta">Questions? <a href="https://www.instagram.com/verycrunchymama/" target="_blank" rel="noopener">DM me on Instagram</a> — I read every message.</p>
+  <p class="foot-legal">Morgan is an independent Ringana partner. This is a personal page and is not an official Ringana corporate website. These statements have not been evaluated by the FDA; products are not intended to diagnose, treat, cure, or prevent any disease.</p>
   <p class="foot-copy">&copy; 2026 Morgan · Very Crunchy Mama · <a href="privacy.html">Privacy Policy</a> · <a href="terms.html">Terms of Use</a></p>
 </footer>
 <!-- CLIENT:END footer -->
@@ -1650,7 +1792,9 @@ function animateCount(el){
   function tick(now){
     const p=Math.min((now-start)/duration,1);
     const eased=1-Math.pow(1-p,3);
-    const value=from!==null?Math.round(from-(from-target)*eased):Math.round(target*eased);
+    const raw=from!==null?from-(from-target)*eased:target*eased;
+    const places=String(el.dataset.count).includes('.')?(String(el.dataset.count).split('.')[1]||'').length:0;
+    const value=places?raw.toFixed(places):String(Math.round(raw));
     el.textContent=prefix+value+suffix;
     if(p<1)requestAnimationFrame(tick);
   }
@@ -1718,7 +1862,7 @@ connectModal?.querySelectorAll('[data-close-connect]').forEach(el=>{
 document.addEventListener('keydown',e=>{
   if(e.key==='Escape'&&connectModal?.classList.contains('open'))setConnectOpen(false);
 });
-// Scroll reveal (must run even if First Seeds fails to load)
+// Scroll reveal (must run even if Flodesk fails to load)
 const io=new IntersectionObserver(entries=>{
   entries.forEach(e=>{if(e.isIntersecting){e.target.classList.add('visible');io.unobserve(e.target);}});
 },{threshold:0.12});
@@ -1870,9 +2014,8 @@ setConnectOpen=function(open){
     setTimeout(nudgeSiteLead,1200);
   }
 };
-window.FS_SITE_LEAD={slug:"morgan-2",root:"#site-signup"};
-(function(){function go(){try{window.FSSiteLead&&window.FSSiteLead.watch(window.FS_SITE_LEAD)}catch(err){}}if(window.FSSiteLead){go();return;}var s=document.createElement('script');s.src='site-lead-bridge.js?v=4';s.async=true;s.onload=go;s.onerror=function(){};document.head.appendChild(s);})();
-
+window.FS_SITE_LEAD={slug:"verycrunchymama",root:"#site-signup"};
+(function(){function go(){try{window.FSSiteLead&&window.FSSiteLead.watch(window.FS_SITE_LEAD)}catch(err){}}if(window.FSSiteLead){go();return;}var s=document.createElement('script');s.src='site-lead-bridge.js?v=5';s.async=true;s.onload=go;s.onerror=function(){};document.head.appendChild(s);})();
 /* CLIENT:END js-optin */
 
 </script>

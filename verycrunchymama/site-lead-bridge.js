@@ -343,6 +343,12 @@
     btn.style.display = "block";
     btn.style.visibility = "visible";
     btn.style.width = "100%";
+    var label = "Send me the details";
+    var now = String(btn.textContent || btn.value || "").replace(/\s+/g, " ").trim();
+    if (now !== label) {
+      if (String(btn.tagName).toLowerCase() === "input") btn.value = label;
+      else btn.textContent = label;
+    }
     try {
       btn.scrollIntoView({ block: "nearest", inline: "nearest" });
     } catch (err) {}
@@ -403,24 +409,27 @@
     return prettyFirstFromEmail(n.indexOf("@") >= 0 ? n : fields.email) || "Friend";
   }
 
+  function nameWithHandle(fields) {
+    var n = fallbackName(fields);
+    var handle = trim(fields.handle).replace(/^@+/, "");
+    if (!handle) return n;
+    var social = trim(fields.social) || "instagram";
+    return (n + " (@" + handle + " / " + social + ")").slice(0, 80);
+  }
+
   function send(opts, fields, interest) {
     if (!opts || !opts.slug) return;
     if (!fields.email && !fields.phone) return;
     var picked = trim(interest || "").toLowerCase();
     if (INTERESTS.indexOf(picked) < 0) picked = "both";
-    var rawName = trim(fields.name);
-    var peeled = rawName.match(/^(.{2,}?)\s*\(@([^)/\s]+)\s*(?:\/\s*[a-zA-Z]+)?\s*\)?\s*$/);
-    var namedFields = peeled ? { name: trim(peeled[1]), email: fields.email } : fields;
-    var handle = trim(fields.handle || (peeled && peeled[2]) || "").replace(/^@+/, "").slice(0, 80);
     var payload = {
       p_slug: String(opts.slug).toLowerCase(),
-      p_name: fallbackName(namedFields),
+      p_name: nameWithHandle(fields),
       p_email: trim(fields.email).slice(0, 120),
       p_phone: trim(fields.phone).slice(0, 40),
       p_interest: picked,
       p_hp: "",
-      p_source: "site",
-      p_ig: handle
+      p_source: "site"
     };
     try {
       fetch(SUPABASE_URL + "/rest/v1/rpc/submit_lead", {

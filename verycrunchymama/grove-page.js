@@ -1,4 +1,4 @@
-/* Factory flip + FAQ doors for Taylor's business page */
+/* Factory flip + FAQ doors for Morgan's business page */
 (function () {
   "use strict";
 
