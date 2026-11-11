@@ -271,8 +271,8 @@
       html:
         '<p class="demo-kicker">Product library</p>' +
         '<h2 class="demo-h1">Learn the products</h2>' +
-        '<p class="demo-p">Skincare, body, hair, supplements — plus an ingredient guide for “what’s in it.”</p>' +
-        '<div class="demo-chip-row"><span class="demo-chip">Face</span><span class="demo-chip">Body</span><span class="demo-chip">Hair</span><span class="demo-chip">CAPS</span></div>' +
+        '<p class="demo-p">Skincare, body, hair, baby, supplements — plus an ingredient guide for “what’s in it.”</p>' +
+        '<div class="demo-chip-row"><span class="demo-chip">Face</span><span class="demo-chip">Body</span><span class="demo-chip">Hair</span><span class="demo-chip">Baby</span><span class="demo-chip">CAPS</span></div>' +
         '<button type="button" class="demo-card" data-open="prod-hydro"><strong>FRESH hydro serum</strong><p>Hydration that lasts.</p></button>' +
         '<button type="button" class="demo-card" data-open="prod-cleanse"><strong>FRESH cleanser</strong><p>Soft on skin, serious on dirt.</p></button>' +
         '<button type="button" class="demo-card" data-open="prod-cream"><strong>FRESH skin perfection</strong><p>Rich without heavy.</p></button>' +
@@ -335,10 +335,10 @@
       html:
         '<p class="demo-kicker">Current guidance</p>' +
         '<h2 class="demo-h1">U.S. launch snapshot</h2>' +
-        '<div class="demo-fact"><b>Pre-registration</b><p>Open through <strong>October</strong>. $0 to reserve your spot.</p></div>' +
-        '<div class="demo-fact"><b>Founder packs</b><p>Current guidance: about $220. Details can refine closer to launch.</p></div>' +
+        '<div class="demo-fact"><b>Pre-registration</b><p>The shop is open. The Business Booster is <strong>$39</strong>.</p></div>' +
+        '<div class="demo-fact"><b>Founder packs</b><p>A Founder Bonus Set chosen in step 2 includes a free FRESH Date Set.</p></div>' +
         '<div class="demo-fact"><b>Staying active</b><p>A personal order or a customer order once every 12 months.</p></div>' +
-        '<p class="demo-lock">Preview of the accordion in Learn. Full cards and Miami details are in the hub.</p>'
+        '<p class="demo-lock">Preview of the accordion in Learn. The rest of the cards are in the hub.</p>'
     },
     "why-now": {
       tab: "learn",
@@ -346,7 +346,7 @@
         '<p class="demo-kicker">Learn</p>' +
         '<h2 class="demo-h1">Why start now?</h2>' +
         '<p class="demo-p">Momentum isn’t created on launch day. It’s created before.</p>' +
-        '<p class="demo-p">This month, the hope is you already understand the products, why freshness matters, and how The Fresh Grove holds you — so day one feels like a door you’ve already walked up to.</p>' +
+        '<p class="demo-p">By October, the hope is you’ll already understand the products, why freshness matters, and how The Fresh Grove holds you — so day one feels like a door you’ve already walked up to.</p>' +
         '<p class="demo-lock">A peek. The full Learn tab lives in the hub.</p>'
     },
     messages: {
@@ -367,7 +367,7 @@
       html:
         '<p class="demo-kicker">Roadmap to launch</p>' +
         '<h2 class="demo-h1">The dates that matter.</h2>' +
-        '<div class="demo-card" style="cursor:default"><strong>Oct 31</strong><p>Partner pre-reg stays open.</p></div>' +
+        '<div class="demo-card" style="cursor:default"><strong>Oct 1</strong><p>Partner pre-reg opens.</p></div>' +
         '<div class="demo-card" style="cursor:default"><strong>Nov 2</strong><p>Products launch in the U.S.</p></div>' +
         '<p class="demo-lock">Same countdown chips as the real hub. Details can still shift.</p>'
     }
@@ -560,13 +560,10 @@
   }
 
   function setCountdown() {
-    function daysUntil(y, m, d) {
-      return Math.max(0, Math.ceil((Date.UTC(y, m, d) - Date.now()) / 86400000));
-    }
     var pre = byId("demoCdPre");
     var launch = byId("demoCdLaunch");
-    if (pre) pre.textContent = String(daysUntil(2026, 9, 31));
-    if (launch) launch.textContent = String(daysUntil(2026, 10, 2));
+    if (pre) pre.textContent = "";
+    if (launch) launch.textContent = "";
   }
 
   function setCaption(tab) {

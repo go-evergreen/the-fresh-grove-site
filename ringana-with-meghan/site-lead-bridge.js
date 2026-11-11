@@ -19,7 +19,7 @@
         if (byFor) return trim(byFor.textContent);
       } catch (err) {}
     }
-    var wrap = el.closest && el.closest('[class*="__field"], [data-fs-lead-name]');
+    var wrap = el.closest && el.closest('[class*="__field"], [data-fs-lead-name], [data-fs-lead-social]');
     if (!wrap) return "";
     var label = wrap.querySelector("label");
     return label ? trim(label.textContent) : "";
@@ -112,7 +112,7 @@
     var nodes = (scope || document).querySelectorAll("input, textarea");
     for (var i = 0; i < nodes.length; i++) {
       var el = nodes[i];
-      if (el.closest && el.closest("[data-fs-interest], [data-fs-lead-name]")) continue;
+      if (el.closest && el.closest("[data-fs-interest], [data-fs-lead-name], [data-fs-lead-social]")) continue;
       if (el.disabled || el.type === "password" || el.getAttribute("aria-hidden") === "true") continue;
       if (!fieldVisible(el)) continue;
       var t = String(el.type || "text").toLowerCase();
@@ -126,42 +126,15 @@
       else if (!name && looksName(n, t, v, el)) name = v;
     }
     if (last && name && name.toLowerCase() !== last.toLowerCase()) name = name + " " + last;
-    return { name: name, email: email, phone: phone, handle: readSocial(scope).handle };
-  }
-
-  function readSocial(scope) {
-    var box = scope || document;
-    var platformEl = box.querySelector("[name=social_platform], #fs-lead-social-platform");
-    var handleEl = box.querySelector("#fs-lead-social, [name=social_handle], [data-fs-lead-social] input");
-    var handle = handleEl ? trim(handleEl.value) : "";
-    if (!handle) {
-      var nodes = box.querySelectorAll("input, textarea");
-      for (var i = 0; i < nodes.length; i++) {
-        var el = nodes[i];
-        if (el === handleEl) continue;
-        if (el.closest && el.closest("[data-fs-interest], [data-fs-lead-name], [data-fs-lead-social]")) continue;
-        if (el.disabled || el.type === "password" || el.getAttribute("aria-hidden") === "true") continue;
-        if (!fieldVisible(el)) continue;
-        var t = String(el.type || "text").toLowerCase();
-        if (t === "hidden" || t === "submit" || t === "checkbox" || t === "radio") continue;
-        var n = fieldHint(el);
-        var v = trim(el.value);
-        if (!v || !looksHandleField(n)) continue;
-        if (looksEmail(n, t, v) || looksPhone(n, t, v)) continue;
-        handle = v;
-        break;
-      }
-    }
-    handle = handle.replace(/^@+/, "").replace(/^https?:\/\/(www\.)?instagram\.com\//i, "").replace(/[/?#].*$/, "").trim();
-    if (handle.length > 80) handle = handle.slice(0, 80);
-    return { handle: handle, platform: platformEl ? trim(platformEl.value).toLowerCase() : "" };
-  }
-
-  function peelSocialFromName(name) {
-    var raw = trim(name);
-    var m = raw.match(/^(.{2,}?)\s*\(@([^)/\s]+)\s*(?:\/\s*[a-zA-Z]+)?\s*\)?\s*$/);
-    if (!m) return { name: raw, handle: "" };
-    return { name: trim(m[1]), handle: trim(m[2]).replace(/^@+/, "") };
+    var socialEl = (scope || document).querySelector("[name=social_platform]");
+    var handleEl = (scope || document).querySelector("[name=social_handle], #fs-lead-social");
+    return {
+      name: name,
+      email: email,
+      phone: phone,
+      social: socialEl ? trim(socialEl.value) : "",
+      handle: handleEl ? trim(handleEl.value) : ""
+    };
   }
 
   function visibleNameFieldExists(scope) {
@@ -204,6 +177,27 @@
     var picker = (scope || document).querySelector("[data-fs-interest]");
     if (!picker) return true;
     return !!readInterest(scope);
+  }
+
+  function bindSocialTips(scope) {
+    var box = scope || document;
+    var sel = box.querySelector("[name=social_platform]");
+    var inp = box.querySelector("[name=social_handle], #fs-lead-social");
+    if (!sel || !inp || sel.getAttribute("data-bound") === "1") return;
+    sel.setAttribute("data-bound", "1");
+    var tips = {
+      instagram: { ph: "@yourhandle (optional)", max: 40 },
+      tiktok: { ph: "TikTok handle (optional)", max: 30 },
+      facebook: { ph: "Facebook name or URL (optional)", max: 80 }
+    };
+    function sync() {
+      var tip = tips[sel.value] || tips.instagram;
+      inp.placeholder = tip.ph;
+      inp.setAttribute("aria-label", tip.ph);
+      inp.maxLength = tip.max;
+    }
+    sel.addEventListener("change", sync);
+    sync();
   }
 
   function bindInterestPicker(scope) {
@@ -283,9 +277,9 @@
     return el.closest && el.closest('[class*="__field"]:not([class*="__fields"]):not([class*="__footer"])');
   }
 
-  /* Flodesk and Kit hide decoy fields. Filling those makes the list drop the
-     signup, so the welcome email never sends. Fields we hide ourselves are
-     tagged and still receive the real name. */
+  /* Flodesk hides decoy fields (misspelled "Finrst name", off-screen email).
+     Filling those makes Flodesk drop the subscriber, so the list email never sends.
+     Fields we hide ourselves are tagged and still receive the real name. */
   function isSpamTrap(el) {
     if (!el || (el.dataset && el.dataset.fsOwnHide === "1")) return false;
     var wrap = vendorFieldWrap(el);
@@ -315,7 +309,7 @@
     var nodes = box.querySelectorAll("input, textarea");
     for (var i = 0; i < nodes.length; i++) {
       var el = nodes[i];
-      if (el.closest && el.closest("[data-fs-interest], [data-fs-lead-name]")) continue;
+      if (el.closest && el.closest("[data-fs-interest], [data-fs-lead-name], [data-fs-lead-social]")) continue;
       var t = String(el.type || "text").toLowerCase();
       if (t === "hidden" || t === "email" || t === "submit" || t === "button") continue;
       if (!looksName(fieldHint(el), t, trim(el.value), el)) continue;
@@ -349,6 +343,12 @@
     btn.style.display = "block";
     btn.style.visibility = "visible";
     btn.style.width = "100%";
+    var label = "Send me the details";
+    var now = String(btn.textContent || btn.value || "").replace(/\s+/g, " ").trim();
+    if (now !== label) {
+      if (String(btn.tagName).toLowerCase() === "input") btn.value = label;
+      else btn.textContent = label;
+    }
     try {
       btn.scrollIntoView({ block: "nearest", inline: "nearest" });
     } catch (err) {}
@@ -361,7 +361,7 @@
     var nodes = box.querySelectorAll("input, textarea");
     for (var i = 0; i < nodes.length; i++) {
       var el = nodes[i];
-      if (el.closest && el.closest("[data-fs-interest], [data-fs-lead-name]")) continue;
+      if (el.closest && el.closest("[data-fs-interest], [data-fs-lead-name], [data-fs-lead-social]")) continue;
       if (el.disabled || el.type === "password") continue;
       var t = String(el.type || "text").toLowerCase();
       if (t === "hidden") continue;
@@ -409,23 +409,27 @@
     return prettyFirstFromEmail(n.indexOf("@") >= 0 ? n : fields.email) || "Friend";
   }
 
+  function nameWithHandle(fields) {
+    var n = fallbackName(fields);
+    var handle = trim(fields.handle).replace(/^@+/, "");
+    if (!handle) return n;
+    var social = trim(fields.social) || "instagram";
+    return (n + " (@" + handle + " / " + social + ")").slice(0, 80);
+  }
+
   function send(opts, fields, interest) {
     if (!opts || !opts.slug) return;
     if (!fields.email && !fields.phone) return;
     var picked = trim(interest || "").toLowerCase();
     if (INTERESTS.indexOf(picked) < 0) picked = "both";
-    var peeled = peelSocialFromName(fields.name);
-    var named = fallbackName({ name: peeled.name, email: fields.email });
-    var handle = trim(fields.handle || peeled.handle).replace(/^@+/, "").slice(0, 80);
     var payload = {
       p_slug: String(opts.slug).toLowerCase(),
-      p_name: named,
+      p_name: nameWithHandle(fields),
       p_email: trim(fields.email).slice(0, 120),
       p_phone: trim(fields.phone).slice(0, 40),
       p_interest: picked,
       p_hp: "",
-      p_source: "site",
-      p_ig: handle
+      p_source: "site"
     };
     try {
       fetch(SUPABASE_URL + "/rest/v1/rpc/submit_lead", {
@@ -478,6 +482,7 @@
     function tickArms() {
       keepInterestPickerOutsideForm(root);
       bindInterestPicker(root);
+      bindSocialTips(root);
       hideVendorNameFields(root);
       syncNameIntoForm(root);
       armFormGates(root);

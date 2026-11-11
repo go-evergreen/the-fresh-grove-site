@@ -1,0 +1,5 @@
+# https://thefreshgrove.team/ringana-with-the-smallwoods/
+User-agent: *
+Allow: /
+
+Sitemap: https://thefreshgrove.team/ringana-with-the-smallwoods/sitemap.xml
