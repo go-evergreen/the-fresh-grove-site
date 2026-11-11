@@ -1143,6 +1143,37 @@ html.is-inapp .site-header.is-scrolled .site-nav{
 }
 
 .about-photo.couple img{object-position:center 18%;}
+/* The long brand was pushing Get more info past the header edge. */
+@media (min-width:861px){
+  .site-header,
+  .site-header.is-scrolled{overflow:visible;}
+  .site-header-inner,
+  .site-header.is-scrolled .site-header-inner{
+    flex-wrap:wrap !important;
+    row-gap:.4rem !important;
+  }
+  .site-brand,
+  .site-header.is-scrolled .site-brand{
+    flex:0 1 auto;
+    min-width:max-content;
+    font-size:clamp(1.02rem,1.45vw,1.38rem) !important;
+    letter-spacing:.09em !important;
+  }
+  .site-header .site-nav,
+  .site-header.is-scrolled .site-nav,
+  html.is-inapp .site-header .site-nav,
+  html.is-inapp .site-header.is-scrolled .site-nav{
+    flex:1 0 auto;
+    justify-content:flex-end !important;
+    min-width:max-content;
+    gap:0 1.05rem !important;
+  }
+  .site-header .nav-end,
+  .site-header.is-scrolled .nav-end{
+    gap:.6rem !important;
+    flex:0 0 auto;
+  }
+}
 @media (max-width:760px){
   .site-brand,
   .site-header.is-scrolled .site-brand{
