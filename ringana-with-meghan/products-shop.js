@@ -59,9 +59,13 @@
       { slug: "fresh-lip-balm-classic", img: "packs/fresh-lip-balm-classic.png?v=5", name: "lip balm classic", line: "Melts on like butter.", price: "$18.50", soon: false, fav: true, thoughts: { verdict: "My new go-to — melts on like butter, hydrates like a serum.", note: "FRESH lip balm classic sits between a cushiony balm and a lightweight serum. Hyaluronic acid and peptides, squalane and ceramides — a purse staple." } },
       { slug: "fresh-tinted-balm-rosewood", img: "packs/fresh-tinted-balm-lip-cheek-rosewood.png?v=1", name: "tinted lip balm", line: "Lip balm and blush.", price: "$19.50", soon: false }
     ],
+    deodorants: [
+      { slug: "fresh-deodorant", img: "packs/fresh-deodorant.png?v=5", name: "deodorant", line: "Held up through a full day.", price: "$36.30", soon: false, fav: true, thoughts: { verdict: "I was nervous about the white pump formula. Then it rubbed in, stayed put, and worked all day.", note: "FRESH deodorant comes out creamy-white from a pump. It disappeared into skin, wasn't sticky, and held up through a full day." } },
+      { slug: "fresh-deodorant-pocket", img: "packs/fresh-deodorant.png?v=5", name: "deodorant pocket", line: "The same cream, in a 50 ml pocket.", price: "$16.50", soon: false }
+    ],
     milks: [
       { slug: "fresh-body-milk-light", img: "packs/fresh-body-milk-light.png?v=5", name: "body milk light", line: "Absorbs in seconds.", price: "$49.40", soon: false },
-      { slug: "fresh-body-milk-rich", img: "packs/fresh-body-milk-rich.png?v=5", name: "body milk rich", line: "Wrap your skin in richness.", price: "$50.80", soon: true }
+      { slug: "fresh-body-milk-rich", img: "packs/fresh-body-milk-rich.png?v=5", name: "body milk rich", line: "Wrap your skin in richness.", price: "$50.80", soon: false }
     ]
   };
 
