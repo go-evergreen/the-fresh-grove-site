@@ -77,7 +77,7 @@ try { if (window.top !== window.self) window.top.location.replace(window.locatio
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Caveat:wght@500;600&family=Cormorant+Garamond:ital,wght@0,400;0,500;1,400&family=Fraunces:ital,opsz,wght@0,9..144,300;0,9..144,400;0,9..144,500;1,9..144,400&family=Libre+Baskerville:ital,wght@0,400;1,400&family=Manrope:wght@400;500;600&family=Newsreader:ital,opsz,wght@0,6..72,400;0,6..72,500;1,6..72,400&family=Nunito+Sans:wght@400;600&family=Nunito:wght@400;600&family=Source+Sans+3:wght@400;600&family=Work+Sans:wght@300;400;500;600&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="css/lead.css?v=83e0f805c6">
+<link rel="stylesheet" href="css/lead.css?v=9113c07cdd">
 </head>
 <body data-look="grove" data-fonts="fraunces" data-corners="sharp">
   <div class="local-bar" id="localBar" hidden></div>
@@ -106,6 +106,7 @@ try { if (window.top !== window.self) window.top.location.replace(window.locatio
         <nav class="site-nav" aria-label="Primary">
           <a href="lead.html" data-lead-page="home">Home</a>
           <a href="lead.html?page=products" data-lead-page="products">Products</a>
+          <a id="leadQuizNav" target="_blank" rel="noopener noreferrer">Fresh Match</a>
           <div class="nav-drop" id="navGrove">
             <button type="button" class="nav-plan" aria-expanded="false" aria-haspopup="true">The Grove</button>
             <div class="nav-menu">
@@ -1222,7 +1223,20 @@ try { if (window.top !== window.self) window.top.location.replace(window.locatio
       <h1>Got it.</h1>
     </div>
   </div>
+  <div class="quiz-prompt" id="quizPrompt" hidden>
+    <button type="button" class="quiz-prompt-back" id="quizPromptDismiss" aria-label="Not now"></button>
+    <div class="quiz-prompt-card" role="dialog" aria-modal="true" aria-labelledby="quizPromptTitle">
+      <img class="quiz-prompt-photo" src="assets/lead/film/fresh-bathroom-lineup.webp" alt="Fresh bottles on a bathroom counter" width="148" height="148">
+      <p class="quiz-prompt-kicker">The Fresh Match</p>
+      <h2 id="quizPromptTitle">Not sure where to start?</h2>
+      <p>Take this simple quiz and I'll make some recommendations.</p>
+      <div class="quiz-prompt-actions">
+        <a class="btn btn-brass" id="quizPromptGo" target="_blank" rel="noopener noreferrer">Get your Fresh Match</a>
+        <button type="button" class="btn btn-ghost" id="quizPromptLater">Not now</button>
+      </div>
+    </div>
+  </div>
   <script src="js/vendor/supabase.js?v=2118"></script>
-<script src="js/lead.min.js?v=9ecfb619d6"></script>
+<script src="js/lead.min.js?v=9113c07cdd" defer></script>
 </body>
 </html>
