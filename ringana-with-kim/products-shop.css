@@ -89,6 +89,7 @@
   align-items:start;
 }
 .shop-card{
+  scroll-margin-top:7.5rem;
   position:relative;
   display:flex;
   flex-direction:column;
@@ -304,4 +305,8 @@
   }
   .shop-card.is-lit img{transform:translateY(-8px) scale(1.04)}
   .shop-card.is-lit .shop-go{color:var(--pine)}
+}
+.shop-card:target{
+  border-color:rgba(179,137,60,.7);
+  box-shadow:0 0 0 2px rgba(179,137,60,.45);
 }

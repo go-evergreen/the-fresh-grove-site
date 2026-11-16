@@ -559,16 +559,57 @@ section{padding:6rem 2rem;}
 }
 
 /* ------- PRODUCTS I'VE TRIED (home teaser) ------- */
-.tried{background:var(--linen);}
-.tried-note{
-  font-size:.94rem;
-  max-width:58ch;
-  margin:0 auto;
-  opacity:.88;
-  text-align:center;
+.tried{background:var(--linen);padding-top:3.2rem;padding-bottom:3.2rem;}
+.fav-wrap{position:relative;padding:0 2.6rem;}
+.fav-wrap:not(.can-slide){padding:0;}
+.fav-wrap:not(.can-slide) .fav-arrow{display:none;}
+.fav-rail{
+  display:flex;
+  gap:.7rem;
+  overflow-x:auto;
+  scroll-snap-type:x mandatory;
+  scroll-behavior:smooth;
+  -webkit-overflow-scrolling:touch;
+  scrollbar-width:none;
+  padding:.4rem .1rem .2rem;
 }
-.tried .section-title{margin-left:auto;margin-right:auto;max-width:22ch;}
-.tried .lede{margin-left:auto;margin-right:auto;text-align:center;}
+.fav-rail::-webkit-scrollbar{display:none;}
+.fav-rail a{
+  flex:0 0 calc((100% - 3.5rem) / 6);
+  scroll-snap-align:start;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+}
+.fav-rail img{
+  width:100%;
+  height:190px;
+  object-fit:contain;
+  display:block;
+  filter:drop-shadow(0 10px 22px rgba(68,90,72,.12));
+  transition:transform .25s ease;
+}
+.fav-rail a:hover img{transform:translateY(-8px);}
+.fav-arrow{
+  position:absolute;
+  top:50%;
+  transform:translateY(-50%);
+  width:2.6rem;height:2.6rem;
+  border-radius:50%;
+  border:1px solid #ddd5c5;
+  background:var(--white);
+  color:var(--pine);
+  font-size:1.35rem;
+  line-height:1;
+  cursor:pointer;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  box-shadow:0 4px 16px rgba(68,90,72,.1);
+  z-index:2;
+}
+.fav-arrow.prev{left:0;}
+.fav-arrow.next{right:0;}
 .radar-carousel{
   position:relative;
   margin-top:.85rem;
@@ -1117,6 +1158,8 @@ footer p{font-size:.8rem;opacity:.6;max-width:70ch;margin:0 auto .5rem;padding:0
   .tl-line-fill{transition:none;}
   .tl-item::before{transition:none;}
   .carousel-track{transition:none;}
+  .fav-rail{scroll-behavior:auto;}
+  .fav-rail img{transition:none;}
 }
 
 /* ------- RESPONSIVE ------- */
@@ -1163,6 +1206,9 @@ footer p{font-size:.8rem;opacity:.6;max-width:70ch;margin:0 auto .5rem;padding:0
   .carousel-shot{width:168px;height:168px;}
   .carousel-shot img{max-width:168px;max-height:168px;}
   .radar-carousel{padding:0 2.2rem;margin-top:1.2rem;}
+  .fav-wrap{padding:0 2.2rem;}
+  .fav-rail a{flex-basis:calc((100% - .7rem) / 2.2);}
+  .fav-rail img{height:168px;}
   .carousel-btn{top:84px;transform:none;}
   .carousel-btn:hover{transform:scale(1.04);}
   .standards{padding:2rem 1rem;overflow:hidden;}
@@ -1473,79 +1519,17 @@ html.is-inapp .site-nav{flex-wrap:nowrap;}
 <!-- CLIENT:START tried-teaser -->
 <section class="tried" id="tried" aria-label="My favorite products">
   <div class="container">
-    <div class="reveal" style="text-align:center;">
-      <p class="eyebrow">My favorites</p>
-      <h2 class="section-title">Where I start.</h2>
-      <p class="lede tried-note">Hydro serum, anti wrinkle, overnight, crème rich, body wash, and shampoo. These are the ones I point people to first.</p>
-    </div>
-    <div class="radar-carousel product-carousel reveal" id="triedCarousel" aria-roledescription="carousel" aria-label="My favorite products">
-      <button type="button" class="carousel-btn prev" aria-label="Previous product">&#8249;</button>
-      <div class="carousel-viewport">
-        <div class="carousel-track">
-          <div class="carousel-slide" data-slide="0">
-            <div class="carousel-shot">
-              <a href="https://kimhope.ringana.us/produkt/fresh-hydro-serum/?lang=en" target="_blank" rel="noopener" style="display:flex;width:100%;height:100%;align-items:center;justify-content:center;"><img src="fresh-hydro-serum.png" alt="RINGANA FRESH hydro serum" loading="lazy" decoding="async" width="200" height="240"></a>
-            </div>
-            <div class="carousel-copy">
-              <p class="radar-kicker">FRESH · Hydro Serum</p>
-              <p><strong><a href="https://kimhope.ringana.us/produkt/fresh-hydro-serum/?lang=en" target="_blank" rel="noopener" style="color:inherit;text-decoration:none;">FRESH hydro serum</a></strong> — the perfect “I woke up like this” look.</p>
-            </div>
-          </div>
-          <div class="carousel-slide" data-slide="1">
-            <div class="carousel-shot">
-              <a href="https://kimhope.ringana.us/produkt/fresh-anti-wrinkle-serum/?lang=en" target="_blank" rel="noopener" style="display:flex;width:100%;height:100%;align-items:center;justify-content:center;"><img src="packs/fresh-anti-wrinkle-serum.png" alt="RINGANA FRESH anti wrinkle serum" loading="lazy" decoding="async" width="200" height="240"></a>
-            </div>
-            <div class="carousel-copy">
-              <p class="radar-kicker">FRESH · Anti Wrinkle</p>
-              <p><strong><a href="https://kimhope.ringana.us/produkt/fresh-anti-wrinkle-serum/?lang=en" target="_blank" rel="noopener" style="color:inherit;text-decoration:none;">FRESH anti wrinkle serum</a></strong> — you can’t turn back time.</p>
-            </div>
-          </div>
-          <div class="carousel-slide" data-slide="2">
-            <div class="carousel-shot">
-              <a href="https://kimhope.ringana.us/produkt/fresh-overnight-retinal-cream/?lang=en" target="_blank" rel="noopener" style="display:flex;width:100%;height:100%;align-items:center;justify-content:center;"><img src="fresh-overnight-face-treatment.png" alt="RINGANA FRESH overnight" loading="lazy" decoding="async" width="200" height="240"></a>
-            </div>
-            <div class="carousel-copy">
-              <p class="radar-kicker">FRESH · Overnight</p>
-              <p><strong><a href="https://kimhope.ringana.us/produkt/fresh-overnight-retinal-cream/?lang=en" target="_blank" rel="noopener" style="color:inherit;text-decoration:none;">FRESH overnight</a></strong> — the night cream for lines, firmness, and uneven tone.</p>
-            </div>
-          </div>
-          <div class="carousel-slide" data-slide="3">
-            <div class="carousel-shot">
-              <a href="https://kimhope.ringana.us/produkt/fresh-cream-rich/?lang=en" target="_blank" rel="noopener" style="display:flex;width:100%;height:100%;align-items:center;justify-content:center;"><img src="packs/fresh-cream-rich.png" alt="RINGANA FRESH crème rich" loading="lazy" decoding="async" width="200" height="240"></a>
-            </div>
-            <div class="carousel-copy">
-              <p class="radar-kicker">FRESH · Crème Rich</p>
-              <p><strong><a href="https://kimhope.ringana.us/produkt/fresh-cream-rich/?lang=en" target="_blank" rel="noopener" style="color:inherit;text-decoration:none;">FRESH crème rich</a></strong> — the crème de la crème for dry skin.</p>
-            </div>
-          </div>
-          <div class="carousel-slide" data-slide="4">
-            <div class="carousel-shot">
-              <a href="https://kimhope.ringana.us/produkt/fresh-body-wash/?lang=en" target="_blank" rel="noopener" style="display:flex;width:100%;height:100%;align-items:center;justify-content:center;"><img src="fresh-body-wash.png" alt="RINGANA FRESH body wash" loading="lazy" decoding="async" width="200" height="240"></a>
-            </div>
-            <div class="carousel-copy">
-              <p class="radar-kicker">FRESH · Body Wash</p>
-              <p><strong><a href="https://kimhope.ringana.us/produkt/fresh-body-wash/?lang=en" target="_blank" rel="noopener" style="color:inherit;text-decoration:none;">FRESH body wash</a></strong> — gentle cleansing, strong skin.</p>
-            </div>
-          </div>
-          <div class="carousel-slide" data-slide="5">
-            <div class="carousel-shot">
-              <a href="https://kimhope.ringana.us/produkt/fresh-repair-shampoo/?lang=en" target="_blank" rel="noopener" style="display:flex;width:100%;height:100%;align-items:center;justify-content:center;"><img src="fresh-repair-shampoo.png" alt="RINGANA FRESH repair shampoo" loading="lazy" decoding="async" width="200" height="240"></a>
-            </div>
-            <div class="carousel-copy">
-              <p class="radar-kicker">FRESH · Shampoo</p>
-              <p><strong><a href="https://kimhope.ringana.us/produkt/fresh-repair-shampoo/?lang=en" target="_blank" rel="noopener" style="color:inherit;text-decoration:none;">FRESH repair shampoo</a></strong> — soft hair, for days.</p>
-            </div>
-          </div>
-        </div>
+    <div class="fav-wrap">
+      <button type="button" class="fav-arrow prev" aria-label="Previous favorites">&#8249;</button>
+      <div class="fav-rail">
+        <a href="products.html#hydro-serum"><img src="fresh-hydro-serum.png" alt="Hydro serum" width="200" height="240"></a>
+        <a href="products.html#anti-wrinkle"><img src="packs/fresh-anti-wrinkle-serum.png" alt="Anti wrinkle serum" width="200" height="240"></a>
+        <a href="products.html#overnight"><img src="fresh-overnight-face-treatment.png" alt="Overnight" width="200" height="240"></a>
+        <a href="products.html#cream-rich"><img src="packs/fresh-cream-rich.png" alt="Crème rich" width="200" height="240"></a>
+        <a href="products.html#body-wash"><img src="fresh-body-wash.png" alt="Body wash" width="200" height="240"></a>
+        <a href="products.html#repair-shampoo"><img src="fresh-repair-shampoo.png" alt="Repair shampoo" width="200" height="240"></a>
       </div>
-      <button type="button" class="carousel-btn next" aria-label="Next product">&#8250;</button>
-      <div class="carousel-footer">
-        <div class="carousel-dots" role="tablist" aria-label="Choose a favorite"></div>
-        <span class="carousel-counter" aria-live="polite">1 / 6</span>
-      </div>
-    </div>
-    <div class="tried-cta reveal">
-      <a href="products.html#shop" class="btn btn-brass">See the lineup →</a>
+      <button type="button" class="fav-arrow next" aria-label="Next favorites">&#8250;</button>
     </div>
   </div>
 </section>
@@ -1937,6 +1921,24 @@ function initProductCarousel(carouselEl){
   });
 }
 document.querySelectorAll('.product-carousel').forEach(initProductCarousel);
+
+document.querySelectorAll('.fav-wrap').forEach(wrap=>{
+  const rail=wrap.querySelector('.fav-rail');
+  if(!rail)return;
+  const step=()=>Math.max(rail.clientWidth*0.72,180);
+  const syncArrows=()=>wrap.classList.toggle('can-slide',rail.scrollWidth>rail.clientWidth+8);
+  syncArrows();
+  rail.querySelectorAll('img').forEach(img=>{
+    if(!img.complete)img.addEventListener('load',syncArrows);
+  });
+  window.addEventListener('resize',syncArrows);
+  wrap.querySelector('.fav-arrow.next')?.addEventListener('click',()=>{
+    rail.scrollBy({left:step(),behavior:reduceMotion?'auto':'smooth'});
+  });
+  wrap.querySelector('.fav-arrow.prev')?.addEventListener('click',()=>{
+    rail.scrollBy({left:-step(),behavior:reduceMotion?'auto':'smooth'});
+  });
+});
 
 /* CORE:END js */
 /* CLIENT:START js-optin */
