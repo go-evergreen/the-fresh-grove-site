@@ -560,6 +560,8 @@ section{padding:6rem 2rem;}
 
 /* ------- PRODUCTS I'VE TRIED (home teaser) ------- */
 .tried{background:var(--linen);padding-top:3.2rem;padding-bottom:3.2rem;}
+.fav-head{text-align:center;}
+.fav-head .section-title{margin-left:auto;margin-right:auto;margin-bottom:1.1rem;max-width:14ch;}
 .fav-wrap{position:relative;padding:0 2.6rem;}
 .fav-wrap:not(.can-slide){padding:0;}
 .fav-wrap:not(.can-slide) .fav-arrow{display:none;}
@@ -1517,8 +1519,11 @@ html.is-inapp .site-nav{flex-wrap:nowrap;}
 
 <!-- ================= FAVORITES ================= -->
 <!-- CLIENT:START tried-teaser -->
-<section class="tried" id="tried" aria-label="My favorite products">
+<section class="tried" id="tried" aria-label="The products I'm loving">
   <div class="container">
+    <div class="fav-head">
+      <h2 class="section-title">The products I'm loving!</h2>
+    </div>
     <div class="fav-wrap">
       <button type="button" class="fav-arrow prev" aria-label="Previous favorites">&#8249;</button>
       <div class="fav-rail">
@@ -1925,19 +1930,51 @@ document.querySelectorAll('.product-carousel').forEach(initProductCarousel);
 document.querySelectorAll('.fav-wrap').forEach(wrap=>{
   const rail=wrap.querySelector('.fav-rail');
   if(!rail)return;
-  const step=()=>Math.max(rail.clientWidth*0.72,180);
+  const phone=window.matchMedia('(max-width:880px)');
+  const cardStep=()=>{
+    const card=rail.querySelector('a');
+    if(!card)return Math.max(rail.clientWidth*0.72,180);
+    const gap=parseFloat(getComputedStyle(rail).columnGap)||parseFloat(getComputedStyle(rail).gap)||0;
+    return card.getBoundingClientRect().width+gap;
+  };
   const syncArrows=()=>wrap.classList.toggle('can-slide',rail.scrollWidth>rail.clientWidth+8);
-  syncArrows();
+  let favTimer=null;
+  const stopAuto=()=>{clearInterval(favTimer);favTimer=null;};
+  const advance=()=>{
+    if(!wrap.classList.contains('can-slide'))return;
+    const end=rail.scrollLeft+rail.clientWidth>=rail.scrollWidth-8;
+    const behavior=reduceMotion?'auto':'smooth';
+    if(end)rail.scrollTo({left:0,behavior});
+    else rail.scrollBy({left:cardStep(),behavior});
+  };
+  const startAuto=()=>{
+    stopAuto();
+    if(reduceMotion||!phone.matches||!wrap.classList.contains('can-slide'))return;
+    favTimer=setInterval(advance,3400);
+  };
+  const refresh=()=>{syncArrows();startAuto();};
+  refresh();
   rail.querySelectorAll('img').forEach(img=>{
-    if(!img.complete)img.addEventListener('load',syncArrows);
+    if(!img.complete)img.addEventListener('load',refresh);
   });
-  window.addEventListener('resize',syncArrows);
+  window.addEventListener('resize',refresh);
+  phone.addEventListener('change',refresh);
   wrap.querySelector('.fav-arrow.next')?.addEventListener('click',()=>{
-    rail.scrollBy({left:step(),behavior:reduceMotion?'auto':'smooth'});
+    rail.scrollBy({left:cardStep(),behavior:reduceMotion?'auto':'smooth'});
+    startAuto();
   });
   wrap.querySelector('.fav-arrow.prev')?.addEventListener('click',()=>{
-    rail.scrollBy({left:-step(),behavior:reduceMotion?'auto':'smooth'});
+    rail.scrollBy({left:-cardStep(),behavior:reduceMotion?'auto':'smooth'});
+    startAuto();
   });
+  rail.addEventListener('touchstart',stopAuto,{passive:true});
+  rail.addEventListener('touchend',()=>setTimeout(startAuto,2200));
+  const canHover=window.matchMedia('(hover:hover) and (pointer:fine)');
+  wrap.addEventListener('mouseenter',()=>{if(canHover.matches)stopAuto();});
+  wrap.addEventListener('mouseleave',()=>{if(canHover.matches)startAuto();});
+  wrap.addEventListener('focusin',stopAuto);
+  wrap.addEventListener('focusout',e=>{if(!wrap.contains(e.relatedTarget))startAuto();});
+  document.addEventListener('visibilitychange',()=>{document.hidden?stopAuto():startAuto();});
 });
 
 /* CORE:END js */
