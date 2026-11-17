@@ -2464,14 +2464,29 @@ body[data-photo="cutout"] .about-photo img { object-fit: contain; height: auto; 
 }
 #tayStory .tay-chip[aria-expanded="true"] .tay-chev { transform: none; }
 #tayStory .tay-chip[aria-expanded="true"] .tay-chev::after { top: 0.82rem; transform: rotate(225deg); }
-#tayStory .tl-year { color: var(--gold); }
-#tayStory .timeline::before { background: rgba(224, 177, 90, 0.55); }
-#tayStory .tl-item::before { background: #fff; border-color: var(--gold); }
+#tayTimeline { position: relative; padding-left: 2.2rem; margin-top: 1.6rem; }
+#tayTimeline::before { left: 7px; top: 8px; bottom: 8px; background: #e7dcc8; }
+#tayTimeline .tl-line-fill {
+  position: absolute; left: 7px; top: 8px; width: 2px; height: 0; z-index: 1;
+  background: linear-gradient(to bottom, var(--gold), var(--sage));
+  transition: height 0.45s ease;
+}
+#tayTimeline .tl-item { position: relative; z-index: 2; padding-bottom: 2.15rem; }
+#tayTimeline .tl-item:last-child { padding-bottom: 0; }
+#tayTimeline .tl-item::before {
+  left: -2.2rem; top: 8px; width: 15px; height: 15px;
+  background: #fff; border: 2px solid var(--gold);
+  transition: background 0.35s ease, box-shadow 0.35s ease;
+}
+#tayTimeline .tl-item.tl-reached::before { background: var(--gold); }
+#tayTimeline .tl-item.tl-future::before { box-shadow: 0 0 0 4px rgba(224, 177, 90, 0.28); }
+#tayTimeline .tl-year { color: var(--gold); font-size: 1.35rem; }
+#tayTimeline .tl-item h3 { font-size: 1.22rem; margin-top: 0.1rem; }
+#tayTimeline .tl-item p { max-width: 62ch; font-size: 1rem; line-height: 1.5; }
 @media (max-width: 800px) {
   #tayStory .tay-story-top { grid-template-columns: 1fr; }
   #tayStory .tay-story-side { padding-top: 0.15rem; }
 }
-#tayTimeline { margin-top: 1.2rem; }
 #homeTaylor .tay-campus { background: var(--paper); }
 #homeTaylor .tay-slider { position: relative; }
 #homeTaylor .tay-viewport { overflow: hidden; width: 100%; }
