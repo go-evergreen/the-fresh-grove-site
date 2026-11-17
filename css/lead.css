@@ -2334,6 +2334,10 @@ footer { background: var(--pine-deep); color: var(--linen); padding: 2.6rem 1.4r
   height: 100%;
   max-width: none;
   object-fit: cover;
+  object-position: center 18%;
+  transform: none;
+}
+#homeTaylor .tay-photo.is-fit {
   object-position: 50% 34%;
   transform: scale(1.55);
   transform-origin: 50% 32%;
@@ -2357,9 +2361,13 @@ body[data-photo="cutout"] #homeTaylor .tay-frame {
   background: transparent;
   overflow: visible;
 }
-body[data-photo="cutout"] #homeTaylor .tay-photo {
+body[data-photo="cutout"] #homeTaylor .tay-photo,
+body[data-photo="cutout"] #homeTaylor .tay-photo.is-fit {
+  width: 100%;
   height: auto;
+  max-height: 540px;
   object-fit: contain;
+  object-position: center bottom;
   transform: none;
 }
 body[data-photo="cutout"] .about-photo,
