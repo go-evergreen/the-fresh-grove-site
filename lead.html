@@ -1,8 +1,8 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+  <base href="/">
 <meta charset="UTF-8">
-<base href="/">
 <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
 <title>Ringana</title>
 <meta name="description" content="Fresh, toxin-free skincare and supplements from Austria, shared by an independent Ringana partner.">
@@ -77,7 +77,7 @@ try { if (window.top !== window.self) window.top.location.replace(window.locatio
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Caveat:wght@500;600&family=Cormorant+Garamond:ital,wght@0,400;0,500;1,400&family=Fraunces:ital,opsz,wght@0,9..144,300;0,9..144,400;0,9..144,500;1,9..144,400&family=Libre+Baskerville:ital,wght@0,400;1,400&family=Manrope:wght@400;500;600&family=Newsreader:ital,opsz,wght@0,6..72,400;0,6..72,500;1,6..72,400&family=Nunito+Sans:wght@400;600&family=Nunito:wght@400;600&family=Source+Sans+3:wght@400;600&family=Work+Sans:wght@300;400;500;600&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="css/lead.css?v=0415bcdad8">
+<link rel="stylesheet" href="css/lead.css?v=d0c2e2818a">
 </head>
 <body data-look="grove" data-fonts="fraunces" data-corners="sharp">
   <div class="local-bar" id="localBar" hidden></div>
@@ -214,7 +214,7 @@ try { if (window.top !== window.self) window.top.location.replace(window.locatio
           </div>
           <div class="tay-pic">
             <div class="tay-frame">
-              <img class="tay-photo" src="assets/lead/taylor-portrait.jpg" alt="Taylor" width="682" height="1024">
+              <img class="tay-photo" alt="" width="682" height="1024">
             </div>
             <svg class="tay-seal" viewBox="0 0 100 100" role="img" aria-label="Fresh. Small batch, Austria, dated like food.">
               <circle cx="50" cy="50" r="49" fill="#f6f2ea"/>
@@ -1435,7 +1435,7 @@ try { if (window.top !== window.self) window.top.location.replace(window.locatio
     </div>
   </div>
   <script src="js/vendor/supabase.js?v=2118"></script>
-<script src="js/lead.min.js?v=b8cd1d56b6" defer></script>
+<script src="js/lead.min.js?v=695b47c856" defer></script>
 <script>
 (function () {
   if (!/[?&]seal=1(?:&|$)/.test(location.search)) return;
@@ -1497,8 +1497,13 @@ try { if (window.top !== window.self) window.top.location.replace(window.locatio
         size = Math.max(64, oSize + (e.clientX - ox));
       }
       apply();
+      remember();
     });
-    window.addEventListener("pointerup", function () { mode = ""; });
+    function remember() {
+      var q = "size=" + Math.round(size) + "&left=" + Math.round(left) + "&top=" + Math.round(top);
+      try { navigator.sendBeacon("/__seal?" + q); } catch (err) {}
+    }
+    window.addEventListener("pointerup", function () { if (mode) remember(); mode = ""; });
     apply();
   }
   ready();

@@ -2310,6 +2310,10 @@ footer { background: var(--pine-deep); color: var(--linen); padding: 2.6rem 1.4r
   padding-right: 1.25rem;
 }
 #homeTaylor .tay-copy { padding-right: 11rem; }
+#homeTaylor .tay-pic[hidden] { display: none !important; }
+#homeTaylor .tay-hero-row:has(.tay-pic[hidden]) { grid-template-columns: minmax(0, 1fr); }
+#homeTaylor .tay-hero-row:has(.tay-pic[hidden]) .tay-copy,
+#homeTaylor .tay-hero-row:has(.tay-seal[hidden]) .tay-copy { padding-right: 0; }
 #homeTaylor .tay-copy h1 {
   margin: 0 0 0.9rem;
   max-width: 12.4em;
@@ -2366,6 +2370,7 @@ body[data-photo="cutout"] .about-more-photos img {
 }
 body[data-photo="cutout"] .about-photo { aspect-ratio: auto; max-height: none; }
 body[data-photo="cutout"] .about-photo img { object-fit: contain; height: auto; }
+#homeTaylor .tay-seal[hidden] { display: none !important; }
 #homeTaylor .tay-seal {
   position: absolute;
   width: 158px;
