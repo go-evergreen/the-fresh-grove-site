@@ -77,7 +77,7 @@ try { if (window.top !== window.self) window.top.location.replace(window.locatio
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Caveat:wght@500;600&family=Cormorant+Garamond:ital,wght@0,400;0,500;1,400&family=Fraunces:ital,opsz,wght@0,9..144,300;0,9..144,400;0,9..144,500;1,9..144,400&family=Libre+Baskerville:ital,wght@0,400;1,400&family=Manrope:wght@400;500;600&family=Newsreader:ital,opsz,wght@0,6..72,400;0,6..72,500;1,6..72,400&family=Nunito+Sans:wght@400;600&family=Nunito:wght@400;600&family=Source+Sans+3:wght@400;600&family=Work+Sans:wght@300;400;500;600&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="css/lead.css?v=8a55dba03d">
+<link rel="stylesheet" href="css/lead.css?v=0415bcdad8">
 </head>
 <body data-look="grove" data-fonts="fraunces" data-corners="sharp">
   <div class="local-bar" id="localBar" hidden></div>
@@ -1436,5 +1436,73 @@ try { if (window.top !== window.self) window.top.location.replace(window.locatio
   </div>
   <script src="js/vendor/supabase.js?v=2118"></script>
 <script src="js/lead.min.js?v=b8cd1d56b6" defer></script>
+<script>
+(function () {
+  if (!/[?&]seal=1(?:&|$)/.test(location.search)) return;
+  function ready() {
+    var home = document.getElementById("homeTaylor");
+    var pic = document.querySelector("#homeTaylor .tay-pic");
+    var seal = document.querySelector("#homeTaylor .tay-seal");
+    if (!home || home.hidden || !pic || !seal) return setTimeout(ready, 180);
+    seal.style.pointerEvents = "auto";
+    seal.style.cursor = "grab";
+    seal.style.animationPlayState = "paused";
+    seal.style.outline = "2px dashed #e0b15a";
+    seal.style.outlineOffset = "6px";
+    var box = pic.getBoundingClientRect();
+    var start = seal.getBoundingClientRect();
+    var left = start.left - box.left;
+    var top = start.top - box.top;
+    var size = start.width;
+    function apply() {
+      seal.style.left = left + "px";
+      seal.style.top = top + "px";
+      seal.style.right = "auto";
+      seal.style.bottom = "auto";
+      seal.style.marginTop = "0";
+      seal.style.width = size + "px";
+      seal.style.height = size + "px";
+      handle.style.left = (left + size - 10) + "px";
+      handle.style.top = (top + size - 10) + "px";
+      read.textContent = Math.round(size) + "px  ·  left " + Math.round(left) + "  ·  top " + Math.round(top);
+    }
+    var handle = document.createElement("div");
+    handle.setAttribute("aria-label", "Resize the circle");
+    handle.style.cssText = "position:absolute;width:22px;height:22px;border-radius:50%;background:#e0b15a;border:2px solid #445a48;cursor:nwse-resize;z-index:6;touch-action:none;";
+    pic.appendChild(handle);
+    var read = document.createElement("p");
+    var bar = document.createElement("div");
+    bar.style.cssText = "position:fixed;left:16px;bottom:16px;z-index:40;background:#fff;border:1px solid #e0b15a;border-radius:16px;padding:12px 14px;font:14px/1.4 'Work Sans',sans-serif;color:#2d3b30;box-shadow:0 12px 30px rgba(68,90,72,.16);max-width:280px;";
+    bar.innerHTML = "<strong style=\"font-family:Georgia,serif;font-weight:400;font-size:18px;\">Place the circle</strong><br>Drag it. Pull the gold dot to resize.";
+    bar.appendChild(read);
+    read.style.margin = "6px 0 0";
+    document.body.appendChild(bar);
+    var mode = "";
+    var ox = 0, oy = 0, oLeft = 0, oTop = 0, oSize = 0;
+    function down(which, e) {
+      mode = which;
+      ox = e.clientX; oy = e.clientY;
+      oLeft = left; oTop = top; oSize = size;
+      (which === "move" ? seal : handle).setPointerCapture(e.pointerId);
+      e.preventDefault();
+    }
+    seal.addEventListener("pointerdown", function (e) { down("move", e); });
+    handle.addEventListener("pointerdown", function (e) { down("size", e); e.stopPropagation(); });
+    window.addEventListener("pointermove", function (e) {
+      if (!mode) return;
+      if (mode === "move") {
+        left = oLeft + (e.clientX - ox);
+        top = oTop + (e.clientY - oy);
+      } else {
+        size = Math.max(64, oSize + (e.clientX - ox));
+      }
+      apply();
+    });
+    window.addEventListener("pointerup", function () { mode = ""; });
+    apply();
+  }
+  ready();
+})();
+</script>
 </body>
 </html>

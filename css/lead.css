@@ -2585,7 +2585,7 @@ body[data-photo="cutout"] .about-photo img { object-fit: contain; height: auto; 
 #homeTaylor .tay-line .kicker { margin: 0 auto 0.85rem; }
 #homeTaylor .tay-line p { max-width: 46ch; margin: 0 auto; }
 #homeTaylor .tay-circles { display: flex; justify-content: center; align-items: center; flex-wrap: wrap; gap: 0.85rem; margin: 0.4rem auto 0.9rem; max-width: 760px; }
-#homeTaylor .tay-lines { background: transparent; }
+#homeTaylor .tay-lines { background: transparent; padding-top: 2.2rem; padding-bottom: 0.35rem; }
 #homeTaylor .tay-lines-card {
   background: #fff;
   border: 1px solid rgba(224, 177, 90, 0.45);
@@ -2691,7 +2691,7 @@ body[data-home="taylor"] #productLines {
 #homeTaylor .tay-dots { display: flex; justify-content: center; gap: 0.45rem; margin-top: 0.8rem; }
 #homeTaylor .tay-dots button { width: 9px; height: 9px; border-radius: 50%; border: 0; padding: 0; background: rgba(224, 177, 90, 0.35); cursor: pointer; }
 #homeTaylor .tay-dots button[aria-current="true"] { background: var(--gold); }
-#homeTaylor .tay-start-wrap { background: var(--linen); padding: 1.4rem 0 3rem; }
+#homeTaylor .tay-start-wrap { background: var(--linen); padding: 0.15rem 0 3rem; }
 #homeTaylor .tay-quiz { margin: 0.95rem 1rem 0.2rem; animation: tay-quiz-nudge 2.6s ease-in-out infinite; }
 #homeTaylor .tay-shop { margin: 0.15rem 1rem 1.15rem; }
 @keyframes tay-quiz-nudge {
