@@ -77,7 +77,7 @@ try { if (window.top !== window.self) window.top.location.replace(window.locatio
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Caveat:wght@500;600&family=Cormorant+Garamond:ital,wght@0,400;0,500;1,400&family=Fraunces:ital,opsz,wght@0,9..144,300;0,9..144,400;0,9..144,500;1,9..144,400&family=Libre+Baskerville:ital,wght@0,400;1,400&family=Manrope:wght@400;500;600&family=Newsreader:ital,opsz,wght@0,6..72,400;0,6..72,500;1,6..72,400&family=Nunito+Sans:wght@400;600&family=Nunito:wght@400;600&family=Source+Sans+3:wght@400;600&family=Work+Sans:wght@300;400;500;600&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="css/lead.css?v=9113c07cdd">
+<link rel="stylesheet" href="css/lead.css?v=b83747f40d">
 </head>
 <body data-look="grove" data-fonts="fraunces" data-corners="sharp">
   <div class="local-bar" id="localBar" hidden></div>
@@ -124,6 +124,7 @@ try { if (window.top !== window.self) window.top.location.replace(window.locatio
     </header>
 
     <div data-view="home">
+    <div id="homeClassic">
     <header class="hero" id="top">
       <div class="hero-ring hero-ring-1" aria-hidden="true"></div>
       <div class="hero-ring hero-ring-2" aria-hidden="true"></div>
@@ -192,6 +193,178 @@ try { if (window.top !== window.self) window.top.location.replace(window.locatio
         <p class="products-cta"><a class="btn btn-pine" href="lead.html?page=products" data-lead-page="products">See what’s in the shop</a></p>
       </div>
     </section>
+    </div>
+    <div id="homeTaylor" hidden>
+    <header class="hero" id="tayHero">
+      <div class="hero-ring hero-ring-1" aria-hidden="true"></div>
+      <div class="hero-ring hero-ring-2" aria-hidden="true"></div>
+      <div class="hero-inner">
+        <p class="hero-eyebrow">Ringana · America · 2026</p>
+        <div class="tay-hero-row">
+          <div class="tay-copy">
+            <h1 id="tayHeroTitle">Wellness that was never meant to <em>compromise.</em></h1>
+            <p class="hero-sub">For thirty years, a family in Austria has been making skincare and supplements the hard way — totally toxin free, made fresh, and transparent. Now Ringana is coming to America, so you can try the products for yourself and share them with your friends.</p>
+            <div class="hero-actions">
+              <div class="hero-pair">
+                <a class="btn btn-ghost" href="lead.html?page=products" data-lead-page="products">Learn the products</a>
+                <a class="btn btn-brass" id="tayShopHero" hidden target="_blank" rel="noopener noreferrer">Shop</a>
+              </div>
+              <a class="btn btn-ghost" href="lead.html?page=team" data-lead-page="team">How the business works</a>
+            </div>
+          </div>
+          <div class="tay-pic">
+            <div class="tay-frame">
+              <img class="tay-photo" src="assets/lead/taylor-portrait.jpg" alt="Taylor" width="682" height="1024">
+            </div>
+            <svg class="tay-seal" viewBox="0 0 100 100" role="img" aria-label="Fresh. Small batch, Austria, dated like food.">
+              <circle cx="50" cy="50" r="49" fill="#f6f2ea"/>
+              <circle cx="50" cy="50" r="48.2" fill="none" stroke="#b3893c" stroke-width="1.15"/>
+              <circle cx="50" cy="50" r="31.2" fill="none" stroke="#b3893c" stroke-width="0.8"/>
+              <text x="50" y="56.5" text-anchor="middle" fill="#445a48" font-size="17" font-family="Georgia, serif" font-style="italic">Fresh</text>
+              <defs>
+                <path id="taySealRing" fill="none" d="M50,89 A39,39 0 1,1 50,11 A39,39 0 1,1 50,89"/>
+              </defs>
+              <text fill="#445a48" font-size="9.4" font-family="Georgia, serif" font-weight="500" dominant-baseline="middle">
+                <textPath href="#taySealRing" textLength="245.04" lengthAdjust="spacing"> · SMALL BATCH · AUSTRIA · DATED LIKE FOOD</textPath>
+              </text>
+            </svg>
+          </div>
+        </div>
+      </div>
+    </header>
+
+    <section class="film" aria-label="The products, in real life">
+      <div class="film-track"><div class="film-run" id="tayFilmTrack"></div></div>
+    </section>
+
+    <div class="standards tay-standards">
+      <div class="container">
+        <div class="standard-item"><svg class="standard-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true"><path d="M12 3c-3 4-7 6-7 11a7 7 0 0 0 14 0c0-5-4-7-7-11z"/></svg><span class="num" data-count="1996" data-from="2026">1996</span><span class="label">Still family-led today</span></div>
+        <div class="standard-item"><svg class="standard-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M3 12h18M12 3a14 14 0 0 1 0 18M12 3a14 14 0 0 0 0 18"/></svg><span class="num" data-count="38">38</span><span class="label">Countries served</span></div>
+        <div class="standard-item"><svg class="standard-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true"><circle cx="12" cy="12" r="8"/><path d="M6 6l12 12"/></svg><span class="num">0</span><span class="label">Synthetic preservatives</span></div>
+        <div class="standard-item"><svg class="standard-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true"><rect x="4" y="5" width="16" height="15" rx="1.5"/><path d="M8 3.5V7M16 3.5V7M4 10h16"/></svg><span class="num">Fresh</span><span class="label">Dated like food</span></div>
+        <div class="standard-item"><svg class="standard-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true"><path d="M4 20V8l8-4 8 4v12"/><path d="M9 20v-6h6v6"/></svg><span class="num" data-count="85" data-prefix="$" data-suffix="M">$85M</span><span class="label">U.S. campus investment</span></div>
+        <div class="standard-item"><svg class="standard-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true"><circle cx="9" cy="8" r="3"/><path d="M3.5 19c.3-3.2 2.6-5 5.5-5s5.2 1.8 5.5 5"/><circle cx="16.5" cy="9" r="2.2"/><path d="M16 14.2c1.5-.5 3.1-.2 4 .9.7 1 1 2.2 1.1 3.9"/></svg><span class="num" data-count="2.7" data-decimals="1" data-suffix="M">2.7M</span><span class="label">Customers</span></div>
+        <div class="standard-item"><svg class="standard-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true"><circle cx="9" cy="8" r="3"/><circle cx="17" cy="9" r="2.5"/><path d="M3 19c0-3 3-5 6-5s6 2 6 5"/></svg><span class="num" data-count="130" data-suffix="K+">130K+</span><span class="label">Partners worldwide</span></div>
+        <div class="standard-item"><svg class="standard-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true"><path d="M10 3h4M11 3v2.5L8.5 8.5V19a1.5 1.5 0 0 0 1.5 1.5h4a1.5 1.5 0 0 0 1.5-1.5V8.5L13 5.5V3"/><path d="M9.2 12h5.6"/></svg><span class="num">REuse</span><span class="label">Bottle return program</span></div>
+      </div>
+    </div>
+
+    <section class="story" id="tayStory">
+      <div class="container">
+        <p class="eyebrow">Why Ringana</p>
+        <h2 class="section-title">Made fresh, on purpose.</h2>
+        <p>Most products are built to sit on a shelf for years. These are made in small batches, with shorter shelf lives, so what’s in the bottle is still worth using when it reaches you.</p>
+        <p>Ringana became Austria’s first fresh cosmetics company on a simple conviction: <strong>what goes on your body and in your body should need no apology.</strong></p>
+        <div class="pull">Three decades later, the founding family still leads the company — and the standard has never bent.</div>
+        <button type="button" class="tay-chip" id="tayTimelineBtn" aria-expanded="false" aria-controls="tayTimeline">
+          <span class="tay-chip-dot" aria-hidden="true"></span>
+          <span>How the company started</span>
+          <span class="tay-chev" aria-hidden="true"></span>
+        </button>
+        <div class="timeline" id="tayTimeline" hidden>
+          <div class="tl-item"><span class="tl-year">1996</span><h3>The toothpaste moment</h3><p>Two parents in Hartberg, Austria refused questionable ingredients in everyday products — and founded Ringana. The first products were toiletries, made for their family hotel.</p></div>
+          <div class="tl-item"><span class="tl-year">2013</span><h3>The fresh factory</h3><p>Development and production come fully in-house.</p></div>
+          <div class="tl-item"><span class="tl-year">2021</span><h3>The campus</h3><p>A new headquarters in St. Johann in der Haide — geothermal, solar, and one roof for the work.</p></div>
+          <div class="tl-item"><span class="tl-year">Now</span><h3>The U.S. shop is open</h3><p>The same fresh-made standard, shared person to person, with a U.S. home underway in Virginia.</p></div>
+        </div>
+      </div>
+    </section>
+
+    <section class="tay-campus" aria-label="Austria and Virginia">
+      <div class="container">
+        <div class="tay-slider" data-slider>
+          <div class="tay-viewport">
+            <div class="tay-track">
+              <article class="tay-slide tay-place tay-from">
+                <div class="tay-factory">
+                  <span class="tay-side" aria-hidden="true">Austria</span>
+                  <div class="tay-place-head">
+                    <figure class="tay-shot"><img src="assets/lead/campus-austria.webp" alt="The Austria campus" width="800" height="500"></figure>
+                    <div class="tay-place-title">
+                      <p class="tay-mark">For now</p>
+                      <h2>Fresh from the campus — not a third-party factory.</h2>
+                    </div>
+                  </div>
+                  <div class="tay-rest">
+                    <p>Formulated, made, and packed in St. Johann. Nearly everything under one roof.</p>
+                    <ul>
+                      <li>Geothermal and solar</li>
+                      <li>Glass gallery</li>
+                      <li>100% green electricity</li>
+                    </ul>
+                    <button type="button" data-slide="1"><span aria-hidden="true">→</span> Coming to America</button>
+                  </div>
+                </div>
+              </article>
+              <article class="tay-slide tay-place tay-to">
+                <div class="tay-factory">
+                  <span class="tay-side" aria-hidden="true">Virginia</span>
+                  <div class="tay-place-head">
+                    <figure class="tay-shot"><img src="assets/lead/campus-virginia.jpg" alt="Roanoke, Virginia" width="800" height="500"></figure>
+                    <div class="tay-place-title">
+                      <p class="tay-mark">What’s coming</p>
+                      <h2><span class="tay-figure">$85M</span> in Virginia.</h2>
+                    </div>
+                  </div>
+                  <div class="tay-rest">
+                    <p>A U.S. headquarters and production facility in Roanoke, so the same fresh-made standard can live closer to home.</p>
+                    <ul>
+                      <li>Blue Ridge Commerce Park</li>
+                      <li>435 jobs</li>
+                      <li>Production in March</li>
+                    </ul>
+                    <button type="button" data-slide="0"><span aria-hidden="true">←</span> Made in Austria</button>
+                  </div>
+                </div>
+              </article>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="products-teaser tay-lines">
+      <div class="container">
+        <p class="eyebrow">The products</p>
+        <h2 class="section-title">One standard, for the whole routine.</h2>
+        <div class="tay-slider" data-slider>
+          <button type="button" class="tay-arrow prev" aria-label="Previous line">‹</button>
+          <div class="tay-viewport"><div class="tay-track" id="tayLineTrack"></div></div>
+          <button type="button" class="tay-arrow next" aria-label="Next line">›</button>
+          <div class="tay-dots"></div>
+        </div>
+      </div>
+    </section>
+
+    <section class="tay-start-wrap" id="tayRoutines">
+      <div class="container">
+        <div class="tay-shell">
+          <button type="button" class="tay-start" id="tayRoutineBtn" aria-expanded="false" aria-controls="tayRoutineBody">
+            <span>
+              <span class="kicker">Skin type and goals</span>
+              <strong>Suggested routines</strong>
+            </span>
+            <span class="tay-chev" aria-hidden="true"></span>
+          </button>
+          <div id="tayRoutineBody" hidden>
+            <div class="tay-skins" role="tablist" aria-label="Skin">
+              <button type="button" data-skin="dry" aria-selected="true"><b>Dry</b><small>Needs water back</small></button>
+              <button type="button" data-skin="oily" aria-selected="false"><b>Acne / oily</b><small>Clear, without the strip</small></button>
+              <button type="button" data-skin="sensitive" aria-selected="false"><b>Sensitive</b><small>Keep it calm</small></button>
+              <button type="button" data-skin="aging" aria-selected="false"><b>Aging</b><small>Lines, not just thirst</small></button>
+              <button type="button" data-skin="dull" aria-selected="false"><b>Dull</b><small>Wants light</small></button>
+              <button type="button" data-skin="combo" aria-selected="false"><b>Combination</b><small>A little of everything</small></button>
+            </div>
+            <a class="btn btn-brass tay-quiz" id="tayQuiz" target="_blank" rel="noopener noreferrer">Want a more customized Fresh Match?</a>
+            <div id="tayRoutine"></div>
+            <a class="btn btn-brass tay-shop" id="tayShopRoutine" hidden target="_blank" rel="noopener noreferrer">Shop this routine</a>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    </div>
 
     <section class="tried" id="favorites" hidden>
       <div class="container">
@@ -260,6 +433,19 @@ try { if (window.top !== window.self) window.top.location.replace(window.locatio
           <h2 class="section-title">What’s here.</h2>
         </div>
       </header>
+      <section class="tay-lines" id="productLines">
+        <div class="container">
+          <div class="product-lines-chip">
+            <h2 class="section-title">One standard,<br>for the whole routine.</h2>
+            <div class="tay-slider" data-slider>
+              <button type="button" class="tay-arrow prev" aria-label="Previous line">‹</button>
+              <div class="tay-viewport"><div class="tay-track" id="productLineTrack"></div></div>
+              <button type="button" class="tay-arrow next" aria-label="Next line">›</button>
+              <div class="tay-dots"></div>
+            </div>
+          </div>
+        </div>
+      </section>
       <section class="lines" id="lines">
         <div class="container">
           <p class="eyebrow">The system</p>
@@ -290,7 +476,7 @@ try { if (window.top !== window.self) window.top.location.replace(window.locatio
               <h2 class="section-title">The catalog.</h2>
               <p class="lede">Everything starts visible. Coming soon still opens on the shop link. Those just aren’t available to order yet.</p>
             </div>
-            <p class="shop-code" id="shopCodeCard" hidden><span>My code</span><b id="shopCodeValue"></b></p>
+            <p class="shop-code" id="shopCodeCard" hidden><span>My code</span><b id="shopCodeValue"></b><small id="shopCodeSave" hidden>Saves $25 on a first order of $60 or more.</small></p>
           </div>
           <div class="shop-bar">
             <div class="shop-filters" id="shopFilters" role="group" aria-label="Filter the shop"></div>
@@ -1237,6 +1423,6 @@ try { if (window.top !== window.self) window.top.location.replace(window.locatio
     </div>
   </div>
   <script src="js/vendor/supabase.js?v=2118"></script>
-<script src="js/lead.min.js?v=c4e8a21b07" defer></script>
+<script src="js/lead.min.js?v=b83747f40d" defer></script>
 </body>
 </html>
