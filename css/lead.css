@@ -2397,30 +2397,63 @@ body[data-photo="cutout"] .about-photo img { object-fit: contain; height: auto; 
   padding: 0.7rem 1rem 0.7rem 0.8rem;
   cursor: pointer;
 }
-#homeTaylor .tay-start { width: 100%; border: 0; border-radius: 0; justify-content: space-between; text-align: left; padding: 1.35rem 1.35rem 1.2rem; background: transparent; }
-#homeTaylor .tay-start strong { display: block; font-family: var(--serif); font-size: clamp(1.85rem, 3vw, 2.35rem); font-weight: 400; line-height: 1.05; color: var(--pine-deep); }
-#homeTaylor .tay-start .kicker { margin: 0 0 0.35rem; color: var(--gold); }
-#homeTaylor .tay-start em { display: block; margin-top: 0.4rem; font-style: normal; color: #6d6248; font-size: 0.98rem; line-height: 1.4; max-width: 36ch; }
+#homeTaylor .tay-start { width: 100%; border: 0; border-radius: 16px; justify-content: space-between; text-align: left; padding: 1rem 1.1rem; background: transparent; }
+#homeTaylor .tay-start strong { display: block; font-family: var(--serif); font-size: 1.7rem; font-weight: 400; }
+#homeTaylor .tay-start .kicker { margin: 0 0 0.2rem; }
 #homeTaylor .tay-chip-dot { width: 8px; height: 8px; border-radius: 50%; background: var(--brass); }
 #homeTaylor .tay-chev {
-  width: 8px; height: 8px; margin-left: auto; flex: 0 0 auto;
-  border-right: 1.5px solid var(--gold); border-bottom: 1.5px solid var(--gold);
+  width: 8px; height: 8px; margin-left: auto;
+  border-right: 1.5px solid var(--brass); border-bottom: 1.5px solid var(--brass);
   transform: rotate(45deg);
 }
-#homeTaylor .tay-start .tay-chev {
-  width: 2.4rem; height: 2.4rem; border: 1.5px solid var(--gold); border-radius: 50%;
+#homeTaylor .tay-chip[aria-expanded="true"] .tay-chev,
+#homeTaylor .tay-start[aria-expanded="true"] .tay-chev { transform: rotate(225deg); }
+#tayStory { background: transparent; padding: 1.5rem 0 1.25rem; }
+#tayStory .tay-story-card {
+  background: #fff;
+  border: 1px solid rgba(224, 177, 90, 0.45);
+  border-radius: 26px;
+  padding: 1.85rem 1.55rem 1.35rem;
+  box-shadow: 0 18px 40px rgba(68, 90, 72, 0.07);
+}
+#tayStory .eyebrow { color: var(--gold); margin-bottom: 0.55rem; }
+#tayStory .section-title { max-width: 12ch; margin-bottom: 0.8rem; }
+#tayStory .tay-story-card > p:not(.eyebrow) { font-size: 1.05rem; line-height: 1.55; }
+#tayStory .pull {
+  max-width: 26ch;
+  margin: 1.25rem 0 1.15rem;
+  padding: 0.1rem 0 0.1rem 1rem;
+  border-left: 2px solid var(--gold);
+  color: var(--pine-deep);
+  font-size: clamp(1.4rem, 2.5vw, 1.75rem);
+}
+#tayStory .tay-chip {
+  width: 100%;
+  margin-top: 0.15rem;
+  padding: 0.55rem 0.55rem 0.55rem 1rem;
+  border: 1px solid var(--gold);
+  background: #fff;
+  color: var(--pine-deep);
+}
+#tayStory .tay-chip > span:nth-child(2) { font-family: var(--serif); font-size: 1.2rem; }
+#tayStory .tay-chip-dot { width: 8px; height: 8px; background: var(--gold); box-shadow: 0 0 0 4px rgba(224, 177, 90, 0.28); }
+#tayStory .tay-chev {
+  width: 2.35rem; height: 2.35rem; flex: 0 0 auto;
+  border: 1.5px solid var(--gold); border-radius: 50%;
   position: relative; transform: none;
 }
-#homeTaylor .tay-start .tay-chev::after {
+#tayStory .tay-chev::after {
   content: "";
   position: absolute; left: 0.78rem; top: 0.62rem;
-  width: 0.45rem; height: 0.45rem;
+  width: 0.42rem; height: 0.42rem;
   border-right: 1.5px solid var(--gold); border-bottom: 1.5px solid var(--gold);
   transform: rotate(45deg);
 }
-#homeTaylor .tay-chip[aria-expanded="true"] .tay-chev { transform: rotate(225deg); }
-#homeTaylor .tay-start[aria-expanded="true"] .tay-chev { transform: none; }
-#homeTaylor .tay-start[aria-expanded="true"] .tay-chev::after { top: 0.85rem; transform: rotate(225deg); }
+#tayStory .tay-chip[aria-expanded="true"] .tay-chev { transform: none; }
+#tayStory .tay-chip[aria-expanded="true"] .tay-chev::after { top: 0.82rem; transform: rotate(225deg); }
+#tayStory .tl-year { color: var(--gold); }
+#tayStory .timeline::before { background: rgba(224, 177, 90, 0.55); }
+#tayStory .tl-item::before { background: #fff; border-color: var(--gold); }
 #tayTimeline { margin-top: 1.2rem; }
 #homeTaylor .tay-campus { background: var(--paper); }
 #homeTaylor .tay-slider { position: relative; }
@@ -2600,24 +2633,18 @@ body[data-home="taylor"] #productLines {
 #homeTaylor .tay-dots { display: flex; justify-content: center; gap: 0.45rem; margin-top: 0.8rem; }
 #homeTaylor .tay-dots button { width: 9px; height: 9px; border-radius: 50%; border: 0; padding: 0; background: rgba(224, 177, 90, 0.35); cursor: pointer; }
 #homeTaylor .tay-dots button[aria-current="true"] { background: var(--gold); }
-#homeTaylor .tay-start-wrap { background: transparent; padding: 0.3rem 0 3.2rem; }
+#homeTaylor .tay-start-wrap { background: var(--linen); padding: 1.4rem 0 3rem; }
 #homeTaylor .tay-quiz { margin: 0.95rem 1rem 0.2rem; animation: tay-quiz-nudge 2.6s ease-in-out infinite; }
 #homeTaylor .tay-shop { margin: 0.15rem 1rem 1.15rem; }
 @keyframes tay-quiz-nudge {
   0%, 100% { transform: translateY(0); }
   50% { transform: translateY(-4px); }
 }
-#homeTaylor .tay-shell {
-  background: #fff;
-  border: 1px solid rgba(224, 177, 90, 0.45);
-  border-radius: 26px;
-  box-shadow: 0 18px 40px rgba(68, 90, 72, 0.07);
-  overflow: hidden;
-}
+#homeTaylor .tay-shell { background: var(--paper); border: 1px solid var(--card-line); border-radius: var(--card-radius); }
 #homeTaylor .tay-skins { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 0.5rem; padding: 0 1rem; }
 #homeTaylor .tay-skins button {
   display: flex; flex-direction: column; align-items: flex-start; gap: 0.15rem;
-  text-align: left; border: 1px solid rgba(224, 177, 90, 0.55); background: #fff; color: var(--pine-deep);
+  text-align: left; border: 1px solid #e3d3ae; background: var(--linen); color: var(--pine-deep);
   border-radius: 12px; padding: 0.7rem 0.7rem 0.8rem; cursor: pointer;
 }
 #homeTaylor .tay-skins b { font-family: var(--serif); font-weight: 400; font-size: 1.05rem; }
