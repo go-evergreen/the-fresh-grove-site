@@ -1049,7 +1049,9 @@ footer { background: var(--pine-deep); color: var(--linen); padding: 2.6rem 1.4r
 }
 
 @media (prefers-reduced-motion: reduce) {
-  .film-run, .carousel-track, .offer-track, .tay-seal, .tay-track, .tay-quiz { animation: none; transition: none; }
+  .film-run, .carousel-track, .offer-track, .tay-seal, .tay-track, .tay-quiz,
+  #homeTaylor .tay-lines-card .section-title::after { animation: none; transition: none; }
+  #homeTaylor .tay-lines-card .section-title::after { left: 0; width: 42%; }
   .offer-track { width: 100%; justify-content: center; }
   .offer-group[aria-hidden="true"] { display: none; }
   .offer-group { width: 100%; justify-content: center; padding-right: 0; }
@@ -2305,8 +2307,9 @@ footer { background: var(--pine-deep); color: var(--linen); padding: 2.6rem 1.4r
   grid-template-columns: minmax(0, 1fr) 400px;
   gap: 1.4rem 1.5rem;
   align-items: center;
-  padding-right: 4.5rem;
+  padding-right: 1.25rem;
 }
+#homeTaylor .tay-copy { padding-right: 11rem; }
 #homeTaylor .tay-copy h1 {
   margin: 0 0 0.9rem;
   max-width: 12.4em;
@@ -2365,10 +2368,12 @@ body[data-photo="cutout"] .about-photo { aspect-ratio: auto; max-height: none; }
 body[data-photo="cutout"] .about-photo img { object-fit: contain; height: auto; }
 #homeTaylor .tay-seal {
   position: absolute;
-  width: 98px;
-  height: 98px;
-  left: -22px;
-  bottom: -22px;
+  width: 158px;
+  height: 158px;
+  left: -186px;
+  top: 50%;
+  bottom: auto;
+  margin-top: -79px;
   z-index: 2;
   transform-origin: 50% 50%;
   animation: tay-seal-spin 4.2s linear infinite;
@@ -2574,7 +2579,7 @@ body[data-photo="cutout"] .about-photo img { object-fit: contain; height: auto; 
 }
 #homeTaylor .tay-arrow.prev { left: 0; }
 #homeTaylor .tay-arrow.next { right: 0; }
-#homeTaylor .tay-lines .tay-viewport { margin: 0 2.6rem; }
+#homeTaylor .tay-lines .tay-viewport { width: auto; margin: 0 2.8rem; }
 #homeTaylor .tay-line { text-align: center; padding: 0.4rem 0.5rem 0; }
 #homeTaylor .tay-line h3 { font-size: 2rem; margin: 0.2rem 0 0.45rem; }
 #homeTaylor .tay-line .kicker { margin: 0 auto 0.85rem; }
@@ -2590,7 +2595,28 @@ body[data-photo="cutout"] .about-photo img { object-fit: contain; height: auto; 
   box-shadow: 0 18px 40px rgba(68, 90, 72, 0.07);
 }
 #homeTaylor .tay-lines-card .eyebrow { justify-content: center; color: var(--gold); }
-#homeTaylor .tay-lines-card .section-title { margin-left: auto; margin-right: auto; }
+#homeTaylor .tay-lines-card .section-title {
+  position: relative;
+  width: fit-content;
+  margin-left: auto;
+  margin-right: auto;
+  padding-bottom: 0.55rem;
+}
+#homeTaylor .tay-lines-card .section-title::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  bottom: 0;
+  height: 4px;
+  width: 28%;
+  border-radius: 999px;
+  background: var(--film);
+  animation: tay-title-sweep 3.8s ease-in-out infinite;
+}
+@keyframes tay-title-sweep {
+  0%, 100% { left: 0; width: 26%; }
+  50% { left: 70%; width: 30%; }
+}
 #homeTaylor .tay-lines .kicker,
 #productLines .tay-line .kicker { color: var(--gold); }
 #homeTaylor .tay-line h3,
@@ -2720,7 +2746,9 @@ body[data-home="taylor"] #productLines {
 }
 #homeTaylor .tay-match-card strong { font-family: var(--serif); font-size: 1.7rem; font-weight: 400; }
 @media (max-width: 980px) {
-  #homeTaylor .tay-hero-row { grid-template-columns: minmax(0, 1fr) 280px; gap: 1rem 1rem; padding-right: 2.25rem; }
+  #homeTaylor .tay-hero-row { grid-template-columns: minmax(0, 1fr) 280px; gap: 1rem 1rem; padding-right: 1rem; }
+  #homeTaylor .tay-copy { padding-right: 7.25rem; }
+  #homeTaylor .tay-seal { width: 108px; height: 108px; left: -124px; margin-top: -54px; }
   #homeTaylor .tay-pic,
   #homeTaylor .tay-frame { width: 280px; }
   #homeTaylor .tay-frame { height: 350px; }
@@ -2731,11 +2759,12 @@ body[data-home="taylor"] #productLines {
 }
 @media (max-width: 680px) {
   #homeTaylor .tay-hero-row { grid-template-columns: minmax(0, 1fr) 210px; gap: 0.85rem; padding-right: 0.85rem; }
+  #homeTaylor .tay-copy { padding-right: 0; }
   #homeTaylor .tay-copy h1 { font-size: 2.05rem; }
   #homeTaylor .tay-pic,
   #homeTaylor .tay-frame { width: 210px; }
   #homeTaylor .tay-frame { height: 264px; }
-  #homeTaylor .tay-seal { width: 68px; height: 68px; left: -10px; bottom: -10px; }
+  #homeTaylor .tay-seal { width: 72px; height: 72px; left: -16px; top: auto; bottom: 6px; margin-top: 0; }
   #homeTaylor .tay-factory { display: block; padding: 1rem 1rem 0.9rem; }
   #homeTaylor .tay-side { display: none; }
   #homeTaylor .tay-place-head,
