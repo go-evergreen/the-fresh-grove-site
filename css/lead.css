@@ -2381,8 +2381,8 @@ body[data-photo="cutout"] .about-photo img { object-fit: contain; height: auto; 
 #homeTaylor .tay-standards .standard-item:nth-child(4n+1) { border-left: 0; }
 #homeTaylor .tay-standards .num,
 #homeTaylor .tay-standards .standard-icon { color: var(--gold); opacity: 1; }
-#tayStory p { max-width: 58ch; }
-#tayStory .pull { max-width: 32ch; }
+#tayStory p { max-width: none; }
+#tayStory .pull { max-width: none; }
 #homeTaylor .tay-chip,
 #homeTaylor .tay-start {
   display: flex;
@@ -2416,16 +2416,29 @@ body[data-photo="cutout"] .about-photo img { object-fit: contain; height: auto; 
   padding: 1.85rem 1.55rem 1.35rem;
   box-shadow: 0 18px 40px rgba(68, 90, 72, 0.07);
 }
+#tayStory .tay-story-top {
+  display: grid;
+  grid-template-columns: minmax(0, 1.25fr) minmax(16rem, 0.9fr);
+  gap: 1.15rem 2.4rem;
+  align-items: stretch;
+}
+#tayStory .tay-story-side {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  gap: 1.15rem;
+  padding-top: 1.85rem;
+}
 #tayStory .eyebrow { color: var(--gold); margin-bottom: 0.55rem; }
-#tayStory .section-title { max-width: 12ch; margin-bottom: 0.8rem; }
-#tayStory .tay-story-card > p:not(.eyebrow) { font-size: 1.05rem; line-height: 1.55; }
+#tayStory .section-title { max-width: none; margin-bottom: 0.8rem; }
+#tayStory .tay-story-copy p:not(.eyebrow) { font-size: 1.05rem; line-height: 1.55; }
 #tayStory .pull {
-  max-width: 26ch;
-  margin: 1.25rem 0 1.15rem;
+  max-width: none;
+  margin: 0;
   padding: 0.1rem 0 0.1rem 1rem;
   border-left: 2px solid var(--gold);
   color: var(--pine-deep);
-  font-size: clamp(1.4rem, 2.5vw, 1.75rem);
+  font-size: clamp(1.35rem, 2.2vw, 1.65rem);
 }
 #tayStory .tay-chip {
   width: 100%;
@@ -2454,6 +2467,10 @@ body[data-photo="cutout"] .about-photo img { object-fit: contain; height: auto; 
 #tayStory .tl-year { color: var(--gold); }
 #tayStory .timeline::before { background: rgba(224, 177, 90, 0.55); }
 #tayStory .tl-item::before { background: #fff; border-color: var(--gold); }
+@media (max-width: 800px) {
+  #tayStory .tay-story-top { grid-template-columns: 1fr; }
+  #tayStory .tay-story-side { padding-top: 0.15rem; }
+}
 #tayTimeline { margin-top: 1.2rem; }
 #homeTaylor .tay-campus { background: var(--paper); }
 #homeTaylor .tay-slider { position: relative; }
